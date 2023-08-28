@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { ThemeSwitcher } from "./components/ThemeSwitcher"
+import { ThemeSwitcher } from "../components/ThemeSwitcher"
 import React from "react";
 
 
