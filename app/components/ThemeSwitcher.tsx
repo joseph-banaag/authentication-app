@@ -1,12 +1,24 @@
-// app/components/ThemeSwitcher.tsx
+
 "use client";
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import SwitchToggle from "./toggle/SwitchToggle"
 
 export function ThemeSwitcher() {
     const [mounted, setMounted] = useState(false)
     const { theme, setTheme } = useTheme()
+
+    const handleToggleSwitch = (clicked: boolean) => {
+        if (clicked) {
+            console.log("the button is clicked for light mode")
+            setTheme("light")
+        } else {
+            console.log("the button is clicked for dark mode")
+            setTheme("dark")
+
+        }
+    }
 
     useEffect(() => {
         setMounted(true)
@@ -16,9 +28,7 @@ export function ThemeSwitcher() {
 
     return (
         <div className="flex flex-col gap-3 justify-center items-center">
-            The current theme is: {theme}
-            <button onClick={() => setTheme('light')}>Light Mode</button>
-            <button onClick={() => setTheme('dark')}>Dark Mode</button>
+            <SwitchToggle theme={theme} onChange={handleToggleSwitch} />
         </div>
     )
 };
