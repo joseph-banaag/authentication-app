@@ -1,0 +1,2 @@
+The Intercepting Routes using the (.) | (..) | (...). more information about the file convention through this link: 
+    https://nextjs.org/docs/app/building-your-application/routing/intercepting-routes

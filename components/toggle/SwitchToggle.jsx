@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import { Switch } from "@nextui-org/react";
-import { MoonIcon } from "../icons/MoonIcon";
-import { SunIcon } from "../icons/SunIcon";
+import { MoonIcon } from "../utils/icons/MoonIcon";
+import { SunIcon } from "../utils/icons/SunIcon";
+import { MySwitch } from "../utils/tailwindvariants/switchtoggle";
 
 export default function SwitchToggle({ theme, onChange }) {
   const [clicked, setClicked] = useState(false);
@@ -13,15 +13,15 @@ export default function SwitchToggle({ theme, onChange }) {
     onChange(newClick);
   };
   return (
-    <Switch
+    <MySwitch
       defaultSelected
       size="sm"
-      color="secondary"
+      color="cyan"
       startContent={<SunIcon />}
       endContent={<MoonIcon />}
       onChange={handleClick}
     >
       {theme}
-    </Switch>
+    </MySwitch>
   );
 }

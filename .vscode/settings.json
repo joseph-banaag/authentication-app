@@ -1,3 +1,11 @@
 {
-  "cSpell.words": ["nextui", "tailwindcss"]
+  "cSpell.words": [
+    "formatjs",
+    "localematcher",
+    "nextui",
+    "tailwindcss",
+    "Topbar",
+    "tailwindvariants",
+    "switchtoggle"
+  ]
 }

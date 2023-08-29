@@ -1,0 +1,1 @@
+The underscore in front of a folder name indicates that it is a private folder that will not be considered as routes
