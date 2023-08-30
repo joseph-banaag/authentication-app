@@ -14,30 +14,16 @@ import {
 } from "@nextui-org/react";
 import { ThemeSwitcher } from "@/components/toggle/ThemeSwitcher"
 import { usePathname } from 'next/navigation'
-import { useRouter } from 'next/navigation'
+import  {menuItems}  from "../../constants"
 
 
 export default function Topbar() {
     const pathname = usePathname()
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-    const menuItems = [
-        {
-            route: "/",
-            label: "Home",
-        },
-        {
-            route: "/sign-in",
-            label: "Sign-In",
-        },
-        {
-            route: "/sign-up",
-            label: "Sign-Up",
-        },
-
-    ];
+    
     return (
-        <Navbar onMenuOpenChange={setIsMenuOpen} shouldHideOnScroll className="flex flex-wrap mb-24">
+        <Navbar onMenuOpenChange={setIsMenuOpen} shouldHideOnScroll className="flex flex-wrap">
             <NavbarContent justify="start">
                 <NavbarMenuToggle
                     aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -55,8 +41,8 @@ export default function Topbar() {
 
             <NavbarContent justify="end">
                 <NavbarItem>
-                    <Button as={Link} color="secondary" href="/sign-up" variant="flat" className="hidden lg:flex">
-                        Sign Up
+                    <Button as={Link} size="sm" color="secondary" href="/sign-in" variant="flat" className="hidden lg:flex">
+                        Sign In
                     </Button>
                 </NavbarItem>
                 <NavbarItem>
@@ -81,7 +67,7 @@ export default function Topbar() {
                     )
                 })}
             </NavbarMenu>
-        </Navbar>
+            </Navbar>
     );
 }
 

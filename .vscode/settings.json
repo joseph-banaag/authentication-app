@@ -3,9 +3,11 @@
     "formatjs",
     "localematcher",
     "nextui",
+    "Storyset",
+    "switchtoggle",
     "tailwindcss",
-    "Topbar",
     "tailwindvariants",
-    "switchtoggle"
-  ]
+    "Topbar"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

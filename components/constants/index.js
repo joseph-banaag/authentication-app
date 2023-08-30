@@ -1,4 +1,4 @@
-export const navigationLinks = [
+export const menuItems = [
   {
     route: "/",
     label: "Home",
@@ -12,3 +12,18 @@ export const navigationLinks = [
     label: "Sign-Up",
   },
 ];
+
+export const bgIllustration = {
+  connect: {
+    src: "/assets/background/Connected-world-amico.svg",
+    name: "connect to all",
+  },
+  group: {
+    src: "/assets/background/group-photo-bro.svg",
+    name: "create community",
+  },
+  homepage: {
+    src: "/assets/background/login-page-bro.svg",
+    name: "homepage",
+  },
+};
