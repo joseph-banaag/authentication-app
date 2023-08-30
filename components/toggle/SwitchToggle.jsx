@@ -17,7 +17,7 @@ export default function SwitchToggle({ theme, onChange }) {
     <MySwitch
       defaultSelected
       size="sm"
-      color="cyan"
+      color="secondary"
       startContent={<SunIcon />}
       endContent={<MoonIcon />}
       onChange={handleClick}

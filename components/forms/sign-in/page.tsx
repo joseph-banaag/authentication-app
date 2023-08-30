@@ -14,7 +14,7 @@ interface Inputs {
 }
 
 // * main function here...
-export default function Forms() {
+export default function SignIn() {
     const [isVisible, setIsVisible] = React.useState(false);
     const [isDark, setIsDark] = React.useState(false);
 
@@ -51,7 +51,7 @@ export default function Forms() {
     console.log("Errors: ", errors)
 
     return (
-        <div className="flex flex-col flex-1 border-2 border-slate-600 rounded-2xl p-1.5 sm:p-5 gap-5 ">
+        <div className="flex flex-col flex-1 border-2 border-slate-600 rounded-2xl p-1.5 sm:p-5 gap-5 mb-24">
             {/* other logins*/}
 
                 <div className='w-full flex justify-start'>
