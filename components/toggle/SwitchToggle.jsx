@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { MoonIcon } from "../utils/icons/MoonIcon";
 import { SunIcon } from "../utils/icons/SunIcon";
-import { MySwitch } from "../utils/tailwindvariants/switchtoggle";
+import { MySwitch } from "../utils/tailwindvariants/tv";
 
 export default function SwitchToggle({ theme, onChange }) {
   const [clicked, setClicked] = useState(false);

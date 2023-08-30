@@ -1,15 +1,8 @@
 "use client"
 import React from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
-import { Montserrat } from 'next/font/google'
 import Image from 'next/image';
-// import { IoLogoVimeo } from "react-icons/io5";
-// import { ErrorMessage } from "@hookform/error-message";
-
-const monserrat = Montserrat({
-    weight: "400",
-    subsets: ["latin"]
-});
+import { IoLogoVimeo } from "react-icons/io5";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -33,14 +26,12 @@ export default function Forms() {
     }
 
     const iconsSrc = {
-        facebook: "/assets/icons/facebook_icons/f_logo_RGB-Blue_72.png",
+        facebook: "/assets/facebook/f_logo_RGB-Blue_250.png",
         nameFb: "facebook",
-        google: "/assets/icons/google_icon/gmail.png",
+        google: "/assets/google/google.png",
         nameG: "google",
-        github: "/assets/icons/github_icons/github.png",
+        github: "/assets/github/github.png",
         nameGit: "github",
-        vimeo: "",
-        nameV: "vimeo"
     }
 
     // block below is for the functionality of watch() method
@@ -59,10 +50,10 @@ export default function Forms() {
 
 
             <div className='w-[8em] h-[8em]'>
-                {/* <IoLogoVimeo size={100} color="#1ab7ea" className="m-auto mt-4" /> */}
+                <IoLogoVimeo size={100} color="#1ab7ea" className="mt-4" />
             </div>
             <div className='p-3'>
-                <h1 className={`${monserrat.className} text-4xl font-medium mb-1`}>Create your account</h1>
+                <h1 className="text-4xl font-medium mb-1">Create your account</h1>
                 <p>to access {App.name} </p>
             </div>
 
@@ -106,37 +97,6 @@ export default function Forms() {
             </div>
 
 
-            <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-3 '>
-
-                <div className='flex flex-col gap-1 mb-3'>
-                    <input {...register("username", { required: { value: true, message: "Can't leave empty." }, minLength: { value: 8, message: "Min length of 8" }, maxLength: { value: 25, message: "Max length 25" } })} placeholder='Username' className='p-2 rounded-md text-black text-sm w-full' required />
-
-                    {/* <ErrorMessage
-                        errors={errors}
-                        name="username"
-                        render={({ messages }: any) => {
-                            console.log("messages", messages);
-                            return messages
-                                ? Object.entries(messages).map(([type, message]) => (
-                                    <p key={type}>{messages.message}</p>
-                                ))
-                                : null;
-                        }}
-                    /> */}
-
-                </div>
-
-                <div className='flex flex-col gap-1 mb-3'>
-                    <input type='password' autoComplete="on" {...register("password", { pattern: { value: /(?=\w{8,18})(?=\D*\d)/, message: "Password must be at least 8 characters." } })} placeholder='Password' className='p-2 rounded-md text-black text-sm w-full' required />
-                    {/* {errors.username && } */}
-                </div>
-
-
-
-                <div className='flex flex-col gap-1 mb-3'>
-                    <input type="submit" className='w-2/3 mx-auto p-2 rounded-2xl bg-slate-800 text-slate-100 hover:text-violet-950 hover:font-bold hover:bg-slate-400 transition duration-300' />
-                </div>
-            </form>
         </div>
     )
 }

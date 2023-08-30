@@ -11,7 +11,7 @@ import {
     NavbarMenu,
     NavbarMenuItem
 } from "@nextui-org/react";
-import { ThemeSwitcher } from "@/components/ThemeSwitcher"
+import { ThemeSwitcher } from "@/components/toggle/ThemeSwitcher"
 
 
 export default function Topbar() {
