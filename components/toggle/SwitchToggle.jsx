@@ -12,6 +12,7 @@ export default function SwitchToggle({ theme, onChange }) {
     setClicked(newClick);
     onChange(newClick);
   };
+  
   return (
     <MySwitch
       defaultSelected
@@ -21,7 +22,7 @@ export default function SwitchToggle({ theme, onChange }) {
       endContent={<MoonIcon />}
       onChange={handleClick}
     >
-      {theme}
+      <p className="sm:flex hidden">{theme}</p>
     </MySwitch>
   );
 }

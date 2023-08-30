@@ -1,5 +1,4 @@
-import { extendVariants, Switch } from "@nextui-org/react";
-
+import { extendVariants, Switch, Button } from "@nextui-org/react";
 
 export const MySwitch = extendVariants(Switch, {
   variants: {
@@ -10,7 +9,14 @@ export const MySwitch = extendVariants(Switch, {
           "group-data-[selected=true]:text-default-foreground",
         ],
       },
-        },
-      
+    },
+  },
+});
+
+export const MyButton = extendVariants(Button, {
+  variants: {
+    color: {
+      teal: "bg-[#042f2e]",
+    },
   },
 });

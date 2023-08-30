@@ -31,40 +31,20 @@ export default function Topbar() {
         "Log Out",
     ];
     return (
-        <Navbar onMenuOpenChange={setIsMenuOpen} shouldHideOnScroll>
-            <NavbarContent>
+        <Navbar onMenuOpenChange={setIsMenuOpen} shouldHideOnScroll className="flex flex-wrap mb-24">
+            <NavbarContent justify="start">
                 <NavbarMenuToggle
                     aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                     className="sm:hidden"
                 />
-                <NavbarBrand>
-                    <p className="font-bold text-inherit">Authentication</p>
+                <NavbarBrand className="flex flex-1">
+                    <p className="font-bold text-inherit nav_name">Authentication</p>
                 </NavbarBrand>
             </NavbarContent>
 
-            <NavbarContent className="hidden sm:flex gap-4" justify="center">
-                <NavbarItem>
-                    <Link color="foreground" href="#">
-                        Features
-                    </Link>
-                </NavbarItem>
-                <NavbarItem isActive>
-                    <Link href="#" aria-current="page">
-                        Customers
-                    </Link>
-                </NavbarItem>
-                <NavbarItem>
-                    <Link color="foreground" href="#">
-                        Integrations
-                    </Link>
-                </NavbarItem>
-            </NavbarContent>
             <NavbarContent justify="end">
-                <NavbarItem className="hidden lg:flex">
-                    <Link href="#">Login</Link>
-                </NavbarItem>
                 <NavbarItem>
-                    <Button as={Link} color="primary" href="#" variant="flat">
+                    <Button as={Link} color="primary" href="#" variant="flat" className="hidden lg:flex">
                         Sign Up
                     </Button>
                 </NavbarItem>
@@ -72,7 +52,7 @@ export default function Topbar() {
                     <ThemeSwitcher />
                 </NavbarItem>
             </NavbarContent>
-            <NavbarMenu>
+            <NavbarMenu className="w-full">
                 {menuItems.map((item, index) => (
                     <NavbarMenuItem key={`${item}-${index}`}>
                         <Link

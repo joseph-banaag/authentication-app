@@ -5,8 +5,11 @@ import React from "react";
 
 export default function Home() {
   return (
-    <main className="flex flex-1 flex-col justify-center items-center gap-1 p-24 max-w-full">
-      <SignIn />
+    <main className="w-full min-h-screen flex flex-1 flex-col justify-center items-center">
+      <div className=" sm:p-2 p-5">
+        <SignIn />
+      </div>
+
     </main>
 
 
