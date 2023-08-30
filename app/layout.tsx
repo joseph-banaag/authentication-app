@@ -1,12 +1,11 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter, Montserrat } from 'next/font/google'
+import { Montserrat } from 'next/font/google'
 import { Providers } from "./providers"
 import Topbar from "@/components/sections/navbar/page"
 import Footer from "@/components/sections/footer/page"
 
 
-const inter = Inter({ subsets: ['latin'] })
 
 const monserrat = Montserrat({
   weight: "400",

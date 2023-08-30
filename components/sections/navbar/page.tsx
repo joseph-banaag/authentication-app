@@ -14,14 +14,19 @@ import {
 } from "@nextui-org/react";
 import { ThemeSwitcher } from "@/components/toggle/ThemeSwitcher"
 import { usePathname } from 'next/navigation'
-import  {menuItems}  from "../../constants"
+import { menuItems } from "../../constants"
 
 
 export default function Topbar() {
     const pathname = usePathname()
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    const [isSignIn, setIsSignIn] = React.useState(true)
 
-    
+    const checkSignIn = () => {
+        setIsSignIn(!isSignIn)
+    }
+
+
     return (
         <Navbar onMenuOpenChange={setIsMenuOpen} shouldHideOnScroll className="flex flex-wrap">
             <NavbarContent justify="start">
@@ -34,16 +39,26 @@ export default function Topbar() {
                         href="/"
                         color="foreground"
                     >
-                        <p className="font-bold text-inherit nav_name cursor-pointer">Authentication</p>
+                        <p className="font-bold text-inherit nav_name cursor-pointer sm:flex hidden">Authentication</p>
                     </Link>
                 </NavbarBrand>
             </NavbarContent>
 
             <NavbarContent justify="end">
                 <NavbarItem>
-                    <Button as={Link} size="sm" color="secondary" href="/sign-in" variant="flat" className="hidden lg:flex">
-                        Sign In
-                    </Button>
+
+                    {/* 
+                    //Todo:  
+                    */}
+                    {isSignIn
+                        ? <Button as={Link} size="sm" color="secondary" href="/sign-in" variant="flat" className="hidden lg:flex">
+                            Sign In
+                        </Button>
+                        : <Button as={Link} size="sm" color="secondary" href="/sign-up" variant="flat" className="hidden lg:flex">
+                            Sign Up
+                        </Button>
+                    }
+
                 </NavbarItem>
                 <NavbarItem>
                     <ThemeSwitcher />
@@ -57,7 +72,7 @@ export default function Topbar() {
                         <NavbarMenuItem key={links.label}>
                             <Link
                                 color="foreground"
-                                className={`${isActive && "text-secondary text-2xl font-bold"} w-full`}
+                                className={`${isActive && "text-secondary text-2xl font-bold"} text-medium w-full`}
                                 href={links.route}
                                 size="lg"
                             >
@@ -67,7 +82,7 @@ export default function Topbar() {
                     )
                 })}
             </NavbarMenu>
-            </Navbar>
+        </Navbar>
     );
 }
 
