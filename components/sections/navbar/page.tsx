@@ -14,7 +14,7 @@ import {
 } from "@nextui-org/react";
 import { ThemeSwitcher } from "@/components/toggle/ThemeSwitcher"
 import { usePathname } from 'next/navigation'
-
+import { useRouter } from 'next/navigation'
 
 
 export default function Topbar() {

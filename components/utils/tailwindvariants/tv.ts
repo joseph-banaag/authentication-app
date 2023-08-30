@@ -1,4 +1,4 @@
-import { extendVariants, Switch, Button } from "@nextui-org/react";
+import { extendVariants, Switch, Button, Input } from "@nextui-org/react";
 
 export const MySwitch = extendVariants(Switch, {
   variants: {
@@ -18,5 +18,10 @@ export const MyButton = extendVariants(Button, {
     color: {
       teal: "bg-[#042f2e]",
     },
+    size: {
+      md: "px-unit-4 sm:min-w-unit-24 min-w-unit-4 h-unit-10 text-small gap-unit-2 rounded-medium bg-primary/20",
+    },
   },
 });
+
+

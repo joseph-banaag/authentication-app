@@ -8,19 +8,14 @@
   margin: 0;
 }
 
-html,body{
+html,
+body {
   width: 100vw;
   height: auto;
 }
 
-
-@media (max-width: 396px) {
-  .nav_name {
-    font-size: small;
-  }
-}
 @media (max-width: 298px) {
-  .nav_name{
-   display: none;
+  .nav_name {
+    display: none;
   }
 }
