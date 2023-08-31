@@ -19,7 +19,7 @@ export default function Home() {
 
   return (
     <div className="relative flex flex-col justify-center items-center min-h-screen delay-3000 z-10 gap-5 mt-5">
-      <h1 className="text-3xl font-semibold -mt-32 sm:hidden flex "><span className={`${dancing.className} text-secondary font-bold`}>Auth</span><span className={`${dancing.className}`}>entication</span></h1>
+      <Link href="/" color="foreground" className="text-3xl font-semibold -mt-32 sm:hidden flex "><span className={`${dancing.className} text-secondary font-bold`}>Auth</span><span className={`${dancing.className}`}>entication</span></Link>
       <div className='bg-fixed bg-center bg-cover z-[1]'>
         <Image
           src={bgIllustration.homepage.src}

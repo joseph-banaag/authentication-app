@@ -38,8 +38,8 @@ export default function SignIn() {
 
     const onSubmit: SubmitHandler<Inputs> = (data: any) => console.log(data); // the return can also be alert: alert(JSON.stringify(data))
 
-    const App = {
-        name: "Vimeo",
+    const Company = {
+        name: "Authentication ®",
         imgSrc: ""
     }
     const iconsSrc = {
@@ -67,8 +67,8 @@ export default function SignIn() {
                             <IoLogoVimeo color="#1ab7ea" className="mt-5 w-[30%] h-[30%]" />
                         </div>
                         <div className='p-3'>
-                            <h1 className="sm:text-4xl text-xl sm:font-medium font-normal mb-1">Create your account</h1>
-                            <p className="sm:text-medium text-xs sm:font-normal font-small">to access {App.name} </p>
+                            <h1 className="sm:text-4xl text-xl sm:font-medium font-normal mb-1">Log in</h1>
+                            <p className="sm:text-medium text-xs sm:font-normal font-small">to access {Company.name} </p>
                         </div>
 
                         <div className="flex flex-wrap justify-center items-center sm:gap-5 gap-2 ">
@@ -152,6 +152,7 @@ export default function SignIn() {
 
                             <div className='flex flex-col gap-1 mb-3'>
                                 <Input
+                                    isRequired
                                     type="text"
                                     label="Username"
                                     variant="bordered"
@@ -168,6 +169,7 @@ export default function SignIn() {
 
                             <div className='flex flex-col gap-1 mb-3'>
                                 <Input
+                                    isRequired
                                     label="Password"
                                     variant="bordered"
                                     placeholder="Enter your password"
