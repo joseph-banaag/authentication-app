@@ -15,18 +15,15 @@ import {
 import { ThemeSwitcher } from "@/components/toggle/ThemeSwitcher"
 import { usePathname } from 'next/navigation'
 import { menuItems } from "../../constants"
+import ComponentChanger from "@/components/lib/ComponentChanger";
+
 
 
 export default function Topbar() {
     const pathname = usePathname()
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const [isSignIn, setIsSignIn] = React.useState(true)
-
-    const checkSignIn = () => {
-        setIsSignIn(!isSignIn)
-    }
-
-
+    
     return (
         <Navbar onMenuOpenChange={setIsMenuOpen} shouldHideOnScroll className="flex flex-wrap">
             <NavbarContent justify="start">
@@ -46,19 +43,7 @@ export default function Topbar() {
 
             <NavbarContent justify="end">
                 <NavbarItem>
-
-                    {/* 
-                    //Todo:  
-                    */}
-                    {isSignIn
-                        ? <Button as={Link} size="sm" color="secondary" href="/sign-in" variant="flat" className="hidden lg:flex">
-                            Sign In
-                        </Button>
-                        : <Button as={Link} size="sm" color="secondary" href="/sign-up" variant="flat" className="hidden lg:flex">
-                            Sign Up
-                        </Button>
-                    }
-
+                    <ComponentChanger />
                 </NavbarItem>
                 <NavbarItem>
                     <ThemeSwitcher />

@@ -8,6 +8,7 @@ import { EyeFilledIcon } from "@/components/utils/icons/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "@/components/utils/icons/EyeSlashFilledIcon";
 import { MyButton } from "@/components/utils/tailwindvariants/tv";
 import { bgIllustration } from "@/components/constants";
+import { Company } from "@/components/constants";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -25,8 +26,13 @@ export default function SignUp() {
     const [isDark, setIsDark] = React.useState(true);
     const [isMatched, setIsMatched] = React.useState(false)
 
-    const changeIcon = () => setIsDark(!isDark)
-
+    // todo: this will change the github icon depending on the set theme
+    const changeIcon = () => {
+        return (
+            setIsDark(!isDark)
+        )
+    }
+    // todo: this will change the color of the continue button if the password confirmation is the same 
     const checkMatchedPw = () => setIsMatched(!isMatched)
 
 
@@ -46,15 +52,10 @@ export default function SignUp() {
     const onSubmit: SubmitHandler<Inputs> = (data: any) => {
         return (
             //todo: create a check state that will check if the password is match to confirmPw and make the continue button green
-
             console.log(data) // the return can also be alert: alert(JSON.stringify(data))
         )
     }
 
-    const Company = {
-        name: "Authentication ®",
-        imgSrc: ""
-    }
     const iconsSrc = {
         facebook: "/assets/facebook/f_logo_RGB-Blue_250.png",
         nameFb: "facebook",
@@ -79,8 +80,19 @@ export default function SignUp() {
                     <div className="flex flex-col flex-1 border-2 border-slate-600 rounded-2xl p-1.5 sm:p-5 gap-5 mb-24" id="sign-in">
                         {/* other logins*/}
 
-                        <div className='w-full flex justify-start'>
-                            <IoLogoVimeo color="#1ab7ea" className="mt-5 w-[30%] h-[30%]" />
+                        <div className='w-full flex justify-start mt-2'>
+                            <Image
+                                src={Company.imgSrc}
+                                alt={Company.name}
+                                width={100}
+                                height={100}
+                                style={{
+                                    objectFit: "cover",
+                                    width: "30%",
+                                    height: "30%"
+                                }}
+                                className="drop-shadow-md"
+                            />
                         </div>
                         <div className='p-3'>
                             <h1 className="sm:text-4xl text-xl sm:font-medium font-normal mb-1">Create your account</h1>
@@ -94,6 +106,7 @@ export default function SignUp() {
                                     size="md"
                                     className="hover:scale-105 hover:bg-primary/40 transition-all duration-300 backdrop-blur-xl drop-shadow-lg flex-1">
                                     <Image
+                                        priority
                                         src={iconsSrc.facebook}
                                         alt={iconsSrc.nameFb}
                                         width={24}
@@ -117,6 +130,7 @@ export default function SignUp() {
                                     */}
                                     {isDark
                                         ? <Image
+                                            priority
                                             src={iconsSrc.github}
                                             alt={iconsSrc.nameGit}
                                             width={24}
@@ -127,6 +141,7 @@ export default function SignUp() {
                                             className="drop-shadow-lg "
                                         />
                                         : <Image
+                                            priority
                                             src={iconsSrc.githubDark}
                                             alt={iconsSrc.nameGit}
                                             width={24}
@@ -145,6 +160,7 @@ export default function SignUp() {
                                     size="md"
                                     className="hover:scale-105 hover:bg-primary/40 transition-all duration-300 backdrop-blur-xl drop-shadow-lg flex-1">
                                     <Image
+                                        priority
                                         src={iconsSrc.google}
                                         alt={iconsSrc.nameG}
                                         width={24}
@@ -287,6 +303,7 @@ export default function SignUp() {
             <div className="flex md:flex-row flex-col justify-center items-center p-10 z-0 mb-10 md:gap-11 gap-5">
                 <h1 className="sm:text-2xl text-medium font-bold text-secondary/90 ">Create connection</h1>
                 <Image
+                    priority
                     src={bgIllustration.connect.src}
                     alt={bgIllustration.connect.name}
                     width={400}

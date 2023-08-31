@@ -27,3 +27,8 @@ export const bgIllustration = {
     name: "homepage",
   },
 };
+
+export const Company = {
+  name: "Authentication ®",
+  imgSrc: "/assets/logo/logo.svg",
+};

@@ -2,12 +2,13 @@
 import React from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
 import Image from 'next/image';
-import { IoLogoVimeo } from "react-icons/io5";
 import { Button, Input } from "@nextui-org/react";
 import { EyeFilledIcon } from "@/components/utils/icons/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "@/components/utils/icons/EyeSlashFilledIcon";
 import { MyButton } from "@/components/utils/tailwindvariants/tv";
 import { bgIllustration } from "@/components/constants";
+import { Company } from "@/components/constants";
+
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -19,11 +20,22 @@ interface Inputs {
 export default function SignIn() {
     const [isVisible, setIsVisible] = React.useState(false);
     const [isDark, setIsDark] = React.useState(true);
+    const [isMatched, setIsMatched] = React.useState(false)
 
-    const changeIcon = () => {
-        setIsDark(!isDark)
+    // todo: this will change the button bg to green if the password is matched form the db
+    const MatchedPw = () => {
+        return (
+            setIsMatched(!isMatched)
+        )
     }
 
+
+    // todo: this will change the github icon depending on the set theme
+    const changeIcon = () => {
+        return (
+            setIsDark(!isDark)
+        )
+    }
     const toggleVisibility = () => setIsVisible(!isVisible);
 
 
@@ -38,10 +50,7 @@ export default function SignIn() {
 
     const onSubmit: SubmitHandler<Inputs> = (data: any) => console.log(data); // the return can also be alert: alert(JSON.stringify(data))
 
-    const Company = {
-        name: "Authentication ®",
-        imgSrc: ""
-    }
+
     const iconsSrc = {
         facebook: "/assets/facebook/f_logo_RGB-Blue_250.png",
         nameFb: "facebook",
@@ -62,9 +71,19 @@ export default function SignIn() {
 
                     <div className="flex flex-col flex-1 border-2 border-slate-600 rounded-2xl p-1.5 sm:p-5 gap-5 mb-24" id="sign-in">
                         {/* other logins*/}
-
-                        <div className='w-full flex justify-start'>
-                            <IoLogoVimeo color="#1ab7ea" className="mt-5 w-[30%] h-[30%]" />
+                        <div className='w-full flex justify-start mt-2'>
+                            <Image
+                                src={Company.imgSrc}
+                                alt={Company.name}
+                                width={100}
+                                height={100}
+                                style={{
+                                    objectFit: "cover",
+                                    width: "30%",
+                                    height: "30%"
+                                }}
+                                className="drop-shadow-md"
+                            />
                         </div>
                         <div className='p-3'>
                             <h1 className="sm:text-4xl text-xl sm:font-medium font-normal mb-1">Log in</h1>
@@ -199,9 +218,14 @@ export default function SignIn() {
                             </div>
 
                             <div className='flex flex-col gap-1 mb-3'>
-                                <Button type="submit" name="submit" className="bg-violet-800 hover:bg-violet-950 drop-shadow-lg transition-all duration-300">
-                                    <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
-                                </Button>
+                                {isMatched
+                                    ? <Button type="submit" name="submit" className="bg-green-800 hover:bg-green-600 drop-shadow-lg transition-all duration-300">
+                                        <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
+                                    </Button>
+                                    : <Button type="submit" name="submit" className="bg-violet-800 hover:bg-violet-950 drop-shadow-lg transition-all duration-300">
+                                        <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
+                                    </Button>}
+                                
                             </div>
                         </form>
 

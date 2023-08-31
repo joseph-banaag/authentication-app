@@ -22,6 +22,7 @@ export default function Home() {
       <Link href="/" color="foreground" className="text-3xl font-semibold -mt-32 sm:hidden flex "><span className={`${dancing.className} text-secondary font-bold`}>Auth</span><span className={`${dancing.className}`}>entication</span></Link>
       <div className='bg-fixed bg-center bg-cover z-[1]'>
         <Image
+          priority
           src={bgIllustration.homepage.src}
           alt={bgIllustration.homepage.name}
           width={600}
