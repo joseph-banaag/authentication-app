@@ -3,6 +3,8 @@ import Image from 'next/image'
 import { Link } from "@nextui-org/react"
 import { bgIllustration } from "@/components/constants"
 import { Recursive, Dancing_Script } from "next/font/google"
+import { useTheme } from "next-themes";
+
 
 const recursive = Recursive({
   weight: ["400", "700"],
@@ -14,8 +16,10 @@ const dancing = Dancing_Script({
   subsets: ["latin"]
 })
 
+
 export default function Home() {
 
+  console.log(useTheme().theme)
 
   return (
     <div className="relative flex flex-col justify-center items-center min-h-screen delay-3000 z-10 gap-5 mt-5">

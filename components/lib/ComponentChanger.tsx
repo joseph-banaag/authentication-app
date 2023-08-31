@@ -6,7 +6,8 @@ import { usePathname } from 'next/navigation'
 
 export default function ComponentChanger() {
   const pathname = usePathname()
-  
+
+  // if React.ReactNode is not present the code will be unreachable
   const determineSignOption = (): React.ReactNode => {
     if (pathname === "/sign-in") {
       return (
@@ -15,7 +16,6 @@ export default function ComponentChanger() {
     } else if (pathname === "/sign-up") {
       return <SignIn />;
     } else {
-      // Default component if the current page doesn't match any condition
       return <SignIn />;
     }
   };

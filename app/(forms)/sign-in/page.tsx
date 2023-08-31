@@ -7,8 +7,8 @@ import { EyeFilledIcon } from "@/components/utils/icons/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "@/components/utils/icons/EyeSlashFilledIcon";
 import { MyButton } from "@/components/utils/tailwindvariants/tv";
 import { bgIllustration } from "@/components/constants";
-import { Company } from "@/components/constants";
-
+import { Company, iconsSrc } from "@/components/constants";
+import IconChanger from "@/components/lib/IconChanger";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -28,6 +28,7 @@ export default function SignIn() {
             setIsMatched(!isMatched)
         )
     }
+
 
 
     // todo: this will change the github icon depending on the set theme
@@ -51,15 +52,6 @@ export default function SignIn() {
     const onSubmit: SubmitHandler<Inputs> = (data: any) => console.log(data); // the return can also be alert: alert(JSON.stringify(data))
 
 
-    const iconsSrc = {
-        facebook: "/assets/facebook/f_logo_RGB-Blue_250.png",
-        nameFb: "facebook",
-        google: "/assets/google/google.png",
-        nameG: "google",
-        github: "/assets/github/github-mark-white.png",
-        githubDark: "/assets/github/github.png",
-        nameGit: "github",
-    }
     console.log(watch("username"));
     console.log(watch("password"))
     console.log("Errors: ", errors)
@@ -87,7 +79,7 @@ export default function SignIn() {
                         </div>
                         <div className='p-3'>
                             <h1 className="sm:text-4xl text-xl sm:font-medium font-normal mb-1">Log in</h1>
-                            <p className="sm:text-medium text-xs sm:font-normal font-small">to access {Company.name} </p>
+                            <p className="sm:text-medium text-xs sm:font-normal font-small">to access your {Company.name} account </p>
                         </div>
 
                         <div className="flex flex-wrap justify-center items-center sm:gap-5 gap-2 ">
@@ -115,30 +107,7 @@ export default function SignIn() {
                                     variant="flat"
                                     size="md"
                                     className="hover:scale-105 hover:bg-primary/40 transition-all duration-300 backdrop-blur-xl drop-shadow-lg flex-1">
-                                    {/* 
-                                        //Todo:
-                                    */}
-                                    {isDark
-                                        ? <Image
-                                            src={iconsSrc.github}
-                                            alt={iconsSrc.nameGit}
-                                            width={24}
-                                            height={24}
-                                            style={{
-                                                objectFit: "cover"
-                                            }}
-                                            className="drop-shadow-lg "
-                                        />
-                                        : <Image
-                                            src={iconsSrc.githubDark}
-                                            alt={iconsSrc.nameGit}
-                                            width={24}
-                                            height={24}
-                                            style={{
-                                                objectFit: "cover"
-                                            }}
-                                            className="drop-shadow-lg "
-                                        />}
+                                    <IconChanger />
                                 </MyButton>
                             </div>
 
@@ -225,7 +194,7 @@ export default function SignIn() {
                                     : <Button type="submit" name="submit" className="bg-violet-800 hover:bg-violet-950 drop-shadow-lg transition-all duration-300">
                                         <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
                                     </Button>}
-                                
+
                             </div>
                         </form>
 

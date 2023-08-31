@@ -29,6 +29,16 @@ export const bgIllustration = {
 };
 
 export const Company = {
-  name: "Authentication ®",
+  name: "Authentication®",
   imgSrc: "/assets/logo/logo.svg",
+};
+
+export const iconsSrc = {
+  facebook: "/assets/facebook/f_logo_RGB-Blue_250.png",
+  nameFb: "facebook",
+  google: "/assets/google/google.png",
+  nameG: "google",
+  githubLight: "/assets/github/github-mark-white.png",
+  githubDark: "/assets/github/github.png",
+  nameGit: "github",
 };

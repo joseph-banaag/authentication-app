@@ -20,6 +20,8 @@ export function ThemeSwitcher() {
         }
     }
 
+  
+
 
     useEffect(() => {
         setMounted(true)

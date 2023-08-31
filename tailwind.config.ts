@@ -20,6 +20,7 @@ const config: Config = {
   darkMode: "class",
   plugins: [
     nextui({
+      prefix: "nextui",
       layout: {
         spacingUnit: 4, // in px
         disabledOpacity: ".5", // this value is applied as opacity-[value] when the component is disabled
@@ -52,7 +53,7 @@ const config: Config = {
           extend: "dark", // <- inherit default values from dark theme
           colors: {
             background: "#0D001A",
-            foreground: "#ECEDEE",
+            foreground: "#eff3f5",
             primary: {
               50: "#F0FCFF",
               100: "#E6FAFE",
@@ -65,7 +66,7 @@ const config: Config = {
               800: "#0E8AAA",
               900: "#053B48",
               DEFAULT: "#7EE7FC",
-              foreground: "#ffffff",
+              foreground: "#eff3f5",
             },
             focus: "#06B7DB",
           },
@@ -85,11 +86,11 @@ const config: Config = {
         },
         light: {
           colors: {
-            background: "#FFFFFF", // or DEFAULT
+            background: "#eff3f5", // or DEFAULT
             foreground: "#11181C", // or 50 to 900 DEFAULT
             primary: {
               //... 50 to 900
-              foreground: "#FFFFFF",
+              foreground: "#eff3f5",
               DEFAULT: "#006FEE",
             },
           },
