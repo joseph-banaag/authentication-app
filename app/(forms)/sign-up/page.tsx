@@ -2,13 +2,14 @@
 import React from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
 import Image from 'next/image';
-import { IoLogoVimeo } from "react-icons/io5";
 import { Button, Input } from "@nextui-org/react";
 import { EyeFilledIcon } from "@/components/utils/icons/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "@/components/utils/icons/EyeSlashFilledIcon";
 import { MyButton } from "@/components/utils/tailwindvariants/tv";
 import { bgIllustration } from "@/components/constants";
 import { Company } from "@/components/constants";
+import IconChanger from "@/components/lib/IconChanger";
+import { iconsSrc } from "@/components/constants";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -23,15 +24,8 @@ interface Inputs {
 export default function SignUp() {
     const [isVisible, setIsVisible] = React.useState(false);
     const [isConfirmed, setIsConfirmed] = React.useState(false);
-    const [isDark, setIsDark] = React.useState(true);
     const [isMatched, setIsMatched] = React.useState(false)
 
-    // todo: this will change the github icon depending on the set theme
-    const changeIcon = () => {
-        return (
-            setIsDark(!isDark)
-        )
-    }
     // todo: this will change the color of the continue button if the password confirmation is the same 
     const checkMatchedPw = () => setIsMatched(!isMatched)
 
@@ -45,27 +39,12 @@ export default function SignUp() {
         handleSubmit,
         watch,
         formState: { errors }
-    } = useForm<Inputs>();
-
-
-
-    const onSubmit: SubmitHandler<Inputs> = (data: any) => {
-        return (
-            //todo: create a check state that will check if the password is match to confirmPw and make the continue button green
-            console.log(data) // the return can also be alert: alert(JSON.stringify(data))
-        )
-    }
-
-    const iconsSrc = {
-        facebook: "/assets/facebook/f_logo_RGB-Blue_250.png",
-        nameFb: "facebook",
-        google: "/assets/google/google.png",
-        nameG: "google",
-        github: "/assets/github/github-mark-white.png",
-        githubDark: "/assets/github/github.png",
-        nameGit: "github",
-    }
-
+    } = useForm<Inputs>({
+        defaultValues: {
+            fullName: "",
+            username: ""
+        }
+    });
 
     console.log(watch("fullName"));
     console.log(watch("username"));
@@ -73,13 +52,31 @@ export default function SignUp() {
     console.log(watch("confirmPw"))
     console.log("Errors: ", errors)
 
+    const onSubmit: SubmitHandler<Inputs> = (data: any) => {
+        const determinePasswordMatched = () => {
+            const password = (data.password);
+            const confirmed = (data.confirmPw);
+
+            if (password !== confirmed || password === "") {
+                console.log("Password does not matched!")
+            } else {
+                console.log("Success")
+            }
+        }
+
+        return (
+            <>
+                {determinePasswordMatched()}
+            </>
+        )
+    }
+
+
     return (
         <>
-            <div className="w-full min-h-screen flex flex-1 flex-col justify-center items-center mt-10">
+            <div className="w-full min-h-screen flex flex-1 flex-col justify-center items-center mt-10 ">
                 <div className=" sm:p-2 p-5">
-                    <div className="flex flex-col flex-1 border-2 border-slate-600 rounded-2xl p-1.5 sm:p-5 gap-5 mb-24" id="sign-in">
-                        {/* other logins*/}
-
+                    <div className="flex flex-col flex-1 border-2 border-slate-600 rounded-2xl p-1.5 sm:p-5 gap-5 mb-24 shadow-lg" id="sign-in">
                         <div className='w-full flex justify-start mt-2'>
                             <Image
                                 src={Company.imgSrc}
@@ -99,12 +96,16 @@ export default function SignUp() {
                             <p className="sm:text-medium text-xs sm:font-normal font-small">to access {Company.name} </p>
                         </div>
 
+                        {/* 
+                            // Todo: generate a function that will allow the sign in options facebook, google, and github
+                        */}
+
                         <div className="flex flex-wrap justify-center items-center sm:gap-5 gap-4 ">
                             <div>
                                 <MyButton
                                     variant="flat"
                                     size="md"
-                                    className="hover:scale-105 hover:bg-primary/40 transition-all duration-300 backdrop-blur-xl drop-shadow-lg flex-1">
+                                    className="hover:scale-105 hover:bg-secondary/10 transition-all duration-300 backdrop-blur-xl drop-shadow-lg flex-1">
                                     <Image
                                         priority
                                         src={iconsSrc.facebook}
@@ -124,33 +125,9 @@ export default function SignUp() {
                                 <MyButton
                                     variant="flat"
                                     size="md"
-                                    className="hover:scale-105 hover:bg-primary/40 transition-all duration-300 backdrop-blur-xl drop-shadow-lg flex-1">
-                                    {/* 
-                                        //Todo: create a logic that will check the theme and apply the icon for its theme
-                                    */}
-                                    {isDark
-                                        ? <Image
-                                            priority
-                                            src={iconsSrc.github}
-                                            alt={iconsSrc.nameGit}
-                                            width={24}
-                                            height={24}
-                                            style={{
-                                                objectFit: "cover"
-                                            }}
-                                            className="drop-shadow-lg "
-                                        />
-                                        : <Image
-                                            priority
-                                            src={iconsSrc.githubDark}
-                                            alt={iconsSrc.nameGit}
-                                            width={24}
-                                            height={24}
-                                            style={{
-                                                objectFit: "cover"
-                                            }}
-                                            className="drop-shadow-lg "
-                                        />}
+                                    className="hover:scale-105 hover:bg-secondary/10 transition-all duration-300 backdrop-blur-xl drop-shadow-lg flex-1"
+                                >
+                                    <IconChanger />
                                 </MyButton>
                             </div>
 
@@ -158,7 +135,7 @@ export default function SignUp() {
                                 <MyButton
                                     variant="flat"
                                     size="md"
-                                    className="hover:scale-105 hover:bg-primary/40 transition-all duration-300 backdrop-blur-xl drop-shadow-lg flex-1">
+                                    className="hover:scale-105 hover:bg-secondary/10 transition-all duration-300 backdrop-blur-xl drop-shadow-lg flex-1">
                                     <Image
                                         priority
                                         src={iconsSrc.google}
@@ -185,47 +162,49 @@ export default function SignUp() {
 
                             <div className='flex flex-col gap-1 mb-3'>
                                 <Input
-                                    isRequired
+                                    id="fullName"
+                                    isClearable
                                     type="text"
                                     label="Full Name"
                                     variant="bordered"
                                     className="w-full flex-1"
                                     classNames={{
-                                        label: "text-default sm:text-medium text-xs sm:font-normal font-small",
+                                        label: "text-default-800/80  sm:text-medium text-xs sm:font-normal font-small",
                                         input: "sm:text-medium text-sm sm:font-normal font-normal",
 
                                     }}
-                                    {...register("fullName")}
+                                    {...register("fullName", { required: "Please add your name" })}
                                 />
-
+                                <p className="text-xs text-red-400">{errors.fullName?.message}</p>
                             </div>
 
                             <div className='flex flex-col gap-1 mb-3'>
                                 <Input
-                                    isRequired
+                                    id="username"
+                                    isClearable
                                     type="text"
                                     label="Username"
                                     variant="bordered"
                                     className="w-full flex-1"
                                     classNames={{
-                                        label: "text-default sm:text-medium text-xs sm:font-normal font-small",
+                                        label: "text-default-800/80  sm:text-medium text-xs sm:font-normal font-small",
                                         input: "sm:text-medium text-sm sm:font-normal font-normal",
 
                                     }}
-                                    {...register("username")}
+                                    {...register("username", { required: "Username is required!" })}
                                 />
-
+                                <p className="text-xs text-red-400">{errors.username?.message}</p>
                             </div>
 
                             <div className='flex flex-col gap-1 mb-3'>
                                 <Input
-                                    isRequired
+                                    id="password"
                                     label="Password"
                                     variant="bordered"
                                     placeholder="Enter your password"
                                     classNames={{
                                         label:
-                                            "text-default sm:text-sm text-xs sm:font-normal font-small",
+                                            "text-default-800/80  sm:text-sm text-xs sm:font-normal font-small",
                                         input: [
                                             "sm:text-medium text-sm sm:font-normal font-normal",
                                             "placeholder:text-default-700/50 sm:text-sm text-xs dark:placeholder:text-white/60",
@@ -243,20 +222,21 @@ export default function SignUp() {
                                     }
                                     type={isVisible ? "text" : "password"}
                                     className="w-full flex-1"
-                                    {...register("password")}
+                                    {...register("password", { required: "Your password is required!" })}
                                     name="password"
                                 />
+                                <p className="text-xs text-red-400">{errors.password?.message}</p>
                             </div>
 
                             <div className='flex flex-col gap-1 mb-3'>
                                 <Input
-                                    isRequired
+                                    id="confirm"
                                     label="Confirm"
                                     variant="bordered"
                                     placeholder="Confirm your password"
                                     classNames={{
                                         label:
-                                            "text-default sm:text-sm text-xs sm:font-normal font-small",
+                                            "text-default-800/80  sm:text-sm text-xs sm:font-normal font-small",
                                         input: [
                                             "sm:text-medium text-sm sm:font-normal font-normal",
                                             "placeholder:text-default-700/50 sm:text-sm text-xs dark:placeholder:text-white/60",
@@ -274,14 +254,22 @@ export default function SignUp() {
                                     }
                                     type={isConfirmed ? "text" : "password"}
                                     className="w-full flex-1"
-                                    {...register("confirmPw")}
+                                    {...register("confirmPw", { required: "Confirm your password" })}
                                     name="confirmPw"
                                 />
+                                <p className="text-xs text-red-400">
+                                    {errors.confirmPw?.message}
+                                </p>
+                                
+                                {/* 
+                                    // todo: generate a function that will check if the matching is done and then display the matching error/success message || display default error if the user click submit on empty confirm password box {errors.confirmPw?.message}
+                                */}
                             </div>
 
                             <div className='flex flex-col gap-1 mb-3'>
                                 {/* 
-                                    //Todo: this will change the button from violet to green when password matches
+                                     
+                                    // Todo: create a matching function that will change the button to green if the passwords are matched
                                 */}
                                 {isMatched
                                     ? <Button type="submit" name="submit" className="bg-green-800 hover:bg-green-600 drop-shadow-lg transition-all duration-300">

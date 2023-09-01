@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-const { nextui } = require("@nextui-org/react");
+import { nextui } from "@nextui-org/react";
 
 const config: Config = {
   content: [
@@ -20,7 +20,6 @@ const config: Config = {
   darkMode: "class",
   plugins: [
     nextui({
-      prefix: "nextui",
       layout: {
         spacingUnit: 4, // in px
         disabledOpacity: ".5", // this value is applied as opacity-[value] when the component is disabled
@@ -49,51 +48,7 @@ const config: Config = {
         },
       },
       themes: {
-        "cyan-dark": {
-          extend: "dark", // <- inherit default values from dark theme
-          colors: {
-            background: "#0D001A",
-            foreground: "#eff3f5",
-            primary: {
-              50: "#F0FCFF",
-              100: "#E6FAFE",
-              200: "#D7F8FE",
-              300: "#C3F4FD",
-              400: "#A5EEFD",
-              500: "#7EE7FC",
-              600: "#06B7DB",
-              700: "#09AACD",
-              800: "#0E8AAA",
-              900: "#053B48",
-              DEFAULT: "#7EE7FC",
-              foreground: "#eff3f5",
-            },
-            focus: "#06B7DB",
-          },
-          layout: {
-            disabledOpacity: "0.3",
-            radius: {
-              small: "4px",
-              medium: "6px",
-              large: "8px",
-            },
-            borderWidth: {
-              small: "1px",
-              medium: "2px",
-              large: "3px",
-            },
-          },
-        },
         light: {
-          colors: {
-            background: "#eff3f5", // or DEFAULT
-            foreground: "#11181C", // or 50 to 900 DEFAULT
-            primary: {
-              //... 50 to 900
-              foreground: "#eff3f5",
-              DEFAULT: "#006FEE",
-            },
-          },
           layout: {
             boxShadow: {
               // shadow-small
@@ -109,15 +64,6 @@ const config: Config = {
           },
         },
         dark: {
-          colors: {
-            background: "#000000", // or DEFAULT
-            foreground: "#ECEDEE", // or 50 to 900 DEFAULT
-            primary: {
-              //... 50 to 900
-              foreground: "#FFFFFF",
-              DEFAULT: "#006FEE",
-            },
-          },
           layout: {
             boxShadow: {
               // shadow-small
@@ -136,4 +82,5 @@ const config: Config = {
     }),
   ],
 };
+
 export default config;

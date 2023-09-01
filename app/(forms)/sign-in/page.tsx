@@ -9,6 +9,7 @@ import { MyButton } from "@/components/utils/tailwindvariants/tv";
 import { bgIllustration } from "@/components/constants";
 import { Company, iconsSrc } from "@/components/constants";
 import IconChanger from "@/components/lib/IconChanger";
+import Link from "next/link";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -45,7 +46,11 @@ export default function SignIn() {
         handleSubmit,
         watch,
         formState: { errors }
-    } = useForm<Inputs>();
+    } = useForm<Inputs>({
+        defaultValues: {
+            username: ""
+        }
+    });
 
 
 
@@ -60,9 +65,7 @@ export default function SignIn() {
         <>
             <div className="w-full min-h-screen flex flex-1 flex-col justify-center items-center">
                 <div className="p-5">
-
-                    <div className="flex flex-col flex-1 border-2 border-slate-600 rounded-2xl p-1.5 sm:p-5 gap-5 mb-24" id="sign-in">
-                        {/* other logins*/}
+                    <div className="flex flex-col flex-1 border-2 border-slate-600 rounded-2xl p-1.5 sm:p-5 gap-5 mb-24 shadow-lg" id="sign-in">
                         <div className='w-full flex justify-start mt-2'>
                             <Image
                                 src={Company.imgSrc}
@@ -82,12 +85,16 @@ export default function SignIn() {
                             <p className="sm:text-medium text-xs sm:font-normal font-small">to access your {Company.name} account </p>
                         </div>
 
+                        {/* 
+                            // Todo: generate a function that will allow sign in using these options
+                        */}
+
                         <div className="flex flex-wrap justify-center items-center sm:gap-5 gap-2 ">
                             <div>
                                 <MyButton
                                     variant="flat"
                                     size="md"
-                                    className="hover:scale-105 hover:bg-primary/40 transition-all duration-300 backdrop-blur-xl drop-shadow-lg flex-1">
+                                    className="hover:scale-105 hover:bg-secondary/10 transition-all duration-300 backdrop-blur-xl drop-shadow-lg flex-1">
                                     <Image
                                         src={iconsSrc.facebook}
                                         alt={iconsSrc.nameFb}
@@ -106,7 +113,7 @@ export default function SignIn() {
                                 <MyButton
                                     variant="flat"
                                     size="md"
-                                    className="hover:scale-105 hover:bg-primary/40 transition-all duration-300 backdrop-blur-xl drop-shadow-lg flex-1">
+                                    className="hover:scale-105 hover:bg-secondary/10 transition-all duration-300 backdrop-blur-xl drop-shadow-lg flex-1">
                                     <IconChanger />
                                 </MyButton>
                             </div>
@@ -115,7 +122,7 @@ export default function SignIn() {
                                 <MyButton
                                     variant="flat"
                                     size="md"
-                                    className="hover:scale-105 hover:bg-primary/40 transition-all duration-300 backdrop-blur-xl drop-shadow-lg flex-1">
+                                    className="hover:scale-105 hover:bg-secondary/10 transition-all duration-300 backdrop-blur-xl drop-shadow-lg flex-1">
                                     <Image
                                         src={iconsSrc.google}
                                         alt={iconsSrc.nameG}
@@ -135,39 +142,47 @@ export default function SignIn() {
                             <p className="sm:px-3 p-1 sm:text-medium text-xs sm:font-normal font-small">or</p>
                             <hr className='w-full'></hr>
                         </div>
+
                         {/* form */}
                         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-3' id="sign-in">
 
                             <div className='flex flex-col gap-1 mb-3'>
                                 <Input
-                                    isRequired
+                                    id="username"
                                     type="text"
                                     label="Username"
+                                    isClearable
                                     variant="bordered"
                                     className="w-full flex-1"
                                     classNames={{
-                                        label: "text-default sm:text-medium text-xs sm:font-normal font-small",
+                                        label: "text-default-800/80  sm:text-medium text-xs sm:font-normal font-small",
                                         input: "sm:text-medium text-sm sm:font-normal font-normal",
 
                                     }}
-                                    {...register("username")}
+                                    {...register("username", { required: "Your username is required!" })}
                                 />
-
+                                <p className="text-xs text-red-400">{errors.username?.message}</p>
                             </div>
 
                             <div className='flex flex-col gap-1 mb-3'>
+                                <div>
+                                    <Link href="/reset-request" className="cursor-pointer text-violet-600 bg-focus">
+                                        <h1 className="sm:text-xs text-sm sm:font-normal font-small w-full flex flex-row-reverse">Forgot password?</h1>
+                                    </Link>
+                                </div>
                                 <Input
-                                    isRequired
+                                    id="password"
                                     label="Password"
                                     variant="bordered"
                                     placeholder="Enter your password"
                                     classNames={{
                                         label:
-                                            "text-default sm:text-sm text-xs sm:font-normal font-small",
+                                            "text-default-800/80 sm:text-sm text-xs sm:font-normal font-small",
                                         input: [
                                             "sm:text-medium text-sm sm:font-normal font-normal",
-                                            "placeholder:text-default-700/50 sm:text-sm text-xs dark:placeholder:text-white/60",
-                                        ]
+                                            "placeholder:text-default-800/80 sm:text-sm text-xs dark:placeholder:text-white/60",
+                                        ],
+
 
                                     }}
                                     endContent={
@@ -181,12 +196,17 @@ export default function SignIn() {
                                     }
                                     type={isVisible ? "text" : "password"}
                                     className="w-full flex-1"
-                                    {...register("password")}
+                                    {...register("password", {required: "Your password is required!"})}
                                     name="password"
                                 />
+                                <p className="text-xs text-red-400">{errors.password?.message}</p>
+
                             </div>
 
                             <div className='flex flex-col gap-1 mb-3'>
+                                {/* 
+                                    // Todo: create a matching function that will change the button to green if the password is correct
+                                */}
                                 {isMatched
                                     ? <Button type="submit" name="submit" className="bg-green-800 hover:bg-green-600 drop-shadow-lg transition-all duration-300">
                                         <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
