@@ -10,7 +10,8 @@ import { bgIllustration } from "@/components/constants";
 import { Company } from "@/components/constants";
 import IconChanger from "@/components/lib/IconChanger";
 import { iconsSrc } from "@/components/constants";
-import { error } from "console";
+import SuccessButton from "@/components/lib/buttonOptions/successButton";
+import DefaultButton from "@/components/lib/buttonOptions/defaultButton";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -27,13 +28,8 @@ export default function SignUp() {
     const [isConfirmed, setIsConfirmed] = React.useState(false);
     const [isMatched, setIsMatched] = React.useState(false)
 
-    // todo: this will change the color of the continue button if the password confirmation is the same 
-    const checkMatchedPw = () => setIsMatched(!isMatched)
-
-
     const toggleVisibility = () => setIsVisible(!isVisible);
     const toggleIsConfirmed = () => setIsConfirmed(!isConfirmed)
-
 
     const {
         register,
@@ -61,9 +57,6 @@ export default function SignUp() {
         const password = watch("password")
         const confirmed = watch("confirmPw")
 
-        console.log(password)
-        console.log(confirmed)
-
         const determineMatched = (): any => {
             if (password === "" && confirmed === "") {
                 return (
@@ -80,15 +73,13 @@ export default function SignUp() {
             } else if (password === confirmed) {
                 return (
                     <>
-                        <p className="text-xs text-green-400">Matched!</p>
+                        <p className="text-xs text-green-400 hidden">Matched!</p>
                     </>
                 )
             } else {
                 return (
                     <>
-                        <p>
-                            <p className="text-xs text-red-400">Password does not matched!</p>
-                        </p>
+                        <p className="text-xs text-red-400">Password does not matched!</p>
                     </>
                 )
             }
@@ -100,6 +91,39 @@ export default function SignUp() {
         )
     }
 
+    const ButtonChanger = (): React.ReactNode => {
+        const password = watch("password")
+        const confirmed = watch("confirmPw")
+
+        const checkMatchedPw = (): any => {
+            if (password === "" && confirmed === "") {
+                return (
+
+                    <DefaultButton />
+                )
+            } else if (password === undefined && confirmed === undefined) {
+                return (
+                    <DefaultButton />
+                )
+            } else if (password === confirmed) {
+                return (
+                    <SuccessButton />
+                )
+            } else {
+                return (
+                    <DefaultButton />
+                )
+            }
+        }
+
+        return (
+            <>
+                {checkMatchedPw()}
+            </>
+        )
+    }
+
+
     const onSubmit: SubmitHandler<Inputs> = (data: any) => {
         const password = data.password
         const confirmed = data.confirmPw
@@ -109,6 +133,7 @@ export default function SignUp() {
                 alert("Please check your password!")
             } else {
                 alert("Congratulations!")
+                console.log(data)
             }
         }
         return (
@@ -220,10 +245,16 @@ export default function SignUp() {
                                         input: "sm:text-medium text-sm sm:font-normal font-normal",
 
                                     }}
-                                    {...register("username", { required: "Username is required!" })}
+                                    {...register("username", {
+                                        required: true,
+                                        pattern: /[\w!@#$%^&*()-+=<>?/\\,.;:'"[\]{}|]{3,}/gi
+                                    })}
                                     name="username"
                                 />
-                                <p className="text-xs text-red-400">{errors.username?.message}</p>
+                                <p className="text-xs text-red-400">
+                                    {errors.username?.types?.required && <span>Username is required</span>}
+                                    {errors.username?.types?.pattern && <span>Space is not allowed and at least 3 characters</span>}
+                                </p>
                             </div>
 
                             <div className='flex flex-col gap-1 mb-3'>
@@ -239,10 +270,17 @@ export default function SignUp() {
                                         input: "sm:text-medium text-sm sm:font-normal font-normal",
 
                                     }}
-                                    {...register("email", { required: "Please add a valid e-mail" })}
+                                    {...register("email", {
+                                        required: true,
+                                        pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/gi
+                                    })}
                                     name="email"
                                 />
-                                <p className="text-xs text-red-400">{errors.email?.message}</p>
+                                <p className="text-xs text-red-400">
+                                    {errors.email?.types?.required && <span>A valid email is required</span>}
+                                    {errors.email?.types?.pattern && <span>e.g. example@email.com</span>}
+
+                                </p>
                             </div>
 
                             <div className='flex flex-col gap-1 mb-3'>
@@ -284,7 +322,7 @@ export default function SignUp() {
 
                             </div>
 
-                            <div className='flex flex-col gap-1 mb-3'>
+                            <div className='flex flex-col gap-1 mb-5'>
                                 <Input
                                     id="confirm"
                                     label="Confirm"
@@ -321,18 +359,8 @@ export default function SignUp() {
                             </div>
 
                             <div className='flex flex-col gap-1 mb-3'>
-                                {/* 
-                                     
-                                    // Todo: create a matching function that will change the button to green if the passwords are matched
-                                */}
-                                {isMatched
-                                    ? <Button type="submit" name="submit" className="bg-green-800 hover:bg-green-600 drop-shadow-lg transition-all duration-300">
-                                        <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
-                                    </Button>
-                                    : <Button type="submit" name="submit" className="bg-violet-800 hover:bg-violet-950 drop-shadow-lg transition-all duration-300">
-                                        <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
-                                    </Button>
-                                }
+
+                                <ButtonChanger />
 
                             </div>
                         </form>
