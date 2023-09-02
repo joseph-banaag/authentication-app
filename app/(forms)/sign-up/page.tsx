@@ -60,16 +60,30 @@ export default function SignUp() {
         console.log(confirmed)
 
         const determineMatched = (): any => {
-            if (password !== confirmed || password === "") {
+            if (password === "" && confirmed === "") {
                 return (
                     <>
-                        <p className="text-xs text-red-400">Password does not matched!</p>
+                        <p className="text-xs text-red-400">Password is required!</p>
+                    </>
+                )
+            } else if (password === undefined && confirmed === undefined) {
+                return (
+                    <>
+                        <p className="text-xs text-red-400">Password is required!</p>
+                    </>
+                )
+            } else if (password === confirmed) {
+                return (
+                    <>
+                        <p className="text-xs text-green-400">Success!</p>
                     </>
                 )
             } else {
                 return (
                     <>
-                        <p className="text-xs text-green-400">Success!</p>
+                        <p>
+                            <p className="text-xs text-red-400">Password does not matched!</p>
+                        </p>
                     </>
                 )
             }
@@ -278,11 +292,8 @@ export default function SignUp() {
                                     {...register("confirmPw", { required: "Confirm your password" })}
                                     name="confirmPw"
                                 />
-                                <p className="text-xs text-red-400">
-                                    {errors.confirmPw?.message}
-                                </p>
-                                    {validatePassword()}
-                                
+                                {validatePassword()}
+
                             </div>
 
                             <div className='flex flex-col gap-1 mb-3'>
