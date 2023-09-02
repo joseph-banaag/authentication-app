@@ -52,21 +52,42 @@ export default function SignUp() {
     console.log(watch("confirmPw"))
     console.log("Errors: ", errors)
 
-    const onSubmit: SubmitHandler<Inputs> = (data: any) => {
-        const determinePasswordMatched = () => {
-            const password = (data.password);
-            const confirmed = (data.confirmPw);
+    const validatePassword = (): React.ReactNode => {
+        const password = watch("password")
+        const confirmed = watch("confirmPw")
 
+        console.log(password)
+        console.log(confirmed)
+
+        const determineMatched = (): any => {
             if (password !== confirmed || password === "") {
-                console.log("Password does not matched!")
+                return (
+                    <>
+                        <p className="text-xs text-red-400">Password does not matched!</p>
+                    </>
+                )
             } else {
-                console.log("Success")
+                return (
+                    <>
+                        <p className="text-xs text-green-400">Success!</p>
+                    </>
+                )
             }
         }
-
         return (
             <>
-                {determinePasswordMatched()}
+                {determineMatched()}
+            </>
+        )
+    }
+
+    const onSubmit: SubmitHandler<Inputs> = (data: any) => {
+        const greeting = () => {
+            alert("congratulations!")
+        }
+        return (
+            <>
+                {greeting()}
             </>
         )
     }
@@ -260,10 +281,8 @@ export default function SignUp() {
                                 <p className="text-xs text-red-400">
                                     {errors.confirmPw?.message}
                                 </p>
+                                    {validatePassword()}
                                 
-                                {/* 
-                                    // todo: generate a function that will check if the matching is done and then display the matching error/success message || display default error if the user click submit on empty confirm password box {errors.confirmPw?.message}
-                                */}
                             </div>
 
                             <div className='flex flex-col gap-1 mb-3'>

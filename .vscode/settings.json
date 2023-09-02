@@ -11,5 +11,13 @@
     "tailwindvariants",
     "Topbar"
   ],
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.fontLigatures": true,
+  "editor.fontFamily": "JetBrains Mono",
+  "editor.fontSize": 13,
+  "editor.fontVariations": false,
+  "terminal.integrated.fontFamily": "MesloLGS NF",
+  "terminal.integrated.fontWeight": "normal",
+  "terminal.integrated.fontSize": 13,
+  "terminal.integrated.fontWeightBold": "normal"
 }

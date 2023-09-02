@@ -45,7 +45,8 @@ export default function SignIn() {
         register,
         handleSubmit,
         watch,
-        formState: { errors }
+        formState: { errors },
+        getValues
     } = useForm<Inputs>({
         defaultValues: {
             username: ""
@@ -146,7 +147,7 @@ export default function SignIn() {
                         {/* form */}
                         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-3' id="sign-in">
 
-                            <div className='flex flex-col gap-1 mb-3'>
+                            <div className='flex flex-col gap-1'>
                                 <Input
                                     id="username"
                                     type="text"
@@ -164,10 +165,10 @@ export default function SignIn() {
                                 <p className="text-xs text-red-400">{errors.username?.message}</p>
                             </div>
 
-                            <div className='flex flex-col gap-1 mb-3'>
+                            <div className='flex flex-col gap-1'>
                                 <div>
-                                    <Link href="/reset-request" className="cursor-pointer text-violet-600 bg-focus">
-                                        <h1 className="sm:text-xs text-sm sm:font-normal font-small w-full flex flex-row-reverse">Forgot password?</h1>
+                                    <Link href="/reset-request" className="cursor-pointer text-violet-600 bg-focus ">
+                                        <h1 className="text-xs sm:font-normal font-small w-full flex flex-row-reverse">Forgot password?</h1>
                                     </Link>
                                 </div>
                                 <Input
