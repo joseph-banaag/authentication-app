@@ -10,6 +10,7 @@ import { bgIllustration } from "@/components/constants";
 import { Company } from "@/components/constants";
 import IconChanger from "@/components/lib/IconChanger";
 import { iconsSrc } from "@/components/constants";
+import { error } from "console";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -39,7 +40,16 @@ export default function SignUp() {
         handleSubmit,
         watch,
         formState: { errors }
-    } = useForm<Inputs>()    
+    } = useForm<Inputs>({
+        defaultValues: {
+            email: "",
+            username: "",
+            password: "",
+            confirmPw: ""
+        },
+        criteriaMode: "all",
+        mode: "all"
+    })
 
     console.log(watch("email"));
     console.log(watch("username"));
@@ -91,12 +101,19 @@ export default function SignUp() {
     }
 
     const onSubmit: SubmitHandler<Inputs> = (data: any) => {
-        const greeting = () => {
-            alert("congratulations!")
+        const password = data.password
+        const confirmed = data.confirmPw
+
+        const beforeSubmit = () => {
+            if (password !== confirmed) {
+                alert("Please check your password!")
+            } else {
+                alert("Congratulations!")
+            }
         }
         return (
             <>
-                {greeting()}
+                {beforeSubmit()}
             </>
         )
     }
@@ -254,10 +271,17 @@ export default function SignUp() {
                                     }
                                     type={isVisible ? "text" : "password"}
                                     className="w-full flex-1"
-                                    {...register("password", { required: "Your password is required!" })}
+                                    {...register("password", {
+                                        pattern: /(?=\w{5,18})(?=\D*\d)/,
+                                        required: true
+                                    })}
                                     name="password"
                                 />
-                                <p className="text-xs text-red-400">{errors.password?.message}</p>
+                                <p className="text-xs text-red-400">
+                                    {errors.password?.types?.required && <span>Password is required</span>}
+                                    {errors.password?.types?.pattern && <span>Password must be at least 5 characters and one number</span>}
+                                </p>
+
                             </div>
 
                             <div className='flex flex-col gap-1 mb-3'>
@@ -286,7 +310,10 @@ export default function SignUp() {
                                     }
                                     type={isConfirmed ? "text" : "password"}
                                     className="w-full flex-1"
-                                    {...register("confirmPw", { required: "Confirm your password" })}
+                                    {...register("confirmPw", {
+                                        pattern: /(?=\w{5,18})(?=\D*\d)/,
+                                        required: true
+                                    })}
                                     name="confirmPw"
                                 />
                                 {validatePassword()}

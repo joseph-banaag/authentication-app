@@ -49,7 +49,8 @@ export default function SignIn() {
         getValues
     } = useForm<Inputs>({
         defaultValues: {
-            username: ""
+            username: "",
+            password: ""
         }
     });
 
@@ -197,7 +198,7 @@ export default function SignIn() {
                                     }
                                     type={isVisible ? "text" : "password"}
                                     className="w-full flex-1"
-                                    {...register("password", {required: "Your password is required!"})}
+                                    {...register("password", { required: "Your password is required!" })}
                                     name="password"
                                 />
                                 <p className="text-xs text-red-400">{errors.password?.message}</p>
