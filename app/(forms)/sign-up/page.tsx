@@ -15,7 +15,7 @@ import { iconsSrc } from "@/components/constants";
 interface Inputs {
     username: string;
     password: string;
-    fullName: string;
+    email: string;
     confirmPw: string;
 
 }
@@ -39,14 +39,9 @@ export default function SignUp() {
         handleSubmit,
         watch,
         formState: { errors }
-    } = useForm<Inputs>({
-        defaultValues: {
-            fullName: "",
-            username: ""
-        }
-    });
+    } = useForm<Inputs>()    
 
-    console.log(watch("fullName"));
+    console.log(watch("email"));
     console.log(watch("username"));
     console.log(watch("password"))
     console.log(watch("confirmPw"))
@@ -75,7 +70,7 @@ export default function SignUp() {
             } else if (password === confirmed) {
                 return (
                     <>
-                        <p className="text-xs text-green-400">Success!</p>
+                        <p className="text-xs text-green-400">Matched!</p>
                     </>
                 )
             } else {
@@ -197,24 +192,6 @@ export default function SignUp() {
 
                             <div className='flex flex-col gap-1 mb-3'>
                                 <Input
-                                    id="fullName"
-                                    isClearable
-                                    type="text"
-                                    label="Full Name"
-                                    variant="bordered"
-                                    className="w-full flex-1"
-                                    classNames={{
-                                        label: "text-default-800/80  sm:text-medium text-xs sm:font-normal font-small",
-                                        input: "sm:text-medium text-sm sm:font-normal font-normal",
-
-                                    }}
-                                    {...register("fullName", { required: "Please add your name" })}
-                                />
-                                <p className="text-xs text-red-400">{errors.fullName?.message}</p>
-                            </div>
-
-                            <div className='flex flex-col gap-1 mb-3'>
-                                <Input
                                     id="username"
                                     isClearable
                                     type="text"
@@ -227,8 +204,28 @@ export default function SignUp() {
 
                                     }}
                                     {...register("username", { required: "Username is required!" })}
+                                    name="username"
                                 />
                                 <p className="text-xs text-red-400">{errors.username?.message}</p>
+                            </div>
+
+                            <div className='flex flex-col gap-1 mb-3'>
+                                <Input
+                                    id="email"
+                                    isClearable
+                                    type="email"
+                                    label="E-mail"
+                                    variant="bordered"
+                                    className="w-full flex-1"
+                                    classNames={{
+                                        label: "text-default-800/80  sm:text-medium text-xs sm:font-normal font-small",
+                                        input: "sm:text-medium text-sm sm:font-normal font-normal",
+
+                                    }}
+                                    {...register("email", { required: "Please add a valid e-mail" })}
+                                    name="email"
+                                />
+                                <p className="text-xs text-red-400">{errors.email?.message}</p>
                             </div>
 
                             <div className='flex flex-col gap-1 mb-3'>
