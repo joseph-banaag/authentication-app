@@ -26,7 +26,6 @@ interface Inputs {
 export default function SignUp() {
     const [isVisible, setIsVisible] = React.useState(false);
     const [isConfirmed, setIsConfirmed] = React.useState(false);
-    const [isMatched, setIsMatched] = React.useState(false)
 
     const toggleVisibility = () => setIsVisible(!isVisible);
     const toggleIsConfirmed = () => setIsConfirmed(!isConfirmed)

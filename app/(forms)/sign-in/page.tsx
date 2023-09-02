@@ -51,7 +51,9 @@ export default function SignIn() {
         defaultValues: {
             username: "",
             password: ""
-        }
+        },
+        criteriaMode: "all",
+        mode: "all"
     });
 
 
@@ -161,9 +163,16 @@ export default function SignIn() {
                                         input: "sm:text-medium text-sm sm:font-normal font-normal",
 
                                     }}
-                                    {...register("username", { required: "Your username is required!" })}
+                                    {...register("username", {
+                                        required: true
+                                    })}
                                 />
-                                <p className="text-xs text-red-400">{errors.username?.message}</p>
+                                {/* 
+                                    //todo: generate a function that will check if the user input is matched with the user information from db
+                                */}
+                                <p className="text-xs text-red-400">
+                                    {errors.username?.types?.required && <span>Username is required</span>}
+                                </p>
                             </div>
 
                             <div className='flex flex-col gap-1'>
@@ -198,16 +207,23 @@ export default function SignIn() {
                                     }
                                     type={isVisible ? "text" : "password"}
                                     className="w-full flex-1"
-                                    {...register("password", { required: "Your password is required!" })}
+                                    {...register("password", {
+                                        required: true
+                                    })}
                                     name="password"
                                 />
-                                <p className="text-xs text-red-400">{errors.password?.message}</p>
+                                {/* 
+                                    //todo: generate a function that will check if the user input is matched with the user information from db
+                                */}
+                                <p className="text-xs text-red-400">
+                                    {errors.password?.types?.required && <span>Password is required</span>}
+                                </p>
 
                             </div>
 
                             <div className='flex flex-col gap-1 mb-3'>
                                 {/* 
-                                    // Todo: create a matching function that will change the button to green if the password is correct
+                                    // Todo: create a matching function that will change the button to green if the password from the user is matched with the user information form db
                                 */}
                                 {isMatched
                                     ? <Button type="submit" name="submit" className="bg-green-800 hover:bg-green-600 drop-shadow-lg transition-all duration-300">
