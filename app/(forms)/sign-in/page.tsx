@@ -155,7 +155,7 @@ export default function SignIn() {
                         {/* form */}
                         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-3' id="sign-in">
 
-                            <div className='flex flex-col gap-1'>
+                            <div className='flex flex-col'>
                                 <label htmlFor="username">
                                     <p className="sm:text-medium text-sm sm:font-normal font-normal mb-1">Username:</p>
                                     <Input
@@ -186,7 +186,7 @@ export default function SignIn() {
                                 </label>
                             </div>
 
-                            <div className='flex flex-col gap-1'>
+                            <div className='flex flex-col'>
                                 
                                 <label htmlFor="password">
                                     <p className="sm:text-medium text-sm sm:font-normal font-normal mb-1">Password:</p>

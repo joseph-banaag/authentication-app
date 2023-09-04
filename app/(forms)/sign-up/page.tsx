@@ -237,7 +237,7 @@ export default function SignUp() {
                             {/* form */}
                             <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-3' id="sign-in">
 
-                                <div className='flex flex-col gap-1 mb-3'>
+                                <div className='flex flex-col'>
                                     <label htmlFor="username">
                                         <p className="sm:text-medium text-sm sm:font-normal font-normal mb-1">Username:</p>
                                         <Input
@@ -268,7 +268,7 @@ export default function SignUp() {
                                     </label>
                                 </div>
 
-                                <div className='flex flex-col gap-1 mb-3'>
+                                <div className='flex flex-col'>
                                     <label htmlFor="email">
                                         <p className="sm:text-medium text-sm sm:font-normal font-normal mb-1">E-mail:</p>
                                         <Input
@@ -301,7 +301,7 @@ export default function SignUp() {
 
                                 </div>
 
-                                <div className='flex flex-col gap-1 mb-3'>
+                                <div className='flex flex-col'>
                                     <label htmlFor="password">
                                         <p className="sm:text-medium text-sm sm:font-normal font-normal mb-1">Password:</p>
                                         <Input
@@ -340,7 +340,7 @@ export default function SignUp() {
                                     </label>
                                 </div>
 
-                                <div className='flex flex-col gap-1 mb-5'>
+                                <div className='flex flex-col'>
                                     <label htmlFor="confirmPw">
                                         <p className="sm:text-medium text-sm sm:font-normal font-normal mb-1">Confirm Password:</p>
                                         <Input
@@ -374,8 +374,6 @@ export default function SignUp() {
                                         />
                                         {validatePassword()}
                                     </label>
-                                    
-
                                 </div>
 
                                 <div className='flex flex-col gap-1 mb-3'>
