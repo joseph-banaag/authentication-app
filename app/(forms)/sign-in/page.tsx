@@ -10,6 +10,8 @@ import { bgIllustration } from "@/components/constants";
 import { Company, iconsSrc } from "@/components/constants";
 import IconChanger from "@/components/lib/IconChanger";
 import Link from "next/link";
+import { motion } from "framer-motion"
+
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -66,8 +68,12 @@ export default function SignIn() {
     console.log("Errors: ", errors)
 
     return (
-        <>
-            <div className=" motion-safe:animate-appearance-in w-full min-h-screen flex flex-1 flex-col justify-center items-center">
+        <> <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ ease: "backIn", duration: 0.25 }}
+        >
+            <div className=" w-full min-h-screen flex flex-1 flex-col justify-center items-center">
                 <div className="p-5">
                     <div className="flex flex-col flex-1 border-2 border-slate-600 rounded-2xl p-1.5 sm:p-5 gap-5 mb-24 shadow-lg" id="sign-in">
                         <div className='w-full flex justify-start mt-2'>
@@ -156,7 +162,7 @@ export default function SignIn() {
                                     label="Username"
                                     isClearable
                                     variant="bordered"
-                                    className="w-full flex-1"
+                                    className="w-full flex-1 transition-all duration-300"
                                     classNames={{
                                         label: "text-default-800/80  sm:text-medium text-xs sm:font-normal font-small",
                                         input: "sm:text-medium text-sm sm:font-normal font-normal",
@@ -248,7 +254,7 @@ export default function SignIn() {
                     height={400}
                 />
             </div>
-
+        </motion.div>
         </>
     )
 }

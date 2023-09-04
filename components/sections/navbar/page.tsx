@@ -22,8 +22,7 @@ import ComponentChanger from "@/components/lib/ComponentChanger";
 export default function Topbar() {
     const pathname = usePathname()
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-    const [isSignIn, setIsSignIn] = React.useState(true)
-    
+
     return (
         <Navbar onMenuOpenChange={setIsMenuOpen} shouldHideOnScroll className="flex flex-wrap">
             <NavbarContent justify="start">

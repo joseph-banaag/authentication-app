@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Link } from "@nextui-org/react"
 import { bgIllustration } from "@/components/constants"
 import { Recursive, Dancing_Script } from "next/font/google"
+import { motion } from "framer-motion"
 
 const recursive = Recursive({
   weight: ["400", "700"],
@@ -19,25 +20,31 @@ export default function Home() {
 
   return (
     <main>
-      <div className="motion-safe:animate-appearance-in relative flex flex-col justify-center items-center min-h-screen delay-3000 z-10 gap-5 mt-5">
-        <Link href="/" color="foreground" className="text-3xl font-semibold -mt-32 sm:hidden flex "><span className={`${dancing.className} text-secondary font-bold`}>Auth</span><span className={`${dancing.className}`}>entication</span></Link>
-        <div className='bg-fixed bg-center bg-cover z-[1]'>
-          <Image
-            priority
-            src={bgIllustration.homepage.src}
-            alt={bgIllustration.homepage.name}
-            width={600}
-            height={600}
-            style={{
-              objectFit: "cover"
-            }}
-            className='fade-in-bg'
-          />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ ease: "backIn", duration: 0.25 }}
+      >
+        <div className="relative flex flex-col justify-center items-center min-h-screen delay-3000 z-10 gap-5 mt-5">
+          <Link href="/" color="foreground" className="text-3xl font-semibold -mt-32 sm:hidden flex "><span className={`${dancing.className} text-secondary font-bold`}>Auth</span><span className={`${dancing.className}`}>entication</span></Link>
+          <div className='bg-fixed bg-center bg-cover z-[1]'>
+            <Image
+              priority
+              src={bgIllustration.homepage.src}
+              alt={bgIllustration.homepage.name}
+              width={600}
+              height={600}
+              style={{
+                objectFit: "cover"
+              }}
+              className='fade-in-bg'
+            />
+          </div>
+          <div className="py-2 px-5 flex justify-center">
+            <h1 className="sm:text-medium text-sm text-end">Click <Link href="/sign-up" className="text-secondary sm:text-medium text-sm font-semibold underline underline-offset-4">Sign Up</Link> to create an account: </h1>
+          </div>
         </div>
-        <div className="py-2 px-5 flex justify-center">
-          <h1 className="sm:text-medium text-sm text-end">Click <Link href="/sign-up" className="text-secondary sm:text-medium text-sm font-semibold underline underline-offset-4">Sign Up</Link> to create an account: </h1>
-        </div>
-      </div>
+      </motion.div>
     </main>
 
   )
