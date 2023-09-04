@@ -67,7 +67,7 @@ export default function SignIn() {
 
     return (
         <>
-            <div className="w-full min-h-screen flex flex-1 flex-col justify-center items-center">
+            <div className=" motion-safe:animate-appearance-in w-full min-h-screen flex flex-1 flex-col justify-center items-center">
                 <div className="p-5">
                     <div className="flex flex-col flex-1 border-2 border-slate-600 rounded-2xl p-1.5 sm:p-5 gap-5 mb-24 shadow-lg" id="sign-in">
                         <div className='w-full flex justify-start mt-2'>
@@ -88,7 +88,6 @@ export default function SignIn() {
                             <h1 className="sm:text-4xl text-xl sm:font-medium font-normal mb-1">Log in</h1>
                             <p className="sm:text-medium text-xs sm:font-normal font-small">to access your {Company.name} account </p>
                         </div>
-
                         {/* 
                             // Todo: generate a function that will allow sign in using these options
                         */}
@@ -249,6 +248,7 @@ export default function SignIn() {
                     height={400}
                 />
             </div>
+
         </>
     )
 }

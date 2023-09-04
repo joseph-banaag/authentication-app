@@ -145,7 +145,7 @@ export default function SignUp() {
 
     return (
         <>
-            <div className="w-full min-h-screen flex flex-1 flex-col justify-center items-center mt-10 ">
+            <div className=" motion-safe:animate-appearance-in w-full min-h-screen flex flex-1 flex-col justify-center items-center mt-10 ">
                 <div className=" sm:p-2 p-5">
                     <div className="flex flex-col flex-1 border-2 border-slate-600 rounded-2xl p-1.5 sm:p-5 gap-5 mb-24 shadow-lg" id="sign-in">
                         <div className='w-full flex justify-start mt-2'>
@@ -170,7 +170,6 @@ export default function SignUp() {
                         {/* 
                             // Todo: generate a function that will allow the sign in options facebook, google, and github
                         */}
-
                         <div className="flex flex-wrap justify-center items-center sm:gap-5 gap-4 ">
                             <div>
                                 <MyButton

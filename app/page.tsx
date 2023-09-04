@@ -18,26 +18,27 @@ const dancing = Dancing_Script({
 export default function Home() {
 
   return (
-    <div className="relative flex flex-col justify-center items-center min-h-screen delay-3000 z-10 gap-5 mt-5">
-      <Link href="/" color="foreground" className="text-3xl font-semibold -mt-32 sm:hidden flex "><span className={`${dancing.className} text-secondary font-bold`}>Auth</span><span className={`${dancing.className}`}>entication</span></Link>
-      <div className='bg-fixed bg-center bg-cover z-[1]'>
-        <Image
-          priority
-          src={bgIllustration.homepage.src}
-          alt={bgIllustration.homepage.name}
-          width={600}
-          height={600}
-          style={{
-            objectFit: "cover"
-          }}
-          className='fade-in-bg'
-        />
+    <main>
+      <div className="motion-safe:animate-appearance-in relative flex flex-col justify-center items-center min-h-screen delay-3000 z-10 gap-5 mt-5">
+        <Link href="/" color="foreground" className="text-3xl font-semibold -mt-32 sm:hidden flex "><span className={`${dancing.className} text-secondary font-bold`}>Auth</span><span className={`${dancing.className}`}>entication</span></Link>
+        <div className='bg-fixed bg-center bg-cover z-[1]'>
+          <Image
+            priority
+            src={bgIllustration.homepage.src}
+            alt={bgIllustration.homepage.name}
+            width={600}
+            height={600}
+            style={{
+              objectFit: "cover"
+            }}
+            className='fade-in-bg'
+          />
+        </div>
+        <div className="py-2 px-5 flex justify-center">
+          <h1 className="sm:text-medium text-sm text-end">Click <Link href="/sign-up" className="text-secondary sm:text-medium text-sm font-semibold underline underline-offset-4">Sign Up</Link> to create an account: </h1>
+        </div>
       </div>
-      <div className="py-2 px-5 flex justify-center">
-        <h1 className="sm:text-medium text-sm text-end">Click <Link href="/sign-up" className="text-secondary sm:text-medium text-sm font-semibold underline underline-offset-4">Sign Up</Link> to create an account: </h1>
-      </div>
-    </div>
-
+    </main>
 
   )
 }
