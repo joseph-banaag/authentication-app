@@ -28,8 +28,8 @@ export function ThemeSwitcher() {
     if (!mounted) return null
 
     return (
-        <div className="flex flex-col gap-3 justify-center items-center">
-            <SwitchToggle theme={theme} onChange={handleToggleSwitch} />
+        <div className="flex justify-center items-center">
+            <SwitchToggle onChange={handleToggleSwitch} />
         </div>
     )
 };

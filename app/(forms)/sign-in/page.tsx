@@ -169,7 +169,7 @@ export default function SignIn() {
                                 {/* 
                                     //todo: generate a function that will check if the user input is matched with the user information from db
                                 */}
-                                <p className="text-xs text-red-400">
+                                <p className="animate-pulse text-xs text-red-400">
                                     {errors.username?.types?.required && <span>Username is required</span>}
                                 </p>
                             </div>
@@ -214,7 +214,7 @@ export default function SignIn() {
                                 {/* 
                                     //todo: generate a function that will check if the user input is matched with the user information from db
                                 */}
-                                <p className="text-xs text-red-400">
+                                <p className="animate-pulse text-xs text-red-400">
                                     {errors.password?.types?.required && <span>Password is required</span>}
                                 </p>
 

@@ -10,6 +10,19 @@ export const MySwitch = extendVariants(Switch, {
         ],
       },
     },
+    size: {
+      sm: {
+        wrapper: "w-10 h-6 mr-2",
+        thumb: [
+          "w-4 h-4 text-tiny",
+          //selected
+          "group-data-[selected=true]:ml-4",
+        ],
+        endContent: "text-tiny",
+        startContent: "text-tiny",
+        label: "text-small",
+      },
+    },
   },
 });
 

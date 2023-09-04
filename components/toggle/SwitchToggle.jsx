@@ -4,7 +4,7 @@ import { MoonIcon } from "../utils/icons/MoonIcon";
 import { SunIcon } from "../utils/icons/SunIcon";
 import { MySwitch } from "../utils/tailwindvariants/tv";
 
-export default function SwitchToggle({ theme, onChange }) {
+export default function SwitchToggle({ onChange }) {
   const [clicked, setClicked] = useState(false);
 
   const handleClick = () => {
@@ -22,7 +22,6 @@ export default function SwitchToggle({ theme, onChange }) {
       endContent={<MoonIcon />}
       onChange={handleClick}
     >
-      <p className="sm:flex hidden">{theme}</p>
     </MySwitch>
   );
 }

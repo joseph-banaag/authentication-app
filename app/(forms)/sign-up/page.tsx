@@ -60,25 +60,25 @@ export default function SignUp() {
             if (password === "" && confirmed === "") {
                 return (
                     <>
-                        <p className="text-xs text-red-400">Password is required!</p>
+                        <p className="animate-pulse text-xs text-red-400">Password is required!</p>
                     </>
                 )
             } else if (password === undefined && confirmed === undefined) {
                 return (
                     <>
-                        <p className="text-xs text-red-400">Password is required!</p>
+                        <p className="animate-pulse text-xs text-red-400">Password is required!</p>
                     </>
                 )
             } else if (password === confirmed) {
                 return (
                     <>
-                        <p className="text-xs text-green-400 hidden">Matched!</p>
+                        <p className="animate-pulse text-xs text-green-400 hidden">Matched!</p>
                     </>
                 )
             } else {
                 return (
                     <>
-                        <p className="text-xs text-red-400">Password does not matched!</p>
+                        <p className="animate-pulse text-xs text-red-400">Password does not matched!</p>
                     </>
                 )
             }
@@ -249,7 +249,7 @@ export default function SignUp() {
                                     })}
                                     name="username"
                                 />
-                                <p className="text-xs text-red-400">
+                                <p className="animate-pulse text-xs text-red-400">
                                     {errors.username?.types?.required && <span>Username is required</span>}
                                     {errors.username?.types?.pattern && <span>Space is not allowed and at least 3 characters</span>}
                                 </p>
@@ -274,7 +274,7 @@ export default function SignUp() {
                                     })}
                                     name="email"
                                 />
-                                <p className="text-xs text-red-400">
+                                <p className="animate-pulse text-xs text-red-400">
                                     {errors.email?.types?.required && <span>A valid email is required</span>}
                                     {errors.email?.types?.pattern && <span>e.g. example@email.com</span>}
 
@@ -313,7 +313,7 @@ export default function SignUp() {
                                     })}
                                     name="password"
                                 />
-                                <p className="text-xs text-red-400">
+                                <p className="animate-pulse text-xs text-red-400">
                                     {errors.password?.types?.required && <span>Password is required</span>}
                                     {errors.password?.types?.pattern && <span>Password must be at least 5 characters and one number</span>}
                                 </p>
