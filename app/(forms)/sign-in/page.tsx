@@ -156,74 +156,81 @@ export default function SignIn() {
                         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-3' id="sign-in">
 
                             <div className='flex flex-col gap-1'>
-                                <Input
-                                    id="username"
-                                    type="text"
-                                    label="Username"
-                                    isClearable
-                                    variant="bordered"
-                                    className="w-full flex-1 transition-all duration-300"
-                                    classNames={{
-                                        label: "text-default-800/80  sm:text-medium text-xs sm:font-normal font-small",
-                                        input: "sm:text-medium text-sm sm:font-normal font-normal",
-
-                                    }}
-                                    {...register("username", {
-                                        required: true
-                                    })}
-                                />
-                                {/* 
+                                <label htmlFor="username">
+                                    <p className="sm:text-medium text-sm sm:font-normal font-normal mb-1">Username:</p>
+                                    <Input
+                                        id="username"
+                                        type="text"
+                                        isClearable
+                                        variant="faded"
+                                        className="w-full flex-1 transition-all duration-300"
+                                        classNames={{
+                                            label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
+                                            input: [
+                                                "sm:text-medium text-sm sm:font-normal font-normal",
+                                                "bg-transparent",
+                                                "text-black/90 dark:text-white/90",
+                                                "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+                                            ],
+                                        }}
+                                        {...register("username", {
+                                            required: true
+                                        })}
+                                    />
+                                    {/* 
                                     //todo: generate a function that will check if the user input is matched with the user information from db
                                 */}
-                                <p className="animate-pulse text-xs text-red-400">
-                                    {errors.username?.types?.required && <span>Username is required</span>}
-                                </p>
+                                    <p className="animate-pulse text-xs text-red-400">
+                                        {errors.username?.types?.required && <span>Username is required</span>}
+                                    </p>
+                                </label>
                             </div>
 
                             <div className='flex flex-col gap-1'>
-                                <div>
+                                
+                                <label htmlFor="password">
+                                    <p className="sm:text-medium text-sm sm:font-normal font-normal mb-1">Password:</p>
+                                    <Input
+                                        id="password"
+                                        variant="faded"
+                                        classNames={{
+                                            label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
+                                            input: [
+                                                "sm:text-medium text-sm sm:font-normal font-normal",
+                                                "bg-transparent",
+                                                "text-black/90 dark:text-white/90",
+                                                "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+                                            ],
+                                        }}
+                                        endContent={
+                                            <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
+                                                {isVisible ? (
+                                                    <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                                                ) : (
+                                                    <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                                                )}
+                                            </button>
+                                        }
+                                        type={isVisible ? "text" : "password"}
+                                        className="w-full flex-1"
+                                        {...register("password", {
+                                            required: true
+                                        })}
+                                        name="password"
+                                    />
+                                    {/* 
+                                    //todo: generate a function that will check if the user input is matched with the user information from db
+                                */}
+                                    <p className="animate-pulse text-xs text-red-400">
+                                        {errors.password?.types?.required && <span>Password is required</span>}
+                                    </p>
+                                </label>
+                                <div className="">
+
                                     <Link href="/reset-request" className="cursor-pointer text-violet-600 bg-focus ">
                                         <h1 className="text-xs sm:font-normal font-small w-full flex flex-row-reverse">Forgot password?</h1>
                                     </Link>
                                 </div>
-                                <Input
-                                    id="password"
-                                    label="Password"
-                                    variant="bordered"
-                                    placeholder="Enter your password"
-                                    classNames={{
-                                        label:
-                                            "text-default-800/80 sm:text-sm text-xs sm:font-normal font-small",
-                                        input: [
-                                            "sm:text-medium text-sm sm:font-normal font-normal",
-                                            "placeholder:text-default-800/80 sm:text-sm text-xs dark:placeholder:text-white/60",
-                                        ],
-
-
-                                    }}
-                                    endContent={
-                                        <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
-                                            {isVisible ? (
-                                                <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                                            ) : (
-                                                <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                                            )}
-                                        </button>
-                                    }
-                                    type={isVisible ? "text" : "password"}
-                                    className="w-full flex-1"
-                                    {...register("password", {
-                                        required: true
-                                    })}
-                                    name="password"
-                                />
-                                {/* 
-                                    //todo: generate a function that will check if the user input is matched with the user information from db
-                                */}
-                                <p className="animate-pulse text-xs text-red-400">
-                                    {errors.password?.types?.required && <span>Password is required</span>}
-                                </p>
-
                             </div>
 
                             <div className='flex flex-col gap-1 mb-3'>

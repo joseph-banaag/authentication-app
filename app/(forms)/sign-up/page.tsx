@@ -235,132 +235,146 @@ export default function SignUp() {
                             </div>
 
                             {/* form */}
-                            <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-0' id="sign-in">
+                            <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-3' id="sign-in">
 
                                 <div className='flex flex-col gap-1 mb-3'>
-                                    <Input
-                                        id="username"
-                                        isClearable
-                                        type="text"
-                                        label="Username"
-                                        variant="bordered"
-                                        className="w-full flex-1"
-                                        classNames={{
-                                            label: "text-default-800/80  sm:text-medium text-xs sm:font-normal font-small",
-                                            input: "sm:text-medium text-sm sm:font-normal font-normal",
-
-                                        }}
-                                        {...register("username", {
-                                            required: true,
-                                            pattern: /[\w!@#$%^&*()-+=<>?/\\,.;:'"[\]{}|]{3,}/gi
-                                        })}
-                                        name="username"
-                                    />
-                                    <p className="animate-pulse text-xs text-red-400">
-                                        {errors.username?.types?.required && <span>Username is required</span>}
-                                        {errors.username?.types?.pattern && <span>Space is not allowed and at least 3 characters</span>}
-                                    </p>
+                                    <label htmlFor="username">
+                                        <p className="sm:text-medium text-sm sm:font-normal font-normal mb-1">Username:</p>
+                                        <Input
+                                            id="username"
+                                            isClearable
+                                            type="text"
+                                            variant="faded"
+                                            className="w-full flex-1"
+                                            classNames={{
+                                                label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
+                                                input: [
+                                                    "sm:text-medium text-sm sm:font-normal font-normal",
+                                                    "bg-transparent",
+                                                    "text-black/90 dark:text-white/90",
+                                                    "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+                                                ],
+                                            }}
+                                            {...register("username", {
+                                                required: true,
+                                                pattern: /[\w!@#$%^&*()-+=<>?/\\,.;:'"[\]{}|]{3,}/gi
+                                            })}
+                                            name="username"
+                                        />
+                                        <p className="animate-pulse text-xs text-red-400">
+                                            {errors.username?.types?.required && <span>Username is required</span>}
+                                            {errors.username?.types?.pattern && <span>Space is not allowed and at least 3 characters</span>}
+                                        </p>
+                                    </label>
                                 </div>
 
                                 <div className='flex flex-col gap-1 mb-3'>
-                                    <Input
-                                        id="email"
-                                        isClearable
-                                        type="email"
-                                        label="E-mail"
-                                        variant="bordered"
-                                        className="w-full flex-1"
-                                        classNames={{
-                                            label: "text-default-800/80  sm:text-medium text-xs sm:font-normal font-small",
-                                            input: "sm:text-medium text-sm sm:font-normal font-normal",
+                                    <label htmlFor="email">
+                                        <p className="sm:text-medium text-sm sm:font-normal font-normal mb-1">E-mail:</p>
+                                        <Input
+                                            id="email"
+                                            isClearable
+                                            type="email"
+                                            variant="faded"
+                                            className="w-full flex-1"
+                                            classNames={{
+                                                label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
+                                                input: [
+                                                    "sm:text-medium text-sm sm:font-normal font-normal",
+                                                    "bg-transparent",
+                                                    "text-black/90 dark:text-white/90",
+                                                    "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+                                                ],
+                                            }}
+                                            {...register("email", {
+                                                required: true,
+                                                pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/gi
+                                            })}
+                                            name="email"
+                                        />
+                                        <p className="animate-pulse text-xs text-red-400">
+                                            {errors.email?.types?.required && <span>A valid email is required</span>}
+                                            {errors.email?.types?.pattern && <span>e.g. example@email.com</span>}
 
-                                        }}
-                                        {...register("email", {
-                                            required: true,
-                                            pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/gi
-                                        })}
-                                        name="email"
-                                    />
-                                    <p className="animate-pulse text-xs text-red-400">
-                                        {errors.email?.types?.required && <span>A valid email is required</span>}
-                                        {errors.email?.types?.pattern && <span>e.g. example@email.com</span>}
+                                        </p>
+                                    </label>
 
-                                    </p>
                                 </div>
 
                                 <div className='flex flex-col gap-1 mb-3'>
-                                    <Input
-                                        id="password"
-                                        label="Password"
-                                        variant="bordered"
-                                        placeholder="Enter your password"
-                                        classNames={{
-                                            label:
-                                                "text-default-800/80  sm:text-sm text-xs sm:font-normal font-small",
-                                            input: [
-                                                "sm:text-medium text-sm sm:font-normal font-normal",
-                                                "placeholder:text-default-700/50 sm:text-sm text-xs dark:placeholder:text-white/60",
-                                            ]
-
-                                        }}
-                                        endContent={
-                                            <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
-                                                {isVisible ? (
-                                                    <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                                                ) : (
-                                                    <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                                                )}
-                                            </button>
-                                        }
-                                        type={isVisible ? "text" : "password"}
-                                        className="w-full flex-1"
-                                        {...register("password", {
-                                            pattern: /(?=\w{5,18})(?=\D*\d)/,
-                                            required: true
-                                        })}
-                                        name="password"
-                                    />
-                                    <p className="animate-pulse text-xs text-red-400">
-                                        {errors.password?.types?.required && <span>Password is required</span>}
-                                        {errors.password?.types?.pattern && <span>Password must be at least 5 characters and one number</span>}
-                                    </p>
-
+                                    <label htmlFor="password">
+                                        <p className="sm:text-medium text-sm sm:font-normal font-normal mb-1">Password:</p>
+                                        <Input
+                                            id="password"
+                                            variant="faded"
+                                            classNames={{
+                                                label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
+                                                input: [
+                                                    "sm:text-medium text-sm sm:font-normal font-normal",
+                                                    "bg-transparent",
+                                                    "text-black/90 dark:text-white/90",
+                                                    "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+                                                ],
+                                            }}
+                                            endContent={
+                                                <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
+                                                    {isVisible ? (
+                                                        <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                                                    ) : (
+                                                        <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                                                    )}
+                                                </button>
+                                            }
+                                            type={isVisible ? "text" : "password"}
+                                            className="w-full flex-1"
+                                            {...register("password", {
+                                                pattern: /(?=\w{5,18})(?=\D*\d)/,
+                                                required: true
+                                            })}
+                                            name="password"
+                                        />
+                                        <p className="animate-pulse text-xs text-red-400">
+                                            {errors.password?.types?.required && <span>Password is required</span>}
+                                            {errors.password?.types?.pattern && <span>Password must be at least 5 characters and one number</span>}
+                                        </p>
+                                    </label>
                                 </div>
 
                                 <div className='flex flex-col gap-1 mb-5'>
-                                    <Input
-                                        id="confirm"
-                                        label="Confirm"
-                                        variant="bordered"
-                                        placeholder="Confirm your password"
-                                        classNames={{
-                                            label:
-                                                "text-default-800/80  sm:text-sm text-xs sm:font-normal font-small",
-                                            input: [
-                                                "sm:text-medium text-sm sm:font-normal font-normal",
-                                                "placeholder:text-default-700/50 sm:text-sm text-xs dark:placeholder:text-white/60",
-                                            ]
-                                            
-
-                                        }}
-                                        endContent={
-                                            <button className="focus:outline-none" type="button" onClick={toggleIsConfirmed}>
-                                                {isConfirmed ? (
-                                                    <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                                                ) : (
-                                                    <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                                                )}
-                                            </button>
-                                        }
-                                        type={isConfirmed ? "text" : "password"}
-                                        className="w-full flex-1"
-                                        {...register("confirmPw", {
-                                            pattern: /(?=\w{5,18})(?=\D*\d)/,
-                                            required: true
-                                        })}
-                                        name="confirmPw"
-                                    />
-                                    {validatePassword()}
+                                    <label htmlFor="confirmPw">
+                                        <p className="sm:text-medium text-sm sm:font-normal font-normal mb-1">Confirm Password:</p>
+                                        <Input
+                                            id="confirmPw"
+                                            variant="faded"
+                                            classNames={{
+                                                label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
+                                                input: [
+                                                    "sm:text-medium text-sm sm:font-normal font-normal",
+                                                    "bg-transparent",
+                                                    "text-black/90 dark:text-white/90",
+                                                    "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+                                                ],
+                                            }}
+                                            endContent={
+                                                <button className="focus:outline-none" type="button" onClick={toggleIsConfirmed}>
+                                                    {isConfirmed ? (
+                                                        <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                                                    ) : (
+                                                        <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                                                    )}
+                                                </button>
+                                            }
+                                            type={isConfirmed ? "text" : "password"}
+                                            className="w-full flex-1"
+                                            {...register("confirmPw", {
+                                                pattern: /(?=\w{5,18})(?=\D*\d)/,
+                                                required: true
+                                            })}
+                                            name="confirmPw"
+                                        />
+                                        {validatePassword()}
+                                    </label>
+                                    
 
                                 </div>
 
