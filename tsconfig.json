@@ -24,6 +24,6 @@
     },
 
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/(..)modals/PasswordReset.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/(..)modals/PasswordReset.tsx"],
   "exclude": ["node_modules"]
 }

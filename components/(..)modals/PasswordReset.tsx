@@ -11,8 +11,8 @@ import {
 } from "@nextui-org/react";
 import { MailIcon } from "@/components/utils/icons/MailIcon";
 import { useForm } from "react-hook-form";
-import ConfirmPasswordReset from "@/components/(..)modals/confirmResetReq";
 import FNYW from "../utils/warnings/functionNotWorking";
+import ProgressStatus from "../utils/warnings/ProgressStatus";
 
 export default function PasswordReset() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -32,10 +32,16 @@ export default function PasswordReset() {
 
   console.log(watch("email"));
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: any) => {
     const email = data.email;
     console.log(email);
-    alert("We've sent you an email to reset your password");
+
+    alert(
+      `We've sent the password reset request to: ${email}. Please check your Inbox, Junk, or Spam folder.`
+    );
+    return
+    <>
+    </>;
   };
 
   return (
@@ -44,7 +50,6 @@ export default function PasswordReset() {
         onPress={onOpen}
         size="sm"
         variant="light"
-        classNames="!hover:bg-none"
         className="cursor-pointer max-w-fit !hover:bg-none -ms-3"
       >
         <h1 className="text-xs sm:font-normal text-violet-600 font-small flex justify-center items-center">
@@ -76,7 +81,6 @@ export default function PasswordReset() {
 
                   <Input
                     id="email"
-                    name="email"
                     {...register("email", {
                       required: true,
                       pattern:
@@ -108,18 +112,19 @@ export default function PasswordReset() {
                   >
                     <p className="text-red-500 font-semibold">Cancel</p>
                   </Button>
-                    <Button
-                      color="secondary"
-                      variant="solid"
-                      size="sm"
-                      type="submit"
+                  <Button
+                    color="secondary"
+                    variant="solid"
+                    size="sm"
+                    type="submit"
                     onPress={onClose}
                     className="hover:scale-105"
-                    >
-                      <p className="text-white font-semibold">
-                        Reset
-                      </p>
-                    </Button>
+                  >
+                    <p className="text-white font-semibold">Reset</p>
+                    {/* 
+                    // todo: create a function that will change the word Reset to <ProgressStatus /> when requesting for password reset
+                    */}
+                  </Button>
                   {/* 
                   //todo: create a function that will redirect tha page to the home page once the password reset request has been made.
                   */}
