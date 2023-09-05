@@ -96,7 +96,7 @@ export default function SignIn() {
                             <p className="sm:text-medium text-xs sm:font-normal font-small">to access your {Company.name} account </p>
                         </div>
                         {/* 
-                            // Todo: generate a function that will allow sign in using these options
+                            // Todo: generate a function that will allow the sign in options facebook, google, and github
                         */}
 
                         <div className="flex flex-wrap justify-center items-center sm:gap-5 gap-2 ">
@@ -230,9 +230,11 @@ export default function SignIn() {
                                 </label>
                             </div>
 
-                            <div className='flex flex-col gap-1 mb-3'>
+                            <div className='flex flex-col gap-1 my-3'>
                                 {/* 
                                     // Todo: create a matching function that will change the button to green if the password from the user is matched with the user information form db
+                                    // todo: if the sign in is successful the page will redirect the user to a different layout specifically for logged in users where navbar is also different
+                                    
                                 */}
                                 {isMatched
                                     ? <Button type="submit" name="submit" className="bg-green-800 hover:bg-green-600 drop-shadow-lg transition-all duration-300">
@@ -241,7 +243,7 @@ export default function SignIn() {
                                     : <Button type="submit" name="submit" className="bg-violet-800 hover:bg-violet-950 drop-shadow-lg transition-all duration-300">
                                         <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
                                     </Button>}
-                                
+
                             </div>
                         </form>
 

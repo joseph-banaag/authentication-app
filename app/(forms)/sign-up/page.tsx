@@ -128,17 +128,21 @@ export default function SignUp() {
     const onSubmit: SubmitHandler<Inputs> = (data: any) => {
         const password = data.password
         const confirmed = data.confirmPw
+        const userName = data.username
 
         const beforeSubmit = () => {
             if (password !== confirmed) {
                 alert("Please check your password!")
             } else {
-                alert("Congratulations!")
+                alert(`Welcome ${userName} 🎉🎉🎉`)
                 console.log(data)
             }
         }
         return (
             <>
+                {/* 
+                 // todo: if the sign in is successful the page will redirect the user to a different layout specifically for logged in users where navbar is also different
+                */}
                 {beforeSubmit()}
             </>
         )

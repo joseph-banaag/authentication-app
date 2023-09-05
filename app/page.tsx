@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image'
-import { Link } from "@nextui-org/react"
+import { Button, Link } from "@nextui-org/react"
 import { bgIllustration } from "@/components/constants"
 import { Recursive, Dancing_Script } from "next/font/google"
 import { motion } from "framer-motion"
@@ -41,7 +41,10 @@ export default function Home() {
             />
           </div>
           <div className="py-2 px-5 flex justify-center">
-            <h1 className="sm:text-medium text-sm text-end">Click <Link href="/sign-up" className="text-secondary sm:text-medium text-sm font-semibold underline underline-offset-4">Sign Up</Link> to create an account: </h1>
+            <h1 className="sm:text-medium text-sm text-end">Click <Link href="/sign-up" className="cursor-pointer text-secondary sm:text-medium text-sm font-semibold underline underline-offset-4">Sign Up</Link> to create an account: </h1>
+          </div>
+          <div className="py-2 px-5 flex justify-center items-center mt-2">
+            <h1 className="sm:text-sm text-sm text-end mr-1">Already have an account? Click <Link href="/sign-in" className="text-secondary sm:text-sm text-sm cursor-pointer">Sign In</Link></h1>
           </div>
         </div>
       </motion.div>

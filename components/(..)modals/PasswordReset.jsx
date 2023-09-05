@@ -12,6 +12,7 @@ import {
 import { MailIcon } from "@/components/utils/icons/MailIcon";
 import { useForm } from "react-hook-form";
 import ConfirmPasswordReset from "@/components/(..)modals/confirmResetReq";
+import FNYW from "../utils/warnings/functionNotWorking";
 
 export default function PasswordReset() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -66,6 +67,7 @@ export default function PasswordReset() {
                   <h1 className="sm:text-4xl text-xl sm:font-medium font-normal mb-1">
                     Recover your account
                   </h1>
+                  <FNYW />
                 </ModalHeader>
                 <ModalBody>
                   <p className="sm:text-medium text-xs sm:font-normal font-small">
@@ -106,15 +108,18 @@ export default function PasswordReset() {
                   >
                     <p className="text-red-500 font-semibold">Cancel</p>
                   </Button>
-                  <Button
-                    color="secondary"
-                    variant="ghost"
-                    size="sm"
-                    type="submit"
+                    <Button
+                      color="secondary"
+                      variant="solid"
+                      size="sm"
+                      type="submit"
                     onPress={onClose}
-                  >
-                    <p className="text-white font-semibold">Reset</p>
-                  </Button>
+                    className="hover:scale-105"
+                    >
+                      <p className="text-white font-semibold">
+                        Reset
+                      </p>
+                    </Button>
                   {/* 
                   //todo: create a function that will redirect tha page to the home page once the password reset request has been made.
                   */}
