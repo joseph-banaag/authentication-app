@@ -24,9 +24,7 @@ export function ThemeSwitcher() {
     useEffect(() => {
         setMounted(true)
     }, [])
-
-    if (!mounted) return null
-
+ 
     return (
         <div className="flex justify-center items-center">
             <SwitchToggle onChange={handleToggleSwitch} />

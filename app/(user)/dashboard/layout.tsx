@@ -1,7 +1,9 @@
-import '../globals.css'
+import '../../globals.css'
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import { Providers } from "./providers"
+import Topbar from "@/app/(user)/userComponents/section/navbar/page";
+import Footer from "@/app/(user)/userComponents/section/footer/page";
 
 
 
@@ -26,7 +28,9 @@ export default function RootLayout({
         <html lang="en" className="dark">
             <body className={monserrat.className}>
                 <Providers>
+                    <Topbar />
                     {children}
+                    <Footer />
                 </Providers>
             </body>
         </html>
