@@ -89,7 +89,18 @@ export default function PasswordReset() {
                     isClearable
                     type="email"
                     label="Email"
+                    variant="faded"
                     placeholder="you@example.com"
+                    className="w-full flex-1 transition-all duration-300"
+                    classNames={{
+                      label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
+                      input: [
+                        "sm:text-medium text-sm sm:font-normal font-normal",
+                        "bg-transparent",
+                        "text-black/90 dark:text-white/90",
+                        "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+                      ],
+                    }}
                     startContent={
                       <MailIcon className="text-2xl text-default-400 pointer-events-none sm:flex flex-shrink-0 hidden" />
                     }

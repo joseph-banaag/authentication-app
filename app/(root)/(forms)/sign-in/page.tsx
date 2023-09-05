@@ -186,7 +186,6 @@ export default function SignIn() {
                                     </p>
                                 </label>
                             </div>
-
                             <div className='flex flex-col'>
                                 <label htmlFor="password">
                                     <div className="flex justify-between passwordClose">
