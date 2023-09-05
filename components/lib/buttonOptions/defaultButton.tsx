@@ -7,8 +7,9 @@ export default function DefaultButton() {
             <Button
                 type="submit"
                 name="submit"
+                isDisabled 
                 className="bg-violet-800 hover:bg-violet-950 drop-shadow-lg transition-all duration-300"
-                isDisabled            
+                           
             >
                 <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
             </Button>

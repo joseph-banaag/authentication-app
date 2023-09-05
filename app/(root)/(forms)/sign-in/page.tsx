@@ -12,6 +12,7 @@ import IconChanger from "@/components/lib/IconChanger";
 import Link from "next/link";
 import { motion } from "framer-motion"
 import PasswordReset from "@/components/(..)modals/PasswordReset";
+import { useRouter } from 'next/navigation'
 
 
 // this object is for type declaration of useForm() function specifically for register method.
@@ -25,6 +26,8 @@ export default function SignIn() {
     const [isVisible, setIsVisible] = React.useState(false);
     const [isDark, setIsDark] = React.useState(true);
     const [isMatched, setIsMatched] = React.useState(false)
+    const router = useRouter()
+
 
     // todo: this will change the button bg to green if the password is matched form the db
     const MatchedPw = () => {
@@ -32,7 +35,6 @@ export default function SignIn() {
             setIsMatched(!isMatched)
         )
     }
-
 
 
     // todo: this will change the github icon depending on the set theme
@@ -61,8 +63,25 @@ export default function SignIn() {
 
 
 
-    const onSubmit: SubmitHandler<Inputs> = (data: any) => console.log(data); // the return can also be alert: alert(JSON.stringify(data))
+    const OnSubmit: SubmitHandler<Inputs> = (data: any) => {
+        const password = data.password
+        const user_name = data.username
 
+        // * given password and username will be removed from the if-statement once data from db is existing.
+        const check_user_info = (): any => {
+            if (password === "aaaaa222" && user_name === "Doks_23") {
+                router.push('/dashboard', { scroll: false })
+            } else {
+                alert("Please create an account. Click on Sign up or reset your password if you have an account already.")
+            }
+        }
+
+        return (
+            <>
+                {check_user_info()}
+            </>
+        )
+    }
 
     console.log(watch("username"));
     console.log(watch("password"))
@@ -154,7 +173,7 @@ export default function SignIn() {
                         </div>
 
                         {/* form */}
-                        <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-3' id="sign-in">
+                        <form onSubmit={handleSubmit(OnSubmit)} className='flex flex-col gap-3' id="sign-in">
 
                             <div className='flex flex-col'>
                                 <label htmlFor="username">

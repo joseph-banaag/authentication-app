@@ -2,7 +2,7 @@
 import React from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
 import Image from 'next/image';
-import { Button, Input } from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
 import { EyeFilledIcon } from "@/components/utils/icons/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "@/components/utils/icons/EyeSlashFilledIcon";
 import { MyButton } from "@/components/utils/tailwindvariants/tv";
@@ -13,6 +13,7 @@ import { iconsSrc } from "@/components/constants";
 import SuccessButton from "@/components/lib/buttonOptions/successButton";
 import DefaultButton from "@/components/lib/buttonOptions/defaultButton";
 import { motion } from "framer-motion"
+import { useRouter } from 'next/navigation'
 
 
 // this object is for type declaration of useForm() function specifically for register method.
@@ -28,6 +29,7 @@ interface Inputs {
 export default function SignUp() {
     const [isVisible, setIsVisible] = React.useState(false);
     const [isConfirmed, setIsConfirmed] = React.useState(false);
+    const router = useRouter()
 
     const toggleVisibility = () => setIsVisible(!isVisible);
     const toggleIsConfirmed = () => setIsConfirmed(!isConfirmed)
@@ -125,25 +127,31 @@ export default function SignUp() {
     }
 
 
-    const onSubmit: SubmitHandler<Inputs> = (data: any) => {
+    const OnSubmit: SubmitHandler<Inputs> = (data: any) => {
         const password = data.password
         const confirmed = data.confirmPw
-        const userName = data.username
+        const user_name = data.username
+        const email_acc = data.email
+
+        // * Doks_23 and email@email.com will be removed once the data from the db is available to properly check if the account is already existing.
+        const check_existing_acc = (): any => {
+            if (user_name === "Doks_23" && email_acc === "email@email.com") {
+                alert("You already have an account. Go to Sign in.")
+                router.push('/sign-in', { scroll: false })
+            }
+        }
 
         const beforeSubmit = () => {
             if (password !== confirmed) {
                 alert("Please check your password!")
             } else {
-                alert(`Welcome ${userName} 🎉🎉🎉`)
-                console.log(data)
+                console.log("Account created successfully!")
             }
         }
         return (
             <>
-                {/* 
-                 // todo: if the sign in is successful the page will redirect the user to a different layout specifically for logged in users where navbar is also different
-                */}
                 {beforeSubmit()}
+                {check_existing_acc()}
             </>
         )
     }
@@ -239,7 +247,7 @@ export default function SignUp() {
                             </div>
 
                             {/* form */}
-                            <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-3' id="sign-in">
+                            <form onSubmit={handleSubmit(OnSubmit)} className='flex flex-col gap-3' id="sign-in">
 
                                 <div className='flex flex-col'>
                                     <label htmlFor="username">
@@ -379,7 +387,7 @@ export default function SignUp() {
                                     </label>
                                 </div>
 
-                                <div className='flex flex-col gap-1 mb-3'>
+                                <div className='flex flex-col gap-1 my-3'>
 
                                     <ButtonChanger />
 
