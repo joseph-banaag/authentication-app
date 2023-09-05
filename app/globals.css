@@ -21,3 +21,11 @@ body {
     display: none;
   }
 }
+
+@media (max-width: 230px) {
+  .passwordClose {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+  }
+}

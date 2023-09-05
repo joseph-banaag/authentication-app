@@ -267,7 +267,6 @@ export default function SignUp() {
                                         </p>
                                     </label>
                                 </div>
-
                                 <div className='flex flex-col'>
                                     <label htmlFor="email">
                                         <p className="sm:text-medium text-sm sm:font-normal font-normal mb-1">E-mail:</p>

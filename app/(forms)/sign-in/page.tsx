@@ -11,6 +11,7 @@ import { Company, iconsSrc } from "@/components/constants";
 import IconChanger from "@/components/lib/IconChanger";
 import Link from "next/link";
 import { motion } from "framer-motion"
+import PasswordReset from "@/components/(..)modals/PasswordReset";
 
 
 // this object is for type declaration of useForm() function specifically for register method.
@@ -178,7 +179,7 @@ export default function SignIn() {
                                         })}
                                     />
                                     {/* 
-                                    //todo: generate a function that will check if the user input is matched with the user information from db
+                                    //todo: generate a function that will check if the user username input is matched with the user information from db
                                 */}
                                     <p className="animate-pulse text-xs text-red-400">
                                         {errors.username?.types?.required && <span>Username is required</span>}
@@ -187,9 +188,11 @@ export default function SignIn() {
                             </div>
 
                             <div className='flex flex-col'>
-                                
                                 <label htmlFor="password">
-                                    <p className="sm:text-medium text-sm sm:font-normal font-normal mb-1">Password:</p>
+                                    <div className="flex justify-between passwordClose">
+                                        <p className="sm:text-medium text-sm sm:font-normal font-normal flex justify-center items-center">Password:</p>
+                                        <PasswordReset />
+                                    </div>
                                     <Input
                                         id="password"
                                         variant="faded"
@@ -219,18 +222,12 @@ export default function SignIn() {
                                         name="password"
                                     />
                                     {/* 
-                                    //todo: generate a function that will check if the user input is matched with the user information from db
+                                    //todo: generate a function that will check if the user password input is matched with the user information from db
                                 */}
                                     <p className="animate-pulse text-xs text-red-400">
                                         {errors.password?.types?.required && <span>Password is required</span>}
                                     </p>
                                 </label>
-                                <div className="">
-
-                                    <Link href="/reset-request" className="cursor-pointer text-violet-600 bg-focus ">
-                                        <h1 className="text-xs sm:font-normal font-small w-full flex flex-row-reverse">Forgot password?</h1>
-                                    </Link>
-                                </div>
                             </div>
 
                             <div className='flex flex-col gap-1 mb-3'>
@@ -244,7 +241,7 @@ export default function SignIn() {
                                     : <Button type="submit" name="submit" className="bg-violet-800 hover:bg-violet-950 drop-shadow-lg transition-all duration-300">
                                         <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
                                     </Button>}
-
+                                
                             </div>
                         </form>
 
