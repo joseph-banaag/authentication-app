@@ -23,7 +23,7 @@ export default function Topbar() {
 
     return (
         <>
-            <Navbar onMenuOpenChange={setIsMenuOpen} className="absolute top-0" shouldHideOnScroll>
+            <Navbar onMenuOpenChange={setIsMenuOpen} shouldHideOnScroll>
                 <NavbarContent>
                     <NavbarMenuToggle
                         aria-label={isMenuOpen ? "Close menu" : "Open menu"}

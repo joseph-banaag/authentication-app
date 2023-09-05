@@ -13,7 +13,7 @@ export default function Dashboard() {
                 animate={{ opacity: 1 }}
                 transition={{ ease: "backIn", duration: 0.25 }}
             >
-                <div className="w-full min-h-screen flex flex-1 flex-col justify-center items-center gap-3 relative">
+                <div className="w-full min-h-screen flex flex-1 flex-col justify-center items-center gap-3 relative border">
                     <h1 className="text-3xl">Welcome {user}</h1>
                     {/* 
                         // todo: create a function that will get the account information and what will be attached to the welcome screen
