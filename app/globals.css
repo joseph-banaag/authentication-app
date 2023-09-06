@@ -7,31 +7,35 @@
   padding: 0;
 }
 
-:root {
-  /* Your default theme */
-  --background: white;
-  --foreground: black;
-}
-
-[data-theme='dark'] {
-  --background: black;
-  --foreground: white;
-}
 
 html,
 body {
   width: 100vw;
   height: auto;
+  min-width: 216px;
 }
 
 a:hover {
   text-decoration: none;
-  color: #6422dd;
 }
+
 
 @media (max-width: 298px) {
   .nav_name {
     display: none;
+  }
+}
+
+@media (max-width: 240px) {
+  .loginButtons {
+    padding: 0;
+    gap: 1;
+  }
+}
+
+@media (max-width: 262px) {
+  #signOptions {
+    padding: 10px;
   }
 }
 

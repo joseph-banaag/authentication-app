@@ -30,12 +30,11 @@ const config: Config = {
               foreground: "#FFFFFF",
               DEFAULT: "#006FEE",
             },
-            // ... rest of the colors
           },
         },
         dark: {
           colors: {
-            background: "#000000", // or DEFAULT
+            background: "#0a0316", // or DEFAULT
             foreground: "#ECEDEE", // or 50 to 900 DEFAULT
             primary: {
               //... 50 to 900
@@ -43,7 +42,6 @@ const config: Config = {
               DEFAULT: "#006FEE",
             },
           },
-          // ... rest of the colors
         },
         mytheme: {
           // custom theme

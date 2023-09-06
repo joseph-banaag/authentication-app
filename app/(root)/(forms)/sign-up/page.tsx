@@ -2,7 +2,7 @@
 import React from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
 import Image from 'next/image';
-import { Input } from "@nextui-org/react";
+import { Input, Card } from "@nextui-org/react";
 import { EyeFilledIcon } from "@/components/utils/icons/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "@/components/utils/icons/EyeSlashFilledIcon";
 import { MyButton } from "@/components/utils/tailwindvariants/tv";
@@ -165,8 +165,8 @@ export default function SignUp() {
                 transition={{ ease: "backIn", duration: 0.25 }}
             >
                 <div className=" w-full min-h-screen flex flex-1 flex-col justify-center items-center mt-10 ">
-                    <div className=" sm:p-2 p-5">
-                        <div className="flex flex-col flex-1 border-2 border-slate-600 rounded-2xl p-1.5 sm:p-5 gap-5 mb-24 shadow-lg" id="sign-in">
+                    <div className="sm:p-5 p-3">
+                        <Card className="flex flex-col flex-1 rounded-2xl p-5 gap-5 mb-24 shadow-2xl max-w-[640px] bg-background/60 dark:bg-default-100/50" id="signOptions">
                             <div className='w-full flex justify-start mt-2'>
                                 <Image
                                     src={Company.imgSrc}
@@ -189,12 +189,12 @@ export default function SignUp() {
                             {/* 
                             // Todo: generate a function that will allow the sign in options facebook, google, and github
                         */}
-                            <div className="flex flex-wrap justify-center items-center sm:gap-5 gap-4 ">
+                            <div className="flex items-center justify-evenly loginButtons">
                                 <div>
                                     <MyButton
                                         variant="flat"
                                         size="md"
-                                        className="hover:scale-105 hover:bg-secondary/10 transition-all duration-300 backdrop-blur-xl drop-shadow-lg flex-1">
+                                        className="hover:scale-105 hover:bg-secondary/10 transition-all duration-300 flex-1 shadow-xl">
                                         <Image
                                             priority
                                             src={iconsSrc.facebook}
@@ -214,7 +214,7 @@ export default function SignUp() {
                                     <MyButton
                                         variant="flat"
                                         size="md"
-                                        className="hover:scale-105 hover:bg-secondary/10 transition-all duration-300 backdrop-blur-xl drop-shadow-lg flex-1"
+                                        className="hover:scale-105 hover:bg-secondary/10 transition-all duration-300 shadow-xl flex-1"
                                     >
                                         <IconChanger />
                                     </MyButton>
@@ -224,7 +224,7 @@ export default function SignUp() {
                                     <MyButton
                                         variant="flat"
                                         size="md"
-                                        className="hover:scale-105 hover:bg-secondary/10 transition-all duration-300 backdrop-blur-xl drop-shadow-lg flex-1">
+                                        className="hover:scale-105 hover:bg-secondary/10 transition-all duration-300  shadow-xl flex-1">
                                         <Image
                                             priority
                                             src={iconsSrc.google}
@@ -247,158 +247,150 @@ export default function SignUp() {
                             </div>
 
                             {/* form */}
-                            <form onSubmit={handleSubmit(OnSubmit)} className='flex flex-col gap-3' id="sign-in">
-
+                            <form onSubmit={handleSubmit(OnSubmit)} className='flex flex-col gap-7'>
                                 <div className='flex flex-col'>
-                                    <label htmlFor="username">
-                                        <p className="sm:text-medium text-sm sm:font-normal font-normal mb-1">Username:</p>
-                                        <Input
-                                            id="username"
-                                            isClearable
-                                            type="text"
-                                            variant="faded"
-                                            className="w-full flex-1"
-                                            classNames={{
-                                                label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
-                                                input: [
-                                                    "sm:text-medium text-sm sm:font-normal font-normal",
-                                                    "bg-transparent",
-                                                    "text-black/90 dark:text-white/90",
-                                                    "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                                                ],
-                                            }}
-                                            {...register("username", {
-                                                required: true,
-                                                pattern: /[\w!@#$%^&*()-+=<>?/\\,.;:'"[\]{}|]{3,}/gi
-                                            })}
-                                            name="username"
-                                        />
-                                        <p className="animate-pulse text-xs text-red-400">
-                                            {errors.username?.types?.required && <span>Username is required</span>}
-                                            {errors.username?.types?.pattern && <span>Space is not allowed and at least 3 characters</span>}
-                                        </p>
-                                    </label>
+                                    <Input
+                                        autoComplete="off"
+                                        aria-autocomplete="none"
+                                        id="username"
+                                        isClearable
+                                        type="text"
+                                        variant="bordered"
+                                        label="Username"
+                                        className="w-full flex-1"
+                                        classNames={{
+                                            label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
+                                            input: [
+                                                "sm:text-medium text-sm sm:font-normal font-normal",
+                                                "bg-transparent",
+                                                "text-black/90 dark:text-white/90",
+                                                "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+                                            ],
+                                        }}
+                                        {...register("username", {
+                                            required: true,
+                                            pattern: /[\w!@#$%^&*()-+=<>?/\\,.;:'"[\]{}|]{3,}/gi
+                                        })}
+                                        name="username"
+                                    />
+                                    <p className="animate-pulse text-xs text-red-400">
+                                        {errors.username?.types?.required && <span>Username is required</span>}
+                                        {errors.username?.types?.pattern && <span>Space is not allowed and at least 3 characters</span>}
+                                    </p>
                                 </div>
                                 <div className='flex flex-col'>
-                                    <label htmlFor="email">
-                                        <p className="sm:text-medium text-sm sm:font-normal font-normal mb-1">E-mail:</p>
-                                        <Input
-                                            id="email"
-                                            isClearable
-                                            type="email"
-                                            variant="faded"
-                                            className="w-full flex-1"
-                                            classNames={{
-                                                label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
-                                                input: [
-                                                    "sm:text-medium text-sm sm:font-normal font-normal",
-                                                    "bg-transparent",
-                                                    "text-black/90 dark:text-white/90",
-                                                    "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                                                ],
-                                            }}
-                                            {...register("email", {
-                                                required: true,
-                                                pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/gi
-                                            })}
-                                            name="email"
-                                        />
-                                        <p className="animate-pulse text-xs text-red-400">
-                                            {errors.email?.types?.required && <span>A valid email is required</span>}
-                                            {errors.email?.types?.pattern && <span>e.g. example@email.com</span>}
+                                    <Input
+                                        autoComplete="off"
+                                        aria-autocomplete="none"
+                                        id="email"
+                                        isClearable
+                                        type="email"
+                                        variant="bordered"
+                                        label="Email"
+                                        className="w-full flex-1"
+                                        classNames={{
+                                            label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
+                                            input: [
+                                                "sm:text-medium text-sm sm:font-normal font-normal",
+                                                "bg-transparent",
+                                                "text-black/90 dark:text-white/90",
+                                                "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+                                            ],
+                                        }}
+                                        {...register("email", {
+                                            required: true,
+                                            pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/gi
+                                        })}
+                                        name="email"
+                                    />
+                                    <p className="animate-pulse text-xs text-red-400">
+                                        {errors.email?.types?.required && <span>A valid email is required</span>}
+                                        {errors.email?.types?.pattern && <span>e.g. example@email.com</span>}
 
-                                        </p>
-                                    </label>
-
+                                    </p>
                                 </div>
 
                                 <div className='flex flex-col'>
-                                    <label htmlFor="password">
-                                        <p className="sm:text-medium text-sm sm:font-normal font-normal mb-1">Password:</p>
-                                        <Input
-                                            id="password"
-                                            variant="faded"
-                                            classNames={{
-                                                label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
-                                                input: [
-                                                    "sm:text-medium text-sm sm:font-normal font-normal",
-                                                    "bg-transparent",
-                                                    "text-black/90 dark:text-white/90",
-                                                    "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                                                ],
-                                            }}
-                                            endContent={
-                                                <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
-                                                    {isVisible ? (
-                                                        <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                                                    ) : (
-                                                        <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                                                    )}
-                                                </button>
-                                            }
-                                            type={isVisible ? "text" : "password"}
-                                            className="w-full flex-1"
-                                            {...register("password", {
-                                                pattern: /(?=\w{5,18})(?=\D*\d)/,
-                                                required: true
-                                            })}
-                                            name="password"
-                                        />
-                                        <p className="animate-pulse text-xs text-red-400">
-                                            {errors.password?.types?.required && <span>Password is required</span>}
-                                            {errors.password?.types?.pattern && <span>Password must be at least 5 characters and one number</span>}
-                                        </p>
-                                    </label>
+                                    <Input
+                                        autoComplete="off"
+                                        aria-autocomplete="none"
+                                        id="password"
+                                        variant="bordered"
+                                        label="Password"
+                                        classNames={{
+                                            label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
+                                            input: [
+                                                "sm:text-medium text-sm sm:font-normal font-normal",
+                                                "bg-transparent",
+                                                "text-black/90 dark:text-white/90",
+                                                "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+                                            ],
+                                        }}
+                                        endContent={
+                                            <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
+                                                {isVisible ? (
+                                                    <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                                                ) : (
+                                                    <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                                                )}
+                                            </button>
+                                        }
+                                        type={isVisible ? "text" : "password"}
+                                        className="w-full flex-1"
+                                        {...register("password", {
+                                            pattern: /(?=\w{5,18})(?=\D*\d)/,
+                                            required: true
+                                        })}
+                                        name="password"
+                                    />
+                                    <p className="animate-pulse text-xs text-red-400">
+                                        {errors.password?.types?.required && <span>Password is required</span>}
+                                        {errors.password?.types?.pattern && <span>Password must be at least 5 characters and one number</span>}
+                                    </p>
                                 </div>
 
                                 <div className='flex flex-col'>
-                                    <label htmlFor="confirmPw">
-                                        <p className="sm:text-medium text-sm sm:font-normal font-normal mb-1">Confirm Password:</p>
-                                        <Input
-                                            id="confirmPw"
-                                            variant="faded"
-                                            classNames={{
-                                                label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
-                                                input: [
-                                                    "sm:text-medium text-sm sm:font-normal font-normal",
-                                                    "bg-transparent",
-                                                    "text-black/90 dark:text-white/90",
-                                                    "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                                                ],
-                                            }}
-                                            endContent={
-                                                <button className="focus:outline-none" type="button" onClick={toggleIsConfirmed}>
-                                                    {isConfirmed ? (
-                                                        <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                                                    ) : (
-                                                        <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                                                    )}
-                                                </button>
-                                            }
-                                            type={isConfirmed ? "text" : "password"}
-                                            className="w-full flex-1"
-                                            {...register("confirmPw", {
-                                                pattern: /(?=\w{5,18})(?=\D*\d)/,
-                                                required: true
-                                            })}
-                                            name="confirmPw"
-                                        />
-                                        {validatePassword()}
-                                    </label>
+                                    <Input
+                                        autoComplete="off"
+                                        aria-autocomplete="none"
+                                        id="confirmPw"
+                                        variant="bordered"
+                                        label="Confirm Password"
+                                        classNames={{
+                                            label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
+                                            input: [
+                                                "sm:text-medium text-sm sm:font-normal font-normal",
+                                                "bg-transparent",
+                                                "text-black/90 dark:text-white/90",
+                                                "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+                                            ],
+                                        }}
+                                        endContent={
+                                            <button className="focus:outline-none" type="button" onClick={toggleIsConfirmed}>
+                                                {isConfirmed ? (
+                                                    <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                                                ) : (
+                                                    <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                                                )}
+                                            </button>
+                                        }
+                                        type={isConfirmed ? "text" : "password"}
+                                        className="w-full flex-1"
+                                        {...register("confirmPw", {
+                                            pattern: /(?=\w{5,18})(?=\D*\d)/,
+                                            required: true
+                                        })}
+                                        name="confirmPw"
+                                    />
+                                    {validatePassword()}
                                 </div>
-
                                 <div className='flex flex-col gap-1 my-3'>
-
                                     <ButtonChanger />
-
                                 </div>
                             </form>
-                        </div>
-
-
+                        </Card>
                     </div>
                 </div>
-
                 <div className="flex md:flex-row flex-col justify-center items-center p-10 z-0 mb-10 md:gap-11 gap-5">
                     <h1 className="sm:text-2xl text-medium font-bold text-secondary/90 ">Create connection</h1>
                     <Image
