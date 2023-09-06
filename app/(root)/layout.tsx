@@ -1,11 +1,11 @@
 import '../globals.css'
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
-import { Providers } from "./providers"
 import Topbar from "@/components/sections/navbar/page"
 import Footer from "@/components/sections/footer/page"
-
-
+import * as React from "react";
+import { NextUIProvider } from "@nextui-org/react";
+import { Providers } from "./providers"
 
 const monserrat = Montserrat({
   display: "swap",
@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark">
+    <html suppressHydrationWarning lang="en" className="dark" >
       <body className={monserrat.className}>
         <Providers>
           <Topbar />

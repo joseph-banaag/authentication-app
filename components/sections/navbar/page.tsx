@@ -12,10 +12,10 @@ import {
     NavbarMenuItem,
     linkAnchorClasses
 } from "@nextui-org/react";
-import { ThemeSwitcher } from "@/components/toggle/ThemeSwitcher"
 import { usePathname } from 'next/navigation'
 import { menuItems } from "../../constants"
 import ComponentChanger from "@/components/lib/ComponentChanger";
+import { ThemeSwitcher } from "@/components/toggle/ThemeSwitcher";
 
 
 

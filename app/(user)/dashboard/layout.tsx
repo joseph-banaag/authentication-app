@@ -1,9 +1,9 @@
 import '../../globals.css'
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
-import { Providers } from "./providers"
 import Topbar from "@/app/(user)/userComponents/section/navbar/page";
 import Footer from "@/app/(user)/userComponents/section/footer/page";
+import { Providers } from "./providers";
 
 
 
@@ -25,7 +25,7 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="en" className="dark">
+        <html suppressHydrationWarning lang="en" className="dark">
             <body className={monserrat.className}>
                 <Providers>
                     <Topbar />
