@@ -7,68 +7,73 @@ import {
     NavbarItem,
     Link,
     Avatar,
-    NavbarMenuToggle,
-    NavbarMenu,
-    NavbarMenuItem,
     Chip,
-    user,
+    Dropdown,
+    DropdownTrigger,
+    DropdownMenu,
+    DropdownItem,
+    DropdownSection,
+    Button
 } from "@nextui-org/react";
-import { userNavigation } from "@/app/(user)/userComponents/constants/index"
 import { usePathname, useRouter } from 'next/navigation'
-import { ThemeSwitcher } from "@/components/toggle/ThemeSwitcher";
-import { useRef } from "react";
+import Image from "next/image";
+import { userNavigation } from "@/app/(user)/userComponents/constants/index"
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import { SunIcon } from "@/components/utils/icons/SunIcon";
+import { MoonIcon } from "@/components/utils/icons/MoonIcon";
 
 // todo: create a function that will gather user information to complete the userinfo object:
 // Todo: and then generate a logic that route the user back to '/' if there will be no userInformation
 
 const userInfo = {
-    username: "Doks_23",
+    username: "joshua_23",
     email: "email@email.com",
     image: "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 }
 
-// sidebar
-const sidebar = {
-    open: (height = 1000) => ({
-        clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
-        transition: {
-            type: "spring",
-            stiffness: 20,
-            restDelta: 2
-        }
-    }),
-    closed: {
-        clipPath: "circle(30px at 40px 40px)",
-        transition: {
-            delay: 0.5,
-            type: "spring",
-            stiffness: 400,
-            damping: 40
-        }
-    }
-};
-
-
 export default function Topbar() {
+    const pathname = usePathname()
     const router = useRouter()
+    const [mounted, setMounted] = useState(false)
+    const { theme, setTheme } = useTheme()
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    if (!mounted) return null
 
     const username = userInfo.username
     if (username === "" || username === undefined || username === null) {
         router.push('/')
     }
 
-    const pathname = usePathname()
-    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    const logo = {
+        src: "/assets/logo/user_logo.svg",
+        name: "Logo"
+    }
+
 
     return (
         <>
-            <Navbar onMenuOpenChange={setIsMenuOpen} shouldHideOnScroll className="flex flex-wrap p-3">
-                <NavbarContent>
-                    <NavbarMenuToggle
-                        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-                        className="sm:hidden"
-                    />
-                    <NavbarBrand className="flex flex-1">
+            <Navbar shouldHideOnScroll className="flex justify-around flex-wrap p-3">
+                <NavbarContent justify="start" className="flex justify-start">
+                    <NavbarBrand className="flex-1 w-full justify-start sm:hidden flex">
+                        <Link href="/dashboard">
+                            <Image
+                                src={logo.src}
+                                alt={logo.name}
+                                width={48}
+                                height={48}
+                                style={{
+                                    objectFit: "cover",
+                                }}
+                                className="!max-w-[5em] !max-h-[5em] border-2 rounded-md border-default-200/80"
+                            />
+                        </Link>
+                    </NavbarBrand>
+                    <NavbarBrand className="flex flex-1 justify-start">
                         <Link
                             href="/dashboard"
                         >
@@ -77,72 +82,129 @@ export default function Topbar() {
                     </NavbarBrand>
                 </NavbarContent>
 
-                <NavbarContent justify="end" className="flex">
-                    <NavbarItem className="hidden">
-                        <Link color="foreground" href="/dashboard/security">
-                            Security
-                        </Link>
+                <NavbarContent justify="end" className="flex justify-end">
+                    <NavbarItem className="flex justify-start items-center">
+                        <Dropdown
+                            backdrop="blur"
+                            aria-labelledby="dropdown"
+                            aria-label="dropdown"
+                            showArrow
+                            classNames={{
+                                base: "p-0 border-small border-divider bg-background",
+                                arrow: "bg-default-200",
+                            }}
+                        >
+                            <DropdownTrigger aria-labelledby="profile image">
+                                <Avatar
+                                    showFallback
+                                    radius="full"
+                                    isBordered
+                                    isFocusable
+                                    size="md"
+                                    src={userInfo.image}
+                                />
+                            </DropdownTrigger>
+                            <DropdownMenu aria-labelledby="dropdown menu">
+                                <DropdownSection title="Signed in as:" aria-labelledby="user information" className="sm:hidden block">
+                                    <DropdownItem key="profile" className="h-14 gap-2" textValue="user information">
+                                        <p className="text-sm font-bold">{userInfo.username}</p>
+                                        <p className="text-xs font-thin dark:text-foreground/60">{userInfo.email}</p>
+                                    </DropdownItem>
+                                </DropdownSection>
+                                <DropdownSection
+                                    showDivider
+                                    aria-labelledby="Menu Items"
+                                    className="my-4"
+                                >
+                                    {userNavigation.map((items) => {
+                                        const isActive = pathname == items.route
+                                        return (
+
+                                            <DropdownItem key={items.label} textValue="Menu items" aria-labelledby="menu list" as={Link}>
+                                                <Link
+                                                    color="foreground"
+                                                    href={items.route}
+                                                    className={`${isActive && "text-[#FB542B] text-2xl font-bold"} text-medium max-w-fit`}
+                                                >
+                                                    {items.label}
+                                                </Link>
+                                            </DropdownItem>
+                                        )
+                                    })}
+                                </DropdownSection>
+                                <DropdownSection aria-labelledby="Themes option" showDivider>
+                                    <DropdownItem
+                                        textValue="current theme"
+                                        aria-labelledby="current theme"
+                                        isReadOnly
+                                        endContent={
+                                            <p
+                                                className="z-10 outline-none w-16 rounded-md text-xs font-semibold group-data-[hover=true]:border-default-500 border-small border-default-300 dark:border-default-200 bg-transparent text-default-500 flex justify-center items-center p-1 px-1.5"
+                                            >
+                                                {theme}
+                                            </p>
+                                        }
+                                    >
+                                        <p className="text-sm font-semibold drop-shadow-md" color="foreground">Theme</p>
+                                    </DropdownItem>
+                                    <DropdownItem textValue="dark theme option" aria-labelledby="dark theme">
+                                        <Chip
+                                            onClick={() => setTheme('dark')}
+                                            endContent={<MoonIcon color="white" />}
+                                            variant="solid"
+                                            size="sm"
+                                            classNames={{
+                                                base: "bg-orange-700",
+                                            }}
+                                            className="cursor-pointer flex flex-1 justify-center items-center"
+                                        >
+                                            <p className="text-white font-semibold text-xs mt-1">Dark</p>
+
+                                        </Chip>
+
+                                    </DropdownItem>
+                                    <DropdownItem textValue="light theme option" aria-labelledby="light theme" >
+                                        <Chip
+                                            onClick={() => setTheme('light')}
+                                            endContent={<SunIcon color="white" />}
+                                            variant="solid"
+                                            size="sm"
+                                            classNames={{
+                                                base: "bg-orange-700",
+                                            }}
+                                            className="cursor-pointer flex flex-1 justify-center items-center"
+                                        >
+                                            <p className="text-white font-semibold text-xs mt-1">Light</p>
+
+                                        </Chip>
+                                    </DropdownItem>
+                                </DropdownSection>
+                                <DropdownSection aria-labelledby="Log out option">
+                                    <DropdownItem textValue="log out button" aria-labelledby="log out button">
+                                        <Link href="/">
+                                            <Chip
+                                                variant="solid"
+                                                size="sm"
+                                                classNames={{
+                                                    base: "bg-red-900",
+                                                }}
+                                                className="cursor-pointer flex flex-1 justify-center items-center"
+                                            >
+                                                <p className="text-white font-semibold text-xs">Logout</p>
+                                            </Chip>
+                                        </Link>
+                                    </DropdownItem>
+                                </DropdownSection>
+                            </DropdownMenu>
+                        </Dropdown>
                     </NavbarItem>
-                    <NavbarItem className="flex">
-                        <Avatar
-                            showFallback
-                            radius="full"
-                            isBordered
-                            isFocusable
-                            size="sm"
-                            src={userInfo.image}
-                        />
-                        <div className="hidden">
-                            <p className="text-sm font-semibold">{userInfo.username}</p>
-                            <p className="text-xs">{userInfo.email}</p>
+                    <NavbarItem>
+                        <div className="sm:block hidden">
+                            <p className="text-sm font-semibold flex justify-start items-center">{userInfo.username}</p>
+                            <p className="text-xs font-thin dark:text-foreground/60">{userInfo.email}</p>
                         </div>
                     </NavbarItem>
-
-                    <NavbarItem>
-                        {/* 
-                            //todo: sidebar here
-                        */}
-                    </NavbarItem>
-
-                    <NavbarItem className="hidden  flex-col justify-start gap-2">
-                        {/* 
-                        //  Todo: apply theme switcher and logout button as side bar items that will be triggered by avatar
-                        */}
-                        <ThemeSwitcher />
-                        <Link href="/">
-                            <Chip
-                                variant="solid"
-                                size="sm"
-                                classNames={{
-                                    base: "bg-orange-700",
-                                    content: "drop-shadow shadow-black text-white",
-                                }}
-                                className="cursor-pointer"
-                            >
-                                Logout
-                            </Chip>
-                        </Link>
-                    </NavbarItem>
                 </NavbarContent>
-
-
-                <NavbarMenu className="mt-6 w-full">
-                    {userNavigation.map((links) => {
-                        const isActive = pathname === links.route
-                        return (
-                            <NavbarMenuItem key={links.label}>
-                                <Link
-                                    color="foreground"
-                                    className={`${isActive && "text-[#FB542B] text-2xl font-bold"} text-medium w-full`}
-                                    href={links.route}
-                                    size="lg"
-                                >
-                                    {links.label}
-                                </Link>
-                            </NavbarMenuItem>
-                        )
-                    })}
-                </NavbarMenu>
             </Navbar>
         </>
     )
