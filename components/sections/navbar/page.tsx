@@ -31,9 +31,8 @@ export default function Topbar() {
                 <NavbarBrand className="flex flex-1">
                     <Link
                         href="/"
-                        color="foreground"
                     >
-                        <p className="lg:text-2xl md:text-xl sm:text-lg font-bold text-inherit nav_name cursor-pointer sm:flex hidden">Authentication</p>
+                        <p className="lg:text-2xl md:text-xl sm:text-lg font-bold text-foreground nav_name cursor-pointer sm:flex hidden drop-shadow-lg">Authentication</p>
                     </Link>
                 </NavbarBrand>
             </NavbarContent>

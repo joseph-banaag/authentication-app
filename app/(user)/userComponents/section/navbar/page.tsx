@@ -1,6 +1,5 @@
 "use client"
-
-import React from "react";
+import * as React from "react";
 import {
     Navbar,
     NavbarBrand,
@@ -17,7 +16,7 @@ import {
 import { userNavigation } from "@/app/(user)/userComponents/constants/index"
 import { usePathname, useRouter } from 'next/navigation'
 import { ThemeSwitcher } from "@/components/toggle/ThemeSwitcher";
-import { useAnimationFrame } from "framer-motion";
+import { useRef } from "react";
 
 // todo: create a function that will gather user information to complete the userinfo object:
 // Todo: and then generate a logic that route the user back to '/' if there will be no userInformation
@@ -28,11 +27,32 @@ const userInfo = {
     image: "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 }
 
+// sidebar
+const sidebar = {
+    open: (height = 1000) => ({
+        clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
+        transition: {
+            type: "spring",
+            stiffness: 20,
+            restDelta: 2
+        }
+    }),
+    closed: {
+        clipPath: "circle(30px at 40px 40px)",
+        transition: {
+            delay: 0.5,
+            type: "spring",
+            stiffness: 400,
+            damping: 40
+        }
+    }
+};
+
+
 export default function Topbar() {
     const router = useRouter()
 
     const username = userInfo.username
-
     if (username === "" || username === undefined || username === null) {
         router.push('/')
     }
@@ -51,9 +71,8 @@ export default function Topbar() {
                     <NavbarBrand className="flex flex-1">
                         <Link
                             href="/dashboard"
-                            color="foreground"
                         >
-                            <p className="lg:text-2xl md:text-xl sm:text-lg font-bold text-inherit nav_name cursor-pointer sm:flex hidden">Authentication</p>
+                            <p className="lg:text-2xl md:text-xl sm:text-lg font-bold nav_name cursor-pointer sm:flex hidden drop-shadow-lg !text-[#FB542B]">Authentication</p>
                         </Link>
                     </NavbarBrand>
                 </NavbarContent>
@@ -77,6 +96,12 @@ export default function Topbar() {
                             <p className="text-sm font-semibold">{userInfo.username}</p>
                             <p className="text-xs">{userInfo.email}</p>
                         </div>
+                    </NavbarItem>
+
+                    <NavbarItem>
+                        {/* 
+                            //todo: sidebar here
+                        */}
                     </NavbarItem>
 
                     <NavbarItem className="hidden  flex-col justify-start gap-2">

@@ -182,8 +182,8 @@ export default function SignUp() {
                                 />
                             </div>
                             <div className='p-3'>
-                                <h1 className="sm:text-4xl text-xl sm:font-medium font-normal mb-1">Create your account</h1>
-                                <p className="sm:text-medium text-xs sm:font-normal font-small">to access {Company.name} </p>
+                                <h1 className="sm:text-4xl text-xl sm:font-medium font-normal mb-1 drop-shadow-xl">Create your account</h1>
+                                <p className="sm:text-medium text-xs sm:font-normal font-small drop-shadow-md">to access {Company.name} </p>
                             </div>
 
                             {/* 
@@ -392,7 +392,7 @@ export default function SignUp() {
                     </div>
                 </div>
                 <div className="flex md:flex-row flex-col justify-center items-center p-10 z-0 mb-10 md:gap-11 gap-5">
-                    <h1 className="sm:text-2xl text-medium font-bold text-[#FB542B] ">Create connection</h1>
+                    <h1 className="sm:text-2xl text-medium font-bold text-[#FB542B] drop-shadow-xl">Create connection</h1>
                     <Image
                         priority
                         src={bgIllustration.connect.src}

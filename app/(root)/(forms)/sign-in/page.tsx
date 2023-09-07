@@ -110,8 +110,8 @@ export default function SignIn() {
                                 />
                             </div>
                             <div className='p-3'>
-                                <h1 className="sm:text-4xl text-xl sm:font-medium font-normal mb-1">Log in</h1>
-                                <p className="sm:text-medium text-xs sm:font-normal font-small">to access your {Company.name} account </p>
+                            <h1 className="sm:text-4xl text-xl sm:font-medium font-normal mb-1 drop-shadow-xl">Log in</h1>
+                            <p className="sm:text-medium text-xs sm:font-normal font-small drop-shadow-md">to access your {Company.name} account </p>
                             </div>
                             {/* 
                             // Todo: generate a function that will allow the sign in options facebook, google, and github
@@ -266,7 +266,7 @@ export default function SignIn() {
             </div>
 
             <div className="flex md:flex-row flex-col justify-center items-center p-10 z-0 mb-10 md:gap-11 gap-5">
-                <h1 className="sm:text-2xl text-medium font-bold text-[#FB542B]">Connect with the community</h1>
+                <h1 className="sm:text-2xl text-medium font-bold text-[#FB542B] drop-shadow-xl">Connect with the community</h1>
                 <Image
                     src={bgIllustration.group.src}
                     alt={bgIllustration.group.name}
