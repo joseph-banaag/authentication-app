@@ -2,7 +2,6 @@ import '../../globals.css'
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import Topbar from "@/app/(user)/userComponents/section/navbar/page";
-import Footer from "@/app/(user)/userComponents/section/footer/page";
 import { Providers } from "./providers";
 
 
@@ -30,7 +29,6 @@ export default function RootLayout({
                 <Providers>
                     <Topbar />
                     {children}
-                    <Footer />
                 </Providers>
             </body>
         </html>

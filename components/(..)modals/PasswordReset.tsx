@@ -76,7 +76,7 @@ export default function PasswordReset() {
                 </ModalHeader>
                 <ModalBody>
                   <p className="sm:text-medium text-xs sm:font-normal font-small">
-                    Please enter your email address to reset your password
+                    Enter your email address to reset your password
                   </p>
 
                   <Input

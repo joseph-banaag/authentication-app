@@ -392,7 +392,7 @@ export default function SignUp() {
                     </div>
                 </div>
                 <div className="flex md:flex-row flex-col justify-center items-center p-10 z-0 mb-10 md:gap-11 gap-5">
-                    <h1 className="sm:text-2xl text-medium font-bold text-secondary/90 ">Create connection</h1>
+                    <h1 className="sm:text-2xl text-medium font-bold text-[#FB542B] ">Create connection</h1>
                     <Image
                         priority
                         src={bgIllustration.connect.src}

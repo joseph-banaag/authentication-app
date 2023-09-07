@@ -5,12 +5,10 @@ import {
     NavbarBrand,
     NavbarContent,
     NavbarItem,
-    Button,
     Link,
     NavbarMenuToggle,
     NavbarMenu,
     NavbarMenuItem,
-    linkAnchorClasses
 } from "@nextui-org/react";
 import { usePathname } from 'next/navigation'
 import { menuItems } from "../../constants"
@@ -24,7 +22,7 @@ export default function Topbar() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
     return (
-        <Navbar onMenuOpenChange={setIsMenuOpen} shouldHideOnScroll className="flex flex-wrap">
+        <Navbar onMenuOpenChange={setIsMenuOpen} shouldHideOnScroll className="flex flex-wrap p-3">
             <NavbarContent justify="start">
                 <NavbarMenuToggle
                     aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -35,7 +33,7 @@ export default function Topbar() {
                         href="/"
                         color="foreground"
                     >
-                        <p className="font-bold text-inherit nav_name cursor-pointer sm:flex hidden">Authentication</p>
+                        <p className="lg:text-2xl md:text-xl sm:text-lg font-bold text-inherit nav_name cursor-pointer sm:flex hidden">Authentication</p>
                     </Link>
                 </NavbarBrand>
             </NavbarContent>
@@ -49,14 +47,14 @@ export default function Topbar() {
                 </NavbarItem>
             </NavbarContent>
 
-            <NavbarMenu className="w-full">
+            <NavbarMenu className="mt-6 w-full">
                 {menuItems.map((links) => {
                     const isActive = pathname === links.route
                     return (
                         <NavbarMenuItem key={links.label}>
                             <Link
                                 color="foreground"
-                                className={`${isActive && "text-secondary text-2xl font-bold"} text-medium w-full`}
+                                className={`${isActive && "text-[#FB542B] text-2xl font-bold"} text-medium w-full`}
                                 href={links.route}
                                 size="lg"
                             >
