@@ -124,7 +124,7 @@ export default function Topbar() {
                                                 <Link
                                                     color="foreground"
                                                     href={items.route}
-                                                    className={`${isActive && "text-[#FB542B] text-2xl font-bold"} text-medium max-w-fit`}
+                                                    className={`${isActive && "text-[#FB542B] text-2xl font-bold"} text-medium w-full`}
                                                 >
                                                     {items.label}
                                                 </Link>
@@ -158,7 +158,7 @@ export default function Topbar() {
                                             }}
                                             className="cursor-pointer flex flex-1 justify-center items-center"
                                         >
-                                            <p className="text-white font-semibold text-xs mt-1">Dark</p>
+                                            <p className="text-white font-semibold text-xs">Dark</p>
 
                                         </Chip>
 
@@ -174,7 +174,7 @@ export default function Topbar() {
                                             }}
                                             className="cursor-pointer flex flex-1 justify-center items-center"
                                         >
-                                            <p className="text-white font-semibold text-xs mt-1">Light</p>
+                                            <p className="text-white font-semibold text-xs">Light</p>
 
                                         </Chip>
                                     </DropdownItem>
