@@ -1,5 +1,18 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+The following technologies were used in this project:
+  - Framer Motion
+  - TailwindCSS
+  - NextJS
+  - Typescript
+  - JavaScript
+  - ReactJS
+  - NextUI
+  - React Hook Form
+
+Currently implementing:
+  - mongodb
+
 ## Getting Started
 
 First, run the development server:
