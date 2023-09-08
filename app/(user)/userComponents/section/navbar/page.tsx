@@ -13,7 +13,8 @@ import {
     DropdownMenu,
     DropdownItem,
     DropdownSection,
-    Button
+    Button,
+    Tooltip
 } from "@nextui-org/react";
 import { usePathname, useRouter } from 'next/navigation'
 import Image from "next/image";
@@ -82,19 +83,18 @@ export default function Topbar() {
                     </NavbarBrand>
                 </NavbarContent>
 
-                <NavbarContent justify="end" className="flex justify-end">
+                <NavbarContent justify="end" className="flex justify-end gap-3">
+
                     <NavbarItem className="flex justify-start items-center">
                         <Dropdown
                             backdrop="blur"
-                            aria-labelledby="dropdown"
-                            aria-label="dropdown"
                             showArrow
                             classNames={{
                                 base: "p-0 border-small border-divider bg-background",
                                 arrow: "bg-default-200",
                             }}
                         >
-                            <DropdownTrigger aria-labelledby="profile image">
+                            <DropdownTrigger>
                                 <Avatar
                                     showFallback
                                     radius="full"
@@ -102,41 +102,69 @@ export default function Topbar() {
                                     isFocusable
                                     size="md"
                                     src={userInfo.image}
+                                    className="cursor-pointer"
                                 />
                             </DropdownTrigger>
-                            <DropdownMenu aria-labelledby="dropdown menu">
-                                <DropdownSection title="Signed in as:" aria-labelledby="user information" className="sm:hidden block">
-                                    <DropdownItem key="profile" className="h-14 gap-2" textValue="user information">
-                                        <p className="text-sm font-bold">{userInfo.username}</p>
-                                        <p className="text-xs font-thin dark:text-foreground/60">{userInfo.email}</p>
+                            <DropdownMenu aria-label="Dropdown section for signed in user">
+                                <DropdownSection
+                                    title="Signed in as:"
+                                    className="block border-small border-neutral-400 border-opacity-40 rounded-lg !light:bg-default !dark:text-white p-1"
+                                >
+                                    <DropdownItem
+                                        key="profile"
+                                        textValue="Currently logged in user"
+                                        className="!bg-default"
+                                    >
+                                        <div className="flex gap-2 justify-center items-start p-1">
+                                            <Avatar
+                                                showFallback
+                                                radius="full"
+                                                isBordered
+                                                isFocusable
+                                                size="md"
+                                                src={userInfo.image}
+                                            />
+
+                                            <div className="px-1.5">
+                                                <p className="text-sm font-bold">{userInfo.username}</p>
+                                                <p className="text-xs font-thin dark:text-foreground/60">{userInfo.email}</p>
+                                            </div>
+                                        </div>
+
                                     </DropdownItem>
                                 </DropdownSection>
                                 <DropdownSection
                                     showDivider
-                                    aria-labelledby="Menu Items"
-                                    className="my-4"
+                                    aria-label="Dropdown menu list"
                                 >
                                     {userNavigation.map((items) => {
                                         const isActive = pathname == items.route
                                         return (
 
-                                            <DropdownItem key={items.label} textValue="Menu items" aria-labelledby="menu list" as={Link}>
-                                                <Link
-                                                    color="foreground"
+                                            <DropdownItem
+                                                key={items.label}
+                                                textValue="Dropdown menu items"
+                                            >
+                                                <Button
+                                                    as={Link}
+                                                    // color="foreground"
+                                                    size="sm"
+                                                    variant="light"
                                                     href={items.route}
-                                                    className={`${isActive && "text-[#FB542B] text-2xl font-bold"} text-medium w-full`}
+                                                    className={`${isActive && "text-[#FB542B] text-2xl font-bold"} text-medium w-full flex justify-start items-center`}
                                                 >
                                                     {items.label}
-                                                </Link>
+                                                </Button>
                                             </DropdownItem>
                                         )
                                     })}
                                 </DropdownSection>
-                                <DropdownSection aria-labelledby="Themes option" showDivider>
+                                <DropdownSection
+                                    showDivider
+                                    aria-label="Dropdown section for current theme indicator and themes option"
+                                >
                                     <DropdownItem
-                                        textValue="current theme"
-                                        aria-labelledby="current theme"
-                                        isReadOnly
+                                        textValue="Dropdown current theme"
                                         endContent={
                                             <p
                                                 className="z-10 outline-none w-16 rounded-md text-xs font-semibold group-data-[hover=true]:border-default-500 border-small border-default-300 dark:border-default-200 bg-transparent text-default-500 flex justify-center items-center p-1 px-1.5"
@@ -147,7 +175,9 @@ export default function Topbar() {
                                     >
                                         <p className="text-sm font-semibold drop-shadow-md" color="foreground">Theme</p>
                                     </DropdownItem>
-                                    <DropdownItem textValue="dark theme option" aria-labelledby="dark theme">
+                                    <DropdownItem
+                                        textValue="Dropdown dark theme option"
+                                    >
                                         <Chip
                                             onClick={() => setTheme('dark')}
                                             endContent={<MoonIcon color="white" />}
@@ -156,14 +186,16 @@ export default function Topbar() {
                                             classNames={{
                                                 base: "bg-orange-700",
                                             }}
-                                            className="cursor-pointer flex flex-1 justify-center items-center"
+                                            className="cursor-pointer flex flex-1 justify-center items-center w-full"
                                         >
                                             <p className="text-white font-semibold text-xs">Dark</p>
 
                                         </Chip>
 
                                     </DropdownItem>
-                                    <DropdownItem textValue="light theme option" aria-labelledby="light theme" >
+                                    <DropdownItem
+                                        textValue="Dropdown light theme option"
+                                    >
                                         <Chip
                                             onClick={() => setTheme('light')}
                                             endContent={<SunIcon color="white" />}
@@ -179,8 +211,12 @@ export default function Topbar() {
                                         </Chip>
                                     </DropdownItem>
                                 </DropdownSection>
-                                <DropdownSection aria-labelledby="Log out option">
-                                    <DropdownItem textValue="log out button" aria-labelledby="log out button">
+                                <DropdownSection
+                                    title="Danger zone"
+                                >
+                                    <DropdownItem
+                                        textValue="Dropdown logout button"
+                                    >
                                         <Link href="/">
                                             <Chip
                                                 variant="solid"
@@ -199,10 +235,15 @@ export default function Topbar() {
                         </Dropdown>
                     </NavbarItem>
                     <NavbarItem>
-                        <div className="sm:block hidden">
-                            <p className="text-sm font-semibold flex justify-start items-center">{userInfo.username}</p>
-                            <p className="text-xs font-thin dark:text-foreground/60">{userInfo.email}</p>
-                        </div>
+                        <Tooltip
+                            content="Click on your profile photo"
+                            placement="bottom-end"
+                        >
+                            <div className="sm:block hidden">
+                                <p className="text-sm font-semibold flex justify-start items-center dark:text-foreground/80">{userInfo.username}</p>
+                                <p className="text-xs font-thin dark:text-foreground/60">{userInfo.email}</p>
+                            </div>
+                        </Tooltip>
                     </NavbarItem>
                 </NavbarContent>
             </Navbar>
