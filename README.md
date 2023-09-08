@@ -12,6 +12,7 @@ The following technologies were used in this project:
 
 Currently implementing:
   - mongodb
+  - NextAuth
 
 ## Getting Started
 
