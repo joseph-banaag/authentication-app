@@ -62,6 +62,7 @@ export default function Topbar() {
                 <NavbarBrand className="flex-1 w-full justify-start sm:hidden flex">
                     <Link href="/dashboard">
                         <Image
+                            priority
                             src={logo.src}
                             alt={logo.name}
                             width={48}
