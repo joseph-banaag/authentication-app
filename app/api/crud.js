@@ -1,6 +1,7 @@
 const { MongoClient } = require("mongodb");
-const uri = require("./db_uri");
-const { todo } = require("node:test");
+const uri = require("../api/db_uri");
+
+console.log(uri);
 
 if (uri !== "" || uri !== undefined || uri !== null) {
   console.log("Client connection is ready");
@@ -8,6 +9,7 @@ if (uri !== "" || uri !== undefined || uri !== null) {
 
 const client = new MongoClient(uri);
 
+//* Connection to the database
 const connectToDb = async () => {
   try {
     await client.connect();
@@ -17,6 +19,7 @@ const connectToDb = async () => {
   }
 };
 
+//* CREATE
 const addOne = async () => {
   try {
     const db = client.db("active_users");
@@ -52,17 +55,17 @@ const addOne = async () => {
     const creationDate = `${
       months[currentDate.getMonth()]
     } ${currentDate.getDate()}, ${currentDate.getFullYear()}`;
-    console.log(`Your account was created on: ${creationDate}`);
+    console.log(`A new document has been added to your database`);
+    console.log(`A new account was added on: ${creationDate}`);
     // * end for the current date
 
     const newDoc = {
-      email: "josephrbanaag51@gmail.com",
-      username: "jose_23",
-      password: "03/23/2020",
+      email: "email@email.com",
+      username: "sample_username",
+      password: "sample_password",
       created_on: `${creationDate}`,
     };
     const result = await collection.insertOne(newDoc);
-    console.log(`A new document has been added to your database`);
     //   ${result.insertedId} this will get the id for the newly created account
   } catch (error) {
     throw new Error(
@@ -71,14 +74,13 @@ const addOne = async () => {
   }
 };
 
+//* READ
 const findOne = async () => {
   try {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
 
-    const toFind = {
-      email: "josephrbanaag51@gmail.com",
-    };
+    const toFind = {};
 
     const result = await collection.find(toFind).toArray(); // .toArray() method is important as it will throw an error if it is not present
     console.log("Here's what I found from your database:");
@@ -90,6 +92,34 @@ const findOne = async () => {
   }
 };
 
+//* UPDATE
+const updateOne = async () => {
+  try {
+    const dbName = "active_users";
+    const collection = client.db(dbName).collection("user_information");
+
+    const filter = {
+      email: "email@email.com",
+    };
+
+    const toUpdate = {
+      $set: {
+        password: "new_password",
+      },
+    };
+
+    const result = await collection.updateOne(filter, toUpdate);
+    console.log(
+      `Matched ${result.matchedCount} document(s) and modified ${result.modifiedCount} document(s)`
+    );
+  } catch (error) {
+    throw new Error(
+      `There was an error when updating a document from your database. Error: ${error}`
+    );
+  }
+};
+
+//* DELETE
 const deleteOne = async () => {
   try {
     const db = client.db("active_users");
@@ -115,9 +145,10 @@ const deleteOne = async () => {
 const main = async () => {
   try {
     await connectToDb();
-    await addOne();
+    // await addOne();
     // await deleteOne();
-    // await findOne();
+    await findOne();
+    // await updateOne();
     console.log("Closing the connection...");
   } catch (error) {
     throw new Error(
