@@ -1,0 +1,59 @@
+sample schema
+
+username: String,
+password: String,
+email: String,
+date_created: Date,
+
+
+using mongoose
+
+npm install mongoose
+
+// next
+const mongoose = require('mongoose');
+
+// Replace 'your-database-uri' with your MongoDB connection string
+const uri = 'mongodb://localhost:27017/your-database-name';
+
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+// Check for connection errors
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => {
+  console.log('Connected to MongoDB');
+});
+
+
+
+// next
+const mongoose = require('mongoose');
+
+const Schema = mongoose.Schema;
+
+const yourSchema = new Schema({
+  field1: String,
+  field2: Number,
+  field3: Date,
+});
+
+// Create a model based on the schema
+const YourModel = mongoose.model('YourModel', yourSchema);
+
+// next
+const newData = new YourModel({
+  field1: 'Value 1',
+  field2: 42,
+  field3: new Date(),
+});
+
+newData.save((err) => {
+  if (err) {
+    console.error('Error saving document:', err);
+  } else {
+    console.log('Document saved successfully');
+  }
+});
+
+source: https://chat.openai.com/share/10fb6be2-f6dc-42ae-a65a-ce158301dc7b

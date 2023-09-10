@@ -6,7 +6,6 @@ console.log(`You are using the "${uri}" cluster`);
 // connection to the database
 const client = new MongoClient(uri);
 const dbName = "sample_users";
-const collName = "user_information";
 
 const connectToDb = async () => {
   try {
@@ -29,13 +28,32 @@ const listDatabases = async () => {
   }
 };
 
+// * inserting one doc
+const addOne = async () => {
+  try {
+    const db = client.db();
+    const newUser = {
+      name: "Josh Miguel Banaag",
+      email: "josh@gmail.com",
+      username: "joshua_23",
+    };
+    await db.user_information.insertOne(newUser);
+  } catch (error) {
+    throw new Error(`Error when adding one document: ${error}`);
+  }
+};
+
 // * this is the main function that will run all the code above
 const main = async () => {
   try {
     // this will check the db connection
     await connectToDb();
 
+    // this will list all the databases
     await listDatabases();
+
+    // this will add one document
+    await addOne();
 
     // below is another way of coding how to display the list of databases from the client
     /* 
