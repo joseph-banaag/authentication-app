@@ -239,7 +239,7 @@ export default function Topbar() {
                 </NavbarItem>
                 <NavbarItem>
                     <Tooltip
-                        content="Click on your profile photo"
+                        content="Menu on your profile photo"
                         placement="bottom-end"
                     >
                         <div className="sm:block hidden">

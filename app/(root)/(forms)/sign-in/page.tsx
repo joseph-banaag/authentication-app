@@ -12,7 +12,7 @@ import IconChanger from "@/components/lib/IconChanger";
 import { motion } from "framer-motion"
 import PasswordReset from "@/components/(..)modals/PasswordReset";
 import { useRouter } from 'next/navigation'
-
+// import { client } from "app/mongodb/index"
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -65,6 +65,7 @@ export default function SignIn() {
         password: "03/23/2020"
     }
 
+    
 
     const OnSubmit: SubmitHandler<Inputs> = (data: any) => {
         const password = data.password
