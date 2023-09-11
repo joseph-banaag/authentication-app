@@ -14,6 +14,8 @@ import SuccessButton from "@/components/lib/buttonOptions/successButton";
 import DefaultButton from "@/components/lib/buttonOptions/defaultButton";
 import { motion } from "framer-motion"
 import { useRouter } from 'next/navigation'
+import connectToDb, { client } from "@/app/api/mongodb"
+import { creationDate } from "@/components/constants/creationDate"
 
 
 // this object is for type declaration of useForm() function specifically for register method.
@@ -127,13 +129,15 @@ export default function SignUp() {
     }
 
 
-    const OnSubmit: SubmitHandler<Inputs> = (data: any) => {
+    const OnSubmit: SubmitHandler<Inputs> = async (data: any) => {
         const password = data.password
         const confirmed = data.confirmPw
         const user_name = data.username
         const email_acc = data.email
 
         // * Doks_23 and email@email.com will be removed once the data from the db is available to properly check if the account is already existing.
+
+        // todo: use find operation here to get user credentials
         const check_existing_acc = (): any => {
             if (user_name === "Doks_23" && email_acc === "email@email.com") {
                 alert("You already have an account. Go to Sign in.")
@@ -148,14 +152,47 @@ export default function SignUp() {
                 console.log("Account created successfully!")
             }
         }
+
+        const newUser = async () => {
+            try {
+                const db = client.db("active_users")
+                const collection = db.collection("user_information")
+
+                const addNewUser = {
+                    email: `${email_acc}`,
+                    password: `${password}`,
+                    user_name: `${user_name}`,
+                    created_on: `${creationDate}`
+                }
+
+                const result = await collection.insertOne(addNewUser)
+                console.log(`A document has been inserted with this ID: ${result.insertedId}`)
+
+            } catch (error) {
+                throw new Error(`There was an error adding a new user to the database. Error: ${error}`)
+            }
+        }
+
+        const main = async () => {
+            try {
+                await connectToDb()
+                await newUser()
+                console.log("Closing the connection...")
+            } catch (error) {
+                throw new Error(`Alert! An error occurred when completing the work with your data base. Error: ${error} `)
+            } finally {
+                await client.close()
+            }
+        }
+
         return (
             <>
                 {beforeSubmit()}
                 {check_existing_acc()}
+                {main()}
             </>
         )
     }
-
 
     return (
         <>

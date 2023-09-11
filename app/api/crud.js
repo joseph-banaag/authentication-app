@@ -59,13 +59,18 @@ const addOne = async () => {
     console.log(`A new account was added on: ${creationDate}`);
     // * end for the current date
 
+    const email = "email@gmail.com";
+    const user_name = "Ipoy_23";
+    const password = "march_23,2020";
+
     const newDoc = {
-      email: "email@email.com",
-      username: "sample_username",
-      password: "sample_password",
+      email: `${email}`,
+      username: `${user_name}`,
+      password: `${password}`,
       created_on: `${creationDate}`,
     };
     const result = await collection.insertOne(newDoc);
+    console.log(`ID: ${result.insertedId}`);
     //   ${result.insertedId} this will get the id for the newly created account
   } catch (error) {
     throw new Error(
@@ -80,7 +85,13 @@ const findOne = async () => {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
 
-    const toFind = {};
+    const toFind = {
+      password: "newpassword1",
+    };
+
+    // const toFind = {
+    //   created_on: {$gt: "September 10, 2023"}
+    // }
 
     const result = await collection.find(toFind).toArray(); // .toArray() method is important as it will throw an error if it is not present
     console.log("Here's what I found from your database:");
