@@ -168,18 +168,24 @@ export default function Topbar() {
                             >
                                 <DropdownItem
                                     textValue="Dropdown current theme"
+                                    isReadOnly
+                                    variant="bordered"
                                     endContent={
                                         <p
-                                            className="z-10 outline-none w-16 rounded-md text-xs font-semibold group-data-[hover=true]:border-default-500 border-small border-default-300 dark:border-default-200 bg-transparent text-default-500 flex justify-center items-center p-1 px-1.5"
+                                            className="z-10 outline-none w-16 rounded-md text-xs font-semibold group-data-[hover=false]:border-default-500 border-small border-default-300 dark:border-default-200 bg-transparent text-default-500 flex justify-center items-center p-1 px-1.5"
                                         >
                                             {theme}
                                         </p>
                                     }
+                                    className="hover:bg-transparent border-none cursor-default"
+                                   
                                 >
                                     <p className="text-sm font-semibold drop-shadow-md" color="foreground">Theme</p>
                                 </DropdownItem>
                                 <DropdownItem
                                     textValue="Dropdown dark theme option"
+                                    variant="bordered"
+                                    className="hover:bg-transparent border-none cursor-default"
                                 >
                                     <Chip
                                         onClick={() => setTheme('dark')}
@@ -187,7 +193,7 @@ export default function Topbar() {
                                         variant="solid"
                                         size="sm"
                                         classNames={{
-                                            base: "bg-orange-700",
+                                            base: "bg-orange-700 hover:bg-orange-700/70 transition-all duration-300",
                                         }}
                                         className="cursor-pointer flex flex-1 justify-center items-center w-full"
                                     >
@@ -198,6 +204,8 @@ export default function Topbar() {
                                 </DropdownItem>
                                 <DropdownItem
                                     textValue="Dropdown light theme option"
+                                    variant="bordered"
+                                    className="hover:bg-transparent border-none cursor-default"
                                 >
                                     <Chip
                                         onClick={() => setTheme('light')}
@@ -205,7 +213,7 @@ export default function Topbar() {
                                         variant="solid"
                                         size="sm"
                                         classNames={{
-                                            base: "bg-orange-700",
+                                            base: "bg-orange-700 hover:bg-orange-500 transition-all duration-300",
                                         }}
                                         className="cursor-pointer flex flex-1 justify-center items-center"
                                     >
@@ -219,6 +227,8 @@ export default function Topbar() {
                             >
                                 <DropdownItem
                                     textValue="Dropdown logout button"
+                                    variant="bordered"
+                                    className="hover:bg-transparent border-none cursor-default"
                                 >
                                     <Link href="/">
                                         <Chip
@@ -229,7 +239,7 @@ export default function Topbar() {
                                             }}
                                             className="cursor-pointer flex flex-1 justify-center items-center"
                                         >
-                                            <p className="text-white font-semibold text-xs">Logout</p>
+                                            <p className="text-white font-semibold text-xs hover:text-yellow-500">Logout</p>
                                         </Chip>
                                     </Link>
                                 </DropdownItem>

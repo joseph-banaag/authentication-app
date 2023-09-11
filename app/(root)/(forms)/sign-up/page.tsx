@@ -153,43 +153,10 @@ export default function SignUp() {
             }
         }
 
-        const newUser = async () => {
-            try {
-                const db = client.db("active_users")
-                const collection = db.collection("user_information")
-
-                const addNewUser = {
-                    email: `${email_acc}`,
-                    password: `${password}`,
-                    user_name: `${user_name}`,
-                    created_on: `${creationDate}`
-                }
-
-                const result = await collection.insertOne(addNewUser)
-                console.log(`A document has been inserted with this ID: ${result.insertedId}`)
-
-            } catch (error) {
-                throw new Error(`There was an error adding a new user to the database. Error: ${error}`)
-            }
-        }
-
-        const main = async () => {
-            try {
-                await connectToDb()
-                await newUser()
-                console.log("Closing the connection...")
-            } catch (error) {
-                throw new Error(`Alert! An error occurred when completing the work with your data base. Error: ${error} `)
-            } finally {
-                await client.close()
-            }
-        }
-
         return (
             <>
                 {beforeSubmit()}
                 {check_existing_acc()}
-                {main()}
             </>
         )
     }
