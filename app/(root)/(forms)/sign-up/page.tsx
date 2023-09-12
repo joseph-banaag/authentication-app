@@ -30,7 +30,6 @@ export default function SignUp() {
     const [isVisible, setIsVisible] = React.useState(false);
     const [isConfirmed, setIsConfirmed] = React.useState(false);
     const router = useRouter()
-    const [error, setError] = React.useState([])
 
     const toggleVisibility = () => setIsVisible(!isVisible);
     const toggleIsConfirmed = () => setIsConfirmed(!isConfirmed)
@@ -153,9 +152,7 @@ export default function SignUp() {
             })
         })
 
-        const { message } = await res.json();
-        setError(message)
-        console.log(error)
+
 
         // * Doks_23 and email@email.com will be removed once the data from the db is available to properly check if the account is already existing.
 

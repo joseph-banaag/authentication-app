@@ -30,11 +30,9 @@ export async function POST(req) {
     );
   } finally {
     await client.close();
-    console.log(
-      "The process is now completed. Closing the database connection."
-    );
+    console.log("The process is now completed. Database connection is closed.");
   }
   return NextResponse.json({
-    message: ["This message is from the api routes"],
+    message: ["This message is from the API routes"],
   });
 }
