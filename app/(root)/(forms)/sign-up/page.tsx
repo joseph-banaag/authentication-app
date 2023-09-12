@@ -22,7 +22,6 @@ interface Inputs {
     password: string;
     email: string;
     confirmPw: string;
-
 }
 
 // * main function here...
@@ -131,12 +130,13 @@ export default function SignUp() {
         const email_acc = data.email
         const created_on = `${creationDate}`
 
-        console.log("password: ", password)
-        console.log("confirmed password: ", confirmed)
-        console.log("username: ", user_name)
-        console.log("user email address: ", email_acc)
-        console.log("created date: ", created_on)
-
+        /*
+            console.log("password: ", password)
+            console.log("confirmed password: ", confirmed)
+            console.log("username: ", user_name)
+            console.log("user email address: ", email_acc)
+            console.log("created date: ", created_on)
+        */
 
         const res = await fetch("api/signUp", {
             method: "POST",
@@ -156,8 +156,10 @@ export default function SignUp() {
 
         // * Doks_23 and email@email.com will be removed once the data from the db is available to properly check if the account is already existing.
 
-        // todo: use find operation here to get user credentials
-        const check_existing_acc = (): any => {
+        // todo: use find operation here to get user credentials from the database
+        const check_existing_acc = async () => {
+
+
             if (user_name === "Doks_23" && email_acc === "email@email.com") {
                 alert("You already have an account. Go to Sign in.")
                 router.push('/sign-in', { scroll: false })

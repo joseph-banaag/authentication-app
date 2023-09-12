@@ -1,16 +1,19 @@
 import { NextResponse } from "next/server";
 import connectToDB, { client } from "../../lib/mongodb";
 
-export async function POST(req) {
+export async function POST(req: Request) {
   const { password, confirmed, user_name, email_acc, created_on } =
     await req.json();
 
   await connectToDB();
-  // console.log("password: ", password);
-  // console.log("confirmed password: ", confirmed);
-  // console.log("username: ", user_name);
-  // console.log("user email address: ", email_acc);
-  // console.log("created date: ", created_on);
+  /*
+    console.log("password: ", password);
+    console.log("confirmed password: ", confirmed);
+    console.log("username: ", user_name);
+    console.log("user email address: ", email_acc);
+    console.log("created date: ", created_on);
+  */
+
   try {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
@@ -32,7 +35,8 @@ export async function POST(req) {
     await client.close();
     console.log("The process is now completed. Database connection is closed.");
   }
-  return NextResponse.json({
-    message: ["This message is from the API routes"],
-  });
+  return NextResponse.json(
+    { error: "Internal Error from NextResponse" },
+    { status: 500 }
+  );
 }
