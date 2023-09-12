@@ -14,7 +14,7 @@ import SuccessButton from "@/components/lib/buttonOptions/successButton";
 import DefaultButton from "@/components/lib/buttonOptions/defaultButton";
 import { motion } from "framer-motion"
 import { useRouter } from 'next/navigation'
-
+import { creationDate } from "@/components/lib/createdDate"
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -30,6 +30,7 @@ export default function SignUp() {
     const [isVisible, setIsVisible] = React.useState(false);
     const [isConfirmed, setIsConfirmed] = React.useState(false);
     const router = useRouter()
+    const [error, setError] = React.useState([])
 
     const toggleVisibility = () => setIsVisible(!isVisible);
     const toggleIsConfirmed = () => setIsConfirmed(!isConfirmed)
@@ -129,12 +130,32 @@ export default function SignUp() {
         const confirmed = data.confirmPw
         const user_name = data.username
         const email_acc = data.email
+        const created_on = `${creationDate}`
 
         console.log("password: ", password)
         console.log("confirmed password: ", confirmed)
         console.log("username: ", user_name)
         console.log("user email address: ", email_acc)
+        console.log("created date: ", created_on)
 
+
+        const res = await fetch("api/signUp", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({
+                password,
+                confirmed,
+                user_name,
+                email_acc,
+                created_on
+            })
+        })
+
+        const { message } = await res.json();
+        setError(message)
+        console.log(error)
 
         // * Doks_23 and email@email.com will be removed once the data from the db is available to properly check if the account is already existing.
 
