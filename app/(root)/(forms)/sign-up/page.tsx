@@ -14,8 +14,6 @@ import SuccessButton from "@/components/lib/buttonOptions/successButton";
 import DefaultButton from "@/components/lib/buttonOptions/defaultButton";
 import { motion } from "framer-motion"
 import { useRouter } from 'next/navigation'
-import connectToDb, { client } from "@/app/api/mongodb"
-import { creationDate } from "@/components/constants/creationDate"
 
 
 // this object is for type declaration of useForm() function specifically for register method.
@@ -52,11 +50,7 @@ export default function SignUp() {
         mode: "all"
     })
 
-    console.log(watch("email"));
-    console.log(watch("username"));
-    console.log(watch("password"))
-    console.log(watch("confirmPw"))
-    console.log("Errors: ", errors)
+
 
     const validatePassword = (): React.ReactNode => {
         const password = watch("password")
@@ -129,11 +123,18 @@ export default function SignUp() {
     }
 
 
-    const OnSubmit: SubmitHandler<Inputs> = async (data: any) => {
+    const OnSubmit: SubmitHandler<Inputs> = async (data: any, e) => {
+        e?.preventDefault()
         const password = data.password
         const confirmed = data.confirmPw
         const user_name = data.username
         const email_acc = data.email
+
+        console.log("password: ", password)
+        console.log("confirmed password: ", confirmed)
+        console.log("username: ", user_name)
+        console.log("user email address: ", email_acc)
+
 
         // * Doks_23 and email@email.com will be removed once the data from the db is available to properly check if the account is already existing.
 

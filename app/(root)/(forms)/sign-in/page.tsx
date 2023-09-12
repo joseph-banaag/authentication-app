@@ -35,8 +35,6 @@ export default function SignIn() {
         )
     }
 
-
-    // todo: this will change the github icon depending on the set theme
     const changeIcon = () => {
         return (
             setIsDark(!isDark)
@@ -65,12 +63,14 @@ export default function SignIn() {
         password: "03/23/2020"
     }
 
-    
 
-    const OnSubmit: SubmitHandler<Inputs> = (data: any) => {
+
+    const OnSubmit: SubmitHandler<Inputs> = (data: any, e) => {
         const password = data.password
         const user_name = data.username
+        e?.preventDefault()
 
+  
         // * given password and username will be removed from the if-statement once data from db is existing.
         const check_user_info = (): any => {
             if (password === user_info_db.password && user_name === user_info_db.user_name) {
