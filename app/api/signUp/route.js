@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
-import connectToDB from "../../lib/mongodb";
+import connectToDB, { client } from "../../lib/mongodb";
 
 export async function POST(req) {
   const { password, confirmed, user_name, email_acc, created_on } =
     await req.json();
+
+  await connectToDB();
 
   console.log("password: ", password);
   console.log("confirmed password: ", confirmed);
@@ -11,8 +13,25 @@ export async function POST(req) {
   console.log("user email address: ", email_acc);
   console.log("created date: ", created_on);
 
-  await connectToDB();
+  try {
+    const db = client.db("active_users");
+    const collection = db.collection("user_information");
 
+    const newDoc = {
+      email: `${email_acc}`,
+      username: `${user_name}`,
+      password: `${password}`,
+      created_on: `${created_on}`,
+    };
+    const result = await collection.insertOne(newDoc);
+    console.log(`Successfully added a new user. ID: ${result.insertedId}`);
+  } catch (error) {
+    throw new Error(
+      `There was a problem creating a new document. Error: ${error}`
+    );
+  } finally {
+    await client.close();
+  }
   return NextResponse.json({
     message: ["This message is from the api routes"],
   });

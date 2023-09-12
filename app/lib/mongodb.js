@@ -5,7 +5,7 @@ if (uri !== "" || uri !== undefined || uri !== null) {
   console.log("Client connection is ready");
 }
 
-const client = new MongoClient(uri);
+export const client = new MongoClient(uri);
 
 const connectToDB = async () => {
   try {
