@@ -45,8 +45,7 @@ export async function GET(request: Request) {
 
     // const toGet = await collection.find(toFind).toArray();
 
-    const cursor = collection.find(toFind);
-    const toGet = await cursor.toArray();
+    const toGet = await collection.find(toFind).toArray();
 
     console.log(toGet);
 
