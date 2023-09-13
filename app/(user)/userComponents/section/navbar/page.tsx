@@ -57,7 +57,9 @@ export default function Topbar() {
 
 
     return (
-        <Navbar shouldHideOnScroll className="flex justify-around flex-wrap p-3">
+        <Navbar 
+        shouldHideOnScroll 
+        className="flex justify-around flex-wrap p-3 drop-shadow-2xl">
             <NavbarContent justify="start" className="flex justify-start">
                 <NavbarBrand className="flex-1 w-full justify-start sm:hidden flex">
                     <Link href="/dashboard">
@@ -87,7 +89,7 @@ export default function Topbar() {
 
                 <NavbarItem className="flex justify-start items-center">
                     <Dropdown
-                        backdrop="blur" // todo: will check if this issue persists once deployed. (on blur, responsive view is not working)
+                        // backdrop="blur" // todo: will check if this issue persists once deployed. (on blur, responsive view is not working)
                         showArrow
                         classNames={{
                             base: "p-0 border-small border-divider bg-background",

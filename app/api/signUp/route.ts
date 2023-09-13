@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import connectToDB, { client } from "../../lib/mongodb";
+import connectToDB, { client } from "@/app/lib/mongodb";
 
 export async function POST(req: Request) {
   const { password, confirmed, user_name, email_acc, created_on } =

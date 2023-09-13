@@ -22,7 +22,9 @@ export default function Topbar() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
     return (
-        <Navbar onMenuOpenChange={setIsMenuOpen} shouldHideOnScroll className="flex flex-wrap p-3">
+        <Navbar
+            onMenuOpenChange={setIsMenuOpen}
+            className="flex flex-wrap p-3 drop-shadow-2xl">
             <NavbarContent justify="start">
                 <NavbarMenuToggle
                     aria-label={isMenuOpen ? "Close menu" : "Open menu"}

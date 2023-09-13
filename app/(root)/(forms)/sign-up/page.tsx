@@ -153,13 +153,9 @@ export default function SignUp() {
         })
 
 
-
         // * Doks_23 and email@email.com will be removed once the data from the db is available to properly check if the account is already existing.
-
         // todo: use find operation here to get user credentials from the database
         const check_existing_acc = async () => {
-
-
             if (user_name === "Doks_23" && email_acc === "email@email.com") {
                 alert("You already have an account. Go to Sign in.")
                 router.push('/sign-in', { scroll: false })
