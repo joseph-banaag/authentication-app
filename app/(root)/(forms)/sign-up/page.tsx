@@ -29,6 +29,7 @@ export default function SignUp() {
     const [isVisible, setIsVisible] = React.useState(false);
     const [isConfirmed, setIsConfirmed] = React.useState(false);
     const router = useRouter()
+    const [usernames, setUsernames] = React.useState("")
 
     const toggleVisibility = () => setIsVisible(!isVisible);
     const toggleIsConfirmed = () => setIsConfirmed(!isConfirmed)
@@ -138,7 +139,7 @@ export default function SignUp() {
             console.log("created date: ", created_on)
         */
 
-        const res = await fetch("api/signUp", {
+        const res = await fetch("api/users", {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
@@ -151,6 +152,11 @@ export default function SignUp() {
                 created_on
             })
         })
+
+        const usernames = await res.json()
+        setUsernames(usernames)
+
+        console.log({ usernames })
 
 
         // * Doks_23 and email@email.com will be removed once the data from the db is available to properly check if the account is already existing.

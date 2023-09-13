@@ -34,24 +34,46 @@ export async function POST(req: Request) {
   );
 }
 
-export async function GET() {
+export async function GET(request: Request) {
   await connectToDB();
+
   try {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
 
-    const toFind = {};
+    const toFind = {
+      username: "username201",
+    };
 
-    const result = await collection.find(toFind).toArray();
-    console.log("Here's what I found from your database:");
-    console.log(result);
+    // const toGet = await collection.find(toFind).toArray();
+
+    const toGet = await collection.find(toFind).toArray();
+
+    console.log(toGet);
+
+    if (toGet.length > 0) {
+      const username = toGet.map((user) => user.username);
+
+      console.log(username);
+
+      const jsonResponse = {
+        username: username,
+      };
+
+      console.log(jsonResponse);
+
+      return new NextResponse(JSON.stringify(jsonResponse), {
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+    }
   } catch (error) {
     throw new Error(
-      `There was an error getting information from the database. Error: ${error}`
+      `There was a problem getting the information from the database. Error: ${error}`
     );
   } finally {
     await client.close();
     console.log("The process is now completed. Database connection is closed.");
   }
-  return NextResponse.json({});
 }
