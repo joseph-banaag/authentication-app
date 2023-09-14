@@ -51,7 +51,7 @@ export async function GET(request: Request) {
     if (toGet.length > 0) {
       const usernames = toGet.map((user) => user.username);
 
-      const getUsername = `${usernames}`;
+      const getUsername = `${usernames}`; // this converts the value of the variable to string
       console.log(getUsername);
 
       return new NextResponse(JSON.stringify(usernames));

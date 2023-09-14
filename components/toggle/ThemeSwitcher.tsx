@@ -28,7 +28,7 @@ export function ThemeSwitcher() {
 
     return (
         <div className="flex justify-start items-center">
-            <SwitchToggle onChange={handleToggleSwitch} />
+            <SwitchToggle onChange={handleToggleSwitch} themes={theme} />
         </div>
     )
 };
