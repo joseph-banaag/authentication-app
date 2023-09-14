@@ -34,7 +34,7 @@ export async function POST(req: Request) {
   );
 }
 
-export async function GET(request: Request) {
+export async function GET() {
   await connectToDB();
 
   try {
