@@ -42,31 +42,19 @@ export async function GET(request: Request) {
     const collection = db.collection("user_information");
 
     const toFind = {
-      username: "username201",
+      username: "user100",
     };
 
-    // const toGet = await collection.find(toFind).toArray();
-
     const toGet = await collection.find(toFind).toArray();
-
     console.log(toGet);
 
     if (toGet.length > 0) {
-      const username = toGet.map((user) => user.username);
+      const usernames = toGet.map((user) => user.username);
 
-      console.log(username);
+      const getUsername = `${usernames}`;
+      console.log(getUsername);
 
-      const jsonResponse = {
-        username: username,
-      };
-
-      console.log(jsonResponse);
-
-      return new NextResponse(JSON.stringify(jsonResponse), {
-        headers: {
-          "Content-type": "application/json",
-        },
-      });
+      return new NextResponse(JSON.stringify(usernames));
     }
   } catch (error) {
     throw new Error(
@@ -76,4 +64,9 @@ export async function GET(request: Request) {
     await client.close();
     console.log("The process is now completed. Database connection is closed.");
   }
+
+  return NextResponse.json(
+    { message: "Successfully get database information" },
+    { status: 200 }
+  );
 }

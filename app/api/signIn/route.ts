@@ -17,6 +17,12 @@ export async function POST(request: Request) {
       created_on,
     });
     console.log("Successfully added a new user.");
+
+    return new NextResponse(JSON.stringify(result), {
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
   } catch (error) {
     throw new Error(
       `There was a problem creating a new document. Error: ${error}`
@@ -31,3 +37,11 @@ export async function POST(request: Request) {
   );
 }
 
+export async function GET() {
+  await connectToDB();
+  console.log("You can now perform GET operation");
+  return NextResponse.json(
+    { message: "Successfully established database connection" },
+    { status: 200 }
+  );
+}
