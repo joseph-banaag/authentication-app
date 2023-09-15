@@ -15,6 +15,7 @@ import DefaultButton from "@/components/lib/buttonOptions/defaultButton";
 import { motion } from "framer-motion"
 import { useRouter } from 'next/navigation'
 import { creationDate } from "@/components/lib/createdDate"
+import { user_get_information } from "@/app/(root)/lib/users/user_information";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -130,13 +131,11 @@ export default function SignUp() {
         const email_acc = data.email
         const created_on = `${creationDate}`
 
-        /*
-            console.log("password: ", password)
-            console.log("confirmed password: ", confirmed)
-            console.log("username: ", user_name)
-            console.log("user email address: ", email_acc)
-            console.log("created date: ", created_on)
-        */
+        console.log("password: ", password)
+        console.log("confirmed password: ", confirmed)
+        console.log("username: ", user_name)
+        console.log("user email address: ", email_acc)
+        console.log("created date: ", created_on)
 
         const res = await fetch("api/users", {
             method: "POST",
@@ -175,6 +174,8 @@ export default function SignUp() {
             <>
                 {beforeSubmit()}
                 {check_existing_acc()}
+                {user_get_information()}
+                
             </>
         )
     }
