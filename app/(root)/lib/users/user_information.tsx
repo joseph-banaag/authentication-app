@@ -7,7 +7,7 @@ import User_DB_info from "./user_DB_info";
 
 export default async function User_get_information(user_name: any) {
     //  this should return the value given by the user from the form
-    const userName_fromForm = user_name
+    const userName_fromForm = `${user_name}`
     console.log(userName_fromForm)
     // the result is correct. 
     // todo: needs to convert the value of userName_fromForm to string
@@ -18,8 +18,12 @@ export default async function User_get_information(user_name: any) {
     const collection = db.collection("user_information");
 
     const toFind = {
-        username: "user400",
+        username: `${userName_fromForm}`,
     };
+
+    // const toFind = {
+    //     username: "user400a",
+    // };
 
     const toGet = await collection.find(toFind).toArray();
     console.log(toGet);

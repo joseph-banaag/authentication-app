@@ -16,6 +16,7 @@ import { motion } from "framer-motion"
 import { useRouter } from 'next/navigation'
 import { creationDate } from "@/components/lib/createdDate"
 import User_get_information from "@/app/(root)/lib/users/user_information";
+import User_DB_info from "@/app/(root)/lib/users/user_DB_info";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -137,30 +138,38 @@ export default function SignUp() {
         console.log("user email address: ", email_acc)
         console.log("created date: ", created_on)
 
-        const res = await fetch("api/users", {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify({
-                password,
-                confirmed,
-                user_name,
-                email_acc,
-                created_on
-            })
-        })
-
-
         // * Doks_23 and email@email.com will be removed once the data from the db is available to properly check if the account is already existing.
         // todo: use find operation here to get user credentials from the database
-        const check_existing_acc = () => {
+
+        // these are from the form
+        interface ToCheck {
+            user_name: string,
+            email_acc: string
+        }
+        const check_existing_acc = async () => {
 
             if (user_name === "Doks_23" && email_acc === "email@email.com") {
                 alert("You already have an account. Go to Sign in.")
                 router.push('/sign-in', { scroll: false })
+            } else {
+                const res = await fetch("api/users", {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        password,
+                        confirmed,
+                        user_name,
+                        email_acc,
+                        created_on
+                    })
+                })
             }
         }
+
+        
+
 
         const beforeSubmit = () => {
             if (password !== confirmed) {
@@ -174,11 +183,12 @@ export default function SignUp() {
             <>
                 {beforeSubmit()}
                 {check_existing_acc()}
-                {User_get_information({user_name})}
+                {User_get_information(user_name)}
 
             </>
         )
     }
+
 
     return (
         <>
