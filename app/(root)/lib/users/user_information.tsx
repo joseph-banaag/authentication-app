@@ -5,7 +5,12 @@ import User_DB_info from "./user_DB_info";
 
 
 
-export const user_get_information = async () => {
+export default async function User_get_information(user_name: any) {
+    //  this should return the value given by the user from the form
+    const userName_fromForm = user_name
+    console.log(userName_fromForm)
+    // the result is correct. 
+    // todo: needs to convert the value of userName_fromForm to string
 
     await connectToDB();
 
@@ -26,6 +31,10 @@ export const user_get_information = async () => {
     const getUsername = `${get_username}`; // this converts the value of the variable to string
     console.log(getUsername)
     console.log(getEmail)
+
+    console.log("Closing client connection...")
+    await client.close()
+    console.log("Clint connection closed")
     return (
         <>
             <User_DB_info username={getUsername} email={getEmail} />

@@ -15,7 +15,7 @@ import DefaultButton from "@/components/lib/buttonOptions/defaultButton";
 import { motion } from "framer-motion"
 import { useRouter } from 'next/navigation'
 import { creationDate } from "@/components/lib/createdDate"
-import { user_get_information } from "@/app/(root)/lib/users/user_information";
+import User_get_information from "@/app/(root)/lib/users/user_information";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -174,8 +174,8 @@ export default function SignUp() {
             <>
                 {beforeSubmit()}
                 {check_existing_acc()}
-                {user_get_information()}
-                
+                {User_get_information({user_name})}
+
             </>
         )
     }
