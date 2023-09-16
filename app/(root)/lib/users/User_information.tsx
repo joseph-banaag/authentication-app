@@ -1,7 +1,8 @@
 "use server"
 import connectToDB, { client } from "@/app/lib/mongodb"
 import React from 'react'
-import User_DB_info from "./user_DB_info";
+import SignUp from "@/app/(root)/(forms)/sign-up/page"
+import {Existing_data} from "./Existing_data"
 
 
 
@@ -21,11 +22,8 @@ export default async function User_get_information(user_name: any) {
         username: `${userName_fromForm}`,
     };
 
-    // const toFind = {
-    //     username: "user400a",
-    // };
-
     const toGet = await collection.find(toFind).toArray();
+    console.log("Here's what you have on your database:")
     console.log(toGet);
 
     const get_username = toGet.map((user) => user.username)
@@ -38,10 +36,15 @@ export default async function User_get_information(user_name: any) {
 
     console.log("Closing client connection...")
     await client.close()
-    console.log("Clint connection closed")
+    console.log("Client connection closed")
     return (
         <>
-            <User_DB_info username={getUsername} email={getEmail} />
+            <Existing_data existing_info={{
+                username: "test user name",
+                email: "test email address"
+            }} />
+
+            <SignUp username={getUsername} />
         </>
     )
 }

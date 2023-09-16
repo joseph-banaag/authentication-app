@@ -15,8 +15,7 @@ import DefaultButton from "@/components/lib/buttonOptions/defaultButton";
 import { motion } from "framer-motion"
 import { useRouter } from 'next/navigation'
 import { creationDate } from "@/components/lib/createdDate"
-import User_get_information from "@/app/(root)/lib/users/user_information";
-import User_DB_info from "@/app/(root)/lib/users/user_DB_info";
+import User_get_information from "@/app/(root)/lib/users/User_information";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -26,14 +25,18 @@ interface Inputs {
     confirmPw: string;
 }
 
+
 // * main function here...
-export default function SignUp() {
+export default function SignUp(username: any) {
     const [isVisible, setIsVisible] = React.useState(false);
     const [isConfirmed, setIsConfirmed] = React.useState(false);
     const router = useRouter()
 
     const toggleVisibility = () => setIsVisible(!isVisible);
     const toggleIsConfirmed = () => setIsConfirmed(!isConfirmed)
+
+    console.log(username)
+
 
     const {
         register,
@@ -131,21 +134,38 @@ export default function SignUp() {
         const user_name = data.username
         const email_acc = data.email
         const created_on = `${creationDate}`
+        /*
+            console.log("password: ", password)
+            console.log("confirmed password: ", confirmed)
+            console.log("username: ", user_name)
+            console.log("user email address: ", email_acc)
+            console.log("created date: ", created_on)
+        */
+        /*
+                const existing_data = async () => {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            const data = {
+                                username: existing_info.username,
+                                email: existing_info.email
+                            }
+                            resolve(data)
+                        }, 2000);
+                    })
+                }
+        
+                existing_data().then((data: any) => {
+        
+                    const existing_user = (data.username)
+                    const existing_email = (data.email)
+        
+                    console.log(existing_user)
+                    console.log(existing_email)
+                }).catch(error => {
+                    console.log(`An error when getting the existing data from the database. Error: ${error}`)
+                })
+                */
 
-        console.log("password: ", password)
-        console.log("confirmed password: ", confirmed)
-        console.log("username: ", user_name)
-        console.log("user email address: ", email_acc)
-        console.log("created date: ", created_on)
-
-        // * Doks_23 and email@email.com will be removed once the data from the db is available to properly check if the account is already existing.
-        // todo: use find operation here to get user credentials from the database
-
-        // these are from the form
-        interface ToCheck {
-            user_name: string,
-            email_acc: string
-        }
         const check_existing_acc = async () => {
 
             if (user_name === "Doks_23" && email_acc === "email@email.com") {
@@ -168,7 +188,7 @@ export default function SignUp() {
             }
         }
 
-        
+
 
 
         const beforeSubmit = () => {
@@ -184,7 +204,6 @@ export default function SignUp() {
                 {beforeSubmit()}
                 {check_existing_acc()}
                 {User_get_information(user_name)}
-
             </>
         )
     }
