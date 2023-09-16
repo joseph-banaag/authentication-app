@@ -26,8 +26,9 @@ interface Inputs {
 }
 
 
+
 // * main function here...
-export default function SignUp(username: any) {
+export default function SignUp(props: any) {
     const [isVisible, setIsVisible] = React.useState(false);
     const [isConfirmed, setIsConfirmed] = React.useState(false);
     const router = useRouter()
@@ -35,8 +36,8 @@ export default function SignUp(username: any) {
     const toggleVisibility = () => setIsVisible(!isVisible);
     const toggleIsConfirmed = () => setIsConfirmed(!isConfirmed)
 
-    console.log(username)
 
+    // console.log(userDetailsDB.username)
 
     const {
         register,
@@ -141,30 +142,28 @@ export default function SignUp(username: any) {
             console.log("user email address: ", email_acc)
             console.log("created date: ", created_on)
         */
-        /*
-                const existing_data = async () => {
-                    return new Promise((resolve, reject) => {
-                        setTimeout(() => {
-                            const data = {
-                                username: existing_info.username,
-                                email: existing_info.email
-                            }
-                            resolve(data)
-                        }, 2000);
-                    })
-                }
-        
-                existing_data().then((data: any) => {
-        
-                    const existing_user = (data.username)
-                    const existing_email = (data.email)
-        
-                    console.log(existing_user)
-                    console.log(existing_email)
-                }).catch(error => {
-                    console.log(`An error when getting the existing data from the database. Error: ${error}`)
-                })
-                */
+        const existing_data = async () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const data = {
+                        username: props.username,
+                        email: props.email
+                    }
+                    resolve(data)
+                }, 2000);
+            })
+        }
+
+        existing_data().then((data: any) => {
+
+            const existing_user = (data.username)
+            const existing_email = (data.email)
+
+            console.log(existing_user)
+            console.log(existing_email)
+        }).catch(error => {
+            console.log(`An error when getting the existing data from the database. Error: ${error}`)
+        })
 
         const check_existing_acc = async () => {
 
@@ -187,9 +186,6 @@ export default function SignUp(username: any) {
                 })
             }
         }
-
-
-
 
         const beforeSubmit = () => {
             if (password !== confirmed) {

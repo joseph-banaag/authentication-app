@@ -6,7 +6,7 @@ interface Existing_dataProps {
         email: string;
     };
 }
-export const Existing_data: React.FC<Existing_dataProps> = ({existing_info}) => {
+export const Existing_data: React.FC<Existing_dataProps> = ({ existing_info }) => {
 
     console.log(existing_info.username)
     console.log(existing_info.email)

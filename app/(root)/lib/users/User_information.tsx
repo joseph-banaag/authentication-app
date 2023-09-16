@@ -2,7 +2,8 @@
 import connectToDB, { client } from "@/app/lib/mongodb"
 import React from 'react'
 import SignUp from "@/app/(root)/(forms)/sign-up/page"
-import {Existing_data} from "./Existing_data"
+import { Existing_data } from "./Existing_data"
+import Data_from_DB from "./data_from_DB"
 
 
 
@@ -40,11 +41,15 @@ export default async function User_get_information(user_name: any) {
     return (
         <>
             <Existing_data existing_info={{
-                username: "test user name",
-                email: "test email address"
+                username: `${getUsername}`,
+                email: `${getEmail}`
             }} />
 
-            <SignUp username={getUsername} />
+            <SignUp userDetailsDB={{
+                username: `${getUsername}`,
+                email: `${getEmail}`
+            }} />
+
         </>
     )
 }
