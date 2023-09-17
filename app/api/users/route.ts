@@ -8,6 +8,7 @@ export async function POST(req: Request) {
     await req.json();
   // inside the {} are the destructured value given by req/request from fetch function
 
+  console.log(user_name)
   await connectToDB();
 
   try {
@@ -42,6 +43,7 @@ export async function Get_username(user_name: any) {
 }
 
 export async function GET() {
+
   await connectToDB();
 
   try {
@@ -50,7 +52,7 @@ export async function GET() {
 
     // todo: find a way to import the username from the form to here and use it as the parameter to find account from the database.
 
-    const username_from_form = "testUser104";
+    const username_from_form = "testUser107";
 
     const toFind = {
       username: `${username_from_form}`,
