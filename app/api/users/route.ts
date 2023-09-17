@@ -42,19 +42,17 @@ export async function GET() {
     const collection = db.collection("user_information");
 
     const toFind = {
-      username: "user100",
+      username: "user502",
     };
 
     const toGet = await collection.find(toFind).toArray();
+    console.log("Here is the list of what I found from your database:");
     console.log(toGet);
 
     if (toGet.length > 0) {
-      const usernames = toGet.map((user) => user.username);
+      const user_details_from_DB = toGet.map((user) => user);
 
-      const getUsername = `${usernames}`; // this converts the value of the variable to string
-      console.log(getUsername);
-
-      return new NextResponse(JSON.stringify(usernames));
+      return new NextResponse(JSON.stringify(user_details_from_DB));
     }
   } catch (error) {
     throw new Error(

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import connectToDB, { client } from "@/app/lib/mongodb";
+import { toggle } from "@nextui-org/react";
 
 export async function POST(request: Request) {
   await connectToDB();
@@ -40,6 +41,30 @@ export async function POST(request: Request) {
 export async function GET() {
   await connectToDB();
   console.log("You can now perform GET operation");
+  try {
+    const db = client.db("active_users");
+    const collection = db.collection("user_information");
+
+    const toFind = {
+      username: "testNewUser100",
+    };
+
+    const toGet = await collection.find(toFind).toArray();
+    console.log("Here\'s the list of what I found from the database:");
+    console.log(toGet);
+
+    const user_DB_info = toGet.map((users: any) => users)
+    const get_username_DB = user_DB_info
+    return new NextResponse(JSON.stringify(get_username_DB));
+  } catch (error) {
+    throw new Error(
+      `There was a problem getting database information. Error: ${error}`
+    );
+  } finally {
+    console.log("Closing client connection...");
+    await client.close();
+    console.log("Client connection is closed");
+  }
   return NextResponse.json(
     { message: "Successfully established database connection" },
     { status: 200 }

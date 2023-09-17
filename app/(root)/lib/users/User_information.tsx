@@ -1,9 +1,6 @@
 "use server"
 import connectToDB, { client } from "@/app/lib/mongodb"
 import React from 'react'
-import SignUp from "@/app/(root)/(forms)/sign-up/page"
-import { Existing_data } from "./Existing_data"
-import Data_from_DB from "./data_from_DB"
 
 
 
@@ -40,16 +37,7 @@ export default async function User_get_information(user_name: any) {
     console.log("Client connection closed")
     return (
         <>
-            <Existing_data existing_info={{
-                username: `${getUsername}`,
-                email: `${getEmail}`
-            }} />
-
-            <SignUp userDetailsDB={{
-                username: `${getUsername}`,
-                email: `${getEmail}`
-            }} />
-
+            <main></main>
         </>
     )
 }

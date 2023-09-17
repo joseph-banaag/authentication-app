@@ -25,10 +25,17 @@ interface Inputs {
     confirmPw: string;
 }
 
+async function getData() {
+    const res = await fetch("api/users")
+    if (!res.ok) {
+        throw new Error("There was a problem getting information form the API")
+    }
+    return res.json()
+}
 
 
 // * main function here...
-export default function SignUp(props: any) {
+export default function SignUp() {
     const [isVisible, setIsVisible] = React.useState(false);
     const [isConfirmed, setIsConfirmed] = React.useState(false);
     const router = useRouter()
@@ -135,39 +142,21 @@ export default function SignUp(props: any) {
         const user_name = data.username
         const email_acc = data.email
         const created_on = `${creationDate}`
-        /*
-            console.log("password: ", password)
-            console.log("confirmed password: ", confirmed)
-            console.log("username: ", user_name)
-            console.log("user email address: ", email_acc)
-            console.log("created date: ", created_on)
-        */
-        const existing_data = async () => {
-            return new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    const data = {
-                        username: props.username,
-                        email: props.email
-                    }
-                    resolve(data)
-                }, 2000);
-            })
-        }
-
-        existing_data().then((data: any) => {
-
-            const existing_user = (data.username)
-            const existing_email = (data.email)
-
-            console.log(existing_user)
-            console.log(existing_email)
-        }).catch(error => {
-            console.log(`An error when getting the existing data from the database. Error: ${error}`)
-        })
 
         const check_existing_acc = async () => {
+            const data_from_DB = await getData()
 
-            if (user_name === "Doks_23" && email_acc === "email@email.com") {
+            console.log(data_from_DB)
+            const user_info_DB = data_from_DB.map((user: any) => user)
+            const username_DB = user_info_DB[0].username
+            const email_DB = user_info_DB[0].email
+
+            console.log(username_DB)
+            console.log(email_DB)
+            console.log(user_name)
+            console.log(email_acc)
+
+            if (user_name === username_DB || email_acc === email_DB) {
                 alert("You already have an account. Go to Sign in.")
                 router.push('/sign-in', { scroll: false })
             } else {
