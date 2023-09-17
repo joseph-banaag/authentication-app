@@ -167,7 +167,7 @@ export default function SignUp() {
                     })
                 }, 1000);
                 console.log("Successfully created a new account.")
-            } else if (data_from_DB.length === 1) {
+            } else if (data_from_DB.length > 0) {
                 const username_DB = data_from_DB[0].username
                 const email_DB = data_from_DB[0].email
 
