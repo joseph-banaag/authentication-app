@@ -51,7 +51,7 @@ export async function GET() {
 
     // todo: find a way to import the username from the form to here and use it as the parameter to find account from the database.
 
-    const username_from_form = "NewTestUser100";
+    const username_from_form = "kainPepe69";
 
     const toFind = {
       username: `${username_from_form}`,

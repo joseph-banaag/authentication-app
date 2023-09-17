@@ -150,12 +150,14 @@ export default function SignUp() {
             const data_from_DB = await getData()
 
             console.log(data_from_DB)
-            const user_info_DB = data_from_DB.map((user: any) => user)
-            const username_DB = user_info_DB[0].username
-            const email_DB = user_info_DB[0].email
+            const username_DB = data_from_DB[0].username
+            const email_DB = data_from_DB[0].email
 
+            // value form the database
             console.log(username_DB)
             console.log(email_DB)
+
+            // value from the form
             console.log(user_name)
             console.log(email_acc)
 
