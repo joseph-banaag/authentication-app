@@ -182,24 +182,9 @@ export default function SignUp() {
                 if (user_name === username_DB || email_acc === email_DB) {
                     alert("You already have an account. Try signing in.")
                     router.push('/sign-in', { scroll: false })
-                } else {
-                    setTimeout(async () => {
-                        const res = await fetch("api/users", {
-                            method: "POST",
-                            headers: {
-                                "Content-type": "application/json"
-                            },
-                            body: JSON.stringify({
-                                password,
-                                confirmed,
-                                user_name,
-                                email_acc,
-                                created_on
-                            })
-                        })
-                    }, 2000);
-                    console.log("Successfully created a new account.")
                 }
+            } else {
+                alert("Please create a new account")
             }
         }
 
