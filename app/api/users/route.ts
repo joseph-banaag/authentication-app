@@ -61,11 +61,8 @@ export async function GET() {
     console.log("Here is the list of what I found from your database:");
     console.log(toGet);
 
-    if (toGet.length > 0) {
-      const user_details_from_DB = toGet.map((user) => user);
-
-      return new NextResponse(JSON.stringify(user_details_from_DB));
-    }
+    return new NextResponse(JSON.stringify(toGet));
+    
   } catch (error) {
     throw new Error(
       `There was a problem getting the information from the database. Error: ${error}`
