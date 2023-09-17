@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import connectToDB, { client } from "@/app/lib/mongodb";
 
+
+// INSERT OPERATION
+
 export async function POST(req: Request) {
   const { password, confirmed, user_name, email_acc, created_on } =
     await req.json();
@@ -34,6 +37,14 @@ export async function POST(req: Request) {
   );
 }
 
+
+// GET OPERATION
+
+export const get_username_from_form = () => {
+  
+}
+
+
 export async function GET() {
   await connectToDB();
 
@@ -41,8 +52,10 @@ export async function GET() {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
 
+    // todo: find a way to import the username from the form here and use it as the parameter to find account from the database.
+    const username_from_form = "NewTestUser100";
     const toFind = {
-      username: "user502",
+      username: `${username_from_form}`,
     };
 
     const toGet = await collection.find(toFind).toArray();

@@ -15,7 +15,6 @@ import DefaultButton from "@/components/lib/buttonOptions/defaultButton";
 import { motion } from "framer-motion"
 import { useRouter } from 'next/navigation'
 import { creationDate } from "@/components/lib/createdDate"
-import User_get_information from "@/app/(root)/lib/users/User_information";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -26,7 +25,9 @@ interface Inputs {
 }
 
 async function getData() {
-    const res = await fetch("api/users")
+    const res = await fetch("api/users", {
+        method: "GET"
+    })
     if (!res.ok) {
         throw new Error("There was a problem getting information form the API")
     }
@@ -188,7 +189,6 @@ export default function SignUp() {
             <>
                 {beforeSubmit()}
                 {check_existing_acc()}
-                {User_get_information(user_name)}
             </>
         )
     }
