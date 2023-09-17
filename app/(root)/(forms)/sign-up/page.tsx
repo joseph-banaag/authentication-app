@@ -15,7 +15,7 @@ import DefaultButton from "@/components/lib/buttonOptions/defaultButton";
 import { motion } from "framer-motion"
 import { useRouter } from 'next/navigation'
 import { creationDate } from "@/components/lib/createdDate"
-// import Value_from_form from "@/app/(root)/lib/users/Value_from_form";
+import Value_from_form from "@/app/api/lib/users/Value_from_form";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -160,22 +160,24 @@ export default function SignUp() {
             console.log(email_acc)
 
             if (user_name === username_DB || email_acc === email_DB) {
-                alert("You already have an account. Go to Sign in.")
+                alert("You already have an account. Try signing in.")
                 router.push('/sign-in', { scroll: false })
             } else {
-                const res = await fetch("api/users", {
-                    method: "POST",
-                    headers: {
-                        "Content-type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        password,
-                        confirmed,
-                        user_name,
-                        email_acc,
-                        created_on
+                setTimeout(async () => {
+                    const res = await fetch("api/users", {
+                        method: "POST",
+                        headers: {
+                            "Content-type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            password,
+                            confirmed,
+                            user_name,
+                            email_acc,
+                            created_on
+                        })
                     })
-                })
+                }, 2000);
             }
         }
 
@@ -183,7 +185,7 @@ export default function SignUp() {
             if (password !== confirmed) {
                 alert("Please check your password!")
             } else {
-                console.log("Account created successfully!")
+                console.log("Password matched!")
             }
         }
 
@@ -191,7 +193,7 @@ export default function SignUp() {
             <>
                 {beforeSubmit()}
                 {check_existing_acc()}
-                {/* {Value_from_form()} */}
+                {Value_from_form(user_name)}
             </>
         )
     }

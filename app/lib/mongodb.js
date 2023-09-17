@@ -2,7 +2,7 @@ import { MongoClient, ServerApiVersion } from "mongodb";
 const uri = process.env.MONGODB_URI;
 
 if (uri !== "" || uri !== undefined || uri !== null) {
-  console.log("Client connection is ready");
+  console.log("Client connection is ready. URI is ready.");
 }
 
 export const client = new MongoClient(uri, {

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import connectToDB, { client } from "@/app/lib/mongodb";
+import { resolve } from "path";
 
 // INSERT OPERATION
 
@@ -37,17 +38,21 @@ export async function POST(req: Request) {
 }
 
 // GET OPERATION
+export async function Get_username(user_name: any) {
+  console.log(user_name);
+}
 
 export async function GET() {
-
   await connectToDB();
 
   try {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
 
-    // todo: find a way to import the username from the form here and use it as the parameter to find account from the database.
+    // todo: find a way to import the username from the form to here and use it as the parameter to find account from the database.
+
     const username_from_form = "NewTestUser100";
+
     const toFind = {
       username: `${username_from_form}`,
     };

@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import connectToDB, { client } from "@/app/lib/mongodb";
-import { toggle } from "@nextui-org/react";
 
 export async function POST(request: Request) {
   await connectToDB();
@@ -39,6 +38,8 @@ export async function POST(request: Request) {
 }
 
 export async function GET() {
+  // todo: create a logic that will get the username value from the form and use it to find existing account from the database
+  
   await connectToDB();
   console.log("You can now perform GET operation");
   try {
@@ -56,6 +57,7 @@ export async function GET() {
     const user_DB_info = toGet.map((users: any) => users)
     const get_username_DB = user_DB_info
     return new NextResponse(JSON.stringify(get_username_DB));
+
   } catch (error) {
     throw new Error(
       `There was a problem getting database information. Error: ${error}`
