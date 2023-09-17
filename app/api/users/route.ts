@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import connectToDB, { client } from "@/app/lib/mongodb";
 
-
 // INSERT OPERATION
 
 export async function POST(req: Request) {
@@ -37,15 +36,10 @@ export async function POST(req: Request) {
   );
 }
 
-
 // GET OPERATION
 
-export const get_username_from_form = () => {
-  
-}
-
-
 export async function GET() {
+
   await connectToDB();
 
   try {
