@@ -148,23 +148,9 @@ export default function SignUp() {
 
         const check_existing_acc = async () => {
             const data_from_DB = await getData()
+            console.log(data_from_DB.length)
 
-            console.log(data_from_DB)
-            const username_DB = data_from_DB[0].username
-            const email_DB = data_from_DB[0].email
-
-            // value form the database
-            console.log(username_DB)
-            console.log(email_DB)
-
-            // value from the form
-            console.log(user_name)
-            console.log(email_acc)
-
-            if (user_name === username_DB || email_acc === email_DB) {
-                alert("You already have an account. Try signing in.")
-                router.push('/sign-in', { scroll: false })
-            } else {
+            if (data_from_DB.length === 0) {
                 setTimeout(async () => {
                     const res = await fetch("api/users", {
                         method: "POST",
@@ -179,7 +165,41 @@ export default function SignUp() {
                             created_on
                         })
                     })
-                }, 2000);
+                }, 1000);
+                console.log("Successfully created a new account.")
+            } else if (data_from_DB.length === 1) {
+                const username_DB = data_from_DB[0].username
+                const email_DB = data_from_DB[0].email
+
+                // value form the database
+                console.log(username_DB)
+                console.log(email_DB)
+
+                // value from the form
+                console.log(user_name)
+                console.log(email_acc)
+
+                if (user_name === username_DB || email_acc === email_DB) {
+                    alert("You already have an account. Try signing in.")
+                    router.push('/sign-in', { scroll: false })
+                } else {
+                    setTimeout(async () => {
+                        const res = await fetch("api/users", {
+                            method: "POST",
+                            headers: {
+                                "Content-type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                password,
+                                confirmed,
+                                user_name,
+                                email_acc,
+                                created_on
+                            })
+                        })
+                    }, 2000);
+                    console.log("Successfully created a new account.")
+                }
             }
         }
 

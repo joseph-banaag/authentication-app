@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import connectToDB, { client } from "@/app/lib/mongodb";
-import { resolve } from "path";
 
 // INSERT OPERATION
 
@@ -51,7 +50,7 @@ export async function GET() {
 
     // todo: find a way to import the username from the form to here and use it as the parameter to find account from the database.
 
-    const username_from_form = "kainPepe69";
+    const username_from_form = "testUser101";
 
     const toFind = {
       username: `${username_from_form}`,
@@ -62,7 +61,6 @@ export async function GET() {
     console.log(toGet);
 
     return new NextResponse(JSON.stringify(toGet));
-    
   } catch (error) {
     throw new Error(
       `There was a problem getting the information from the database. Error: ${error}`
