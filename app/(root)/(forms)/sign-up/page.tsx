@@ -15,7 +15,6 @@ import DefaultButton from "@/components/lib/buttonOptions/defaultButton";
 import { motion } from "framer-motion"
 import { useRouter } from 'next/navigation'
 import { creationDate } from "@/components/lib/createdDate"
-import Value_from_form from "@/app/api/lib/users/Value_from_form";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -25,16 +24,6 @@ interface Inputs {
     confirmPw: string;
 }
 
-// DATA FROM THE SERVER
-async function getData() {
-    const res = await fetch("api/users", {
-        method: "GET"
-    })
-    if (!res.ok) {
-        throw new Error("There was a problem getting information form the API")
-    }
-    return res.json()
-}
 
 
 // * main function here...
@@ -146,6 +135,18 @@ export default function SignUp() {
         const email_acc = data.email
         const created_on = `${creationDate}`
 
+        // DATA FROM THE SERVER
+        async function getData() {
+            const res = await fetch("api/users", {
+                method: "GET"
+            })
+            if (!res.ok) {
+                throw new Error("There was a problem getting information form the API")
+            }
+            return res.json()
+        }
+
+
         const check_existing_acc = async () => {
             const data_from_DB = await getData()
             console.log(data_from_DB.length)
@@ -167,8 +168,15 @@ export default function SignUp() {
                     })
                 }, 1000);
                 console.log("Successfully created a new account.")
+
             } else if (data_from_DB.length > 0) {
-                const username_DB = data_from_DB[0].username
+
+                const user_input = user_name;
+
+                const usernameDB = data_from_DB.find((obj: { username: any; }) => obj.username === user_input)
+
+                const extracted_username = usernameDB["username"]
+                const username_DB = extracted_username
                 const email_DB = data_from_DB[0].email
 
                 // value form the database
@@ -201,7 +209,7 @@ export default function SignUp() {
                     console.log("Successfully created a new account.")
                 }
             } else {
-                alert("Please create a new account")
+                alert("An error occurred. Please refresh the page and try again.")
             }
         }
 
@@ -217,7 +225,6 @@ export default function SignUp() {
             <>
                 {beforeSubmit()}
                 {check_existing_acc()}
-                {Value_from_form(user_name)}
             </>
         )
     }

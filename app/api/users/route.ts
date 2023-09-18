@@ -38,31 +38,25 @@ export async function POST(req: Request) {
 }
 
 // GET OPERATION
-export async function Get_username(user_name: any) {
-  console.log(user_name);
-}
 
 export async function GET() {
 
-  await connectToDB();
-
+  await connectToDB()
   try {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
 
     // todo: find a way to import the username from the form to here and use it as the parameter to find account from the database.
 
-    const username_from_form = "testUser107";
 
-    const toFind = {
-      username: `${username_from_form}`,
-    };
+    const toFind = {}
 
     const toGet = await collection.find(toFind).toArray();
     console.log("Here is the list of what I found from your database:");
     console.log(toGet);
 
     return new NextResponse(JSON.stringify(toGet));
+
   } catch (error) {
     throw new Error(
       `There was a problem getting the information from the database. Error: ${error}`
