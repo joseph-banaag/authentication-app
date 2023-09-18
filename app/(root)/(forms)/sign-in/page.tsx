@@ -67,15 +67,6 @@ export default function SignIn() {
         mode: "all"
     });
 
-    const user_info_db = {
-        user_name: "joshua_23",
-        password: "03/23/2020"
-    }
-
-
-
-
-
     const OnSubmit: SubmitHandler<Inputs> = (data: any, e) => {
         const password = data.password
         const user_name = data.username
@@ -94,17 +85,30 @@ export default function SignIn() {
 
             console.log(userInfo_DB)
 
+            if (userInfo_DB === undefined) {
+                alert("Please sign up to create an account")
+                setTimeout(() => {
+                    router.push("/sign_up")
+                }, 1000);
+            }
+
+            const db_username = userInfo_DB.username
+            const db_password = userInfo_DB.password
+            // this is from the database
+            console.log(db_password)
+            console.log(db_username)
+
 
             // this is from the form
             console.log(passwordInput)
             console.log(usernameInput)
 
-
-            // if (password === user_info_db.password && user_name === user_info_db.user_name) {
-            //     router.push('/dashboard', { scroll: false })
-            // } else {
-            //     alert("Please create an account. Click on Sign up or reset your password if you have an account already.")
-            // }
+            if (usernameInput === db_username && passwordInput === db_password) {
+                console.log("Account exist")
+                setTimeout(() => {
+                    router.push("/dashboard")
+                }, 1000);
+            }
         }
 
         return (

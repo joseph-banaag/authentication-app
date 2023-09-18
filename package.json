@@ -2,6 +2,7 @@
   "name": "authentication-app",
   "version": "0.1.0",
   "private": true,
+  "owner": "Joseph Banaag",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
