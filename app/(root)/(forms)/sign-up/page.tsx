@@ -2,7 +2,7 @@
 import React from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
 import Image from 'next/image';
-import { Input, Card } from "@nextui-org/react";
+import { Input, Card, Button } from "@nextui-org/react";
 import { EyeFilledIcon } from "@/components/utils/icons/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "@/components/utils/icons/EyeSlashFilledIcon";
 import { MyButton } from "@/components/utils/tailwindvariants/tv";
@@ -10,8 +10,6 @@ import { bgIllustration } from "@/components/constants";
 import { Company } from "@/components/constants";
 import IconChanger from "@/components/lib/IconChanger";
 import { iconsSrc } from "@/components/constants";
-import SuccessButton from "@/components/lib/buttonOptions/successButton";
-import DefaultButton from "@/components/lib/buttonOptions/defaultButton";
 import { motion } from "framer-motion"
 import { useRouter } from 'next/navigation'
 import { creationDate } from "@/components/lib/createdDate"
@@ -103,39 +101,6 @@ export default function SignUp() {
         )
     }
 
-    const ButtonChanger = (): React.ReactNode => {
-        const password = watch("password")
-        const confirmed = watch("confirmPw")
-
-        const checkMatchedPw = (): any => {
-            if (password === "" && confirmed === "") {
-                return (
-
-                    <DefaultButton />
-                )
-            } else if (password === undefined && confirmed === undefined) {
-                return (
-                    <DefaultButton />
-                )
-            } else if (password === confirmed) {
-                return (
-                    <SuccessButton />
-                )
-            } else {
-                return (
-                    <DefaultButton />
-                )
-            }
-        }
-
-        return (
-            <>
-                {checkMatchedPw()}
-            </>
-        )
-    }
-
-
     const OnSubmit: SubmitHandler<Inputs> = async (data: any, e) => {
         e?.preventDefault()
         const password = data.password
@@ -146,12 +111,11 @@ export default function SignUp() {
 
         const check_existing_acc = async () => {
             const data_from_DB = await getData()
-            
+
             console.log(data_from_DB.length)
 
             if (data_from_DB.length === 0) {
                 // this will work for a fresh database with zero document.
-                
 
                 const res = await fetch("api/users", {
                     method: "POST",
@@ -169,7 +133,7 @@ export default function SignUp() {
                 console.log("Successfully added a new user")
 
             } else if (data_from_DB.length > 0) {
-
+                // this will work if there is an existing document and the account is new
                 const user_input = `${user_name}`;
 
                 const userInfo_Document = data_from_DB.find((obj: { username: any; }) => obj.username === user_input)
@@ -191,25 +155,6 @@ export default function SignUp() {
                         })
                     })
                     console.log("Successfully added a new user")
-
-                } else {
-                    const username_DB = userInfo_Document["username"]
-                    const email_DB = userInfo_Document["email"]
-
-                    //  value from the database 
-                    console.log(username_DB)
-                    console.log(email_DB)
-
-                    // value from the form
-                    console.log(user_name)
-                    console.log(email_acc)
-
-                    if (user_name === username_DB || email_acc === email_DB) {
-                        alert("You already have an account. Try signing in.")
-                        router.push('/sign-in', { scroll: false })
-                    } else {
-                        alert("An error occurred. Please refresh the page and sign up again")
-                    }
                 }
             }
         }
@@ -230,6 +175,38 @@ export default function SignUp() {
         )
     }
 
+
+    const handleButtonClick = async () => {
+        const usernameInput = watch("username")
+        const emailInput = watch("email")
+
+        const data_from_DB = await getData()
+        console.log(data_from_DB)
+
+        const DB_docs = data_from_DB.find((obj: { username: any; }) => obj.username === usernameInput)
+        console.log(DB_docs)
+        if (DB_docs === undefined) {
+            console.log("Creating new account...")
+        } else {
+            const db_username = DB_docs.username
+            const db_email = DB_docs.email
+
+            console.log(db_username)
+            console.log(db_email)
+
+            console.log(usernameInput)
+            console.log(emailInput)
+
+            if (usernameInput === db_username || emailInput === db_email) {
+                alert("You already have an account. Please sign in")
+                router.push('/sign-in', { scroll: false })
+            }
+        } 
+            
+        setTimeout(() => {
+            router.push('/dashboard')
+        }, 3000)
+    }
 
     return (
         <>
@@ -458,8 +435,11 @@ export default function SignUp() {
                                     />
                                     {validatePassword()}
                                 </div>
-                                <div className='flex flex-col gap-1 my-3'>
-                                    <ButtonChanger />
+                                <div className='flex flex-col gap-1 my-2'>
+                                    <Button type="submit" onClick={handleButtonClick} name="submit" className="bg-green-800 hover:bg-green-950 drop-shadow-lg transition-all duration-300">
+                                        <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
+                                    </Button >
+
                                 </div>
                             </form>
                         </Card>
