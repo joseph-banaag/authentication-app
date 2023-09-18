@@ -155,6 +155,10 @@ export default function SignUp() {
                         })
                     })
                     console.log("Successfully added a new user")
+
+                    setTimeout(() => {
+                        router.push('/dashboard')
+                    }, 3000)
                 }
             }
         }
@@ -201,11 +205,7 @@ export default function SignUp() {
                 alert("You already have an account. Please sign in")
                 router.push('/sign-in', { scroll: false })
             }
-        } 
-            
-        setTimeout(() => {
-            router.push('/dashboard')
-        }, 3000)
+        }
     }
 
     return (
