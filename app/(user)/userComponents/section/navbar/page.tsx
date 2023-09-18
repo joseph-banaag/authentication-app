@@ -43,20 +43,8 @@ export const Db_userInformation_from_SU = (user_name: any) => {
 }
 
 // SIGN IN ENTRY POINT
-export const Db_userInformation_from_SI = async (user_name: any) => {
-    const data_from_DB = await getData();
+export const Db_userInformation_from_SI = (user_name: any) => {
     console.log(user_name)
-
-    console.log(data_from_DB)
-    const userDocs = data_from_DB.find((obj: { username: any; }) => obj.username === user_name)
-
-    console.log(userDocs)
-    const userNameFromDocs = userDocs.username
-    const emailFromDocs = userDocs.email
-
-    console.log(emailFromDocs)
-    console.log(userNameFromDocs)
-
 }
 
 
