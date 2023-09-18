@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "owner": "Joseph Banaag",
+  "project-started": "August 28, 2023",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

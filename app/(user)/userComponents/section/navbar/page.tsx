@@ -23,9 +23,42 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { SunIcon } from "@/components/utils/icons/SunIcon";
 import { MoonIcon } from "@/components/utils/icons/MoonIcon";
+import { data } from "autoprefixer";
 
-// todo: create a function that will gather user information to complete the userinfo object:
-// Todo: and then generate a logic that route the user back to '/' if there will be no userInformation
+
+// DATA FROM THE SERVER
+async function getData() {
+    const res = await fetch("api/users", {
+        method: "GET"
+    })
+    if (!res.ok) {
+        throw new Error("There was a problem getting information form the API")
+    }
+    return res.json()
+}
+
+// SIGN UP ENTRY POINT
+export const Db_userInformation_from_SU = (user_name: any) => {
+    console.log(user_name)
+}
+
+// SIGN IN ENTRY POINT
+export const Db_userInformation_from_SI = async (user_name: any) => {
+    const data_from_DB = await getData();
+    console.log(user_name)
+
+    console.log(data_from_DB)
+    const userDocs = data_from_DB.find((obj: { username: any; }) => obj.username === user_name)
+
+    console.log(userDocs)
+    const userNameFromDocs = userDocs.username
+    const emailFromDocs = userDocs.email
+
+    console.log(emailFromDocs)
+    console.log(userNameFromDocs)
+
+}
+
 
 const userInfo = {
     username: "joshua_23",
@@ -57,9 +90,9 @@ export default function Topbar() {
 
 
     return (
-        <Navbar 
-        shouldHideOnScroll 
-        className="flex justify-around flex-wrap p-3 drop-shadow-2xl">
+        <Navbar
+            shouldHideOnScroll
+            className="flex justify-around flex-wrap p-3 drop-shadow-2xl">
             <NavbarContent justify="start" className="flex justify-start">
                 <NavbarBrand className="flex-1 w-full justify-start sm:hidden flex">
                     <Link href="/dashboard">
@@ -180,7 +213,7 @@ export default function Topbar() {
                                         </p>
                                     }
                                     className="hover:bg-transparent border-none cursor-default"
-                                   
+
                                 >
                                     <p className="text-sm font-semibold drop-shadow-md" color="foreground">Theme</p>
                                 </DropdownItem>

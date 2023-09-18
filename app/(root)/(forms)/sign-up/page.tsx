@@ -10,6 +10,7 @@ import { motion } from "framer-motion"
 import { useRouter } from 'next/navigation'
 import { creationDate } from "@/components/lib/createdDate"
 import SocialAuth from "@/components/utils/SocialAuth";
+import { Db_userInformation_from_SU } from "@/app/(user)/userComponents/section/navbar/page";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -155,7 +156,7 @@ export default function SignUp() {
 
                     setTimeout(() => {
                         router.push('/dashboard')
-                    }, 3000)
+                    }, 2000)
                 }
             }
         }
@@ -172,6 +173,7 @@ export default function SignUp() {
             <>
                 {beforeSubmit()}
                 {check_existing_acc()}
+                {Db_userInformation_from_SU(user_name)}
             </>
         )
     }
