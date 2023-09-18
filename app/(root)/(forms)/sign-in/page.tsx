@@ -5,13 +5,11 @@ import Image from 'next/image';
 import { Button, Input, Card } from "@nextui-org/react";
 import { EyeFilledIcon } from "@/components/utils/icons/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "@/components/utils/icons/EyeSlashFilledIcon";
-import { MyButton } from "@/components/utils/tailwindvariants/tv";
 import { bgIllustration } from "@/components/constants";
-import { Company, iconsSrc } from "@/components/constants";
-import IconChanger from "@/components/lib/IconChanger";
 import { motion } from "framer-motion"
 import PasswordReset from "@/components/(..)modals/PasswordReset";
 import { useRouter } from 'next/navigation'
+import SocialAuth from "@/components/utils/SocialAuth";
 // import { client } from "app/mongodb/index"
 
 // this object is for type declaration of useForm() function specifically for register method.
@@ -70,7 +68,7 @@ export default function SignIn() {
         const user_name = data.username
         e?.preventDefault()
 
-  
+
         // * given password and username will be removed from the if-statement once data from db is existing.
         const check_user_info = (): any => {
             if (password === user_info_db.password && user_name === user_info_db.user_name) {
@@ -87,10 +85,6 @@ export default function SignIn() {
         )
     }
 
-    console.log(watch("username"));
-    console.log(watch("password"))
-    console.log("Errors: ", errors)
-
     return (
         <> <motion.div
             initial={{ opacity: 0 }}
@@ -100,75 +94,8 @@ export default function SignIn() {
             <div className=" w-full min-h-screen flex flex-1 flex-col justify-center items-center">
                 <div className="sm:p-5 p-3">
                     <Card className="flex flex-col flex-1 rounded-2xl p-5 gap-5 mb-24 shadow-2xl max-w-[640px] bg-background/60 dark:bg-default-100/50" id="signOptions">
-                        <div className='w-full flex justify-start mt-2'>
-                            <Image
-                                src={Company.imgSrc}
-                                alt={Company.name}
-                                width={100}
-                                height={100}
-                                style={{
-                                    objectFit: "cover",
-                                    width: "30%",
-                                    height: "30%"
-                                }}
-                                className="drop-shadow-md"
-                            />
-                        </div>
-                        <div className='p-3'>
-                            <h1 className="sm:text-4xl text-xl sm:font-medium font-normal mb-1 drop-shadow-xl">Log in</h1>
-                            <p className="sm:text-medium text-xs sm:font-normal font-small drop-shadow-md">to access your {Company.name} account </p>
-                        </div>
-                        {/* 
-                            // Todo: generate a function that will allow the sign in options facebook, google, and github
-                        */}
 
-                        <div className="flex items-center justify-evenly loginButtons">
-                            <div>
-                                <MyButton
-                                    variant="flat"
-                                    size="md"
-                                    className="hover:scale-105 hover:bg-secondary/10 transition-all duration-300 shadow-xl flex-1">
-                                    <Image
-                                        src={iconsSrc.facebook}
-                                        alt={iconsSrc.nameFb}
-                                        width={24}
-                                        height={24}
-                                        style={{
-                                            objectFit: "cover"
-
-                                        }}
-                                        className="drop-shadow-lg"
-                                    />
-                                </MyButton>
-                            </div>
-
-                            <div>
-                                <MyButton
-                                    variant="flat"
-                                    size="md"
-                                    className="hover:scale-105 hover:bg-secondary/10 transition-all duration-300 shadow-xl flex-1">
-                                    <IconChanger />
-                                </MyButton>
-                            </div>
-
-                            <div>
-                                <MyButton
-                                    variant="flat"
-                                    size="md"
-                                    className="hover:scale-105 hover:bg-secondary/10 transition-all duration-300 shadow-xl flex-1">
-                                    <Image
-                                        src={iconsSrc.google}
-                                        alt={iconsSrc.nameG}
-                                        width={24}
-                                        height={24}
-                                        style={{
-                                            objectFit: "cover"
-                                        }}
-                                        className="drop-shadow-lg "
-                                    />
-                                </MyButton>
-                            </div>
-                        </div>
+                        <SocialAuth />
 
                         <div className="flex flex-1 justify-center items-center">
                             <hr className='w-full'></hr>
