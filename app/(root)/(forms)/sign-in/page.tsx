@@ -18,6 +18,17 @@ interface Inputs {
     password: string;
 }
 
+// DATA FROM THE SERVER
+async function getData() {
+    const res = await fetch("api/users", {
+        method: "GET"
+    })
+    if (!res.ok) {
+        throw new Error("There was a problem getting information form the API")
+    }
+    return res.json()
+}
+
 // * main function here...
 export default function SignIn() {
     const [isVisible, setIsVisible] = React.useState(false);
@@ -63,6 +74,8 @@ export default function SignIn() {
 
 
 
+
+
     const OnSubmit: SubmitHandler<Inputs> = (data: any, e) => {
         const password = data.password
         const user_name = data.username
@@ -70,12 +83,28 @@ export default function SignIn() {
 
 
         // * given password and username will be removed from the if-statement once data from db is existing.
-        const check_user_info = (): any => {
-            if (password === user_info_db.password && user_name === user_info_db.user_name) {
-                router.push('/dashboard', { scroll: false })
-            } else {
-                alert("Please create an account. Click on Sign up or reset your password if you have an account already.")
-            }
+        const check_user_info = async () => {
+            const data_from_DB = await getData()
+            const passwordInput = password
+            const usernameInput = user_name
+
+            console.log(data_from_DB.length)
+
+            const userInfo_DB = data_from_DB.find((obj: { username: any; }) => obj.username === usernameInput)
+
+            console.log(userInfo_DB)
+
+
+            // this is from the form
+            console.log(passwordInput)
+            console.log(usernameInput)
+
+
+            // if (password === user_info_db.password && user_name === user_info_db.user_name) {
+            //     router.push('/dashboard', { scroll: false })
+            // } else {
+            //     alert("Please create an account. Click on Sign up or reset your password if you have an account already.")
+            // }
         }
 
         return (
