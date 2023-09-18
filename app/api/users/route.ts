@@ -6,9 +6,8 @@ import connectToDB, { client } from "@/app/lib/mongodb";
 export async function POST(req: Request) {
   const { password, confirmed, user_name, email_acc, created_on } =
     await req.json();
-  // inside the {} are the destructured value given by req/request from fetch function
 
-  console.log(user_name)
+  console.log(user_name);
   await connectToDB();
 
   try {
@@ -22,7 +21,7 @@ export async function POST(req: Request) {
       created_on: `${created_on}`,
     };
     const result = await collection.insertOne(newDoc);
-    console.log("Successfully added a new user.");
+    console.log("Successfully added a new user");
   } catch (error) {
     throw new Error(
       `There was a problem creating a new document. Error: ${error}`
@@ -40,23 +39,17 @@ export async function POST(req: Request) {
 // GET OPERATION
 
 export async function GET() {
-
-  await connectToDB()
+  await connectToDB();
   try {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
 
-    // todo: find a way to import the username from the form to here and use it as the parameter to find account from the database.
-
-
-    const toFind = {}
+    const toFind = {};
 
     const toGet = await collection.find(toFind).toArray();
-    console.log("Here is the list of what I found from your database:");
-    console.log(toGet);
+    console.log("List of the documents will be found through PostMan");
 
     return new NextResponse(JSON.stringify(toGet));
-
   } catch (error) {
     throw new Error(
       `There was a problem getting the information from the database. Error: ${error}`

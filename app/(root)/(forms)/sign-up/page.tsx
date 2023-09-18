@@ -24,7 +24,16 @@ interface Inputs {
     confirmPw: string;
 }
 
-
+// DATA FROM THE SERVER
+async function getData() {
+    const res = await fetch("api/users", {
+        method: "GET"
+    })
+    if (!res.ok) {
+        throw new Error("There was a problem getting information form the API")
+    }
+    return res.json()
+}
 
 // * main function here...
 export default function SignUp() {
@@ -135,18 +144,6 @@ export default function SignUp() {
         const email_acc = data.email
         const created_on = `${creationDate}`
 
-        // DATA FROM THE SERVER
-        async function getData() {
-            const res = await fetch("api/users", {
-                method: "GET"
-            })
-            if (!res.ok) {
-                throw new Error("There was a problem getting information form the API")
-            }
-            return res.json()
-        }
-
-
         const check_existing_acc = async () => {
             const data_from_DB = await getData()
             console.log(data_from_DB.length)
@@ -167,7 +164,7 @@ export default function SignUp() {
                         })
                     })
                 }, 1000);
-                console.log("Successfully created a new account.")
+                console.log("Successfully added a new user")
 
             } else if (data_from_DB.length > 0) {
 
@@ -206,7 +203,7 @@ export default function SignUp() {
                             })
                         })
                     }, 1000);
-                    console.log("Successfully created a new account.")
+                    console.log("Successfully added a new user")
                 }
             } else {
                 alert("An error occurred. Please refresh the page and try again.")
