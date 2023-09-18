@@ -146,11 +146,37 @@ export default function SignUp() {
 
         const check_existing_acc = async () => {
             const data_from_DB = await getData()
+            
             console.log(data_from_DB.length)
 
             if (data_from_DB.length === 0) {
                 // this will work for a fresh database with zero document.
-                setTimeout(async () => {
+                
+
+                const res = await fetch("api/users", {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        password,
+                        confirmed,
+                        user_name,
+                        email_acc,
+                        created_on
+                    })
+                })
+                console.log("Successfully added a new user")
+
+            } else if (data_from_DB.length > 0) {
+
+                const user_input = `${user_name}`;
+
+                const userInfo_Document = data_from_DB.find((obj: { username: any; }) => obj.username === user_input)
+
+                console.log(userInfo_Document)
+
+                if (userInfo_Document === undefined) {
                     const res = await fetch("api/users", {
                         method: "POST",
                         headers: {
@@ -164,33 +190,6 @@ export default function SignUp() {
                             created_on
                         })
                     })
-                }, 1000);
-                console.log("Successfully added a new user")
-
-            } else if (data_from_DB.length > 0) {
-
-                const user_input = `${user_name}`;
-
-                const userInfo_Document = data_from_DB.find((obj: { username: any; }) => obj.username === user_input)
-
-                console.log(userInfo_Document)
-
-                if (userInfo_Document === undefined) {
-                    setTimeout(async () => {
-                        const res = await fetch("api/users", {
-                            method: "POST",
-                            headers: {
-                                "Content-type": "application/json"
-                            },
-                            body: JSON.stringify({
-                                password,
-                                confirmed,
-                                user_name,
-                                email_acc,
-                                created_on
-                            })
-                        })
-                    }, 1000);
                     console.log("Successfully added a new user")
 
                 } else {
@@ -205,7 +204,7 @@ export default function SignUp() {
                     console.log(user_name)
                     console.log(email_acc)
 
-                    if (user_name === "username_DB" || email_acc === "email_DB") {
+                    if (user_name === username_DB || email_acc === email_DB) {
                         alert("You already have an account. Try signing in.")
                         router.push('/sign-in', { scroll: false })
                     } else {
