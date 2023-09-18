@@ -149,6 +149,7 @@ export default function SignUp() {
             console.log(data_from_DB.length)
 
             if (data_from_DB.length === 0) {
+                // this will work for a fresh database with zero document.
                 setTimeout(async () => {
                     const res = await fetch("api/users", {
                         method: "POST",
@@ -168,26 +169,13 @@ export default function SignUp() {
 
             } else if (data_from_DB.length > 0) {
 
-                const user_input = user_name;
+                const user_input = `${user_name}`;
 
-                const usernameDB = data_from_DB.find((obj: { username: any; }) => obj.username === user_input)
+                const userInfo_Document = data_from_DB.find((obj: { username: any; }) => obj.username === user_input)
 
-                const extracted_username = usernameDB["username"]
-                const username_DB = extracted_username
-                const email_DB = data_from_DB[0].email
+                console.log(userInfo_Document)
 
-                // value form the database
-                console.log(username_DB)
-                console.log(email_DB)
-
-                // value from the form
-                console.log(user_name)
-                console.log(email_acc)
-
-                if (user_name === username_DB || email_acc === email_DB) {
-                    alert("You already have an account. Try signing in.")
-                    router.push('/sign-in', { scroll: false })
-                } else {
+                if (userInfo_Document === undefined) {
                     setTimeout(async () => {
                         const res = await fetch("api/users", {
                             method: "POST",
@@ -204,9 +192,26 @@ export default function SignUp() {
                         })
                     }, 1000);
                     console.log("Successfully added a new user")
+
+                } else {
+                    const username_DB = userInfo_Document["username"]
+                    const email_DB = userInfo_Document["email"]
+
+                    //  value from the database 
+                    console.log(username_DB)
+                    console.log(email_DB)
+
+                    // value from the form
+                    console.log(user_name)
+                    console.log(email_acc)
+
+                    if (user_name === "username_DB" || email_acc === "email_DB") {
+                        alert("You already have an account. Try signing in.")
+                        router.push('/sign-in', { scroll: false })
+                    } else {
+                        alert("An error occurred. Please refresh the page and sign up again")
+                    }
                 }
-            } else {
-                alert("An error occurred. Please refresh the page and try again.")
             }
         }
 

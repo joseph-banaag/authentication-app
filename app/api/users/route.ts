@@ -48,7 +48,7 @@ export async function GET() {
 
     const toGet = await collection.find(toFind).toArray();
     console.log("List of the documents will be found through PostMan");
-
+    console.log(toGet.length);
     return new NextResponse(JSON.stringify(toGet));
   } catch (error) {
     throw new Error(
