@@ -10,7 +10,7 @@ import { motion } from "framer-motion"
 import { useRouter } from 'next/navigation'
 import { creationDate } from "@/components/lib/createdDate"
 import SocialAuth from "@/components/utils/SocialAuth";
-import { Db_userInformation_from_SU } from "@/app/(user)/userComponents/section/navbar/page";
+import { Db_userInformation_from_SU } from "@/app/(user)/dashboard/userDB_info/UserInfo_DB";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
