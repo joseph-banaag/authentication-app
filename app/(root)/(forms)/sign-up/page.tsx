@@ -37,7 +37,6 @@ export default function SignUp() {
     const [isVisible, setIsVisible] = React.useState(false);
     const [isConfirmed, setIsConfirmed] = React.useState(false);
     const [clicked, setClicked] = React.useState(false)
-    const [isMatched, setIsMatched] = React.useState(false)
     const router = useRouter()
 
     const toggleVisibility = () => setIsVisible(!isVisible);
@@ -102,6 +101,7 @@ export default function SignUp() {
         )
     }
 
+    // this is for the form submission 
     const OnSubmit: SubmitHandler<Inputs> = async (data: any, e) => {
         e?.preventDefault()
         const password = data.password
@@ -116,7 +116,7 @@ export default function SignUp() {
             console.log(data_from_DB.length)
 
             if (data_from_DB.length === 0) {
-                // this will work for a fresh database with zero document.
+                // this will handle a fresh new data with zero document
                 const res = await fetch("api/users", {
                     method: "POST",
                     headers: {
@@ -137,7 +137,7 @@ export default function SignUp() {
                 }, 2000)
 
             } else if (data_from_DB.length > 0) {
-                // this will work if there is an existing document and the account is new
+                // this will handle a database that has existing documents and create a new account
                 const user_input = `${user_name}`;
 
                 const userInfo_Document = data_from_DB.find((obj: { username: any; }) => obj.username === user_input)
@@ -176,6 +176,7 @@ export default function SignUp() {
         )
     }
 
+    // this has logic to route the user to sign in if the given account is existing in the database
     const handleButtonClick = async () => {
         const usernameInput = watch("username")
         const emailInput = watch("email")
@@ -209,6 +210,63 @@ export default function SignUp() {
             }
         }
     }
+
+    // this function will handed disabling submit button 
+    const enableSubmitButton = (): React.ReactNode => {
+        const password = watch("password")
+        const confirmed = watch("confirmPw")
+
+        const changeSubmitButton = () => {
+            if (password === "" || confirmed === "") {
+                return (
+                    <>
+                        <Button
+                            type="submit"
+                            onClick={handleButtonClick}
+                            isDisabled
+                            name="submit"
+                            className="bg-green-800 hover:bg-green-950 drop-shadow-lg transition-all duration-300"
+                        >
+                            <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
+                        </Button >
+                    </>
+                )
+            } else if (password === confirmed) {
+                return (
+                    <>
+                        <Button
+                            type="submit"
+                            onClick={handleButtonClick}
+                            name="submit"
+                            className="bg-green-800 hover:bg-green-950 drop-shadow-lg transition-all duration-300"
+                        >
+                            <p className="text-slate-300 hover:text-white font-semibold flex-1">{clicked ? <SubmitSpinner /> : "Continue"}</p>
+                        </Button >
+                    </>
+                )
+            } else {
+                return (
+                    <>
+                        <Button
+                            type="submit"
+                            onClick={handleButtonClick}
+                            isDisabled
+                            name="submit"
+                            className="bg-green-800 hover:bg-green-950 drop-shadow-lg transition-all duration-300"
+                        >
+                            <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
+                        </Button >
+                    </>
+                )
+            }
+        }
+        return (
+            <>
+                {changeSubmitButton()}
+            </>
+        )
+    }
+
 
     // todo: disable submit button until password is matched
 
@@ -370,14 +428,7 @@ export default function SignUp() {
                                     {validatePassword()}
                                 </div>
                                 <div className='flex flex-col gap-1 my-2'>
-                                    <Button
-                                        type="submit"
-                                        onClick={handleButtonClick}
-                                        name="submit"
-                                        className="bg-green-800 hover:bg-green-950 drop-shadow-lg transition-all duration-300"
-                                    >
-                                        <p className="text-slate-300 hover:text-white font-semibold flex-1">{clicked ? <SubmitSpinner /> : "Continue"}</p>
-                                    </Button >
+                                    {enableSubmitButton()}
                                 </div>
                             </form>
                         </Card>
