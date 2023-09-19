@@ -18,7 +18,6 @@ export function ThemeSwitcher() {
         } else {
             console.log("the button is clicked for dark mode")
             setTheme("dark")
-
         }
     }
 
@@ -26,9 +25,11 @@ export function ThemeSwitcher() {
         setMounted(true)
     }, [])
 
+    {mounted}
+
     return (
         <div className="flex justify-start items-center">
-            <SwitchToggle onChange={handleToggleSwitch} themes={theme} />
+            <SwitchToggle onChange={handleToggleSwitch}  />
         </div>
     )
 };

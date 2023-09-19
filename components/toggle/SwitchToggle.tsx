@@ -4,7 +4,7 @@ import { MoonIcon } from "../utils/icons/MoonIcon";
 import { SunIcon } from "../utils/icons/SunIcon";
 import { MySwitch } from "../utils/tailwindvariants/tv";
 
-export default function SwitchToggle({ onChange, themes }) {
+export default function SwitchToggle({ onChange }: { onChange: any }) {
   const [clicked, setClicked] = useState(false);
 
   const handleClick = () => {
