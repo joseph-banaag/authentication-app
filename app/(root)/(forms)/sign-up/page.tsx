@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation'
 import { creationDate } from "@/components/lib/createdDate"
 import SocialAuth from "@/components/utils/SocialAuth";
 import { Db_userInformation_from_SU } from "@/app/(user)/dashboard/userDB_info/UserInfo_DB";
+import SubmitSpinner from "@/components/lib/SubmitSpinner";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -35,7 +36,8 @@ async function getData() {
 export default function SignUp() {
     const [isVisible, setIsVisible] = React.useState(false);
     const [isConfirmed, setIsConfirmed] = React.useState(false);
-    const [clicked, setClicked] = React.useState("")
+    const [clicked, setClicked] = React.useState(false)
+    const [isMatched, setIsMatched] = React.useState(false)
     const router = useRouter()
 
     const toggleVisibility = () => setIsVisible(!isVisible);
@@ -61,7 +63,7 @@ export default function SignUp() {
     })
 
 
-
+    // this function is for the error message regarding password
     const validatePassword = (): React.ReactNode => {
         const password = watch("password")
         const confirmed = watch("confirmPw")
@@ -82,7 +84,7 @@ export default function SignUp() {
             } else if (password === confirmed) {
                 return (
                     <>
-                        <p className="animate-pulse text-xs text-green-400 hidden">Matched!</p>
+                        <p className="hidden">Password matched!</p>
                     </>
                 )
             } else {
@@ -115,7 +117,6 @@ export default function SignUp() {
 
             if (data_from_DB.length === 0) {
                 // this will work for a fresh database with zero document.
-
                 const res = await fetch("api/users", {
                     method: "POST",
                     headers: {
@@ -131,6 +132,10 @@ export default function SignUp() {
                 })
                 console.log("Successfully added a new user")
 
+                setTimeout(() => {
+                    router.push('/dashboard')
+                }, 2000)
+
             } else if (data_from_DB.length > 0) {
                 // this will work if there is an existing document and the account is new
                 const user_input = `${user_name}`;
@@ -140,6 +145,7 @@ export default function SignUp() {
                 console.log(userInfo_Document)
 
                 if (userInfo_Document === undefined) {
+
                     const res = await fetch("api/users", {
                         method: "POST",
                         headers: {
@@ -162,23 +168,13 @@ export default function SignUp() {
             }
         }
 
-        const beforeSubmit = () => {
-            if (password !== confirmed) {
-                alert("Please check your password!")
-            } else {
-                console.log("Password matched!")
-            }
-        }
-
         return (
             <>
-                {beforeSubmit()}
                 {check_existing_acc()}
                 {Db_userInformation_from_SU(user_name)}
             </>
         )
     }
-
 
     const handleButtonClick = async () => {
         const usernameInput = watch("username")
@@ -188,14 +184,15 @@ export default function SignUp() {
         console.log(data_from_DB)
 
         const DB_docs = data_from_DB.find((obj: { username: any; }) => obj.username === usernameInput)
-        console.log(DB_docs)
 
+        console.log(DB_docs)
 
         if (DB_docs === undefined) {
             console.log("Creating new account...")
             // if undefined a new account will be created. See handleSubmit.
-            const newClick = "A new user!"
+            const newClick = !clicked
             setClicked(newClick)
+
         } else {
             const db_username = DB_docs.username
             const db_email = DB_docs.email
@@ -213,9 +210,7 @@ export default function SignUp() {
         }
     }
 
-    console.log(clicked)
-
-
+    // todo: disable submit button until password is matched
 
     return (
         <>
@@ -381,7 +376,7 @@ export default function SignUp() {
                                         name="submit"
                                         className="bg-green-800 hover:bg-green-950 drop-shadow-lg transition-all duration-300"
                                     >
-                                        <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
+                                        <p className="text-slate-300 hover:text-white font-semibold flex-1">{clicked ? <SubmitSpinner /> : "Continue"}</p>
                                     </Button >
                                 </div>
                             </form>
