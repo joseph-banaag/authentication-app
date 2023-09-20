@@ -52,7 +52,6 @@ export async function GET() {
 
     const toGet = await collection.find(toFind).toArray();
     console.log("Here\'s the list of what I found from the database:");
-    console.log(toGet);
 
     const user_DB_info = toGet.map((users: any) => users)
     const get_username_DB = user_DB_info

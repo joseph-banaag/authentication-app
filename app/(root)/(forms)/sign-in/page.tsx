@@ -70,11 +70,11 @@ export default function SignIn() {
             const passwordInput = password
             const usernameInput = user_name
 
-            console.log(data_from_DB.length)
+            // console.log(data_from_DB.length)
 
             const userInfo_DB = data_from_DB.find((obj: { username: any; }) => obj.username === usernameInput)
 
-            console.log(userInfo_DB)
+            // console.log(userInfo_DB)
 
             if (userInfo_DB === undefined) {
                 alert("Please sign up to create an account")
@@ -87,14 +87,6 @@ export default function SignIn() {
 
                 const db_username = userInfo_DB.username
                 const db_password = userInfo_DB.password
-                // this is from the database
-                console.log(db_password)
-                console.log(db_username)
-
-
-                // this is from the form
-                console.log(passwordInput)
-                console.log(usernameInput)
 
                 if (usernameInput === db_username && passwordInput === db_password) {
                     console.log("Account exist")

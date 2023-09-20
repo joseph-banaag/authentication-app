@@ -12,6 +12,8 @@ async function getData() {
   return res.json()
 }
 
+// todo: display user information. this is for the navbar
+
 // SIGN UP ENTRY POINT
 export const Db_userInformation_from_SU = (user_name: any) => {
   console.log(user_name)

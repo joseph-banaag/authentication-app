@@ -42,9 +42,6 @@ export default function SignUp() {
     const toggleVisibility = () => setIsVisible(!isVisible);
     const toggleIsConfirmed = () => setIsConfirmed(!isConfirmed)
 
-
-    // console.log(userDetailsDB.username)
-
     const {
         register,
         handleSubmit,
@@ -113,7 +110,7 @@ export default function SignUp() {
         const check_existing_acc = async () => {
             const data_from_DB = await getData()
 
-            console.log(data_from_DB.length)
+            // console.log(data_from_DB.length)
 
             if (data_from_DB.length === 0) {
                 // this will handle a fresh new data with zero document
@@ -142,7 +139,7 @@ export default function SignUp() {
 
                 const userInfo_Document = data_from_DB.find((obj: { username: any; }) => obj.username === user_input)
 
-                console.log(userInfo_Document)
+                // console.log(userInfo_Document)
 
                 if (userInfo_Document === undefined) {
 
@@ -182,11 +179,11 @@ export default function SignUp() {
         const emailInput = watch("email")
 
         const data_from_DB = await getData()
-        console.log(data_from_DB)
+        // console.log(data_from_DB)
 
         const DB_docs = data_from_DB.find((obj: { username: any; }) => obj.username === usernameInput)
 
-        console.log(DB_docs)
+        // console.log(DB_docs)
 
         if (DB_docs === undefined) {
             console.log("Creating new account...")
@@ -197,12 +194,6 @@ export default function SignUp() {
         } else {
             const db_username = DB_docs.username
             const db_email = DB_docs.email
-
-            console.log(db_username)
-            console.log(db_email)
-
-            console.log(usernameInput)
-            console.log(emailInput)
 
             if (usernameInput === db_username || emailInput === db_email) {
                 alert("You already have an account. Please sign in")
@@ -296,9 +287,6 @@ export default function SignUp() {
             </>
         )
     }
-
-
-    // todo: generate a function that will enable the submit button once the pattern for password has met
 
     return (
         <>

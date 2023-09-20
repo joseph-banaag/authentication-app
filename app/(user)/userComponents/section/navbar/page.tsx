@@ -90,7 +90,7 @@ export default function Topbar() {
 
                 <NavbarItem className="flex justify-start items-center">
                     <Dropdown
-                        backdrop="blur" // todo: will check if this issue persists once deployed. (on blur, responsive view is not working)
+                        // backdrop="blur" //TODO: uncomment this for deployment
                         showArrow
                         classNames={{
                             base: "p-0 border-small border-divider bg-background",
