@@ -103,6 +103,9 @@ export default function SignIn() {
                     setTimeout(() => {
                         router.push("/dashboard")
                     }, 1000);
+                } else {
+                    alert("An error occurred! Username and password do not match.")
+                    location.reload()
                 }
             }
         }
