@@ -268,7 +268,7 @@ export default function SignUp() {
     }
 
 
-    // todo: generate a function that will enable the submit button once the patter for password has been met
+    // todo: generate a function that will enable the submit button once the pattern for password has met
 
     return (
         <>

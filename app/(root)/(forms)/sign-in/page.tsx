@@ -11,6 +11,7 @@ import PasswordReset from "@/components/(..)modals/PasswordReset";
 import { useRouter } from 'next/navigation'
 import SocialAuth from "@/components/utils/SocialAuth";
 import { Db_userInformation_from_SI } from "@/app/(user)/dashboard/userDB_info/UserInfo_DB";
+import SubmitSpinner from "@/components/lib/SubmitSpinner";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -32,32 +33,22 @@ async function getData() {
 // * main function here...
 export default function SignIn() {
     const [isVisible, setIsVisible] = React.useState(false);
-    const [isDark, setIsDark] = React.useState(true);
-    const [isMatched, setIsMatched] = React.useState(false)
+    const [clicked, setClicked] = React.useState(false)
     const router = useRouter()
 
 
     // todo: this will change the button bg to green if the password is matched form the db
-    const MatchedPw = () => {
-        return (
-            setIsMatched(!isMatched)
-        )
-    }
 
-    const changeIcon = () => {
-        return (
-            setIsDark(!isDark)
-        )
-    }
+    // todo: CREATE A FUNCTION FOR SPINNER LIKE WHAT I HAVE IN SIGN UP BUT DO NOT COPY IT. CREATE NEW ONE!!!!!!
+
+
     const toggleVisibility = () => setIsVisible(!isVisible);
 
 
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
-        getValues
     } = useForm<Inputs>({
         defaultValues: {
             username: "",
@@ -87,6 +78,8 @@ export default function SignIn() {
 
             if (userInfo_DB === undefined) {
                 alert("Please sign up to create an account")
+                setClicked(!clicked)
+
                 setTimeout(() => {
                     router.push("/sign-up")
                 }, 1000);
@@ -105,6 +98,8 @@ export default function SignIn() {
 
                 if (usernameInput === db_username && passwordInput === db_password) {
                     console.log("Account exist")
+                    setClicked(!clicked)
+
                     setTimeout(() => {
                         router.push("/dashboard")
                     }, 1000);
@@ -164,9 +159,7 @@ export default function SignIn() {
                                         required: true
                                     })}
                                 />
-                                {/* 
-                                    //todo: generate a function that will check if the user username input is matched with the user information from db
-                                */}
+
                                 <p className="animate-pulse text-xs text-red-400">
                                     {errors.username?.types?.required && <span>Username is required</span>}
                                 </p>
@@ -206,27 +199,19 @@ export default function SignIn() {
                                     })}
                                     name="password"
                                 />
-                                {/* 
-                                    //todo: generate a function that will check if the user password input is matched with the user information from db
-                                */}
+
                                 <p className="animate-pulse text-xs text-red-400">
                                     {errors.password?.types?.required && <span>Password is required</span>}
                                 </p>
                             </div>
                             <div className='flex flex-col gap-1 my-3'>
-                                {/* 
-                                    // Todo: create a matching function that will change the button to green if the password from the user is matched with the user information form db
-                                    // todo: if the sign in is successful the page will redirect the user to a different layout specifically for logged in users where navbar is also different
-                                    
-                                */}
-                                {isMatched
-                                    ? <Button type="submit" name="submit" className="bg-green-800 hover:bg-green-600 drop-shadow-lg transition-all duration-300">
-                                        <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
-                                    </Button>
-                                    : <Button type="submit" name="submit" className="bg-violet-800 hover:bg-violet-950 drop-shadow-lg transition-all duration-300">
-                                        <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
-                                    </Button>}
-
+                                <Button type="submit" name="submit" className="bg-green-800 hover:bg-green-600 drop-shadow-lg transition-all duration-300">
+                                    <p className="text-slate-300 hover:text-white font-semibold flex-1">
+                                        {clicked
+                                            ? <SubmitSpinner />
+                                            : "Continue"
+                                        }</p>
+                                </Button>
                             </div>
                         </form>
                     </Card>
