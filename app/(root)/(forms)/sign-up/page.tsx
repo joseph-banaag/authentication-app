@@ -216,6 +216,9 @@ export default function SignUp() {
         const password = watch("password")
         const confirmed = watch("confirmPw")
 
+        const pattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+
         const changeSubmitButton = () => {
             if (password === "" || confirmed === "") {
                 return (
@@ -232,16 +235,43 @@ export default function SignUp() {
                     </>
                 )
             } else if (password === confirmed) {
+
+                const checkPattern = pattern.test(password)
+
+                const checkPassReq = () => {
+                    if (checkPattern === true) {
+                        return (
+                            <>
+                                <Button
+                                    type="submit"
+                                    onClick={handleButtonClick}
+                                    name="submit"
+                                    className="bg-green-800 hover:bg-green-950 drop-shadow-lg transition-all duration-300"
+                                >
+                                    <p className="text-slate-300 hover:text-white font-semibold flex-1">{clicked ? <SubmitSpinner /> : "Continue"}</p>
+                                </Button >
+                            </>
+                        )
+                    } else {
+                        alert("Password does not meet the requirements!")
+                        return (
+                            <>
+                                <Button
+                                    type="submit"
+                                    onClick={handleButtonClick}
+                                    isDisabled
+                                    name="submit"
+                                    className="bg-green-800 hover:bg-green-950 drop-shadow-lg transition-all duration-300"
+                                >
+                                    <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
+                                </Button >
+                            </>
+                        )
+                    }
+                }
                 return (
                     <>
-                        <Button
-                            type="submit"
-                            onClick={handleButtonClick}
-                            name="submit"
-                            className="bg-green-800 hover:bg-green-950 drop-shadow-lg transition-all duration-300"
-                        >
-                            <p className="text-slate-300 hover:text-white font-semibold flex-1">{clicked ? <SubmitSpinner /> : "Continue"}</p>
-                        </Button >
+                        {checkPassReq()}
                     </>
                 )
             } else {
@@ -381,14 +411,14 @@ export default function SignUp() {
                                         type={isVisible ? "text" : "password"}
                                         className="w-full flex-1"
                                         {...register("password", {
-                                            pattern: /(?=\w{5,18})(?=\D*\d)/,
+                                            pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/,
                                             required: true
                                         })}
                                         name="password"
                                     />
                                     <p className="animate-pulse text-xs text-red-400">
                                         {errors.password?.types?.required && <span>Password is required</span>}
-                                        {errors.password?.types?.pattern && <span>Password must be at least 5 characters and one number</span>}
+                                        {errors.password?.types?.pattern && <span className="max-w-[30em] flex flex-wrap flex-shrink">Minimum password of 8 and must have an uppercase, lowercase, number, and special character.</span>}
                                     </p>
                                 </div>
 
@@ -420,7 +450,7 @@ export default function SignUp() {
                                         type={isConfirmed ? "text" : "password"}
                                         className="w-full flex-1"
                                         {...register("confirmPw", {
-                                            pattern: /(?=\w{5,18})(?=\D*\d)/,
+                                            pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/,
                                             required: true
                                         })}
                                         name="confirmPw"
