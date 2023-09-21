@@ -12,6 +12,8 @@ import { creationDate } from "@/components/lib/createdDate"
 import SocialAuth from "@/components/utils/SocialAuth";
 import { Db_userInformation_from_SU } from "@/app/(user)/dashboard/userDB_info/UserInfo_DB";
 import SubmitSpinner from "@/components/lib/SubmitSpinner";
+import toast, { Toaster, ToastBar } from 'react-hot-toast';
+
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -112,7 +114,6 @@ export default function SignUp() {
         const check_existing_acc = async () => {
             const data_from_DB = await getData()
 
-            // console.log(data_from_DB.length)
 
             if (data_from_DB.length === 0) {
                 // this will handle a fresh new data with zero document
@@ -130,7 +131,10 @@ export default function SignUp() {
                         created_on
                     })
                 })
-                console.log("Successfully added a new user")
+
+                toast.success('Successfully created a new account!', {
+                    className: "bg-[#47159d], text-white"
+                })
 
                 setTimeout(() => {
                     router.push('/dashboard')
@@ -142,7 +146,6 @@ export default function SignUp() {
 
                 const userInfo_Document = data_from_DB.find((obj: { username: any; }) => obj.username === user_input)
 
-                // console.log(userInfo_Document)
 
                 if (userInfo_Document === undefined) {
 
@@ -159,23 +162,26 @@ export default function SignUp() {
                             created_on
                         })
                     })
-                    console.log("Successfully added a new user")
+                    toast.success('Successfully created a new account!', {
+                        className: "bg-[#47159d], text-white"
+                    })
 
                     setTimeout(() => {
                         router.push('/dashboard')
                     }, 2000)
-                } 
+                }
             }
         }
 
         return (
             <>
+
+                {setClicked(!clicked)}
                 {check_existing_acc()}
                 {Db_userInformation_from_SU()}
             </>
         )
     }
-    
 
     // this has logic to route the user to sign in if the given account is existing in the database
     const handleButtonClick = async () => {
@@ -183,18 +189,11 @@ export default function SignUp() {
         const emailInput = watch("email")
 
         const data_from_DB = await getData()
-        // console.log(data_from_DB)
 
         const DB_docs = data_from_DB.find((obj: { username: any; }) => obj.username === usernameInput)
 
-        // console.log(DB_docs)
-
         if (DB_docs === undefined) {
-            console.log("Creating new account...")
-            // if undefined a new account will be created. See handleSubmit.
-            const newClick = !clicked
-            setClicked(newClick)
-
+            setClicked(!clicked)
         } else {
             const db_username = DB_docs.username
             const db_email = DB_docs.email
@@ -224,7 +223,7 @@ export default function SignUp() {
                             onClick={handleButtonClick}
                             isDisabled
                             name="submit"
-                            className="bg-green-800 hover:bg-green-950 drop-shadow-lg transition-all duration-300"
+                            className="bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300"
                         >
                             <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
                         </Button >
@@ -242,7 +241,7 @@ export default function SignUp() {
                                     type="submit"
                                     onClick={handleButtonClick}
                                     name="submit"
-                                    className="bg-green-800 hover:bg-green-950 drop-shadow-lg transition-all duration-300"
+                                    className="bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300"
                                 >
                                     <p className="text-slate-300 hover:text-white font-semibold flex-1">{clicked ? <SubmitSpinner /> : "Continue"}</p>
                                 </Button >
@@ -258,7 +257,7 @@ export default function SignUp() {
                                     onClick={handleButtonClick}
                                     isDisabled
                                     name="submit"
-                                    className="bg-green-800 hover:bg-green-950 drop-shadow-lg transition-all duration-300"
+                                    className="bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300"
                                 >
                                     <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
                                 </Button >
@@ -279,7 +278,7 @@ export default function SignUp() {
                             onClick={handleButtonClick}
                             isDisabled
                             name="submit"
-                            className="bg-green-800 hover:bg-green-950 drop-shadow-lg transition-all duration-300"
+                            className="bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300"
                         >
                             <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
                         </Button >
@@ -296,6 +295,21 @@ export default function SignUp() {
 
     return (
         <>
+            <Toaster
+                position="top-center"
+                reverseOrder={false}>
+
+                {(t) => (
+                    <ToastBar
+                        toast={t}
+                        style={{
+                            ...t.style,
+                            animation: t.visible ? 'custom-enter 1s ease' : 'custom-exit 1s ease',
+                        }}
+                    />
+                )}
+            </Toaster>
+
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

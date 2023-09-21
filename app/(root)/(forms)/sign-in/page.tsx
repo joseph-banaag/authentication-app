@@ -14,6 +14,8 @@ import { Db_userInformation_from_SI } from "@/app/(user)/dashboard/userDB_info/U
 import SubmitSpinner from "@/components/lib/SubmitSpinner";
 import NoAccount from "@/components/utils/warnings/alerts/NoAccount";
 import { client } from "@/app/lib/mongodb";
+import WrongPassword from "@/components/utils/warnings/alerts/WrongPassword";
+import toast, { Toaster, ToastBar } from 'react-hot-toast';
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -37,6 +39,7 @@ export default function SignIn() {
     const [isVisible, setIsVisible] = React.useState(false);
     const [clicked, setClicked] = React.useState(false)
     const [noAccount, setNoAccount] = React.useState(false)
+    const [wrongPass, setWrongPass] = React.useState(false)
     const router = useRouter()
 
 
@@ -75,10 +78,13 @@ export default function SignIn() {
 
             const userInfo_DB = data_from_DB.find((obj: { username: any; }) => obj.username === usernameInput)
 
+
             if (userInfo_DB === undefined) {
                 // no existing account
                 setClicked(!clicked)
-                setNoAccount(!noAccount)
+                setTimeout(() => {
+                    setNoAccount(!noAccount)
+                }, 3000);
 
             } else {
                 // with an existing account
@@ -86,27 +92,29 @@ export default function SignIn() {
                 const db_email = userInfo_DB.email
                 const db_password = userInfo_DB.password
 
-                console.log(db_username)
-                console.log(db_email)
 
 
                 if (usernameInput === db_username && passwordInput === db_password) {
-                    console.log("Account exist")
+                    toast.success('Signed in successfully!', {
+                        className: "bg-[#47159d], text-white"
+                    })
                     setClicked(!clicked)
 
                     setTimeout(() => {
                         router.push("/dashboard")
                     }, 1000);
                 } else {
-                    alert("An error occurred! Username and password do not match.")
-                    // TODO: add a modal for this message and then add the location.reload to the close button
-                    location.reload()
+                    setTimeout(() => {
+                        setWrongPass(!wrongPass)
+                    }, 2000);
                 }
             }
         }
 
         return (
+
             <>
+                {setClicked(!clicked)}
                 {check_user_info()}
                 {Db_userInformation_from_SI()}
             </>
@@ -115,16 +123,34 @@ export default function SignIn() {
 
     return (
         <>
+            <Toaster
+                position="top-center"
+                reverseOrder={false}>
+                
+                {(t) => (
+                    <ToastBar
+                        toast={t}
+                        style={{
+                            ...t.style,
+                            animation: t.visible ? 'custom-enter 1s ease' : 'custom-exit 1s ease',
+                        }}
+                    />
+                )}
+            </Toaster>
+
+            <div className={`${noAccount ? "block" : "hidden"} fixed z-50 w-full h-[100%] backdrop-blur-md`}>
+                <NoAccount />
+            </div>
+
+            <div className={`${wrongPass ? "block" : "hidden"} fixed z-50 w-full h-[100%] backdrop-blur-md`}>
+                <WrongPassword />
+            </div>
+
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ ease: "backIn", duration: 0.25 }}
             >
-                <div className={`${noAccount ? "block" : "hidden"} fixed z-50 w-full h-[100%] backdrop-blur-md`}>
-                    <NoAccount />
-                </div>
-
-
                 <div className=" w-full min-h-screen flex flex-1 flex-col justify-center items-center">
                     <div className="sm:p-5 p-3">
                         <Card className="flex flex-col flex-1 rounded-2xl p-5 gap-5 mb-24 shadow-2xl max-w-[640px] bg-background/60 dark:bg-default-100/50" id="signOptions">
@@ -208,7 +234,7 @@ export default function SignIn() {
                                     </p>
                                 </div>
                                 <div className='flex flex-col gap-1 my-3'>
-                                    <Button type="submit" name="submit" className="bg-green-800 hover:bg-green-950 drop-shadow-lg transition-all duration-300">
+                                    <Button type="submit" name="submit" className="bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300">
                                         <p className="text-slate-300 hover:text-white font-semibold flex-1">
                                             {clicked
                                                 ? <SubmitSpinner />

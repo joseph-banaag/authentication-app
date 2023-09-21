@@ -29,11 +29,11 @@ export default function PasswordReset() {
     mode: "all",
   });
 
-  console.log(watch("email"));
+  // console.log(watch("email"));
 
   const onSubmit = (data: any) => {
     const email = data.email;
-    console.log(email);
+    // console.log(email);
 
     alert(
       `We've sent the password reset request to: ${email}. Please check your Inbox, Junk, or Spam folder.`
