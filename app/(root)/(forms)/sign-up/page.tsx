@@ -13,6 +13,7 @@ import SocialAuth from "@/components/utils/SocialAuth";
 import { Db_userInformation_from_SU } from "@/app/(user)/dashboard/userDB_info/UserInfo_DB";
 import SubmitSpinner from "@/components/lib/SubmitSpinner";
 import toast, { Toaster, ToastBar } from 'react-hot-toast';
+import AccountExist from "@/components/utils/warnings/alerts/AccountExist";
 
 
 // this object is for type declaration of useForm() function specifically for register method.
@@ -39,6 +40,7 @@ export default function SignUp() {
     const [isVisible, setIsVisible] = React.useState(false);
     const [isConfirmed, setIsConfirmed] = React.useState(false);
     const [clicked, setClicked] = React.useState(false)
+    const [exist, setExist] = React.useState(false)
 
 
     const router = useRouter()
@@ -90,7 +92,7 @@ export default function SignUp() {
             } else {
                 return (
                     <>
-                        <p className="animate-pulse text-xs text-red-400">Password does not matched!</p>
+                        <p className="animate-pulse text-xs text-red-400">Passwords do not matched!</p>
                     </>
                 )
             }
@@ -132,9 +134,7 @@ export default function SignUp() {
                     })
                 })
 
-                toast.success('Successfully created a new account!', {
-                    className: "bg-[#47159d], text-white"
-                })
+                toast.success('Successfully created a new account!')
 
                 setTimeout(() => {
                     router.push('/dashboard')
@@ -162,9 +162,7 @@ export default function SignUp() {
                             created_on
                         })
                     })
-                    toast.success('Successfully created a new account!', {
-                        className: "bg-[#47159d], text-white"
-                    })
+                    toast.success('Successfully created a new account!')
 
                     setTimeout(() => {
                         router.push('/dashboard')
@@ -199,9 +197,9 @@ export default function SignUp() {
             const db_email = DB_docs.email
 
             if (usernameInput === db_username || emailInput === db_email) {
-                alert("You already have an account. Please sign in")
-                // TODO: create a modal for this message and then add the router to the close button of the modal
-                router.push('/sign-in', { scroll: false })
+                // alert for an existing account
+                setExist(!exist)
+
             }
         }
     }
@@ -248,8 +246,7 @@ export default function SignUp() {
                             </>
                         )
                     } else {
-                        alert("Password does not meet the requirements!")
-                        // TODO: create a modal for this message and then add location.reload to refresh the page.
+                        toast.error("Password does not meet the requirements!")
                         return (
                             <>
                                 <Button
@@ -297,8 +294,10 @@ export default function SignUp() {
         <>
             <Toaster
                 position="top-center"
-                reverseOrder={false}>
-
+                reverseOrder={false}
+                toastOptions={{
+                    className: 'bg-[#47159d] p-5 border-1 text-white rounded-2xl',
+                }}>
                 {(t) => (
                     <ToastBar
                         toast={t}
@@ -309,6 +308,10 @@ export default function SignUp() {
                     />
                 )}
             </Toaster>
+
+            <div className={`${exist ? "block" : "hidden"} fixed z-50 w-full h-[100%] backdrop-blur-md`}>
+                <AccountExist />
+            </div>
 
             <motion.div
                 initial={{ opacity: 0 }}

@@ -258,6 +258,10 @@ export default function Topbar() {
                         <div className="sm:block hidden">
                             <p className="text-sm font-semibold flex justify-start items-center dark:text-foreground/80">{userInfo.username}</p>
                             <p className="text-xs font-thin dark:text-foreground/60">{userInfo.email}</p>
+                            {/* 
+                            
+                            // TODO: display the username and email address of the currently logged in user here...
+                            */}
                             <UserInfo_DB />
                         </div>
                     </Tooltip>
