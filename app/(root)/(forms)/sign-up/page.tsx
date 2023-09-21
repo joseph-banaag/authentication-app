@@ -37,6 +37,8 @@ export default function SignUp() {
     const [isVisible, setIsVisible] = React.useState(false);
     const [isConfirmed, setIsConfirmed] = React.useState(false);
     const [clicked, setClicked] = React.useState(false)
+
+
     const router = useRouter()
 
     const toggleVisibility = () => setIsVisible(!isVisible);
@@ -114,6 +116,7 @@ export default function SignUp() {
 
             if (data_from_DB.length === 0) {
                 // this will handle a fresh new data with zero document
+
                 const res = await fetch("api/users", {
                     method: "POST",
                     headers: {
@@ -161,17 +164,18 @@ export default function SignUp() {
                     setTimeout(() => {
                         router.push('/dashboard')
                     }, 2000)
-                }
+                } 
             }
         }
 
         return (
             <>
                 {check_existing_acc()}
-                {Db_userInformation_from_SU(user_name)}
+                {Db_userInformation_from_SU()}
             </>
         )
     }
+    
 
     // this has logic to route the user to sign in if the given account is existing in the database
     const handleButtonClick = async () => {

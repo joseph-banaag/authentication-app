@@ -84,9 +84,14 @@ export default function SignIn() {
                     router.push("/sign-up")
                 }, 1000);
             } else {
-
                 const db_username = userInfo_DB.username
+                const db_email = userInfo_DB.email
                 const db_password = userInfo_DB.password
+
+                console.log(db_username)
+                console.log(db_email)
+
+                
 
                 if (usernameInput === db_username && passwordInput === db_password) {
                     console.log("Account exist")
@@ -105,7 +110,7 @@ export default function SignIn() {
         return (
             <>
                 {check_user_info()}
-                {Db_userInformation_from_SI(user_name)}
+                {Db_userInformation_from_SI()}
 
             </>
         )

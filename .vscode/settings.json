@@ -21,7 +21,7 @@
   ],
   "typescript.tsdk": "node_modules/typescript/lib",
   "editor.fontLigatures": true,
-  "editor.fontFamily": "JetBrains Mono",
+  "editor.fontFamily": "Input Mono",
   "editor.fontSize": 13,
   "editor.fontVariations": false,
   "terminal.integrated.fontFamily": "MesloLGS NF",

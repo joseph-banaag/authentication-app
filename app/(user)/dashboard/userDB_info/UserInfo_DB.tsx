@@ -1,34 +1,22 @@
 "use client"
+import { AnyARecord } from "dns"
 import React from 'react'
 
-// DATA FROM THE SERVER
-async function getData() {
-  const res = await fetch("api/users", {
-    method: "GET"
-  })
-  if (!res.ok) {
-    throw new Error("There was a problem getting information form the API")
-  }
-  return res.json()
-}
 
 // todo: display user information. this is for the navbar
 
 // SIGN UP ENTRY POINT
-export const Db_userInformation_from_SU = (user_name: any) => {
-  console.log(user_name)
+export const Db_userInformation_from_SU = () => {
+  console.log()
+
 }
 
 // SIGN IN ENTRY POINT
-export const Db_userInformation_from_SI = (user_name: any) => {
-  console.log(user_name)
+export const Db_userInformation_from_SI = () => {
+  console.log()
+  console.log()
 }
 
-const getUserDetails_fromDB = async () => {
-  const dataDB = await getData()
-
-  console.log(dataDB)
-}
 
 
 export default function UserInfo_DB() {
