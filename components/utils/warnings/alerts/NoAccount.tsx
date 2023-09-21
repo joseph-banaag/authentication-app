@@ -41,7 +41,7 @@ export default function NoAccount() {
                     >
                         <CardBody>
                             <p className="sm:text-medium text-xs sm:font-normal font-small drop-shadow-md tracking-wide">
-                                Please sign up to create an account...
+                                Username and password does not exist. Please sign up to create an account...
                             </p>
                         </CardBody>
                         <CardFooter className="flex flex-row-reverse">
