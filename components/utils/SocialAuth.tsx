@@ -18,7 +18,7 @@ export default function SocialAuth() {
                     width={100}
                     height={100}
                     style={{
-                        objectFit: "cover",
+                        objectFit: "contain",
                         width: "30%",
                         height: "30%"
                     }}
@@ -43,10 +43,12 @@ export default function SocialAuth() {
                             width={24}
                             height={24}
                             style={{
-                                objectFit: "cover"
+                                objectFit: "contain",
+                                width: "24px",
+                                height: "24px"
 
                             }}
-                            className="drop-shadow-lg"
+                            className="drop-shadow-md"
                         />
                     </MyButton>
                 </div>
@@ -65,7 +67,7 @@ export default function SocialAuth() {
                     <MyButton
                         variant="flat"
                         size="md"
-                        className="hover:scale-105 hover:bg-secondary/10 transition-all duration-300  shadow-xl flex-1">
+                        className="hover:scale-105 hover:bg-secondary/10 transition-all duration-300 shadow-xl flex-1">
                         <Image
                             priority
                             src={iconsSrc.google}
@@ -73,9 +75,11 @@ export default function SocialAuth() {
                             width={24}
                             height={24}
                             style={{
-                                objectFit: "cover"
+                                objectFit: "contain",
+                                width: "24px",
+                                height: "24px"
                             }}
-                            className="drop-shadow-lg "
+                            className="drop-shadow-md"
                         />
                     </MyButton>
                 </div>

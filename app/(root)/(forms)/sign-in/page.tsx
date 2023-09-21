@@ -77,8 +77,9 @@ export default function SignIn() {
 
             if (userInfo_DB === undefined) {
                 // no existing account
-                setNoAccount(!noAccount)
                 setClicked(!clicked)
+                setNoAccount(!noAccount)
+
             } else {
                 // with an existing account
                 const db_username = userInfo_DB.username
@@ -119,9 +120,10 @@ export default function SignIn() {
                 animate={{ opacity: 1 }}
                 transition={{ ease: "backIn", duration: 0.25 }}
             >
-                <div className={`${noAccount ? "block" : "hidden"} `}>
+                <div className={`${noAccount ? "block" : "hidden"} fixed z-50 w-full h-[100%] backdrop-blur-md`}>
                     <NoAccount />
                 </div>
+
 
                 <div className=" w-full min-h-screen flex flex-1 flex-col justify-center items-center">
                     <div className="sm:p-5 p-3">

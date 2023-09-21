@@ -30,8 +30,8 @@ export default function NoAccount() {
                     <Card
                         className="
                     border-none 
-                    bg-background/80 
-                    dark:bg-default-100/90 
+                    bg-background/70 
+                    dark:bg-[#1e0943]/90
                     max-w-[620px]
                     mx-auto
                     flex-1

@@ -11,11 +11,11 @@ export default function GithubLight() {
             width={24}
             height={24}
             style={{
-                objectFit: "cover",
+                objectFit: "contain",
                 width: "24px",
                 height: "24px"
             }}
-            className="drop-shadow-lg "
+            className="drop-shadow-md"
         />
     );
 }
