@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation'
 import SocialAuth from "@/components/utils/SocialAuth";
 import { Db_userInformation_from_SI } from "@/app/(user)/dashboard/userDB_info/UserInfo_DB";
 import SubmitSpinner from "@/components/lib/SubmitSpinner";
+import SignInErrors from "@/components/(..)modals/alerts/SignInErrors";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -78,11 +79,18 @@ export default function SignIn() {
 
             if (userInfo_DB === undefined) {
                 alert("Please sign up to create an account")
+                // TODO: create a modal for the error message and add the router to the close button
                 setClicked(!clicked)
 
                 setTimeout(() => {
                     router.push("/sign-up")
                 }, 1000);
+                
+                return (
+                    <>
+                        < SignInErrors />
+                    </>
+                )
             } else {
                 const db_username = userInfo_DB.username
                 const db_email = userInfo_DB.email
@@ -91,7 +99,6 @@ export default function SignIn() {
                 console.log(db_username)
                 console.log(db_email)
 
-                
 
                 if (usernameInput === db_username && passwordInput === db_password) {
                     console.log("Account exist")
@@ -102,6 +109,7 @@ export default function SignIn() {
                     }, 1000);
                 } else {
                     alert("An error occurred! Username and password do not match.")
+                    // TODO: add a modal for this message and then add the location.reload to the close button
                     location.reload()
                 }
             }
@@ -111,7 +119,6 @@ export default function SignIn() {
             <>
                 {check_user_info()}
                 {Db_userInformation_from_SI()}
-
             </>
         )
     }

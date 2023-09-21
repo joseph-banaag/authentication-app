@@ -12,7 +12,6 @@ import {
 import { MailIcon } from "@/components/utils/icons/MailIcon";
 import { useForm } from "react-hook-form";
 import FNYW from "../utils/warnings/functionNotWorking";
-import ProgressStatus from "../utils/warnings/ProgressStatus";
 
 export default function PasswordReset() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -133,7 +132,7 @@ export default function PasswordReset() {
                   >
                     <p className="text-white font-semibold">Reset</p>
                     {/* 
-                    // todo: create a function that will change the word Reset to <ProgressStatus /> when requesting for password reset
+                    // todo: create a function that will change the word Reset to <SubmitSpinner /> when requesting for password reset
                     */}
                   </Button>
                   {/* 

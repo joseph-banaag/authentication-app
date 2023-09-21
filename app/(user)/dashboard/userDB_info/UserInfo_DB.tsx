@@ -1,5 +1,4 @@
 "use client"
-import { AnyARecord } from "dns"
 import React from 'react'
 
 
@@ -16,7 +15,6 @@ export const Db_userInformation_from_SI = () => {
   console.log()
   console.log()
 }
-
 
 
 export default function UserInfo_DB() {

@@ -201,6 +201,7 @@ export default function SignUp() {
 
             if (usernameInput === db_username || emailInput === db_email) {
                 alert("You already have an account. Please sign in")
+                // TODO: create a modal for this message and then add the router to the close button of the modal
                 router.push('/sign-in', { scroll: false })
             }
         }
@@ -249,6 +250,7 @@ export default function SignUp() {
                         )
                     } else {
                         alert("Password does not meet the requirements!")
+                        // TODO: create a modal for this message and then add location.reload to refresh the page.
                         return (
                             <>
                                 <Button
