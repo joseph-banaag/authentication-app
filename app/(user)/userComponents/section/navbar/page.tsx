@@ -23,6 +23,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { SunIcon } from "@/components/utils/icons/SunIcon";
 import { MoonIcon } from "@/components/utils/icons/MoonIcon";
+import UserInfo_DB from "@/app/(user)/dashboard/userDB_info/UserInfo_DB";
 
 
 const userInfo = {
@@ -253,13 +254,7 @@ export default function Topbar() {
                         placement="bottom-end"
                     >
                         <div className="sm:block hidden">
-                            <p className="text-sm font-semibold flex justify-start items-center dark:text-foreground/80">{userInfo.username}</p>
-                            <p className="text-xs font-thin dark:text-foreground/60">{userInfo.email}</p>
-                            {/* 
-                            
-                            // TODO: display the username and email address of the currently logged in user here...
-                            */}
-                            {/* <UserInfo_DB /> */}
+                            <UserInfo_DB />
                         </div>
                     </Tooltip>
                 </NavbarItem>

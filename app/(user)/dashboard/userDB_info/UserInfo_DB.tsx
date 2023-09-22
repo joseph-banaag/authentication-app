@@ -1,20 +1,27 @@
 "use client"
 import React from 'react'
+import { useContext } from "react"
+import UserContext from "@/app/(user)/context/InfoContext"
 
 export default function UserInfo_DB() {
-  return (
-    <>
+    const {use_email, use_username} = useContext(UserContext)
 
-      {/* 
-      // todo: below is what I need to display
-      <p className="text-sm font-semibold flex justify-start items-center dark:text-foreground/80">{userInfo.username}</p>
+    console.log(use_email)
+    console.log(use_username)
 
-      <p className="text-xs font-thin dark:text-foreground/60">{userInfo.email}</p>
-      
-      */}
+    const userDetails = () => {
+        return (
+            <>
+                <p className="text-sm font-semibold flex justify-start items-center dark:text-foreground/80">{use_username}</p>
 
-      <h1 className="text-xs font-thin dark:text-green-700">Hello from userInfo_DB</h1>
-    </>
-  )
+                <p className="text-xs font-thin dark:text-foreground/60">{use_email}</p>
+            </>
+        )
+    }
+    return (
+        <>
+            {userDetails()}
+        </>
+    )
 }
 

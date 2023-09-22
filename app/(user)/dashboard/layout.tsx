@@ -3,6 +3,8 @@ import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import Topbar from "@/app/(user)/userComponents/section/navbar/page";
 import { Providers } from "./providers";
+import { UserProvider } from "@/app/(user)/context/InfoContext";
+
 
 
 
@@ -26,10 +28,12 @@ export default function RootLayout({
     return (
         <html suppressHydrationWarning lang="en" className="dark">
             <body className={monserrat.className}>
-                <Providers>
-                    <Topbar />
-                    {children}
-                </Providers>
+                <UserProvider>
+                    <Providers>
+                        <Topbar />
+                        {children}
+                    </Providers>
+                </UserProvider>
             </body>
         </html>
     )
