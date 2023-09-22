@@ -9,6 +9,7 @@ The following technologies were used in this project:
   - ReactJS
   - NextUI
   - React Hook Form
+  - React Hot Toast
 
 Currently implementing:
   - mongodb
@@ -16,6 +17,7 @@ Currently implementing:
 
 ## Getting Started
 
+$ npm i
 First, run the development server:
 
 ```bash
