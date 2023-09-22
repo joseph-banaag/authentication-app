@@ -23,9 +23,6 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { SunIcon } from "@/components/utils/icons/SunIcon";
 import { MoonIcon } from "@/components/utils/icons/MoonIcon";
-import UserInfo_DB from "@/app/(user)/dashboard/userDB_info/UserInfo_DB";
-
-
 
 
 const userInfo = {
@@ -90,7 +87,7 @@ export default function Topbar() {
 
                 <NavbarItem className="flex justify-start items-center">
                     <Dropdown
-                        // backdrop="blur" //TODO: uncomment this for deployment
+                        backdrop="blur" //TODO: uncomment this for deployment
                         showArrow
                         classNames={{
                             base: "p-0 border-small border-divider bg-background",
@@ -262,7 +259,7 @@ export default function Topbar() {
                             
                             // TODO: display the username and email address of the currently logged in user here...
                             */}
-                            <UserInfo_DB />
+                            {/* <UserInfo_DB /> */}
                         </div>
                     </Tooltip>
                 </NavbarItem>

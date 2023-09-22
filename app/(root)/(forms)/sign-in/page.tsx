@@ -10,10 +10,8 @@ import { motion } from "framer-motion"
 import PasswordReset from "@/components/(..)modals/PasswordReset";
 import { useRouter } from 'next/navigation'
 import SocialAuth from "@/components/utils/SocialAuth";
-import { Db_userInformation_from_SI } from "@/app/(user)/dashboard/userDB_info/UserInfo_DB";
 import SubmitSpinner from "@/components/lib/SubmitSpinner";
 import NoAccount from "@/components/utils/warnings/alerts/NoAccount";
-import { client } from "@/app/lib/mongodb";
 import WrongPassword from "@/components/utils/warnings/alerts/WrongPassword";
 import toast, { Toaster, ToastBar } from 'react-hot-toast';
 
@@ -116,7 +114,6 @@ export default function SignIn() {
             <>
                 {setClicked(!clicked)}
                 {check_user_info()}
-                {Db_userInformation_from_SI()}
             </>
         )
     }

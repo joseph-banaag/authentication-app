@@ -10,7 +10,6 @@ import { motion } from "framer-motion"
 import { useRouter } from 'next/navigation'
 import { creationDate } from "@/components/lib/createdDate"
 import SocialAuth from "@/components/utils/SocialAuth";
-import { Db_userInformation_from_SU } from "@/app/(user)/dashboard/userDB_info/UserInfo_DB";
 import SubmitSpinner from "@/components/lib/SubmitSpinner";
 import toast, { Toaster, ToastBar } from 'react-hot-toast';
 import AccountExist from "@/components/utils/warnings/alerts/AccountExist";
@@ -176,7 +175,6 @@ export default function SignUp() {
 
                 {setClicked(!clicked)}
                 {check_existing_acc()}
-                {Db_userInformation_from_SU()}
             </>
         )
     }
