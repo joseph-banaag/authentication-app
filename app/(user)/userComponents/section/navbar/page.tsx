@@ -23,20 +23,21 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { SunIcon } from "@/components/utils/icons/SunIcon";
 import { MoonIcon } from "@/components/utils/icons/MoonIcon";
-import UserInfo_DB from "@/app/(user)/dashboard/userDB_info/UserInfo_DB";
+import { useContext } from "react"
+import UserContext from "@/app/(user)/context/InfoContext"
 
-
-const userInfo = {
-    username: "joshua_23",
-    email: "email@email.com",
-    image: "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
-}
 
 export default function Topbar() {
     const pathname = usePathname()
     const router = useRouter()
     const [mounted, setMounted] = useState(false)
     const { theme, setTheme } = useTheme()
+    const { 
+        use_email, 
+        use_username, 
+        use_image 
+    } = useContext(UserContext)
+
 
     useEffect(() => {
         setMounted(true)
@@ -44,7 +45,9 @@ export default function Topbar() {
 
     if (!mounted) return null
 
-    const username = userInfo.username
+
+
+    const username = use_username
     if (username === "" || username === undefined || username === null) {
         router.push('/')
     }
@@ -102,7 +105,7 @@ export default function Topbar() {
                                 isBordered
                                 isFocusable
                                 size="md"
-                                src={userInfo.image}
+                                src={use_image}
                                 className="cursor-pointer"
                             />
                         </DropdownTrigger>
@@ -126,12 +129,12 @@ export default function Topbar() {
                                             isBordered
                                             isFocusable
                                             size="md"
-                                            src={userInfo.image}
+                                            src={use_image}
                                         />
 
                                         <div className="px-1.5">
-                                            <p className="text-sm font-bold">{userInfo.username}</p>
-                                            <p className="text-xs font-thin dark:text-foreground/60">{userInfo.email}</p>
+                                            <p className="text-sm font-bold">{use_username}</p>
+                                            <p className="text-xs font-thin dark:text-foreground/60">{use_email}</p>
                                         </div>
                                     </div>
 
@@ -254,7 +257,9 @@ export default function Topbar() {
                         placement="bottom-end"
                     >
                         <div className="sm:block hidden">
-                            <UserInfo_DB />
+                            <p className="text-sm font-semibold flex justify-start items-center dark:text-foreground/80">{use_username}</p>
+
+                            <p className="text-xs font-thin dark:text-foreground/60">{use_email}</p>
                         </div>
                     </Tooltip>
                 </NavbarItem>

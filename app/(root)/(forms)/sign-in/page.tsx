@@ -14,6 +14,7 @@ import SubmitSpinner from "@/components/lib/SubmitSpinner";
 import NoAccount from "@/components/utils/warnings/alerts/NoAccount";
 import WrongPassword from "@/components/utils/warnings/alerts/WrongPassword";
 import toast, { Toaster, ToastBar } from 'react-hot-toast';
+import { username_fromInput } from "@/app/(user)/context/InfoContext";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -21,7 +22,7 @@ interface Inputs {
     password: string;
 }
 
-// DATA FROM THE SERVER
+// DATA FROM THE DATABASE
 async function getData() {
     const res = await fetch("api/users", {
         method: "GET"
@@ -40,14 +41,7 @@ export default function SignIn() {
     const [wrongPass, setWrongPass] = React.useState(false)
     const router = useRouter()
 
-
-    // todo: this will change the button bg to green if the password is matched form the db
-
-    // todo: CREATE A FUNCTION FOR SPINNER LIKE WHAT I HAVE IN SIGN UP BUT DO NOT COPY IT. CREATE NEW ONE!!!!!!
-
-
     const toggleVisibility = () => setIsVisible(!isVisible);
-
 
     const {
         register,
@@ -61,6 +55,7 @@ export default function SignIn() {
         criteriaMode: "all",
         mode: "all"
     });
+
 
     const OnSubmit: SubmitHandler<Inputs> = (data: any, e) => {
         const password = data.password
@@ -114,6 +109,7 @@ export default function SignIn() {
             <>
                 {setClicked(!clicked)}
                 {check_user_info()}
+                {username_fromInput(user_name)}
             </>
         )
     }
@@ -257,4 +253,3 @@ export default function SignIn() {
         </>
     )
 }
-

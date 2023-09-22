@@ -28,12 +28,12 @@ export default function RootLayout({
     return (
         <html suppressHydrationWarning lang="en" className="dark">
             <body className={monserrat.className}>
-                <UserProvider>
-                    <Providers>
-                        <Topbar />
-                        {children}
-                    </Providers>
-                </UserProvider>
+                    <UserProvider>
+                        <Providers>
+                            <Topbar />
+                            {children}
+                        </Providers>
+                    </UserProvider>
             </body>
         </html>
     )

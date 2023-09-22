@@ -23,7 +23,7 @@ interface Inputs {
     confirmPw: string;
 }
 
-// DATA FROM THE SERVER
+// DATA FROM THE DATABASE
 async function getData() {
     const res = await fetch("api/users", {
         method: "GET"
