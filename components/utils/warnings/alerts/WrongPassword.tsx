@@ -29,7 +29,7 @@ export default function WrongPassword() {
                         className="
                     border-none 
                     bg-background/70 
-                    dark:bg-[#47159d]/50
+                    dark:bg-[#fb542b]/50
                     max-w-[620px]
                     mx-auto
                     flex-1
@@ -38,16 +38,17 @@ export default function WrongPassword() {
                         shadow="sm"
                     >
                         <CardBody>
-                            <p className="sm:text-medium text-xs sm:font-normal font-small drop-shadow-md tracking-wide">
+                            <p className="sm:text-medium text-xs sm:font-normal font-small drop-shadow-lg tracking-wide">
                                 Username and password do not match. Please try again...
                             </p>
                         </CardBody>
                         <CardFooter className="flex flex-row-reverse">
                             <Button
                                 onClick={handleClick}
-                                color="success"
+                                color="secondary"
                                 size="sm"
-                                className="bg-green-800 hover:bg-green-900 shadow-xl transition-all duration-300"
+                                variant="bordered"
+                                className="bg-violet-800 hover:bg-violet-900 shadow-xl transition-all duration-300"
                             >
                                 <p className="text-slate-300 hover:text-white font-semibold flex-1">
                                     {clicked

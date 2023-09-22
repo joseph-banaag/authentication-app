@@ -7,13 +7,6 @@ interface UserContextType {
     image: string
 }
 
-export const username_fromInput = (user_name: string) => {
-    console.log(user_name)
-    return (
-        <></>
-    )
-}
-
 const UserContext = createContext<UserContextType | any>("")
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
@@ -26,9 +19,6 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     const use_username = username
     const use_email = email
     const use_image = image
-
-    console.log(use_username)
-    console.log(use_email)
 
     return (
         <UserContext.Provider value={{

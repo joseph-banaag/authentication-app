@@ -163,6 +163,7 @@ export default function SignUp() {
                     })
                     toast.success('Successfully created a new account!')
 
+
                     setTimeout(() => {
                         router.push('/dashboard')
                     }, 2000)
@@ -244,7 +245,7 @@ export default function SignUp() {
                             </>
                         )
                     } else {
-                        toast.error("Password does not meet the requirements!")
+                        toast.error("Passwords does not meet the requirements. Check for errors.")
                         return (
                             <>
                                 <Button

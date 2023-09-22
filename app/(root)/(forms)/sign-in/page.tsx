@@ -14,7 +14,7 @@ import SubmitSpinner from "@/components/lib/SubmitSpinner";
 import NoAccount from "@/components/utils/warnings/alerts/NoAccount";
 import WrongPassword from "@/components/utils/warnings/alerts/WrongPassword";
 import toast, { Toaster, ToastBar } from 'react-hot-toast';
-import { username_fromInput } from "@/app/(user)/context/InfoContext";
+import UserDetails from "@/app/(user)/userComponents/UserDetails";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -109,7 +109,7 @@ export default function SignIn() {
             <>
                 {setClicked(!clicked)}
                 {check_user_info()}
-                {username_fromInput(user_name)}
+                {UserDetails(user_name)}
             </>
         )
     }
