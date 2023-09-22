@@ -69,7 +69,7 @@ export default function SignUp() {
         const password = watch("password")
         const confirmed = watch("confirmPw")
 
-        const determineMatched = (): any => {
+        const determineMatched = () => {
             if (password === "" && confirmed === "") {
                 return (
                     <>
@@ -104,7 +104,7 @@ export default function SignUp() {
     }
 
     // this is for the form submission 
-    const OnSubmit: SubmitHandler<Inputs> = async (data: any, e) => {
+    const OnSubmit: SubmitHandler<Inputs> = async (data, e) => {
         e?.preventDefault()
         const password = data.password
         const confirmed = data.confirmPw
@@ -143,7 +143,7 @@ export default function SignUp() {
                 // this will handle a database that has existing documents and create a new account
                 const user_input = `${user_name}`;
 
-                const userInfo_Document = data_from_DB.find((obj: { username: any; }) => obj.username === user_input)
+                const userInfo_Document = data_from_DB.find((obj: { username: string; }) => obj.username === user_input)
 
 
                 if (userInfo_Document === undefined) {
@@ -187,7 +187,7 @@ export default function SignUp() {
 
         const data_from_DB = await getData()
 
-        const DB_docs = data_from_DB.find((obj: { username: any; }) => obj.username === usernameInput)
+        const DB_docs = data_from_DB.find((obj: { username: string; }) => obj.username === usernameInput)
 
         if (DB_docs === undefined) {
             setClicked(!clicked)

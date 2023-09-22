@@ -30,8 +30,11 @@ export default function PasswordReset() {
   });
 
   // console.log(watch("email"));
+  interface Props {
+    email: string
+  }
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data : Props) => {
     const email = data.email;
     // console.log(email);
 

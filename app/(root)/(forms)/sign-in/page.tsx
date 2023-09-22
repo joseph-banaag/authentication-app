@@ -56,7 +56,7 @@ export default function SignIn() {
     });
 
 
-    const OnSubmit: SubmitHandler<Inputs> = (data: any, e) => {
+    const OnSubmit: SubmitHandler<Inputs> = (data, e) => {
         const password = data.password
         const user_name = data.username
         e?.preventDefault()
@@ -68,7 +68,7 @@ export default function SignIn() {
             const passwordInput = password
             const usernameInput = user_name
 
-            const userInfo_DB = data_from_DB.find((obj: { username: any; }) => obj.username === usernameInput)
+            const userInfo_DB = data_from_DB.find((obj: { username: string; }) => obj.username === usernameInput)
 
 
             if (userInfo_DB === undefined) {

@@ -53,7 +53,7 @@ export async function GET() {
     const toGet = await collection.find(toFind).toArray();
     console.log("Here\'s the list of what I found from the database:");
 
-    const user_DB_info = toGet.map((users: any) => users)
+    const user_DB_info = toGet.map((users) => users)
     const get_username_DB = user_DB_info
     return new NextResponse(JSON.stringify(get_username_DB));
 
