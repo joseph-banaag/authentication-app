@@ -115,7 +115,8 @@ export default function SignUp() {
         const check_existing_acc = async () => {
             const data_from_DB = await getData()
 
-
+            console.log(data_from_DB)
+            
             if (data_from_DB.length === 0) {
                 // this will handle a fresh new data with zero document
 

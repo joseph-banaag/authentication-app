@@ -14,6 +14,7 @@ import SubmitSpinner from "@/components/lib/SubmitSpinner";
 import NoAccount from "@/components/utils/warnings/alerts/NoAccount";
 import WrongPassword from "@/components/utils/warnings/alerts/WrongPassword";
 import toast, { Toaster, ToastBar } from 'react-hot-toast';
+import UserStateSetValue from "@/app/(user)/context/UserStateSetValue";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -68,6 +69,8 @@ export default function SignIn() {
             const passwordInput = password
             const usernameInput = user_name
 
+            console.log(data_from_DB)
+
             const userInfo_DB = data_from_DB.find((obj: { username: string; }) => obj.username === usernameInput)
 
 
@@ -93,12 +96,10 @@ export default function SignIn() {
                     setClicked(!clicked)
 
                     setTimeout(() => {
-                        router.push("/dashboard")
+                        // router.push("/dashboard")
                     }, 1000);
                 } else {
-                    setTimeout(() => {
-                        setWrongPass(!wrongPass)
-                    }, 2000);
+                    setWrongPass(!wrongPass)
                 }
             }
         }
@@ -108,6 +109,7 @@ export default function SignIn() {
             <>
                 {setClicked(!clicked)}
                 {check_user_info()}
+                {UserStateSetValue(user_name)}
             </>
         )
     }
@@ -129,13 +131,20 @@ export default function SignIn() {
                 )}
             </Toaster>
 
-            <div className={`${noAccount ? "block" : "hidden"} fixed z-50 w-full h-[100%] backdrop-blur-md`}>
+            <div className={`${noAccount
+                ? "block"
+                : "hidden"} 
+                fixed z-50 w-full h-[100%] backdrop-blur-md`}>
                 <NoAccount />
             </div>
 
-            <div className={`${wrongPass ? "block" : "hidden"} fixed z-50 w-full h-[100%] backdrop-blur-md`}>
+            <div className={`${wrongPass
+                ? "block"
+                : "hidden"} 
+                fixed z-50 w-full h-[100%] backdrop-blur-md`}>
                 <WrongPassword />
             </div>
+
 
             <motion.div
                 initial={{ opacity: 0 }}

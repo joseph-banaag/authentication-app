@@ -50,7 +50,7 @@ export default function WrongPassword() {
                                 variant="bordered"
                                 className="bg-violet-800 hover:bg-violet-900 shadow-xl transition-all duration-300"
                             >
-                                <p className="text-slate-300 hover:text-white font-semibold flex-1">
+                                <p className="text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center">
                                     {clicked
                                         ? <SubmitSpinner />
                                         : "OK"}

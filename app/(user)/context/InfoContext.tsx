@@ -1,35 +1,45 @@
 "use client"
-import { createContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 export interface UserContextType {
-    use_username: string | null
-    use_email: string | null
-    use_image: string | null
+    username: string
+    setUsername: (username: string) => void
+    email: string
+    setEmail: (email: string) => void
+    image: string
+    setImage: (image: string) => void
 
 }
-const UserContext = createContext<UserContextType | any | null>(null)
+const UserContext = createContext<UserContextType | undefined>(undefined)
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
+    const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
+    const [image, setImage] = useState("")
 
     // TODO: get the value of the username and email from the database
-    const username = "joshua_23"
-    const email = "josephrbanaag51@gmail.com"
-    const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
-
-    const use_username = username
-    const use_email = email
-    const use_image = image
+    // const username = "joshua_23"
+    // const email = "josephrbanaag51@gmail.com"
+    // const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 
     return (
         <UserContext.Provider value={{
-            use_username,
-            use_email,
-            use_image
+            username, setUsername,
+            email, setEmail,
+            image, setImage
         }}>
             {children}
         </UserContext.Provider>
     )
 
+}
+
+export const UserData = () => {
+    const context = useContext(UserContext)
+    if (context === undefined) {
+        throw new Error("UserData must be within a UserProvider")
+    }
+    return context
 }
 
 export default UserContext;
