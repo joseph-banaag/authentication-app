@@ -5,7 +5,7 @@ import Topbar from "@/components/sections/navbar/page"
 import Footer from "@/components/sections/footer/page"
 import * as React from "react";
 import { NextUIProvider } from "@nextui-org/react";
-import { Providers } from "./providers"
+import { ThemeProvider } from "./providers"
 
 const monserrat = Montserrat({
   display: "swap",
@@ -27,11 +27,13 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en" className="dark" >
       <body className={monserrat.className}>
-        <Providers>
-          <Topbar />
-          {children}
-          <Footer />
-        </Providers>
+        <React.StrictMode>
+          <ThemeProvider>
+            <Topbar />
+            {children}
+            <Footer />
+          </ThemeProvider>
+        </React.StrictMode>
       </body>
     </html>
   )
