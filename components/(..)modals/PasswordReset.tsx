@@ -11,7 +11,7 @@ import {
 } from "@nextui-org/react";
 import { MailIcon } from "@/components/utils/icons/MailIcon";
 import { useForm } from "react-hook-form";
-import FNYW from "../utils/warnings/functionNotWorking";
+import FuncNotWorking from "../utils/warnings/functionNotWorking";
 
 export default function PasswordReset() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -74,7 +74,7 @@ export default function PasswordReset() {
                   <h1 className="sm:text-4xl text-xl sm:font-medium font-normal mb-1">
                     Recover your account
                   </h1>
-                  <FNYW />
+                  <FuncNotWorking />
                 </ModalHeader>
                 <ModalBody>
                   <p className="sm:text-medium text-xs sm:font-normal font-small">

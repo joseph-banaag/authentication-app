@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function FNYW() {
+export default function FuncNotWorking() {
   return (
     <>
           <p className="text-xs font-normal text-red-500">
