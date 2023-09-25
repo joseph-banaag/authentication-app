@@ -95,7 +95,7 @@ export default function SignIn() {
                     setClicked(!clicked)
 
                     setTimeout(() => {
-                        // router.push("/dashboard")
+                        router.push("/dashboard")
                     }, 1000);
                 } else {
                     setWrongPass(!wrongPass)
@@ -233,7 +233,7 @@ export default function SignIn() {
                                 </div>
                                 <div className='flex flex-col gap-1 my-3'>
                                     <Button type="submit" name="submit" className="bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300">
-                                        <p className="text-slate-300 hover:text-white font-semibold flex-1">
+                                        <p className="text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center">
                                             {clicked
                                                 ? <SubmitSpinner />
                                                 : "Continue"
