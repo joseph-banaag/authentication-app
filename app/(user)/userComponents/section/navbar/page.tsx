@@ -67,9 +67,9 @@ export default function Topbar() {
     return (
         <Navbar
             shouldHideOnScroll
-            className="flex justify-around flex-wrap p-3 drop-shadow-2xl">
+            className="flex justify-around flex-wrap sm:p-3 p-0 drop-shadow-2xl">
             <NavbarContent justify="start" className="flex justify-start">
-                <NavbarBrand className="flex-1 w-full justify-start sm:hidden flex">
+                <NavbarBrand className="flex-1 w-full justify-start flex gap-2">
                     <Link href="/dashboard">
                         <Image
                             priority
@@ -80,15 +80,14 @@ export default function Topbar() {
                             style={{
                                 objectFit: "cover",
                             }}
-                            className="!max-w-[5em] !max-h-[5em] border-2 rounded-md border-default-200/80"
+                            className="sm:w-10 w-7 sm:h-10 h-7 border-2 rounded-md border-default-200/80"
                         />
                     </Link>
-                </NavbarBrand>
-                <NavbarBrand className="flex flex-1 justify-start">
+
                     <Link
                         href="/dashboard"
                     >
-                        <p className="lg:text-2xl md:text-xl sm:text-lg font-bold nav_name cursor-pointer sm:flex hidden drop-shadow-lg !text-[#FB542B]">Authentication</p>
+                        <p className="lg:text-xl sm:text-lg font-bold nav_name cursor-pointer sm:flex hidden drop-shadow-lg !text-[#FB542B]">Authentication</p>
                     </Link>
                 </NavbarBrand>
             </NavbarContent>
@@ -110,9 +109,8 @@ export default function Topbar() {
                                 radius="full"
                                 isBordered
                                 isFocusable
-                                size="md"
                                 src={image}
-                                className="cursor-pointer"
+                                className="cursor-pointer sm:w-8 w-6 sm:h-8 h-6"
                             />
                         </DropdownTrigger>
                         <DropdownMenu
@@ -128,14 +126,14 @@ export default function Topbar() {
                                     className="!bg-default"
                                     isReadOnly
                                 >
-                                    <div className="flex justify-center items-start p-1">
+                                    <div className="flex justify-center items-center p-1">
                                         <Avatar
                                             showFallback
                                             radius="full"
                                             isBordered
                                             isFocusable
-                                            size="md"
                                             src={image}
+                                            className="sm:w-8 w-6 sm:h-8 h-6"
                                         />
 
                                         <div className="px-1.5 ms-2">
