@@ -2,8 +2,8 @@
 import React from "react";
 import { Card, CardBody, Button, CardFooter } from "@nextui-org/react";
 import { motion } from "framer-motion"
-import SubmitSpinner from "@/components/lib/SubmitSpinner";
 import { useRouter } from 'next/navigation'
+import AlertSpinner from "@/components/lib/AlertSpinner";
 
 
 export default function AccountExist() {
@@ -54,7 +54,7 @@ export default function AccountExist() {
                             >
                                 <p className="text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center">
                                     {clicked
-                                        ? <SubmitSpinner />
+                                        ? <AlertSpinner />
                                         : "OK"}
                                 </p>
                             </Button>

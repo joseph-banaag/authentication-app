@@ -2,7 +2,7 @@
 import React from "react";
 import { Card, CardBody, Button, CardFooter } from "@nextui-org/react";
 import { motion } from "framer-motion"
-import SubmitSpinner from "@/components/lib/SubmitSpinner";
+import AlertSpinner from "@/components/lib/AlertSpinner";
 
 
 export default function WrongPassword() {
@@ -52,7 +52,7 @@ export default function WrongPassword() {
                             >
                                 <p className="text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center">
                                     {clicked
-                                        ? <SubmitSpinner />
+                                        ? <AlertSpinner />
                                         : "OK"}
                                 </p>
                             </Button>

@@ -23,6 +23,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { SunIcon } from "@/components/utils/icons/SunIcon";
 import { MoonIcon } from "@/components/utils/icons/MoonIcon";
+import { UserDataContext } from "@/app/context/UserContext";
 
 
 export default function Topbar() {
@@ -31,6 +32,17 @@ export default function Topbar() {
     const [mounted, setMounted] = useState(false)
     const { theme, setTheme } = useTheme()
 
+    const {
+        username,
+        email,
+        image
+    } = UserDataContext()
+
+
+    console.log(username)
+    console.log(email)
+    console.log(image)
+
 
     useEffect(() => {
         setMounted(true)
@@ -38,12 +50,12 @@ export default function Topbar() {
 
     if (!mounted) return null
 
-    const username = "joshua_23", email = "josephrbanaag51@gmail.com", image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
+    // const username = "joshua_23", email = "josephrbanaag51@gmail.com", image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 
 
     const userName = username
     if (userName.length === 0 || userName === undefined || userName === null) {
-        router.push('/')
+        // router.push('/')
     }
 
     const logo = {
@@ -85,7 +97,7 @@ export default function Topbar() {
 
                 <NavbarItem className="flex justify-start items-center">
                     <Dropdown
-                        backdrop="blur" //TODO: uncomment this for deployment
+                        // backdrop="blur" //TODO: uncomment this for deployment
                         showArrow
                         classNames={{
                             base: "p-0 border-small border-divider bg-background",
@@ -116,7 +128,7 @@ export default function Topbar() {
                                     className="!bg-default"
                                     isReadOnly
                                 >
-                                    <div className="flex gap-2 justify-center items-start p-1">
+                                    <div className="flex justify-center items-start p-1">
                                         <Avatar
                                             showFallback
                                             radius="full"
@@ -126,9 +138,11 @@ export default function Topbar() {
                                             src={image}
                                         />
 
-                                        <div className="px-1.5">
-                                            <p className="text-sm font-bold">{username}</p>
-                                            <p className="text-xs font-thin dark:text-foreground/60">{email}</p>
+                                        <div className="px-1.5 ms-2">
+                                            <p className="text-sm font-bold">{username}joshua_23</p>
+                                            <div className="max-w-[100px] overflow-hidden">
+                                                <p className="text-xs font-thin dark:text-foreground/60 animate-scrolling-text">{email}josephrbanaag51@gmail.com</p>
+                                            </div>
                                         </div>
                                     </div>
 

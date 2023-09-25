@@ -16,7 +16,6 @@ import ComponentChanger from "@/components/lib/ComponentChanger";
 import { ThemeSwitcher } from "@/components/toggle/ThemeSwitcher";
 
 
-
 export default function Topbar() {
     const pathname = usePathname()
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
