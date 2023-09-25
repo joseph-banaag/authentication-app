@@ -1,12 +1,14 @@
 import React from 'react'
 import { UserDataContext } from '@/app/context/UserContext'
 
-export default function UserContextValue() {
+export default function UserContextValue(user_name: string) {
     const {
         setUsername,
         setEmail,
         setImage
     } = UserDataContext()
+
+    console.log(user_name)
 
     setUsername("joshua_23")
     setEmail("josephrbanaag51@gmail.com")
