@@ -23,7 +23,6 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { SunIcon } from "@/components/utils/icons/SunIcon";
 import { MoonIcon } from "@/components/utils/icons/MoonIcon";
-import { UserData } from "@/app/(user)/context/InfoContext"
 
 
 export default function Topbar() {
@@ -31,16 +30,6 @@ export default function Topbar() {
     const router = useRouter()
     const [mounted, setMounted] = useState(false)
     const { theme, setTheme } = useTheme()
-    const {
-        username,
-        email,
-        image
-    } = UserData()
-
-
-    console.log(username)
-    console.log(email)
-    console.log(image)
 
 
     useEffect(() => {
@@ -49,8 +38,11 @@ export default function Topbar() {
 
     if (!mounted) return null
 
+    const username = "joshua_23", email = "josephrbanaag51@gmail.com", image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
+
+
     const userName = username
-    if (userName === "" || userName === undefined || userName === null) {
+    if (userName.length === 0 || userName === undefined || userName === null) {
         router.push('/')
     }
 

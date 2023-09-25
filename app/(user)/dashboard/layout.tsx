@@ -4,7 +4,6 @@ import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import Topbar from "@/app/(user)/userComponents/section/navbar/page";
 import { ThemeProvider } from "./providers";
-import { UserProvider } from "@/app/(user)/context/InfoContext";
 const monserrat = Montserrat({
       display: "swap",
       weight: "400",
@@ -26,12 +25,10 @@ export default function RootLayout({
             <html suppressHydrationWarning lang="en" className="dark">
                   <body className={monserrat.className}>
                         <React.StrictMode>
-                              <UserProvider>
-                                    <ThemeProvider>
-                                          <Topbar />
-                                          {children}
-                                    </ThemeProvider>
-                              </UserProvider>
+                              <ThemeProvider>
+                                    <Topbar />
+                                    {children}
+                              </ThemeProvider>
                         </React.StrictMode>
                   </body>
             </html>
