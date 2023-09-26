@@ -23,14 +23,13 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { SunIcon } from "@/components/utils/icons/SunIcon";
 import { MoonIcon } from "@/components/utils/icons/MoonIcon";
-import NoAccountFound from "@/components/utils/warnings/alerts/NoAccountFound";
 
 
 export default function Topbar() {
     const pathname = usePathname()
     const [mounted, setMounted] = useState(false)
     const { theme, setTheme } = useTheme()
-    const [noAccountFound, setNoAccountFound] = React.useState(false)
+    const router = useRouter()
 
     useEffect(() => {
         setMounted(true)
@@ -40,12 +39,10 @@ export default function Topbar() {
 
     const username = "", email = "josephrbanaag51@gmail.com", image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 
-
     if (!username) {
-        setTimeout(() => {
-            setNoAccountFound(!noAccountFound)
-        }, 2000)
-    };
+        alert("No user information found. Please sign in again...")
+        router.push("/sign-in")
+    }
 
     const logo = {
         src: "/assets/logo/user_logo.svg",
@@ -54,12 +51,6 @@ export default function Topbar() {
 
     return (
         <>
-            <div className={`${noAccountFound
-                ? "block"
-                : "hidden"} 
-                fixed z-50 w-full h-[100%] backdrop-blur-md`}>
-                <NoAccountFound />
-            </div>
             <Navbar
                 shouldHideOnScroll
                 className="flex justify-around flex-wrap sm:p-3 p-0 drop-shadow-2xl">
