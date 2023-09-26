@@ -40,7 +40,7 @@ export default function SignIn() {
     const [noAccount, setNoAccount] = React.useState(false)
     const [wrongPass, setWrongPass] = React.useState(false)
     const router = useRouter()
-    
+
     const toggleVisibility = () => setIsVisible(!isVisible);
 
     const {
@@ -69,7 +69,7 @@ export default function SignIn() {
             const passwordInput = password
             const usernameInput = user_name
 
-            console.log(data_from_DB)
+            // data_from_DB will get all the documents from the database and the .find() method will sort the information base from the username from the forms.
 
             const userInfo_DB = data_from_DB.find((obj: { username: string; }) => obj.username === usernameInput)
 
