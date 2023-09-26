@@ -17,10 +17,6 @@ export function UserContextProvider({ children }: { children: React.ReactNode })
     const [email, setEmail] = useState<string>("")
     const [image, setImage] = useState<string>("")
 
-    console.log(username)
-    console.log(email)
-    console.log(image)
-
     return (
         <UserContext.Provider value={{
             username, setUsername,
