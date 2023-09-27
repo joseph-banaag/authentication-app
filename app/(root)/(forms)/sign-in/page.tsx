@@ -15,7 +15,6 @@ import NoAccount from "@/components/utils/warnings/alerts/NoAccount";
 import WrongPassword from "@/components/utils/warnings/alerts/WrongPassword";
 import toast, { Toaster, ToastBar } from 'react-hot-toast';
 
-
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
     username: string;
@@ -231,7 +230,11 @@ export default function SignIn() {
                                     </p>
                                 </div>
                                 <div className='flex flex-col gap-1 my-3'>
-                                    <Button type="submit" name="submit" className="bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300">
+                                    <Button
+                                        type="submit"
+                                        name="submit"
+
+                                        className="bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300">
                                         <p className="text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center">
                                             {clicked
                                                 ? <SubmitSpinner />
