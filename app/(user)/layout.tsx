@@ -1,12 +1,10 @@
 import '@/app/globals.css'
+import * as React from "react";
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
-import Topbar from "@/components/sections/navbar/page"
-import Footer from "@/components/sections/footer/page"
-import * as React from "react";
-import { NextUIProvider } from "@nextui-org/react";
-import { ThemeProvider } from "./providers"
-import { UserContextProvider } from '@/app/context/UserContext'
+import Topbar from "@/app/(user)/userComponents/section/navbar/page";
+import { ThemeProvider } from "@/app/(user)/providers";
+import { UserContextProvider } from '@/app/context/UserContext';
 
 const monserrat = Montserrat({
   display: "swap",
@@ -26,14 +24,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html suppressHydrationWarning lang="en" className="dark" >
+    <html suppressHydrationWarning lang="en" className="dark">
       <body className={monserrat.className}>
         <React.StrictMode>
           <ThemeProvider>
             <UserContextProvider>
               <Topbar />
               {children}
-              <Footer />
             </UserContextProvider>
           </ThemeProvider>
         </React.StrictMode>

@@ -37,7 +37,7 @@ export default function Topbar() {
 
     if (!mounted) return null
 
-    const username = "", email = "josephrbanaag51@gmail.com", image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
+    const username = "username", email = "josephrbanaag51@gmail.com", image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 
     if (!username) {
         alert("No user information found. Please sign in again...")
