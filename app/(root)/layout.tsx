@@ -6,7 +6,6 @@ import Footer from "@/components/sections/footer/page"
 import * as React from "react";
 import { NextUIProvider } from "@nextui-org/react";
 import { ThemeProvider } from "./providers"
-import { UserContextProvider } from '@/app/context/UserContext'
 
 const monserrat = Montserrat({
   display: "swap",
@@ -30,11 +29,9 @@ export default function RootLayout({
       <body className={monserrat.className}>
         <React.StrictMode>
           <ThemeProvider>
-            <UserContextProvider>
               <Topbar />
               {children}
               <Footer />
-            </UserContextProvider>
           </ThemeProvider>
         </React.StrictMode>
       </body>
