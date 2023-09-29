@@ -16,21 +16,23 @@ import WrongPassword from "@/components/utils/warnings/alerts/WrongPassword";
 import toast, { Toaster, ToastBar } from 'react-hot-toast';
 import { hookstate, useHookstate, State } from '@hookstate/core';
 
-const usernameState = hookstate<string>("")
 
-const usernameValue = usernameState.get()
-console.log(usernameValue)
+const storedData = {
+    data: typeof window !== "undefined" ? localStorage.getItem("username") : ""
+}
 
+const usernameValue = `${storedData.data}`
 
-const globalState = hookstate<string>("");
-const wrapState = (s: State<string>) => ({
+const globalState = hookstate<string | null>("");
+const wrapState = (s: State<string | null>) => ({
     get: () => s.value,
-    display: () => s.set(p => p = usernameValue)
+    display: () => s.set(usernameValue)
 })
 export const accessGlobalState = () => wrapState(globalState)
 export const useGlobalState = () => wrapState(useHookstate(globalState))
 
-setInterval(() => accessGlobalState().display(), 500)
+setInterval(() => accessGlobalState().display(), 100)
+
 
 interface Inputs {
     username: string;
@@ -56,10 +58,6 @@ export default function SignIn() {
     const [wrongPass, setWrongPass] = React.useState<boolean>(false)
     const router = useRouter()
     const state = useGlobalState();
-    const userState = useHookstate(usernameState)
-
-    console.log(state.get())
-    console.log(userState.get())
 
     const toggleVisibility = () => setIsVisible(!isVisible);
 
@@ -82,14 +80,16 @@ export default function SignIn() {
         const user_name = data.username
         e?.preventDefault()
 
-        userState.set(user_name)
+
+        if (typeof window !== "undefined") {
+            localStorage.setItem('username', user_name)
+        }
 
         // * given password and username will be removed from the if-statement once data from db is existing.
         const check_user_info = async () => {
             const data_from_DB = await getData()
             const passwordInput = password
             const usernameInput = user_name
-
 
             // data_from_DB will get all the documents from the database and the .find() method will sort the information base from the username from the forms.
 

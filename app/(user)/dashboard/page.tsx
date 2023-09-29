@@ -1,11 +1,12 @@
 "use client"
 import React from 'react'
 import { motion } from "framer-motion"
+import { useGlobalState } from '@/app/(root)/(forms)/sign-in/page';
 
 
 export default function Dashboard() {
-
-    const user = "joshua_23"
+    const state = useGlobalState();
+    const user = state.get()
     return (
         <main>
             <motion.div

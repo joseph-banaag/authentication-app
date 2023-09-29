@@ -22,18 +22,27 @@ import { useEffect, useState } from "react";
 import { SunIcon } from "@/components/utils/icons/SunIcon";
 import { MoonIcon } from "@/components/utils/icons/MoonIcon";
 import BrandLogo from "@/app/(user)/userComponents/section/components/BrandLogo";
-import NavbarUserProfile from "@/app/(user)/userComponents/section/components/NavbarUserProfile";
 import { useGlobalState } from "@/app/(root)/(forms)/sign-in/page";
+
+const getData = async () => {
+    const res = await fetch("api/users", {
+        next: { revalidate: 1000 }
+    })
+    if (!res.ok) {
+        throw new Error("Failed to fetch data")
+    }
+    return res.json()
+}
 
 
 export default function Topbar() {
     const pathname = usePathname()
     const [mounted, setMounted] = useState(false)
     const { theme, setTheme } = useTheme()
+    const [useName, setUserName] = useState<string>("")
+    const [eMail, setEMail] = useState<string>("")
     const router = useRouter()
     const state = useGlobalState();
-
-    console.log(state.get())
 
     useEffect(() => {
         setMounted(true)
@@ -43,13 +52,27 @@ export default function Topbar() {
 
     const username = state.get(), image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 
-    console.log(username)
-
     setTimeout(() => {
         if (!state.get()) {
             router.push("/")
         }
     }, 3000);
+
+    const getUserFromDB = async () => {
+        const data = await getData()
+        const user_name = state.get()
+
+        const currentUser = data.find((obj: { username: string; }) => obj.username === user_name)
+
+        if (!currentUser) return null
+
+        const username = currentUser.username
+        const email = currentUser.email
+
+        setUserName(username)
+        setEMail(email)
+    }
+    getUserFromDB()
 
     return (
         <>
@@ -107,7 +130,14 @@ export default function Topbar() {
                                                 src={image}
                                                 className="cursor-pointer sm:w-8 w-6 sm:h-8 h-6"
                                             />
-                                            <NavbarUserProfile />
+
+                                            <div className="px-1.5 ms-2">
+                                                <p className="text-sm font-bold">{useName}</p>
+                                                <div className="max-w-[100px] overflow-hidden">
+                                                    <p className="text-xs font-thin dark:text-foreground/60 animate-scrolling-text">{eMail}</p>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </DropdownItem>
                                 </DropdownSection>
