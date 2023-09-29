@@ -6,7 +6,6 @@ import {
     NavbarContent,
     NavbarItem,
     Link,
-    Avatar,
     Chip,
     Dropdown,
     DropdownTrigger,
@@ -14,15 +13,16 @@ import {
     DropdownItem,
     DropdownSection,
     Button,
-    Tooltip
+    Avatar,
 } from "@nextui-org/react";
 import { usePathname, useRouter } from 'next/navigation'
-import Image from "next/image";
 import { userNavigation } from "@/app/(user)/userComponents/constants/index"
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { SunIcon } from "@/components/utils/icons/SunIcon";
 import { MoonIcon } from "@/components/utils/icons/MoonIcon";
+import BrandLogo from "@/app/(user)/userComponents/section/components/BrandLogo";
+import NavbarUserProfile from "@/app/(user)/userComponents/section/components/NavbarUserProfile";
 
 
 export default function Topbar() {
@@ -40,13 +40,7 @@ export default function Topbar() {
     const username = "username", email = "josephrbanaag51@gmail.com", image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 
     if (!username) {
-        alert("No user information found. Please sign in again...")
-        router.push("/sign-in")
-    }
-
-    const logo = {
-        src: "/assets/logo/user_logo.svg",
-        name: "Logo"
+        router.push("/")
     }
 
     return (
@@ -56,25 +50,7 @@ export default function Topbar() {
                 className="flex justify-around flex-wrap sm:p-3 p-0 drop-shadow-2xl">
                 <NavbarContent justify="start" className="flex justify-start">
                     <NavbarBrand className="flex-1 w-full justify-start flex gap-2">
-                        <Link href="/dashboard">
-                            <Image
-                                priority
-                                src={logo.src}
-                                alt={logo.name}
-                                width={48}
-                                height={48}
-                                style={{
-                                    objectFit: "cover",
-                                }}
-                                className="sm:w-10 w-7 sm:h-10 h-7 border-2 rounded-md border-default-200/80"
-                            />
-                        </Link>
-
-                        <Link
-                            href="/dashboard"
-                        >
-                            <p className="lg:text-xl sm:text-lg font-bold nav_name cursor-pointer sm:flex hidden drop-shadow-lg !text-[#FB542B]">Authentication</p>
-                        </Link>
+                        <BrandLogo />
                     </NavbarBrand>
                 </NavbarContent>
 
@@ -119,17 +95,10 @@ export default function Topbar() {
                                                 isBordered
                                                 isFocusable
                                                 src={image}
-                                                className="sm:w-8 w-6 sm:h-8 h-6"
+                                                className="cursor-pointer sm:w-8 w-6 sm:h-8 h-6"
                                             />
-
-                                            <div className="px-1.5 ms-2">
-                                                <p className="text-sm font-bold">{username}</p>
-                                                <div className="max-w-[100px] overflow-hidden">
-                                                    <p className="text-xs font-thin dark:text-foreground/60 animate-scrolling-text">{email}</p>
-                                                </div>
-                                            </div>
+                                            <NavbarUserProfile />
                                         </div>
-
                                     </DropdownItem>
                                 </DropdownSection>
                                 <DropdownSection
