@@ -23,6 +23,7 @@ import { SunIcon } from "@/components/utils/icons/SunIcon";
 import { MoonIcon } from "@/components/utils/icons/MoonIcon";
 import BrandLogo from "@/app/(user)/userComponents/section/components/BrandLogo";
 import NavbarUserProfile from "@/app/(user)/userComponents/section/components/NavbarUserProfile";
+import { useGlobalState } from "@/app/(root)/(forms)/sign-in/page";
 
 
 export default function Topbar() {
@@ -30,6 +31,9 @@ export default function Topbar() {
     const [mounted, setMounted] = useState(false)
     const { theme, setTheme } = useTheme()
     const router = useRouter()
+    const state = useGlobalState();
+
+    console.log(state.get())
 
     useEffect(() => {
         setMounted(true)
@@ -37,11 +41,15 @@ export default function Topbar() {
 
     if (!mounted) return null
 
-    const username = "username", email = "josephrbanaag51@gmail.com", image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
+    const username = state.get(), image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 
-    if (!username) {
-        router.push("/")
-    }
+    console.log(username)
+
+    setTimeout(() => {
+        if (!state.get()) {
+            router.push("/")
+        }
+    }, 3000);
 
     return (
         <>
@@ -66,14 +74,16 @@ export default function Topbar() {
                             }}
                         >
                             <DropdownTrigger>
-                                <Avatar
-                                    showFallback
-                                    radius="full"
-                                    isBordered
-                                    isFocusable
-                                    src={image}
-                                    className="cursor-pointer sm:w-8 w-6 sm:h-8 h-6"
-                                />
+                                <div>
+                                    <Avatar
+                                        showFallback
+                                        radius="full"
+                                        isBordered
+                                        isFocusable
+                                        src={image}
+                                        className="cursor-pointer sm:w-8 w-6 sm:h-8 h-6"
+                                    />
+                                </div>
                             </DropdownTrigger>
                             <DropdownMenu
                                 aria-label="Dropdown section for signed in user"

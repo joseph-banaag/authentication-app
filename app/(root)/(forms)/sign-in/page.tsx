@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
 import Image from 'next/image';
 import { Button, Input, Card } from "@nextui-org/react";
@@ -14,8 +14,24 @@ import SubmitSpinner from "@/components/lib/SubmitSpinner";
 import NoAccount from "@/components/utils/warnings/alerts/NoAccount";
 import WrongPassword from "@/components/utils/warnings/alerts/WrongPassword";
 import toast, { Toaster, ToastBar } from 'react-hot-toast';
+import { hookstate, useHookstate, State } from '@hookstate/core';
 
-// this object is for type declaration of useForm() function specifically for register method.
+const usernameState = hookstate<string>("")
+
+const usernameValue = usernameState.get()
+console.log(usernameValue)
+
+
+const globalState = hookstate<string>("");
+const wrapState = (s: State<string>) => ({
+    get: () => s.value,
+    display: () => s.set(p => p = usernameValue)
+})
+export const accessGlobalState = () => wrapState(globalState)
+export const useGlobalState = () => wrapState(useHookstate(globalState))
+
+setInterval(() => accessGlobalState().display(), 500)
+
 interface Inputs {
     username: string;
     password: string;
@@ -34,11 +50,16 @@ async function getData() {
 
 // * main function here...
 export default function SignIn() {
-    const [isVisible, setIsVisible] = React.useState(false);
-    const [clicked, setClicked] = React.useState(false)
-    const [noAccount, setNoAccount] = React.useState(false)
-    const [wrongPass, setWrongPass] = React.useState(false)
+    const [isVisible, setIsVisible] = React.useState<boolean>(false);
+    const [clicked, setClicked] = React.useState<boolean>(false)
+    const [noAccount, setNoAccount] = React.useState<boolean>(false)
+    const [wrongPass, setWrongPass] = React.useState<boolean>(false)
     const router = useRouter()
+    const state = useGlobalState();
+    const userState = useHookstate(usernameState)
+
+    console.log(state.get())
+    console.log(userState.get())
 
     const toggleVisibility = () => setIsVisible(!isVisible);
 
@@ -61,12 +82,14 @@ export default function SignIn() {
         const user_name = data.username
         e?.preventDefault()
 
+        userState.set(user_name)
 
         // * given password and username will be removed from the if-statement once data from db is existing.
         const check_user_info = async () => {
             const data_from_DB = await getData()
             const passwordInput = password
             const usernameInput = user_name
+
 
             // data_from_DB will get all the documents from the database and the .find() method will sort the information base from the username from the forms.
 
@@ -233,7 +256,7 @@ export default function SignIn() {
                                     <Button
                                         type="submit"
                                         name="submit"
-
+                                        onClick={() => state.display()}
                                         className="bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300">
                                         <p className="text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center">
                                             {clicked

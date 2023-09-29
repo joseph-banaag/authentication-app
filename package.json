@@ -12,6 +12,7 @@
     "type": "module"
   },
   "dependencies": {
+    "@hookstate/core": "^4.0.1",
     "@nextui-org/react": "^2.1.10",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/react": "^18.2.21",
