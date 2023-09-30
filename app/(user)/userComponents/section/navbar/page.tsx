@@ -51,6 +51,7 @@ export default function Topbar() {
   const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 
   const currentUser = state.get()
+  console.log(currentUser)
 
   if (currentUser === "null" || currentUser === null || currentUser === undefined || currentUser === "undefined") {
     router.push("/")
