@@ -22,13 +22,16 @@ interface Inputs {
   password: string;
 }
 
-// DATA FROM THE DATABASE
-async function getData() {
-  const res = await fetch("api/users")
-  if (!res.ok) {
-    throw new Error("There was a problem getting information form the API")
+const getData = async () => {
+  try {
+    const res = await fetch("api/users")
+    if (!res.ok) {
+      throw new Error("Failed to fetch data")
+    }
+    return res.json()
+  } catch (error) {
+    throw new Error(`There was a problem fetching the data. Error: ${error}`)
   }
-  return res.json()
 }
 
 // * main function here...

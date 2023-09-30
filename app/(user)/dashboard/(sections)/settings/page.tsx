@@ -1,19 +1,9 @@
 "use client"
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { motion } from "framer-motion"
-import { useGlobalState } from '@/app/hookstate/HookState';
 
 
 export default function Settings() {
-  const [ isClient, setIsClient ] = useState<boolean>(false)
-  const state = useGlobalState();
-  const user = state.get()?.toString()
-
-  useEffect(() => {
-    setIsClient(true)
-  }, [
-    isClient
-  ])
 
   return (
     <>

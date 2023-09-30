@@ -26,11 +26,15 @@ import BrandLogo from "@/app/(user)/userComponents/section/components/BrandLogo"
 import { useGlobalState } from "@/app/hookstate/HookState";
 
 const getData = async () => {
-  const res = await fetch("api/users")
-  if (!res.ok) {
-    throw new Error("Failed to fetch data")
+  try {
+    const res = await fetch("api/users")
+    if (!res.ok) {
+      throw new Error("Failed to fetch data")
+    }
+    return res.json()
+  } catch (error) {
+    throw new Error(`There was a problem fetching the data. Error: ${error}`)
   }
-  return res.json()
 }
 
 export default function Topbar() {
