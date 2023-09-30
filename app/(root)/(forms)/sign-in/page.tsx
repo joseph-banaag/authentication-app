@@ -31,11 +31,10 @@ const wrapState = (s: State<string | null>) => ({
   get: () => s.value,
   display: () => s.set(usernameSignInValue)
 })
-// export const accessGlobalState = () => wrapState(globalState)
+export const accessGlobalState = () => wrapState(globalState)
 export const useGlobalState = () => wrapState(useHookstate(globalState))
 
-// setInterval(() => accessGlobalState().display(), 100)
-
+setInterval(() => accessGlobalState().display(), 100)
 
 interface Inputs {
   username: string;

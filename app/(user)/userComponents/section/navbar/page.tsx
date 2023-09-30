@@ -58,6 +58,8 @@ export default function Topbar() {
   const router = useRouter()
   const state = useGlobalState();
 
+  console.log(state.get())
+
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -75,8 +77,6 @@ export default function Topbar() {
   const getUserFromDB = async () => {
     const data = await getData()
     const user_name = state.get()
-
-    console.log(user_name)
 
     const currentUser = data.find((obj: { username: string; }) => obj.username === user_name)
 
