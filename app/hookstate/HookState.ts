@@ -10,8 +10,8 @@ const storedDataSI = {
 };
 const usernameSignInValue = storedDataSI.data;
 
-console.log(usernameSignupValue);
-console.log(usernameSignInValue);
+// console.log(usernameSignupValue);
+// console.log(usernameSignInValue);
 
 // this will set the username from sign in entry point as global value
 const globalState = hookstate<string | null>(null);
