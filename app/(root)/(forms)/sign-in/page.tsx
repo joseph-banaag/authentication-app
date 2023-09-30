@@ -61,9 +61,7 @@ export default function SignIn() {
     const user_name = data.username
     e?.preventDefault()
 
-    if (typeof window !== "undefined") {
-      sessionStorage.setItem("usernameSignIn", user_name)
-    }
+    sessionStorage.setItem("username", user_name)
 
     const check_user_info = async () => {
       const data_from_DB = await getData()

@@ -112,10 +112,7 @@ export default function SignUp() {
     const email_acc = data.email
     const created_on = `${creationDate}`
 
-    if (typeof window !== "undefined") {
-      sessionStorage.setItem("usernameSignUp", user_name)
-    }
-
+    sessionStorage.setItem("username", user_name)
 
     const check_existing_acc = async () => {
       const data_from_DB = await getData()

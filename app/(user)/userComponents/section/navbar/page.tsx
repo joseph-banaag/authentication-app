@@ -56,6 +56,8 @@ export default function Topbar() {
 
   const currentUser = state.get()
 
+  console.log(currentUser)
+
   if (currentUser === "null" || currentUser === null || currentUser === undefined || currentUser === "undefined") {
     router.push("/")
   }

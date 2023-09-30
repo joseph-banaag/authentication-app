@@ -1,21 +1,17 @@
 import { hookstate, useHookstate, State } from "@hookstate/core";
 
 const storedDataSU = {
-  data:
-    typeof window !== "undefined"
-      ? sessionStorage.getItem("usernameSignUp")
-      : "",
+  data: typeof window !== "undefined" ? sessionStorage.getItem("username") : "",
 };
 const usernameSignupValue = storedDataSU.data;
 
 const storedDataSI = {
-  data:
-    typeof window !== "undefined"
-      ? sessionStorage.getItem("usernameSignIn")
-      : "",
+  data: typeof window !== "undefined" ? sessionStorage.getItem("username") : "",
 };
 const usernameSignInValue = storedDataSI.data;
 
+console.log(usernameSignupValue);
+console.log(usernameSignInValue);
 
 // this will set the username from sign in entry point as global value
 const globalState = hookstate<string | null>(null);
