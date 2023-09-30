@@ -4,32 +4,32 @@ import { Link } from '@nextui-org/react';
 
 export default function BrandLogo() {
 
-    const logo = {
-        src: "/assets/logo/user_logo.svg",
-        name: "Logo"
-    }
+  const logo = {
+    src: "/assets/logo/user_logo.svg",
+    name: "Logo"
+  }
 
-    return (
-        <>
-            <Link href="/dashboard">
-                <Image
-                    priority
-                    src={logo.src}
-                    alt={logo.name}
-                    width={48}
-                    height={48}
-                    style={{
-                        objectFit: "cover",
-                    }}
-                    className="sm:w-10 w-7 sm:h-10 h-7 border-2 rounded-md border-default-200/80"
-                />
-            </Link>
+  return (
+    <>
+      <Link href="/dashboard">
+        <Image
+          priority
+          src={logo.src}
+          alt={logo.name}
+          width={48}
+          height={48}
+          style={{
+            objectFit: "cover",
+          }}
+          className="sm:w-10 w-7 sm:h-10 h-7 border-2 rounded-md border-default-200/80"
+        />
+      </Link>
 
-            <Link
-                href="/dashboard"
-            >
-                <p className="lg:text-xl sm:text-lg font-bold nav_name cursor-pointer sm:flex hidden drop-shadow-lg !text-[#FB542B]">Authentication</p>
-            </Link>
-        </>
-    )
+      <Link
+        href="/dashboard"
+      >
+        <p className="lg:text-xl sm:text-lg font-bold nav_name cursor-pointer sm:flex hidden drop-shadow-lg !text-[#FB542B]">Authentication</p>
+      </Link>
+    </>
+  )
 }
