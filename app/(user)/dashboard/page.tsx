@@ -9,8 +9,6 @@ export default function Dashboard() {
   const state = useGlobalState();
   const user = state.get()?.toString()
 
-  console.log(user)
-
   useEffect(() => {
     setIsClient(true)
   }, [])

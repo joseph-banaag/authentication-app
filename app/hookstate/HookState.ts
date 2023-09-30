@@ -1,4 +1,3 @@
-import React from "react";
 import { hookstate, useHookstate, State } from "@hookstate/core";
 
 const storedDataSU = {
@@ -16,11 +15,6 @@ const storedDataSI = {
       : "",
 };
 const usernameSignInValue = storedDataSI.data;
-
-console.log(usernameSignInValue);
-// value will be a string of null or 'null'
-console.log(usernameSignupValue);
-// if the entry point is sign up and vise versa
 
 
 // this will set the username from sign in entry point as global value
