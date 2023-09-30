@@ -15,14 +15,6 @@ import IllustrationSigUp from '@/app/(root)/components/IllustrationSigUp';
 import BrandLogoSignUp from '@/app/(root)/components/BrandLogoSignUp';
 
 
-const storedDataSU = {
-  data: typeof window !== "undefined" ? sessionStorage.getItem("usernameSignUp") : ""
-}
-const usernameSignupValue = `${storedDataSU.data}`
-
-console.log(usernameSignupValue)
-
-
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
   username: string;

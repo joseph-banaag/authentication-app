@@ -22,7 +22,7 @@ import { useEffect, useState } from "react";
 import { SunIcon } from "@/components/utils/icons/SunIcon";
 import { MoonIcon } from "@/components/utils/icons/MoonIcon";
 import BrandLogo from "@/app/(user)/userComponents/section/components/BrandLogo";
-import { useGlobalState } from "@/app/(root)/(forms)/sign-in/page";
+import { useGlobalState } from "@/app/hookstate/HookState";
 
 const getData = async () => {
   const res = await fetch("api/users")
@@ -31,23 +31,6 @@ const getData = async () => {
   }
   return res.json()
 }
-
-
-const storedDataSI = {
-  data: typeof window !== "undefined" ? sessionStorage.getItem("usernameSignIn") : ""
-}
-const usernameSignInValue = `${storedDataSI.data}`
-
-const storedDataSU = {
-  data: typeof window !== "undefined" ? sessionStorage.getItem("usernameSignUp") : ""
-}
-const usernameSignupValue = `${storedDataSU.data}`
-
-
-console.log(usernameSignInValue) // working
-console.log(usernameSignupValue) // working
-
-
 
 export default function Topbar() {
   const pathname = usePathname()
@@ -58,8 +41,6 @@ export default function Topbar() {
   const router = useRouter()
   const state = useGlobalState();
 
-  console.log(state.get())
-
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -68,8 +49,10 @@ export default function Topbar() {
 
   const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 
+  const currentUser = state.get()
+
   setTimeout(() => {
-    if (!state.get()) {
+    if (currentUser === null || currentUser === undefined) {
       router.push("/")
     }
   }, 3000);

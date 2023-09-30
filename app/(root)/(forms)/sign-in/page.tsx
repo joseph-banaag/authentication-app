@@ -12,29 +12,10 @@ import SubmitSpinner from "@/components/lib/SubmitSpinner";
 import NoAccount from "@/components/utils/warnings/alerts/NoAccount";
 import WrongPassword from "@/components/utils/warnings/alerts/WrongPassword";
 import toast, { Toaster, ToastBar } from 'react-hot-toast';
-import { hookstate, useHookstate, State } from '@hookstate/core';
 import BrandLogoSignIn from '@/app/(root)/components/BrandLogoSignIn';
 import IllustrationSignIn from '@/app/(root)/components/IllustrationSignIn';
+import { useGlobalState } from '@/app/hookstate/HookState';
 
-
-const storedDataSI = {
-  data: typeof window !== "undefined" ? sessionStorage.getItem("usernameSignIn") : ""
-}
-const usernameSignInValue = `${storedDataSI.data}`
-
-console.log(usernameSignInValue)
-
-
-// this will set the username from sign in entry point as global value
-const globalState = hookstate<string | null>("");
-const wrapState = (s: State<string | null>) => ({
-  get: () => s.value,
-  display: () => s.set(usernameSignInValue)
-})
-export const accessGlobalState = () => wrapState(globalState)
-export const useGlobalState = () => wrapState(useHookstate(globalState))
-
-setInterval(() => accessGlobalState().display(), 100)
 
 interface Inputs {
   username: string;
