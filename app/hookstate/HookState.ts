@@ -27,7 +27,7 @@ console.log(usernameSignInValue);
 const globalState = hookstate<string | null>("");
 const wrapState = (s: State<string | null>) => ({
   get: () => s.value,
-  display: () => s.set(usernameSignInValue),
+  display: () => s.set(usernameSignupValue),
 });
 export const accessGlobalState = () => wrapState(globalState);
 export const useGlobalState = () => wrapState(useHookstate(globalState));

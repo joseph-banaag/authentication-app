@@ -23,7 +23,7 @@ export default function Home() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ ease: "backIn", duration: 0.25 }}
+        transition={{ ease: "backIn", duration: 1 }}
       >
         <div className="relative flex flex-col justify-center items-center min-h-screen delay-3000 z-10 gap-5 mt-5">
           <Link href="/" color="foreground" className="text-3xl font-semibold -mt-32 sm:hidden flex "><span className={`${dancing.className} text-secondary font-bold`}>Auth</span><span className={`${dancing.className}`}>entication</span></Link>

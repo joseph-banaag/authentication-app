@@ -144,7 +144,7 @@ export default function SignIn() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ ease: "backIn", duration: 0.25 }}
+        transition={{ ease: "backIn", duration: .75 }}
       >
         <div className=" w-full min-h-screen flex flex-1 flex-col justify-center items-center">
           <div className="sm:p-5 p-3">

@@ -15,6 +15,7 @@ import {
   Button,
   Avatar,
 } from "@nextui-org/react";
+import { motion } from "framer-motion"
 import { usePathname, useRouter } from 'next/navigation'
 import { userNavigation } from "@/app/(user)/userComponents/constants/index"
 import { useTheme } from "next-themes";
@@ -51,11 +52,9 @@ export default function Topbar() {
 
   const currentUser = state.get()
 
-  setTimeout(() => {
-    if (currentUser === null || currentUser === undefined) {
-      router.push("/")
-    }
-  }, 3000);
+  if (currentUser === "null" || currentUser === null || currentUser === undefined || currentUser === "undefined") {
+    router.push("/")
+  }
 
   const getUserFromDB = async () => {
     const data = await getData()
@@ -75,6 +74,11 @@ export default function Topbar() {
 
   return (
     <>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ ease: "backIn", duration: 1 }}
+      >
       <Navbar
         shouldHideOnScroll
         className="flex justify-around flex-wrap sm:p-3 p-0 drop-shadow-2xl">
@@ -248,6 +252,7 @@ export default function Topbar() {
           </NavbarItem>
         </NavbarContent>
       </Navbar>
+      </motion.div>
     </>
   )
 }
