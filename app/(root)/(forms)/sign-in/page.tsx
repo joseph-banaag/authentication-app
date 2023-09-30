@@ -1,11 +1,9 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
-import Image from 'next/image';
 import { Button, Input, Card } from "@nextui-org/react";
 import { EyeFilledIcon } from "@/components/utils/icons/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "@/components/utils/icons/EyeSlashFilledIcon";
-import { bgIllustration } from "@/components/constants";
 import { motion } from "framer-motion"
 import PasswordReset from "@/components/(..)modals/PasswordReset";
 import { useRouter } from 'next/navigation'
@@ -15,10 +13,11 @@ import NoAccount from "@/components/utils/warnings/alerts/NoAccount";
 import WrongPassword from "@/components/utils/warnings/alerts/WrongPassword";
 import toast, { Toaster, ToastBar } from 'react-hot-toast';
 import { hookstate, useHookstate, State } from '@hookstate/core';
+import IllustrationSignIn from '@/app/(root)/(forms)/sign-in/IllustrationSignIn';
 
 
 const storedData = {
-  data: typeof window !== "undefined" ? localStorage.getItem("username") : ""
+  data: typeof window !== "undefined" ? sessionStorage.getItem("username") : ""
 }
 
 const usernameValue = `${storedData.data}`
@@ -28,7 +27,7 @@ const wrapState = (s: State<string | null>) => ({
   get: () => s.value,
   display: () => s.set(usernameValue)
 })
-const accessGlobalState = () => wrapState(globalState)
+export const accessGlobalState = () => wrapState(globalState)
 export const useGlobalState = () => wrapState(useHookstate(globalState))
 
 setInterval(() => accessGlobalState().display(), 100)
@@ -41,9 +40,7 @@ interface Inputs {
 
 // DATA FROM THE DATABASE
 async function getData() {
-  const res = await fetch("api/users", {
-    method: "GET"
-  })
+  const res = await fetch("api/users")
   if (!res.ok) {
     throw new Error("There was a problem getting information form the API")
   }
@@ -80,21 +77,16 @@ export default function SignIn() {
     const user_name = data.username
     e?.preventDefault()
 
-
     if (typeof window !== "undefined") {
-      localStorage.setItem('username', user_name)
+      sessionStorage.setItem('username', user_name)
     }
 
-    // * given password and username will be removed from the if-statement once data from db is existing.
     const check_user_info = async () => {
       const data_from_DB = await getData()
       const passwordInput = password
       const usernameInput = user_name
 
-      // data_from_DB will get all the documents from the database and the .find() method will sort the information base from the username from the forms.
-
       const userInfo_DB = data_from_DB.find((obj: { username: string; }) => obj.username === usernameInput)
-
 
       if (userInfo_DB === undefined) {
         // no existing account
@@ -106,7 +98,6 @@ export default function SignIn() {
       } else {
         // with an existing account
         const db_username = userInfo_DB.username
-        const db_email = userInfo_DB.email
         const db_password = userInfo_DB.password
 
         if (usernameInput === db_username && passwordInput === db_password) {
@@ -165,6 +156,7 @@ export default function SignIn() {
       </div>
 
 
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -175,12 +167,6 @@ export default function SignIn() {
             <Card className="flex flex-col flex-1 rounded-2xl p-5 gap-5 mb-24 shadow-2xl max-w-[640px] bg-background/60 dark:bg-default-100/50" id="signOptions">
 
               <SocialAuth />
-
-              <div className="flex flex-1 justify-center items-center">
-                <hr className='w-full'></hr>
-                <p className="sm:px-3 p-1 sm:text-medium text-xs sm:font-normal font-small">or</p>
-                <hr className='w-full'></hr>
-              </div>
 
               {/* form */}
               <form onSubmit={handleSubmit(OnSubmit)} className='flex flex-col gap-3'>
@@ -270,15 +256,7 @@ export default function SignIn() {
           </div>
         </div>
 
-        <div className="flex md:flex-row flex-col justify-center items-center p-10 z-0 mb-10 md:gap-11 gap-5">
-          <h1 className="sm:text-2xl text-medium font-bold text-[#FB542B] drop-shadow-xl">Connect with the community</h1>
-          <Image
-            src={bgIllustration.group.src}
-            alt={bgIllustration.group.name}
-            width={400}
-            height={400}
-          />
-        </div>
+        <IllustrationSignIn />
       </motion.div>
     </>
   )

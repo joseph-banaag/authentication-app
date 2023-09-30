@@ -37,7 +37,7 @@ export default function Topbar() {
   const pathname = usePathname()
   const [ mounted, setMounted ] = useState(false)
   const { theme, setTheme } = useTheme()
-  const [ useName, setUserName ] = useState<string>("")
+  const [ userName, setUserName ] = useState<string>("")
   const [ eMail, setEMail ] = useState<string>("")
   const router = useRouter()
   const state = useGlobalState();
@@ -48,7 +48,7 @@ export default function Topbar() {
 
   if (!mounted) return null
 
-  const username = state.get(), image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
+  const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 
   setTimeout(() => {
     if (!state.get()) {
@@ -95,16 +95,14 @@ export default function Topbar() {
               }}
             >
               <DropdownTrigger>
-                <div>
-                  <Avatar
-                    showFallback
-                    radius="full"
-                    isBordered
-                    isFocusable
-                    src={image}
-                    className="cursor-pointer sm:w-8 w-6 sm:h-8 h-6"
-                  />
-                </div>
+                <Avatar
+                  showFallback
+                  radius="full"
+                  isBordered
+                  isFocusable
+                  src={image}
+                  className="cursor-pointer sm:w-8 w-6 sm:h-8 h-6"
+                />
               </DropdownTrigger>
               <DropdownMenu
                 aria-label="Dropdown section for signed in user"
@@ -130,7 +128,7 @@ export default function Topbar() {
                       />
 
                       <div className="px-1.5 ms-2">
-                        <p className="text-sm font-bold">{useName}</p>
+                        <p className="text-sm font-bold">{userName}</p>
                         <div className="max-w-[100px] overflow-hidden">
                           <p className="text-xs font-thin dark:text-foreground/60 animate-scrolling-text">{eMail}</p>
                         </div>
@@ -146,7 +144,6 @@ export default function Topbar() {
                   {userNavigation.map((items) => {
                     const isActive = pathname == items.route
                     return (
-
                       <DropdownItem
                         key={items.label}
                         textValue="Dropdown menu items"
@@ -181,7 +178,6 @@ export default function Topbar() {
                       </p>
                     }
                     className="hover:bg-transparent border-none cursor-default"
-
                   >
                     <p className="text-sm font-semibold drop-shadow-md" color="foreground">Theme</p>
                   </DropdownItem>
@@ -221,7 +217,6 @@ export default function Topbar() {
                       className="cursor-pointer flex flex-1 justify-center items-center"
                     >
                       <p className="text-white font-semibold text-xs">Light</p>
-
                     </Chip>
                   </DropdownItem>
                 </DropdownSection>

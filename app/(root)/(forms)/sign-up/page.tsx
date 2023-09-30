@@ -1,11 +1,9 @@
 "use client"
 import React from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
-import Image from 'next/image';
 import { Input, Card, Button } from "@nextui-org/react";
 import { EyeFilledIcon } from "@/components/utils/icons/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "@/components/utils/icons/EyeSlashFilledIcon";
-import { bgIllustration } from "@/components/constants";
 import { motion } from "framer-motion"
 import { useRouter } from 'next/navigation'
 import { creationDate } from "@/components/lib/createdDate"
@@ -13,6 +11,7 @@ import SocialAuth from "@/components/utils/SocialAuth";
 import SubmitSpinner from "@/components/lib/SubmitSpinner";
 import toast, { Toaster, ToastBar } from 'react-hot-toast';
 import AccountExist from "@/components/utils/warnings/alerts/AccountExist";
+import IllustrationSigUp from '@/app/(root)/(forms)/sign-up/IllustrationSigUp';
 
 
 // this object is for type declaration of useForm() function specifically for register method.
@@ -326,12 +325,6 @@ export default function SignUp() {
 
               <SocialAuth />
 
-              <div className="flex flex-1 justify-center items-center">
-                <hr className='w-full'></hr>
-                <p className="sm:px-3 p-1 sm:text-medium text-xs sm:font-normal font-small">or</p>
-                <hr className='w-full'></hr>
-              </div>
-
               {/* form */}
               <form onSubmit={handleSubmit(OnSubmit)} className='flex flex-col gap-7'>
                 <div className='flex flex-col'>
@@ -477,16 +470,8 @@ export default function SignUp() {
             </Card>
           </div>
         </div>
-        <div className="flex md:flex-row flex-col justify-center items-center p-10 z-0 mb-10 md:gap-11 gap-5">
-          <h1 className="sm:text-2xl text-medium font-bold text-[#FB542B] drop-shadow-xl">Create connection</h1>
-          <Image
-            priority
-            src={bgIllustration.connect.src}
-            alt={bgIllustration.connect.name}
-            width={400}
-            height={400}
-          />
-        </div>
+
+        <IllustrationSigUp />
       </motion.div>
     </>
   )

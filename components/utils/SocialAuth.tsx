@@ -84,6 +84,12 @@ export default function SocialAuth() {
                     </MyButton>
                 </div>
             </div>
+
+            <div className="flex flex-1 justify-center items-center">
+                <hr className='w-full'></hr>
+                <p className="sm:px-3 p-1 sm:text-medium text-xs sm:font-normal font-small">or</p>
+                <hr className='w-full'></hr>
+            </div>
         </>
     )
 }
