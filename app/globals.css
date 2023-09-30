@@ -12,6 +12,7 @@ html,
 body {
   width: 100vw;
   min-width: 276px;
+  padding: 0 10px;
   height: auto;
 }
 

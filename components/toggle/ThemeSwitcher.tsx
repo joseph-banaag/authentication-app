@@ -14,6 +14,8 @@ export function ThemeSwitcher() {
     const [mounted, setMounted] = useState(false)
     const { theme, setTheme } = useTheme()
 
+    
+
     const handleToggleSwitch = (clicked: boolean) => {
         if (clicked) {
             // console.log("the button is clicked for light mode")

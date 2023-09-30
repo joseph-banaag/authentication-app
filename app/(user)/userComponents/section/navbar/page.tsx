@@ -33,6 +33,22 @@ const getData = async () => {
 }
 
 
+const storedDataSI = {
+  data: typeof window !== "undefined" ? sessionStorage.getItem("usernameSignIn") : ""
+}
+const usernameSignInValue = `${storedDataSI.data}`
+
+const storedDataSU = {
+  data: typeof window !== "undefined" ? sessionStorage.getItem("usernameSignUp") : ""
+}
+const usernameSignupValue = `${storedDataSU.data}`
+
+
+console.log(usernameSignInValue) // working
+console.log(usernameSignupValue) // working
+
+
+
 export default function Topbar() {
   const pathname = usePathname()
   const [ mounted, setMounted ] = useState(false)
@@ -59,6 +75,8 @@ export default function Topbar() {
   const getUserFromDB = async () => {
     const data = await getData()
     const user_name = state.get()
+
+    console.log(user_name)
 
     const currentUser = data.find((obj: { username: string; }) => obj.username === user_name)
 

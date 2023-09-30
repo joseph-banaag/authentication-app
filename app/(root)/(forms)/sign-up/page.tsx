@@ -11,7 +11,16 @@ import SocialAuth from "@/components/utils/SocialAuth";
 import SubmitSpinner from "@/components/lib/SubmitSpinner";
 import toast, { Toaster, ToastBar } from 'react-hot-toast';
 import AccountExist from "@/components/utils/warnings/alerts/AccountExist";
-import IllustrationSigUp from '@/app/(root)/(forms)/sign-up/IllustrationSigUp';
+import IllustrationSigUp from '@/app/(root)/components/IllustrationSigUp';
+import BrandLogoSignUp from '@/app/(root)/components/BrandLogoSignUp';
+
+
+const storedDataSU = {
+  data: typeof window !== "undefined" ? sessionStorage.getItem("usernameSignUp") : ""
+}
+const usernameSignupValue = `${storedDataSU.data}`
+
+console.log(usernameSignupValue)
 
 
 // this object is for type declaration of useForm() function specifically for register method.
@@ -110,6 +119,11 @@ export default function SignUp() {
     const user_name = data.username
     const email_acc = data.email
     const created_on = `${creationDate}`
+
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("usernameSignUp", user_name)
+    }
+
 
     const check_existing_acc = async () => {
       const data_from_DB = await getData()
@@ -323,6 +337,7 @@ export default function SignUp() {
           <div className="sm:p-5 p-3">
             <Card className="flex flex-col flex-1 rounded-2xl p-5 gap-5 mb-24 shadow-2xl max-w-[640px] bg-background/60 dark:bg-default-100/50" id="signOptions">
 
+              <BrandLogoSignUp />
               <SocialAuth />
 
               {/* form */}

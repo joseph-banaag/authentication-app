@@ -2,7 +2,6 @@
 import React from 'react'
 import Image from 'next/image';
 import { MyButton } from "@/components/utils/tailwindvariants/tv";
-import { Company } from "@/components/constants";
 import IconChanger from "@/components/lib/IconChanger";
 import { iconsSrc } from "@/components/constants";
 
@@ -11,26 +10,7 @@ import { iconsSrc } from "@/components/constants";
 export default function SocialAuth() {
     return (
         <>
-            <div className='w-full flex justify-start mt-2'>
-                <Image
-                    src={Company.imgSrc}
-                    alt={Company.name}
-                    width={100}
-                    height={100}
-                    style={{
-                        objectFit: "contain",
-                        width: "30%",
-                        height: "30%"
-                    }}
-                    className="drop-shadow-md"
-                />
-            </div>
-            <div className='p-3'>
-                <h1 className="sm:text-4xl text-xl sm:font-medium font-normal mb-1 drop-shadow-xl">Create your account</h1>
-                <p className="sm:text-medium text-xs sm:font-normal font-small drop-shadow-md">to access {Company.name} </p>
-            </div>
-
-            <div className="flex items-center justify-evenly loginButtons">
+            <div className="flex items-center justify-center loginButtons gap-5 px-3">
                 <div>
                     <MyButton
                         variant="flat"

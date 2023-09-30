@@ -13,24 +13,28 @@ import NoAccount from "@/components/utils/warnings/alerts/NoAccount";
 import WrongPassword from "@/components/utils/warnings/alerts/WrongPassword";
 import toast, { Toaster, ToastBar } from 'react-hot-toast';
 import { hookstate, useHookstate, State } from '@hookstate/core';
-import IllustrationSignIn from '@/app/(root)/(forms)/sign-in/IllustrationSignIn';
+import BrandLogoSignIn from '@/app/(root)/components/BrandLogoSignIn';
+import IllustrationSignIn from '@/app/(root)/components/IllustrationSignIn';
 
 
-const storedData = {
-  data: typeof window !== "undefined" ? sessionStorage.getItem("username") : ""
+const storedDataSI = {
+  data: typeof window !== "undefined" ? sessionStorage.getItem("usernameSignIn") : ""
 }
+const usernameSignInValue = `${storedDataSI.data}`
 
-const usernameValue = `${storedData.data}`
+console.log(usernameSignInValue)
 
+
+// this will set the username from sign in entry point as global value
 const globalState = hookstate<string | null>("");
 const wrapState = (s: State<string | null>) => ({
   get: () => s.value,
-  display: () => s.set(usernameValue)
+  display: () => s.set(usernameSignInValue)
 })
-export const accessGlobalState = () => wrapState(globalState)
+// export const accessGlobalState = () => wrapState(globalState)
 export const useGlobalState = () => wrapState(useHookstate(globalState))
 
-setInterval(() => accessGlobalState().display(), 100)
+// setInterval(() => accessGlobalState().display(), 100)
 
 
 interface Inputs {
@@ -78,7 +82,7 @@ export default function SignIn() {
     e?.preventDefault()
 
     if (typeof window !== "undefined") {
-      sessionStorage.setItem('username', user_name)
+      sessionStorage.setItem("usernameSignIn", user_name)
     }
 
     const check_user_info = async () => {
@@ -90,7 +94,7 @@ export default function SignIn() {
 
       if (userInfo_DB === undefined) {
         // no existing account
-          setClicked(!clicked)
+        setClicked(!clicked)
         setTimeout(() => {
           setNoAccount(!noAccount)
         }, 3000);
@@ -166,6 +170,7 @@ export default function SignIn() {
           <div className="sm:p-5 p-3">
             <Card className="flex flex-col flex-1 rounded-2xl p-5 gap-5 mb-24 shadow-2xl max-w-[640px] bg-background/60 dark:bg-default-100/50" id="signOptions">
 
+              <BrandLogoSignIn />
               <SocialAuth />
 
               {/* form */}

@@ -8,7 +8,7 @@ import GithubLight from "./iconOptions/githubLight";
 
 export default function IconChanger() {
   const theme = useTheme().theme
-  
+
   // if React.ReactNode is not present the code will be unreachable
   const determineIcon = (): React.ReactNode => {
     if (theme === "dark") {
@@ -16,9 +16,13 @@ export default function IconChanger() {
         <GithubDark />
       );
     } else if (theme === "light") {
-      return <GithubLight />;
+      return (
+        <GithubLight />
+      )
     } else {
-      return <GithubDark />;
+      return (
+        <GithubDark />
+      )
     }
   };
 
