@@ -4,7 +4,6 @@ import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import Topbar from "@/app/(user)/userComponents/section/navbar/page";
 import { ThemeProvider } from "@/app/(user)/providers";
-import { DataContextProvider } from '@/app/context/UserContext'
 
 const monserrat = Montserrat({
   display: "swap",
@@ -28,10 +27,8 @@ export default function RootLayout({
       <body className={monserrat.className}>
         <React.StrictMode>
           <ThemeProvider>
-            <DataContextProvider>
               <Topbar />
               {children}
-            </DataContextProvider>
           </ThemeProvider>
         </React.StrictMode>
       </body>

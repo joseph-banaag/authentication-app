@@ -1,9 +1,11 @@
 "use client"
 import Image from 'next/image'
-import { Button, Link } from "@nextui-org/react"
+import { Link } from "@nextui-org/react"
 import { bgIllustration } from "@/components/constants"
 import { Recursive, Dancing_Script } from "next/font/google"
 import { motion } from "framer-motion"
+import { usePathname } from 'next/navigation'
+import { useEffect } from 'react'
 
 const recursive = Recursive({
   weight: ["400", "700"],
@@ -17,6 +19,15 @@ const dancing = Dancing_Script({
 
 
 export default function Home() {
+  const pathname = usePathname()
+
+  useEffect(() => {
+    if (pathname === "/") {
+      sessionStorage.clear();
+    }
+  }, [
+   pathname
+ ])
 
   return (
     <main>

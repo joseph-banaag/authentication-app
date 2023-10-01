@@ -23,7 +23,6 @@ import { useEffect, useState } from "react";
 import { SunIcon } from "@/components/utils/icons/SunIcon";
 import { MoonIcon } from "@/components/utils/icons/MoonIcon";
 import BrandLogo from "@/app/(user)/userComponents/section/components/BrandLogo";
-import { useGlobalState } from "@/app/hookstate/HookState";
 
 const getData = async () => {
   try {
@@ -44,12 +43,13 @@ export default function Topbar() {
   const [ userName, setUserName ] = useState<string>("")
   const [ eMail, setEMail ] = useState<string>("")
   const router = useRouter()
-  const state = useGlobalState();
+  console.log(userName)
+  console.log(eMail)
 
   const handleClearStorage = () => {
     sessionStorage.clear();
   };
-
+  
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -58,17 +58,21 @@ export default function Topbar() {
 
   const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 
-  const currentUser = state.get()
+  const storedUser = {
+    data: typeof window !== "undefined" ? sessionStorage.getItem("username") : ""
+  }
 
-  console.log(currentUser)
+  console.log(storedUser.data)
 
-  if (currentUser === "null" || currentUser === null || currentUser === undefined || currentUser === "undefined") {
+  if (storedUser.data === "null" || storedUser.data === null || storedUser.data === undefined || storedUser.data === "undefined") {
     router.push("/")
   }
 
   const getUserFromDB = async () => {
     const data = await getData()
-    const user_name = state.get()
+    const user_name = storedUser.data
+
+    console.log(user_name)
 
     const currentUser = data.find((obj: { username: string; }) => obj.username === user_name)
 

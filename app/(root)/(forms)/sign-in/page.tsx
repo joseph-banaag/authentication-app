@@ -14,7 +14,6 @@ import WrongPassword from "@/components/utils/warnings/alerts/WrongPassword";
 import toast, { Toaster, ToastBar } from 'react-hot-toast';
 import BrandLogoSignIn from '@/app/(root)/components/BrandLogoSignIn';
 import IllustrationSignIn from '@/app/(root)/components/IllustrationSignIn';
-import { useGlobalState } from '@/app/hookstate/HookState';
 
 
 interface Inputs {
@@ -41,7 +40,6 @@ export default function SignIn() {
   const [ noAccount, setNoAccount ] = React.useState<boolean>(false)
   const [ wrongPass, setWrongPass ] = React.useState<boolean>(false)
   const router = useRouter()
-  const state = useGlobalState();
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
@@ -228,7 +226,6 @@ export default function SignIn() {
                   <Button
                     type="submit"
                     name="submit"
-                    onClick={() => state.display()}
                     className="bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300">
                     <p className="text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center">
                       {clicked
