@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Button, Input, Card } from "@nextui-org/react";
 import { EyeFilledIcon } from "@/components/utils/icons/EyeFilledIcon";
@@ -14,6 +14,7 @@ import WrongPassword from "@/components/utils/warnings/alerts/WrongPassword";
 import toast, { Toaster, ToastBar } from 'react-hot-toast';
 import BrandLogoSignIn from '@/app/(root)/components/BrandLogoSignIn';
 import IllustrationSignIn from '@/app/(root)/components/IllustrationSignIn';
+import { usePathname } from 'next/navigation'
 
 
 interface Inputs {
@@ -22,15 +23,11 @@ interface Inputs {
 }
 
 const getData = async () => {
-  try {
-    const res = await fetch("api/users")
-    if (!res.ok) {
-      throw new Error("Failed to fetch data")
-    }
-    return res.json()
-  } catch (error) {
-    throw new Error(`There was a problem fetching the data. Error: ${error}`)
+  const res = await fetch("api/users")
+  if (!res.ok) {
+    throw new Error("Failed to fetch data")
   }
+  return res.json()
 }
 
 // * main function here...
@@ -40,6 +37,15 @@ export default function SignIn() {
   const [ noAccount, setNoAccount ] = React.useState<boolean>(false)
   const [ wrongPass, setWrongPass ] = React.useState<boolean>(false)
   const router = useRouter()
+  const pathname = usePathname()
+  
+  useEffect(() => {
+    if (pathname === "/sign-in") {
+      sessionStorage.clear();
+    }
+  }, [
+    pathname
+  ])
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 

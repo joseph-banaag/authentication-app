@@ -25,15 +25,11 @@ import { MoonIcon } from "@/components/utils/icons/MoonIcon";
 import BrandLogo from "@/app/(user)/userComponents/section/components/BrandLogo";
 
 const getData = async () => {
-  try {
-    const res = await fetch("api/users")
-    if (!res.ok) {
-      throw new Error("Failed to fetch data")
-    }
-    return res.json()
-  } catch (error) {
-    throw new Error(`There was a problem fetching the data. Error: ${error}`)
+  const res = await fetch("api/users")
+  if (!res.ok) {
+    throw new Error("Failed to fetch data")
   }
+  return res.json()
 }
 
 export default function Topbar() {
@@ -49,7 +45,7 @@ export default function Topbar() {
   const handleClearStorage = () => {
     sessionStorage.clear();
   };
-  
+
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -84,8 +80,8 @@ export default function Topbar() {
     setUserName(username)
     setEMail(email)
   }
-  getUserFromDB()
 
+  if (!getUserFromDB()) return null 
 
   return (
     <>

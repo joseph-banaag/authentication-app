@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Input, Card, Button } from "@nextui-org/react";
 import { EyeFilledIcon } from "@/components/utils/icons/EyeFilledIcon";
@@ -13,6 +13,7 @@ import toast, { Toaster, ToastBar } from 'react-hot-toast';
 import AccountExist from "@/components/utils/warnings/alerts/AccountExist";
 import IllustrationSigUp from '@/app/(root)/components/IllustrationSigUp';
 import BrandLogoSignUp from '@/app/(root)/components/BrandLogoSignUp';
+import { usePathname } from 'next/navigation'
 
 
 // this object is for type declaration of useForm() function specifically for register method.
@@ -24,15 +25,11 @@ interface Inputs {
 }
 
 const getData = async () => {
-  try {
-    const res = await fetch("api/users")
-    if (!res.ok) {
-      throw new Error("Failed to fetch data")
-    }
-    return res.json()
-  } catch (error) {
-    throw new Error(`There was a problem fetching the data. Error: ${error}`)
+  const res = await fetch("api/users")
+  if (!res.ok) {
+    throw new Error("Failed to fetch data")
   }
+  return res.json()
 }
 
 // * main function here...
@@ -41,7 +38,15 @@ export default function SignUp() {
   const [ isConfirmed, setIsConfirmed ] = React.useState(false);
   const [ clicked, setClicked ] = React.useState(false)
   const [ exist, setExist ] = React.useState(false)
+  const pathname = usePathname()
 
+  useEffect(() => {
+    if (pathname === "/sign-up") {
+      sessionStorage.clear();
+    }
+  }, [
+    pathname
+  ])
 
   const router = useRouter()
 
