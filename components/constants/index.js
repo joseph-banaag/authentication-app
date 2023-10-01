@@ -26,6 +26,10 @@ export const bgIllustration = {
     src: "/assets/background/login-page-bro.svg",
     name: "homepage",
   },
+  errorNotFound: {
+    src: "/assets/background/notFound.svg",
+    name: "Error 404",
+  },
 };
 
 export const Company = {

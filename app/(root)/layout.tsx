@@ -4,7 +4,6 @@ import { Montserrat } from 'next/font/google'
 import Topbar from "@/components/sections/navbar/page"
 import Footer from "@/components/sections/footer/page"
 import * as React from "react";
-import { NextUIProvider } from "@nextui-org/react";
 import { ThemeProvider } from "./providers"
 
 const monserrat = Montserrat({
