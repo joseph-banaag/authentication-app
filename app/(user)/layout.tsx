@@ -3,7 +3,7 @@ import * as React from "react";
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import Topbar from "@/app/(user)/userComponents/section/navbar/page";
-import { ThemeProvider } from "@/app/(user)/providers";
+import { ThemeProvider } from "@/app/(root)/providers"
 
 const monserrat = Montserrat({
   display: "swap",
@@ -27,8 +27,10 @@ export default function RootLayout({
       <body className={monserrat.className}>
         <React.StrictMode>
           <ThemeProvider>
+            <div className="relative">
               <Topbar />
               {children}
+            </div>
           </ThemeProvider>
         </React.StrictMode>
       </body>

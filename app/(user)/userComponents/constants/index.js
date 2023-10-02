@@ -1,19 +1,24 @@
+
 export const userNavigation = [
   {
     route: "/dashboard",
     label: "Dashboard",
+    icon: "/assets/sidebarIcons/dashboard.svg",
   },
   {
     route: "/dashboard/settings",
     label: "Settings",
+    icon: "assets/sidebarIcons/dashboard.svg",
   },
   {
-    route: "/dashboard/profile",
+    route: "/dashboard/settings/profile",
     label: "Profile",
+    icon: "assets/sidebarIcons/dashboard.svg",
   },
   {
-    route: "/dashboard/security",
+    route: "/dashboard/settings/security",
     label: "Security",
+    icon: "assets/sidebarIcons/dashboard.svg",
   },
-  
 ];
+

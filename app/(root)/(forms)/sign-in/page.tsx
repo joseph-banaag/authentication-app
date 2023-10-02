@@ -38,7 +38,7 @@ export default function SignIn() {
   const [ wrongPass, setWrongPass ] = React.useState<boolean>(false)
   const router = useRouter()
   const pathname = usePathname()
-  
+
   useEffect(() => {
     if (pathname === "/sign-in") {
       sessionStorage.clear();
@@ -144,107 +144,102 @@ export default function SignIn() {
         <WrongPassword />
       </div>
 
-
-
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ ease: "backIn", duration: .75 }}
+        transition={{ ease: "backIn", duration: .5 }}
+        className="w-full min-h-screen flex flex-1 flex-col justify-center items-center"
       >
-        <div className=" w-full min-h-screen flex flex-1 flex-col justify-center items-center">
-          <div className="sm:p-5 p-3">
-            <Card className="flex flex-col flex-1 rounded-2xl p-5 gap-5 mb-24 shadow-2xl max-w-[640px] bg-background/60 dark:bg-default-100/50" id="signOptions">
+        <div className="sm:p-5 p-3">
+          <Card className="flex flex-col flex-1 rounded-2xl p-5 gap-5 mb-24 shadow-2xl max-w-[640px] bg-background/60 dark:bg-default-100/50" id="signOptions">
 
-              <BrandLogoSignIn />
-              <SocialAuth />
+            <BrandLogoSignIn />
+            <SocialAuth />
 
-              {/* form */}
-              <form onSubmit={handleSubmit(OnSubmit)} className='flex flex-col gap-3'>
-                <div className='flex flex-col'>
-                  <Input
-                    autoComplete="off"
-                    aria-autocomplete="none"
-                    id="username"
-                    type="text"
-                    isClearable
-                    variant="bordered"
-                    label="Username"
-                    className="w-full flex-1 transition-all duration-300"
-                    classNames={{
-                      label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
-                      input: [
-                        "sm:text-medium text-sm sm:font-normal font-normal",
-                        "bg-transparent",
-                        "text-black/90 dark:text-white/90",
-                        "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                      ],
-                    }}
-                    {...register("username", {
-                      required: true
-                    })}
-                  />
-
-                  <p className="animate-pulse text-xs text-red-400">
-                    {errors.username?.types?.required && <span>Username is required</span>}
-                  </p>
+            {/* form */}
+            <form onSubmit={handleSubmit(OnSubmit)} className='flex flex-col gap-3'>
+              <div className='flex flex-col'>
+                <Input
+                  autoComplete="off"
+                  aria-autocomplete="none"
+                  id="username"
+                  type="text"
+                  isClearable
+                  variant="bordered"
+                  label="Username"
+                  className="w-full flex-1 transition-all duration-300"
+                  classNames={{
+                    label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
+                    input: [
+                      "sm:text-medium text-sm sm:font-normal font-normal",
+                      "bg-transparent",
+                      "text-black/90 dark:text-white/90",
+                      "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+                    ],
+                  }}
+                  {...register("username", {
+                    required: true
+                  })}
+                />
+                <p className="animate-pulse text-xs text-red-400">
+                  {errors.username?.types?.required && <span>Username is required</span>}
+                </p>
+              </div>
+              <div className='flex flex-col'>
+                <div className="flex justify-end">
+                  <PasswordReset />
                 </div>
-                <div className='flex flex-col'>
-                  <div className="flex justify-end">
-                    <PasswordReset />
-                  </div>
-                  <Input
-                    autoComplete="off"
-                    aria-autocomplete="none"
-                    id="password"
-                    variant="bordered"
-                    label="Password"
-                    classNames={{
-                      label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
-                      input: [
-                        "sm:text-medium text-sm sm:font-normal font-normal",
-                        "bg-transparent",
-                        "text-black/90 dark:text-white/90",
-                        "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                      ],
-                    }}
-                    endContent={
-                      <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
-                        {isVisible ? (
-                          <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                        ) : (
-                          <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                        )}
-                      </button>
-                    }
-                    type={isVisible ? "text" : "password"}
-                    className="w-full flex-1"
-                    {...register("password", {
-                      required: true
-                    })}
-                    name="password"
-                  />
+                <Input
+                  autoComplete="off"
+                  aria-autocomplete="none"
+                  id="password"
+                  variant="bordered"
+                  label="Password"
+                  classNames={{
+                    label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
+                    input: [
+                      "sm:text-medium text-sm sm:font-normal font-normal",
+                      "bg-transparent",
+                      "text-black/90 dark:text-white/90",
+                      "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+                    ],
+                  }}
+                  endContent={
+                    <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
+                      {isVisible ? (
+                        <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                      ) : (
+                        <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                      )}
+                    </button>
+                  }
+                  type={isVisible ? "text" : "password"}
+                  className="w-full flex-1"
+                  {...register("password", {
+                    required: true
+                  })}
+                  name="password"
+                />
 
-                  <p className="animate-pulse text-xs text-red-400">
-                    {errors.password?.types?.required && <span>Password is required</span>}
-                  </p>
-                </div>
-                <div className='flex flex-col gap-1 my-3'>
-                  <Button
-                    type="submit"
-                    name="submit"
-                    className="bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300">
-                    <p className="text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center">
-                      {clicked
-                        ? <SubmitSpinner />
-                        : "Continue"
-                      }</p>
-                  </Button>
-                </div>
-              </form>
-            </Card>
-          </div>
+                <p className="animate-pulse text-xs text-red-400">
+                  {errors.password?.types?.required && <span>Password is required</span>}
+                </p>
+              </div>
+              <div className='flex flex-col gap-1 my-3'>
+                <Button
+                  type="submit"
+                  name="submit"
+                  className="bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300">
+                  <p className="text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center">
+                    {clicked
+                      ? <SubmitSpinner />
+                      : "Continue"
+                    }</p>
+                </Button>
+              </div>
+            </form>
+          </Card>
         </div>
-
         <IllustrationSignIn />
       </motion.div>
     </>

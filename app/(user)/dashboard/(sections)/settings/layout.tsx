@@ -1,15 +1,15 @@
 import '@/app/globals.css'
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
-import Topbar from "@/components/sections/navbar/page"
-import Footer from "@/components/sections/footer/page"
 import * as React from "react";
 import { ThemeProvider } from "@/app/(root)/providers"
+import Sidebar from "@/app/(user)/userComponents/section/sidebar/Sidebar";
+import Topbar from "@/app/(user)/userComponents/section/navbar/page";
 
 const monserrat = Montserrat({
   display: "swap",
   weight: "400",
-  subsets: ["latin"],
+  subsets: [ "latin" ],
   variable: "--font-sans"
 });
 
@@ -28,9 +28,11 @@ export default function RootLayout({
       <body className={monserrat.className}>
         <React.StrictMode>
           <ThemeProvider>
-              <Topbar />
+            <Topbar />
+            <div className="flex relative">
+              <Sidebar />
               {children}
-              <Footer />
+            </div>
           </ThemeProvider>
         </React.StrictMode>
       </body>

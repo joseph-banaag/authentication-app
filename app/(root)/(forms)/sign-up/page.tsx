@@ -324,9 +324,9 @@ export default function SignUp() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ ease: "backIn", duration: .75 }}
+        transition={{ ease: "backIn", duration: .5 }}
+        className="w-full min-h-screen flex flex-1 flex-col justify-center items-center mt-10"
       >
-        <div className=" w-full min-h-screen flex flex-1 flex-col justify-center items-center mt-10 ">
           <div className="sm:p-5 p-3">
             <Card className="flex flex-col flex-1 rounded-2xl p-5 gap-5 mb-24 shadow-2xl max-w-[640px] bg-background/60 dark:bg-default-100/50" id="signOptions">
 
@@ -477,8 +477,6 @@ export default function SignUp() {
               </form>
             </Card>
           </div>
-        </div>
-
         <IllustrationSigUp />
       </motion.div>
     </>

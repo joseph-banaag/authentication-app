@@ -22,6 +22,7 @@ export default function Topbar() {
 
     return (
         <Navbar
+            shouldHideOnScroll
             onMenuOpenChange={setIsMenuOpen}
             className="flex flex-wrap p-3 drop-shadow-2xl">
             <NavbarContent justify="start">
