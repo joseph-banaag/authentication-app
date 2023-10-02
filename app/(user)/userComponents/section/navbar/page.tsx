@@ -68,24 +68,23 @@ export default function Topbar() {
     router.push("/")
   }
 
-  const getUserFromDB = async () => {
-    const data = await getData()
-    const user_name = storedUser.data
-
-    console.log(user_name)
-
-    const currentUser = data.find((obj: { username: string; }) => obj.username === user_name)
-
-    if (!currentUser) return null
-
-    const username = currentUser.username
-    const email = currentUser.email
-
-    setUserName(username)
-    setEMail(email)
-  }
-
   if (pathname === "/dashboard") {
+    const getUserFromDB = async () => {
+      const data = await getData()
+      const user_name = storedUser.data
+
+      console.log(user_name)
+
+      const currentUser = data.find((obj: { username: string; }) => obj.username === user_name)
+
+      if (!currentUser) return null
+
+      const username = currentUser.username
+      const email = currentUser.email
+
+      setUserName(username)
+      setEMail(email)
+    }
     getUserFromDB()
   }
 

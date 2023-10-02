@@ -18,6 +18,7 @@ const Sidebar = () => {
         {userNavigation.map((item) => {
           const isActive = pathname === item.route
           return (
+            // TODO: change this to link to add image in front. startContent is not applicable here
             <Button
               as={Link}
               key={item.label}
