@@ -11,8 +11,12 @@ const Sidebar = () => {
   return (
     <>
       <Card className=" w-1/6 min-h-screen sm:flex flex-col gap-5 justify-start items-center px-8 pt-16 hidden shadow-2xl bg-background/60 dark:bg-default-100/50 rounded-none">
+
+        {/* 
+        // TODO: add user information here...
+        */}
         {userNavigation.map((item) => {
-          const isActive = pathname == item.route
+          const isActive = pathname === item.route
           return (
             <Button
               as={Link}
@@ -27,6 +31,11 @@ const Sidebar = () => {
             </Button>
           )
         })}
+
+        {/* 
+        //TODO: add theme settings here and logout button
+        */}
+
       </Card>
     </>
   )

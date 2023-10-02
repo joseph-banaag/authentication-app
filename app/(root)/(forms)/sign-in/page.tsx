@@ -30,7 +30,7 @@ const getData = async () => {
   return res.json()
 }
 
-// * main function here...
+//  main function here...
 export default function SignIn() {
   const [ isVisible, setIsVisible ] = React.useState<boolean>(false);
   const [ clicked, setClicked ] = React.useState<boolean>(false)

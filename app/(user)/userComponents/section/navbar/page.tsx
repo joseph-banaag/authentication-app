@@ -87,7 +87,6 @@ export default function Topbar() {
     <>
       <Navbar
         className="flex justify-around flex-wrap sm:p-3 p-0 drop-shadow-2xl">
-
         <NavbarContent justify="start" className="flex justify-start">
           <NavbarBrand className="flex-1 w-full justify-start flex gap-2">
             <BrandLogo />
@@ -153,7 +152,7 @@ export default function Topbar() {
                   aria-label="Dropdown menu list"
                 >
                   {userNavigation.map((items) => {
-                    const isActive = pathname == items.route
+                    const isActive = pathname === items.route
                     return (
                       <DropdownItem
                         key={items.label}
