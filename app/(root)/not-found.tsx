@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"
 import { bgIllustration } from "@/components/constants"
 import { Image } from "@nextui-org/react"
 
-export default function GlobalError({
+export default function NotFound({
   error,
   reset,
 }: {
@@ -17,8 +17,8 @@ export default function GlobalError({
     setIsClient(true)
   }, [ error ])
   return (
-    <html>
-      <body className="bg-[#0a0316] text-[#ECEDEE] flex flex-1 w-full h-screen justify-center items-center gap-8 flex-col">
+    <>
+      <div className="bg-[#0a0316] text-[#ECEDEE] flex flex-1 w-full h-screen justify-center items-center gap-8 flex-col">
         <h2 className="text-4xl text-[#ecedee] font-bold">
           {isClient ? "Something went wrong!" : ""}
         </h2>
@@ -33,7 +33,7 @@ export default function GlobalError({
           className='fade-in-bg'
         />
         <button onClick={() => reset()} className="bg-[#661fe0] px-5 py-2 rounded-2xl text-xl font-semibold">Try again</button>
-      </body>
-    </html>
+      </div>
+    </>
   )
 }

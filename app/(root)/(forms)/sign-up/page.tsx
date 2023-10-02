@@ -23,7 +23,6 @@ interface Inputs {
   email: string;
   confirmPw: string;
 }
-
 const getData = async () => {
   const res = await fetch("api/users")
   if (!res.ok) {
@@ -327,156 +326,156 @@ export default function SignUp() {
         transition={{ ease: "backIn", duration: .5 }}
         className="w-full min-h-screen flex flex-1 flex-col justify-center items-center mt-10"
       >
-          <div className="sm:p-5 p-3">
-            <Card className="flex flex-col flex-1 rounded-2xl p-5 gap-5 mb-24 shadow-2xl max-w-[640px] bg-background/60 dark:bg-default-100/50" id="signOptions">
+        <div className="sm:p-5 p-3">
+          <Card className="flex flex-col flex-1 rounded-2xl p-5 gap-5 mb-24 shadow-2xl max-w-[640px] bg-background/60 dark:bg-default-100/50" id="signOptions">
 
-              <BrandLogoSignUp />
-              <SocialAuth />
+            <BrandLogoSignUp />
+            <SocialAuth />
 
-              {/* form */}
-              <form onSubmit={handleSubmit(OnSubmit)} className='flex flex-col gap-7'>
-                <div className='flex flex-col'>
-                  <Input
-                    autoComplete="off"
-                    aria-autocomplete="none"
-                    id="username"
-                    isClearable
-                    type="text"
-                    variant="bordered"
-                    label="Username"
-                    className="w-full flex-1"
-                    classNames={{
-                      label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
-                      input: [
-                        "sm:text-medium text-sm sm:font-normal font-normal",
-                        "bg-transparent",
-                        "text-black/90 dark:text-white/90",
-                        "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                      ],
-                    }}
-                    {...register("username", {
-                      required: true,
-                      pattern: /[\w!@#$%^&*()-+=<>?/\\,.;:'"[\]{}|]{3,}/gi
-                    })}
-                    name="username"
-                  />
-                  <p className="animate-pulse text-xs text-red-400">
-                    {errors.username?.types?.required && <span>Username is required</span>}
-                    {errors.username?.types?.pattern && <span>Space is not allowed and at least 3 characters</span>}
-                  </p>
-                </div>
-                <div className='flex flex-col'>
-                  <Input
-                    autoComplete="off"
-                    aria-autocomplete="none"
-                    id="email"
-                    isClearable
-                    type="email"
-                    variant="bordered"
-                    label="Email"
-                    className="w-full flex-1"
-                    classNames={{
-                      label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
-                      input: [
-                        "sm:text-medium text-sm sm:font-normal font-normal",
-                        "bg-transparent",
-                        "text-black/90 dark:text-white/90",
-                        "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                      ],
-                    }}
-                    {...register("email", {
-                      required: true,
-                      pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/gi
-                    })}
-                    name="email"
-                  />
-                  <p className="animate-pulse text-xs text-red-400">
-                    {errors.email?.types?.required && <span>A valid email is required</span>}
-                    {errors.email?.types?.pattern && <span>e.g. example@email.com</span>}
+            {/* form */}
+            <form onSubmit={handleSubmit(OnSubmit)} className='flex flex-col gap-7'>
+              <div className='flex flex-col'>
+                <Input
+                  autoComplete="off"
+                  aria-autocomplete="none"
+                  id="username"
+                  isClearable
+                  type="text"
+                  variant="bordered"
+                  label="Username"
+                  className="w-full flex-1"
+                  classNames={{
+                    label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
+                    input: [
+                      "sm:text-medium text-sm sm:font-normal font-normal",
+                      "bg-transparent",
+                      "text-black/90 dark:text-white/90",
+                      "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+                    ],
+                  }}
+                  {...register("username", {
+                    required: true,
+                    pattern: /[\w!@#$%^&*()-+=<>?/\\,.;:'"[\]{}|]{3,}/gi
+                  })}
+                  name="username"
+                />
+                <p className="animate-pulse text-xs text-red-400">
+                  {errors.username?.types?.required && <span>Username is required</span>}
+                  {errors.username?.types?.pattern && <span>Space is not allowed and at least 3 characters</span>}
+                </p>
+              </div>
+              <div className='flex flex-col'>
+                <Input
+                  autoComplete="off"
+                  aria-autocomplete="none"
+                  id="email"
+                  isClearable
+                  type="email"
+                  variant="bordered"
+                  label="Email"
+                  className="w-full flex-1"
+                  classNames={{
+                    label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
+                    input: [
+                      "sm:text-medium text-sm sm:font-normal font-normal",
+                      "bg-transparent",
+                      "text-black/90 dark:text-white/90",
+                      "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+                    ],
+                  }}
+                  {...register("email", {
+                    required: true,
+                    pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/gi
+                  })}
+                  name="email"
+                />
+                <p className="animate-pulse text-xs text-red-400">
+                  {errors.email?.types?.required && <span>A valid email is required</span>}
+                  {errors.email?.types?.pattern && <span>e.g. example@email.com</span>}
 
-                  </p>
-                </div>
+                </p>
+              </div>
 
-                <div className='flex flex-col'>
-                  <Input
-                    autoComplete="off"
-                    aria-autocomplete="none"
-                    id="password"
-                    variant="bordered"
-                    label="Password"
-                    classNames={{
-                      label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
-                      input: [
-                        "sm:text-medium text-sm sm:font-normal font-normal",
-                        "bg-transparent",
-                        "text-black/90 dark:text-white/90",
-                        "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                      ],
-                    }}
-                    endContent={
-                      <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
-                        {isVisible ? (
-                          <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                        ) : (
-                          <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                        )}
-                      </button>
-                    }
-                    type={isVisible ? "text" : "password"}
-                    className="w-full flex-1"
-                    {...register("password", {
-                      pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/,
-                      required: true
-                    })}
-                    name="password"
-                  />
-                  <p className="animate-pulse text-xs text-red-400">
-                    {errors.password?.types?.required && <span>Password is required</span>}
-                    {errors.password?.types?.pattern && <span className="max-w-[30em] flex flex-wrap flex-shrink">Minimum password of 8 and must have an uppercase, lowercase, number, and special character.</span>}
-                  </p>
-                </div>
+              <div className='flex flex-col'>
+                <Input
+                  autoComplete="off"
+                  aria-autocomplete="none"
+                  id="password"
+                  variant="bordered"
+                  label="Password"
+                  classNames={{
+                    label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
+                    input: [
+                      "sm:text-medium text-sm sm:font-normal font-normal",
+                      "bg-transparent",
+                      "text-black/90 dark:text-white/90",
+                      "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+                    ],
+                  }}
+                  endContent={
+                    <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
+                      {isVisible ? (
+                        <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                      ) : (
+                        <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                      )}
+                    </button>
+                  }
+                  type={isVisible ? "text" : "password"}
+                  className="w-full flex-1"
+                  {...register("password", {
+                    pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/,
+                    required: true
+                  })}
+                  name="password"
+                />
+                <p className="animate-pulse text-xs text-red-400">
+                  {errors.password?.types?.required && <span>Password is required</span>}
+                  {errors.password?.types?.pattern && <span className="max-w-[30em] flex flex-wrap flex-shrink">Minimum password of 8 and must have an uppercase, lowercase, number, and special character.</span>}
+                </p>
+              </div>
 
-                <div className='flex flex-col'>
-                  <Input
-                    autoComplete="off"
-                    aria-autocomplete="none"
-                    id="confirmPw"
-                    variant="bordered"
-                    label="Confirm Password"
-                    classNames={{
-                      label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
-                      input: [
-                        "sm:text-medium text-sm sm:font-normal font-normal",
-                        "bg-transparent",
-                        "text-black/90 dark:text-white/90",
-                        "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                      ],
-                    }}
-                    endContent={
-                      <button className="focus:outline-none" type="button" onClick={toggleIsConfirmed}>
-                        {isConfirmed ? (
-                          <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                        ) : (
-                          <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                        )}
-                      </button>
-                    }
-                    type={isConfirmed ? "text" : "password"}
-                    className="w-full flex-1"
-                    {...register("confirmPw", {
-                      pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/,
-                      required: true
-                    })}
-                    name="confirmPw"
-                  />
-                  {validatePassword()}
-                </div>
-                <div className='flex flex-col gap-1 my-2'>
-                  {enableSubmitButton()}
-                </div>
-              </form>
-            </Card>
-          </div>
+              <div className='flex flex-col'>
+                <Input
+                  autoComplete="off"
+                  aria-autocomplete="none"
+                  id="confirmPw"
+                  variant="bordered"
+                  label="Confirm Password"
+                  classNames={{
+                    label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
+                    input: [
+                      "sm:text-medium text-sm sm:font-normal font-normal",
+                      "bg-transparent",
+                      "text-black/90 dark:text-white/90",
+                      "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+                    ],
+                  }}
+                  endContent={
+                    <button className="focus:outline-none" type="button" onClick={toggleIsConfirmed}>
+                      {isConfirmed ? (
+                        <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                      ) : (
+                        <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                      )}
+                    </button>
+                  }
+                  type={isConfirmed ? "text" : "password"}
+                  className="w-full flex-1"
+                  {...register("confirmPw", {
+                    pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/,
+                    required: true
+                  })}
+                  name="confirmPw"
+                />
+                {validatePassword()}
+              </div>
+              <div className='flex flex-col gap-1 my-2'>
+                {enableSubmitButton()}
+              </div>
+            </form>
+          </Card>
+        </div>
         <IllustrationSigUp />
       </motion.div>
     </>

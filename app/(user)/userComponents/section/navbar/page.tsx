@@ -15,7 +15,6 @@ import {
   Button,
   Avatar,
 } from "@nextui-org/react";
-import { motion } from "framer-motion"
 import { usePathname, useRouter } from 'next/navigation'
 import { userNavigation } from "@/app/(user)/userComponents/constants/index"
 import { useTheme } from "next-themes";
@@ -32,6 +31,10 @@ const getData = async () => {
   return res.json()
 }
 
+if (!getData) {
+  console.log("Get Data is not running")
+}
+
 export default function Topbar() {
   const pathname = usePathname()
   const [ mounted, setMounted ] = useState(false)
@@ -39,16 +42,17 @@ export default function Topbar() {
   const [ userName, setUserName ] = useState<string>("")
   const [ eMail, setEMail ] = useState<string>("")
   const router = useRouter()
-  console.log(userName)
-  console.log(eMail)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleClearStorage = () => {
     sessionStorage.clear();
   };
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  console.log(userName)
+  console.log(eMail)
 
   if (!mounted) return null
 
@@ -81,7 +85,9 @@ export default function Topbar() {
     setEMail(email)
   }
 
-  if (!getUserFromDB()) return null
+  if (pathname === "/dashboard") {
+    getUserFromDB()
+  }
 
   return (
     <>

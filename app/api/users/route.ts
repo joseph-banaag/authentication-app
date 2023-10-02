@@ -2,10 +2,9 @@ import { NextResponse } from "next/server";
 import connectToDB, { client } from "@/app/lib/mongodb";
 
 // INSERT OPERATION
-
-export async function POST(req: Request) {
+export async function POST(request: Request) {
   const { password, confirmed, user_name, email_acc, created_on } =
-    await req.json();
+    await request.json();
 
   await connectToDB();
 
@@ -36,8 +35,7 @@ export async function POST(req: Request) {
 }
 
 // GET OPERATION
-
-export async function GET() {
+export async function GET(request: Request) {
   await connectToDB();
   try {
     const db = client.db("active_users");
