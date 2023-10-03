@@ -339,6 +339,7 @@ export default function SignUp() {
                 <Input
                   autoComplete="off"
                   aria-autocomplete="none"
+                  aria-labelledby="username"
                   id="username"
                   isClearable
                   type="text"
@@ -369,6 +370,7 @@ export default function SignUp() {
                 <Input
                   autoComplete="off"
                   aria-autocomplete="none"
+                  aria-labelledby="email"
                   id="email"
                   isClearable
                   type="email"
@@ -401,6 +403,7 @@ export default function SignUp() {
                 <Input
                   autoComplete="off"
                   aria-autocomplete="none"
+                  aria-labelledby="password"
                   id="password"
                   variant="bordered"
                   label="Password"
@@ -440,6 +443,7 @@ export default function SignUp() {
                 <Input
                   autoComplete="off"
                   aria-autocomplete="none"
+                  aria-labelledby="confirmPw"
                   id="confirmPw"
                   variant="bordered"
                   label="Confirm Password"

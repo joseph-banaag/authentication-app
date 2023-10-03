@@ -47,8 +47,6 @@ export default function Topbar() {
   const handleClearStorage = () => {
     sessionStorage.clear();
   };
-
-
   if (!mounted) return null
 
   const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
@@ -140,7 +138,6 @@ export default function Topbar() {
                           <p className="text-xs font-thin dark:text-foreground/60 animate-scrolling-text">{eMail}</p>
                         </div>
                       </div>
-
                     </div>
                   </DropdownItem>
                 </DropdownSection>
@@ -163,7 +160,7 @@ export default function Topbar() {
                           href={items.route}
                           className={`${isActive && "text-[#FB542B] text-lg font-bold"} text-medium w-full flex justify-start items-center`}
                         >
-                          {items.label}
+                         {items.icon} {items.label}
                         </Button>
                       </DropdownItem>
                     )

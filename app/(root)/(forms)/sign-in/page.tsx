@@ -162,6 +162,7 @@ export default function SignIn() {
                 <Input
                   autoComplete="off"
                   aria-autocomplete="none"
+                  aria-labelledby="username"
                   id="username"
                   type="text"
                   isClearable
@@ -192,6 +193,7 @@ export default function SignIn() {
                 <Input
                   autoComplete="off"
                   aria-autocomplete="none"
+                  aria-labelledby="password"
                   id="password"
                   variant="bordered"
                   label="Password"
