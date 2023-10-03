@@ -1,9 +1,14 @@
 import {
-  DashboardIcon,
-  SettingsIcon,
-  ProfileIcon,
-  SecurityIcon,
-  LogOutIcon,
+  DashboardIconLight,
+  SettingsIconLight,
+  ProfileIconLight,
+  SecurityIconLight,
+  LogOutIconLight,
+  DashboardIconDark,
+  SettingsIconDark,
+  ProfileIconDark,
+  SecurityIconDark,
+  LogOutIconDark,
 } from "@/components/utils/icons/SidebarIcons";
 
 export const userNavigation = [
@@ -11,30 +16,35 @@ export const userNavigation = [
     route: "/dashboard",
     label: "Dashboard",
     // icon: "/assets/sidebarIcons/dashboard.svg",
-    icon: <DashboardIcon />,
+    iconLight: <DashboardIconLight />,
+    iconDark: <DashboardIconDark />,
   },
   {
     route: "/settings",
     label: "Settings",
     // icon: "/assets/sidebarIcons/settings.svg",
-    icon: <SettingsIcon />,
+    iconLight: <SettingsIconLight />,
+    iconDark: <SettingsIconDark />,
   },
   {
     route: "/profile",
     label: "Profile",
     // icon: "/assets/sidebarIcons/profile.svg",
-    icon: <ProfileIcon />,
+    iconLight: <ProfileIconLight />,
+    iconDark: <ProfileIconDark />,
   },
   {
     route: "/security",
     label: "Security",
     // icon: "/assets/sidebarIcons/security.svg",
-    icon: <SecurityIcon />,
+    iconLight: <SecurityIconLight />,
+    iconDark: <SecurityIconDark />,
   },
 ];
 
 export const logOut = {
   route: "/",
   label: "Log out",
-  icon: <LogOutIcon />,
+  iconLight: <LogOutIconLight />,
+  iconDark: <LogOutIconDark />,
 };

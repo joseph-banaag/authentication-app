@@ -4,16 +4,13 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import SwitchToggle from "./SwitchToggle"
 
-export const Icon_switcher = () => {
-    const { theme } = useTheme()
-    console.log(theme)
-}
 
 export function ThemeSwitcher() {
-    const [mounted, setMounted] = useState(false)
+    const [ mounted, setMounted ] = useState(false)
     const { theme, setTheme } = useTheme()
-
     
+    console.log(theme)
+
 
     const handleToggleSwitch = (clicked: boolean) => {
         if (clicked) {
@@ -23,18 +20,17 @@ export function ThemeSwitcher() {
             // console.log("the button is clicked for dark mode")
             setTheme("dark")
         }
-        
+
     }
 
     useEffect(() => {
         setMounted(true)
-    }, [])
-
-    {mounted}
+    }, [ mounted ])
+    { mounted }
 
     return (
         <div className="flex justify-start items-center">
-            <SwitchToggle onChange={handleToggleSwitch}  />
+            <SwitchToggle onChange={handleToggleSwitch} />
         </div>
     )
 };

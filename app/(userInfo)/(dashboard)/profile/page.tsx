@@ -9,7 +9,7 @@ export default function Profile() {
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ ease: "backIn", duration: 0.25 }}
+                transition={{ ease: "backIn", duration: 0.5 }}
                 className="w-full min-h-screen pt-20 relative"
             >
                 <div className="p-5 gap-3 flex flex-1 flex-col justify-start items-center">

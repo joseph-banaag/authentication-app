@@ -38,11 +38,16 @@ export default function Topbar() {
   const { theme, setTheme } = useTheme()
   const [ userName, setUserName ] = useState<string>("")
   const [ eMail, setEMail ] = useState<string>("")
+  const [ dark, setDark ] = useState<boolean>(false)
   const router = useRouter()
 
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  if (theme === "dark") {
+    console.log("the theme is dark")
+  }
 
   const handleClearStorage = () => {
     sessionStorage.clear();
@@ -54,7 +59,6 @@ export default function Topbar() {
   const storedUser = {
     data: typeof window !== "undefined" ? sessionStorage.getItem("username") : ""
   }
-
 
   if (storedUser.data === "null" || storedUser.data === null || storedUser.data === undefined || storedUser.data === "undefined") {
     router.push("/")
@@ -161,7 +165,7 @@ export default function Topbar() {
                           href={items.route}
                           className={`${isActive && "text-[#FB542B] text-lg font-bold"} text-medium w-full flex justify-start items-center`}
                         >
-                          {items.icon} {items.label}
+                          {items.iconLight} {items.label}
                         </Button>
                       </DropdownItem>
                     )
