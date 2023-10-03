@@ -4,6 +4,7 @@ import { userNavigation, logOut } from "@/app/userComponents/constants"
 import { usePathname, useRouter } from 'next/navigation'
 import { Avatar, Button, Card, Link } from "@nextui-org/react"
 import SkeletonLoader from "@/components/skeletons/Loader"
+import { useTheme } from "next-themes"
 
 
 export default function Sidebar() {
@@ -21,6 +22,7 @@ export default function Sidebar() {
   }
 
   if (pathname === "/profile" || pathname === "/security" || pathname === "/settings") {
+
     const currentUserInfo = async () => {
 
       async function getData() {
@@ -49,6 +51,14 @@ export default function Sidebar() {
     }
     currentUserInfo();
   }
+
+  const storedTheme = {
+    data: typeof window !== "undefined" ? sessionStorage.getItem("currentTheme") : ""
+  }
+  console.log(storedTheme.data)
+
+  const currentTheme = `${storedTheme.data}`
+  console.log(currentTheme)
 
   const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 
@@ -88,7 +98,10 @@ export default function Sidebar() {
               href={item.route}
               className="text-medium w-full flex justify-start items-center px-3 py-6"
             >
-              {item.iconLight} <p className={`${isActive && "text-[#FB542B] text-lg font-bold"} text-medium w-full flex justify-start items-center`}>{item.label}</p>
+              {currentTheme === "light"
+                ? item.iconDark
+                : item.iconLight
+              } <p className={`${isActive && "text-[#FB542B] text-lg font-bold"} text-medium w-full flex justify-start items-center`}>{item.label}</p>
             </Button>
           )
         })}
@@ -101,12 +114,13 @@ export default function Sidebar() {
           href={logOut.route}
           size="sm"
           variant="bordered"
-          className="w-full text-medium px-3 py-6 -bottom-72"
+          className="w-full text-medium px-3 py-6"
         >
-          {logOut.icon} {logOut.label}
+          {currentTheme === "light"
+            ? logOut.iconDark
+            : logOut.iconLight
+          } {logOut.label}
         </Button>
-
-
       </Card>
     </>
   )

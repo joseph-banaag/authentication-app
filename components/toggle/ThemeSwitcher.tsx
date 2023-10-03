@@ -8,25 +8,18 @@ import SwitchToggle from "./SwitchToggle"
 export function ThemeSwitcher() {
     const [ mounted, setMounted ] = useState(false)
     const { theme, setTheme } = useTheme()
-    
-    console.log(theme)
-
 
     const handleToggleSwitch = (clicked: boolean) => {
         if (clicked) {
-            // console.log("the button is clicked for light mode")
             setTheme("light")
         } else {
-            // console.log("the button is clicked for dark mode")
             setTheme("dark")
         }
-
     }
 
     useEffect(() => {
         setMounted(true)
     }, [ mounted ])
-    { mounted }
 
     return (
         <div className="flex justify-start items-center">
