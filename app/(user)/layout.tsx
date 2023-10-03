@@ -2,7 +2,7 @@ import '@/app/globals.css'
 import * as React from "react";
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
-import Topbar from "@/app/(user)/userComponents/section/navbar/page";
+import Topbar from "@/app/userComponents/section/navbar/Navbar";
 import { ThemeProvider } from "@/app/(root)/providers"
 
 const monserrat = Montserrat({

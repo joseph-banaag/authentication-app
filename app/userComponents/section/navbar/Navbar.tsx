@@ -16,12 +16,12 @@ import {
   Avatar,
 } from "@nextui-org/react";
 import { usePathname, useRouter } from 'next/navigation'
-import { userNavigation } from "@/app/(user)/userComponents/constants/index"
+import { userNavigation } from "@/app/userComponents/constants/index"
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { SunIcon } from "@/components/utils/icons/SunIcon";
 import { MoonIcon } from "@/components/utils/icons/MoonIcon";
-import BrandLogo from "@/app/(user)/userComponents/section/components/BrandLogo";
+import BrandLogo from "@/app/userComponents/section/components/BrandLogo";
 
 const getData = async () => {
   const res = await fetch("api/users")
@@ -31,9 +31,6 @@ const getData = async () => {
   return res.json()
 }
 
-if (!getData) {
-  console.log("Get Data is not running")
-}
 
 export default function Topbar() {
   const pathname = usePathname()
@@ -51,8 +48,6 @@ export default function Topbar() {
     sessionStorage.clear();
   };
 
-  console.log(userName)
-  console.log(eMail)
 
   if (!mounted) return null
 
@@ -62,7 +57,6 @@ export default function Topbar() {
     data: typeof window !== "undefined" ? sessionStorage.getItem("username") : ""
   }
 
-  console.log(storedUser.data)
 
   if (storedUser.data === "null" || storedUser.data === null || storedUser.data === undefined || storedUser.data === "undefined") {
     router.push("/")
@@ -72,8 +66,6 @@ export default function Topbar() {
     const getUserFromDB = async () => {
       const data = await getData()
       const user_name = storedUser.data
-
-      console.log(user_name)
 
       const currentUser = data.find((obj: { username: string; }) => obj.username === user_name)
 
@@ -169,7 +161,7 @@ export default function Topbar() {
                           size="sm"
                           variant="light"
                           href={items.route}
-                          className={`${isActive && "text-[#FB542B] text-2xl font-bold"} text-medium w-full flex justify-start items-center`}
+                          className={`${isActive && "text-[#FB542B] text-lg font-bold"} text-medium w-full flex justify-start items-center`}
                         >
                           {items.label}
                         </Button>

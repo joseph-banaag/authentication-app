@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import * as React from "react";
 import { ThemeProvider } from "@/app/(root)/providers"
-import Sidebar from "@/app/(user)/userComponents/section/sidebar/Sidebar";
+import Sidebar from "@/app/userComponents/section/sidebar/Sidebar";
 
 const monserrat = Montserrat({
   display: "swap",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 }
 
 
-export default function SettingsLayout({
+export default function SettingsTemplate({
   children,
 }: {
   children: React.ReactNode

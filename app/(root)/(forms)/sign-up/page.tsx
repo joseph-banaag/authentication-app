@@ -246,9 +246,10 @@ export default function SignUp() {
                   name="submit"
                   className="bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300"
                 >
-                  <p className="text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center">{clicked
+                  <div className="text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center">{clicked
                     ? <SubmitSpinner />
-                    : "Continue"}</p>
+                    : <p>Continue</p>}
+                  </div>
                 </Button >
               </>
             )

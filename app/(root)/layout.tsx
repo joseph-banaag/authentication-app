@@ -1,7 +1,7 @@
 import '@/app/globals.css'
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
-import Topbar from "@/components/sections/navbar/page"
+import Topbar from "@/components/sections/navbar/Navbar"
 import Footer from "@/components/sections/footer/page"
 import * as React from "react";
 import { ThemeProvider } from "@/app/(root)/providers"

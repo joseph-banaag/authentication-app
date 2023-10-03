@@ -59,3 +59,10 @@ a:hover {
     transform: translateX(-100%);
   }
 }
+
+@media (max-width: 540px) {
+  .mainPageLogo {
+    margin-top: -5em;
+  }
+
+}

@@ -55,7 +55,7 @@ export default function Topbar() {
                         <NavbarMenuItem key={links.label}>
                             <Link
                                 color="foreground"
-                                className={`${isActive && "text-[#FB542B] text-2xl font-bold"} text-medium w-full`}
+                                className={`${isActive && "text-[#FB542B] text-lg font-bold"} w-full`}
                                 href={links.route}
                                 size="lg"
                             >
