@@ -81,6 +81,7 @@ export default function Topbar() {
   return (
     <>
       <Navbar
+        shouldHideOnScroll
         className="flex justify-around flex-wrap sm:p-3 p-0 drop-shadow-2xl">
         <NavbarContent justify="start" className="flex justify-start">
           <NavbarBrand className="flex-1 w-full justify-start flex gap-2">
@@ -160,7 +161,7 @@ export default function Topbar() {
                           href={items.route}
                           className={`${isActive && "text-[#FB542B] text-lg font-bold"} text-medium w-full flex justify-start items-center`}
                         >
-                         {items.icon} {items.label}
+                          {items.icon} {items.label}
                         </Button>
                       </DropdownItem>
                     )

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 }
 
 
-export default function SettingsTemplate({
+export default function SettingsLayout({
   children,
 }: {
   children: React.ReactNode

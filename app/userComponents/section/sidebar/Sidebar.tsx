@@ -103,7 +103,7 @@ const Sidebar = () => {
           href={logOut.route}
           size="sm"
           variant="light"
-          className="text-medium w-full px-3 py-6 absolute bottom-10"
+          className="text-medium px-3 py-6 absolute bottom-10"
         >
           {logOut.icon} {logOut.label}
         </Button>
