@@ -28,7 +28,7 @@ const config: Config = {
             primary: {
               //... 50 to 900
               foreground: "#FFFFFF",
-              DEFAULT: "#52525b",
+              DEFAULT: "##52525b",
             },
           },
         },
@@ -39,19 +39,8 @@ const config: Config = {
             primary: {
               //... 50 to 900
               foreground: "#FFFFFF",
-              DEFAULT: "#18181b",
+              DEFAULT: "##52525b",
             },
-          },
-        },
-        mytheme: {
-          // custom theme
-          extend: "dark",
-          colors: {
-            primary: {
-              DEFAULT: "#BEF264",
-              foreground: "#000000",
-            },
-            focus: "#BEF264",
           },
         },
       },

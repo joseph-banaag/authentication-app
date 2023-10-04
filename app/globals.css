@@ -29,7 +29,7 @@ a:hover {
 }
 
 .fade-in {
-  animation: fadeIn 2s ease-in-out;
+  animation: fadeIn 1s ease-in-out;
 }
 
 @keyframes scroll {
@@ -50,6 +50,49 @@ a:hover {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.animate-scrolling-text {
+  animation: scroll 10s linear infinite;
+}
+
+@media (max-width: 540px) {
+  .mainPageLogo {
+    margin-top: -5em;
+  }
+  .brandGradient{
+    font-size: 36px;
+      height: 36px;
+  }
+}
+
+@media (max-width: 482px) {
+  .userProfile {
+    max-width: 270px;
+    width: fit-content;
+  }
+}
+
+@media (max-width: 335px) {
+  .mainPageLogo {
+      margin-top: -15em;
+    }
+}
+
+@media (max-width: 320px) {
+  .userProfile {
+    max-width: 170px;
+    width: fit-content;
+  }
+    
+}
+
+@media (max-width: 270px) {
+  .userProfile {
+    display: none;
+    width: fit-content;
+
+  }
 }
 
 @media (max-width: 298px) {
@@ -76,44 +119,5 @@ a:hover {
     display: flex;
     flex-direction: column;
     text-align: start;
-  }
-}
-
-.animate-scrolling-text {
-  animation: scroll 10s linear infinite;
-}
-
-@media (max-width: 540px) {
-  .mainPageLogo {
-    margin-top: -10em;
-  }
-
-  .brandGradient{
-    font-size: 32px;
-      height: 32px;
-  }
-
-}
-
-@media (max-width: 482px) {
-  .userProfile {
-    max-width: 270px;
-    width: fit-content;
-  }
-}
-
-@media (max-width: 320px) {
-  .userProfile {
-    max-width: 170px;
-    width: fit-content;
-
-  }
-}
-
-@media (max-width: 270px) {
-  .userProfile {
-    display: none;
-    width: fit-content;
-
   }
 }
