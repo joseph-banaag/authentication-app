@@ -77,10 +77,9 @@ export default function Sidebar() {
           <Avatar
             showFallback
             radius="full"
-            isBordered
             isFocusable
             src={image}
-            className="cursor-pointer sm:w-8 w-6 sm:h-8 h-6"
+            className="cursor-pointer sm:w-9 w-7 sm:h-9 h-7"
           />
           <Suspense fallback={<SkeletonLoader />}>
             <div className="ms-2 max-w-[120px]">
@@ -120,7 +119,7 @@ export default function Sidebar() {
 
         </div>
 
-        <div className="absolute bottom-5">
+        <div className="fixed bottom-5">
           <Button
             as={Link}
             href={logOut.route}
@@ -174,68 +173,62 @@ export default function Sidebar() {
         </NavbarContent>
 
         <NavbarMenu className="!min-w-[276px] !max-h-auto ">
-          <div className="min-h-screen w-full flex flex-col gap-5 justify-start items-center pt-16 !bg-none">
-            <div className="flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default !dark:text-white sm:py-4 py-3 sm:px-6 px-4">
-              <div>
-                <Avatar
-                  showFallback
-                  radius="full"
-                  isBordered
-                  isFocusable
-                  src={image}
-                  className="cursor-pointer sm:w-8 w-6 sm:h-8 h-6"
-                />
-              </div>
-              <div className="ms-2 md:max-w-[400px] sm:max-w-[300px] w-full truncate userProfile">
-                <p className="text-sm font-bold">{username}</p>
-                <div className="w-full overflow-hidden">
-                  <p className="text-xs font-thin dark:text-foreground/60 animate-scrolling-text delay-1000">{email}</p>
+          <div className="w-auto">
+            <div className="flex flex-col gap-5 justify-start items-center pt-16 !bg-none">
+
+              <div className="flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default !dark:text-white sm:py-4 py-3 sm:px-6 px-4">
+                <div>
+                  <Avatar
+                    showFallback
+                    radius="full"
+                    // isBordered
+                    isFocusable
+                    src={image}
+                    className="cursor-pointer sm:w-9 w-7 sm:h-9 h-7"
+                  />
+                </div>
+                <div className="ms-2 md:max-w-[400px] sm:max-w-[300px] truncate userProfile">
+                  <p className="text-sm font-bold">{username}</p>
+                  <div className="w-full overflow-hidden">
+                    <p className="text-xs font-thin dark:text-foreground/60 animate-scrolling-text delay-1000">{email}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+              <div className="flex flex-1 flex-col gap-4">
+                {userNavigation.map((item) => {
+                  const isActive = pathname === item.route
+                  return (
+                    <Button
+                      as={Link}
+                      key={item.label}
+                      size="sm"
+                      variant="bordered"
+                      href={item.route}
+                      className="text-medium flex justify-start items-center px-3 py-6"
+                    >
+                      {"light" === "light"
+                        ? item.iconDark
+                        : item.iconLight
+                      }
+                      <p className={`${isActive && "text-[#FB542B] text-lg font-bold"} text-medium flex justify-start items-center`}>{item.label}</p>
+                    </Button>
+                  )
+                })}
 
-            <div className="flex flex-1 flex-col gap-4 w-auto">
-              {userNavigation.map((item) => {
-                const isActive = pathname === item.route
-                return (
-                  // change this to link to add image in front. startContent is not applicable here.
-                  // TODO: CREATE A FUNCTION THAT WILL CHANGE THE LEGEND TO JUST ICON IN SMALL SCREEN
-                  <Button
-                    as={Link}
-                    key={item.label}
-                    size="sm"
-                    variant="bordered"
-                    href={item.route}
-                    className="text-medium w-full flex justify-start items-center px-3 py-6"
-                  >
-                    {/* 
-              // TODO: LOGIC IS NOT WORKING. NEED FIXING.....
-               */}
-                    {"light" === "light"
-                      ? item.iconDark
-                      : item.iconLight
-                    }
-                    <p className={`${isActive && "text-[#FB542B] text-lg font-bold"} text-medium w-full flex justify-start items-center`}>{item.label}</p>
-                  </Button>
-                )
-              })}
-
-              <Button
-                as={Link}
-                href={logOut.route}
-                size="sm"
-                variant="light"
-                className="w-full text-medium px-3 py-6 fixed bottom-5"
-              >
-                {/* 
-            // TODO: LOGIC IS NOT WORKING. NEED FIXING.....
-          */}
-                {"light" === "light"
-                  ? logOut.iconDark
-                  : logOut.iconLight
-                }
-                <p className="text-medium w-full flex justify-start items-center">{logOut.label}</p>
-              </Button>
+                <Button
+                  as={Link}
+                  href={logOut.route}
+                  size="sm"
+                  variant="light"
+                  className="text-medium px-3 py-6 fixed bottom-5"
+                >
+                  {"light" === "light"
+                    ? logOut.iconDark
+                    : logOut.iconLight
+                  }
+                  <p className="text-medium flex justify-start items-center">{logOut.label}</p>
+                </Button>
+              </div>
             </div>
           </div>
         </NavbarMenu>

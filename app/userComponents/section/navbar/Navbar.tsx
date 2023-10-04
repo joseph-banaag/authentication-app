@@ -45,21 +45,12 @@ export default function Topbar() {
 
   const handleThemeChangedDark = () => {
     setTheme('dark')
-    sessionStorage.setItem("currentTheme", "dark")
   }
 
   const handleThemeChangedLight = () => {
     setTheme('light')
-    sessionStorage.setItem("currentTheme", "light")
   }
 
-  const storedTheme = {
-    data: typeof window !== "undefined" ? sessionStorage.getItem("currentTheme") : ""
-  }
-  console.log(storedTheme.data)
-
-  const currentTheme = `${storedTheme.data}`
-  console.log(currentTheme)
 
   const handleClearStorage = () => {
     sessionStorage.clear();
@@ -122,10 +113,9 @@ export default function Topbar() {
                 <Avatar
                   showFallback
                   radius="full"
-                  isBordered
                   isFocusable
                   src={image}
-                  className="cursor-pointer sm:w-8 w-6 sm:h-8 h-6"
+                  className="cursor-pointer sm:w-9 w-7 sm:h-9 h-7"
                 />
               </DropdownTrigger>
               <DropdownMenu
@@ -145,10 +135,9 @@ export default function Topbar() {
                       <Avatar
                         showFallback
                         radius="full"
-                        isBordered
                         isFocusable
                         src={image}
-                        className="cursor-pointer sm:w-8 w-6 sm:h-8 h-6"
+                        className="cursor-pointer sm:w-9 w-7 sm:h-9 h-7"
                       />
 
                       <div className="ms-2 max-w-[120px]">
