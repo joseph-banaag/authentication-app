@@ -42,8 +42,8 @@ export const iconsSrc = {
   nameFb: "facebook",
   google: "/assets/google/google.png",
   nameG: "google",
-  githubLight: "/assets/github/github-mark-white.png",
-  githubDark: "/assets/github/github.png",
+  githubLight: "/assets/github/githubWhite.svg",
+  githubDark: "/assets/github/githubDark.svg",
   nameGit: "github",
 };
 

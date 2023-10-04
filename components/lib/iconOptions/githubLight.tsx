@@ -6,7 +6,7 @@ import { iconsSrc } from "@/components/constants";
 export default function GithubLight() {
     return (
         <Image
-            src={iconsSrc.githubDark}
+            src={iconsSrc.githubLight}
             alt={iconsSrc.nameGit}
             width={24}
             height={24}

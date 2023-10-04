@@ -1,13 +1,22 @@
 "use client"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import { MyButton } from "@/components/utils/tailwindvariants/tv";
-import IconChanger from "@/components/lib/IconChanger";
 import { iconsSrc } from "@/components/constants";
+import { useTheme } from "next-themes";
+import GithubDark from "@/components/lib/iconOptions/githubDark";
+import GithubLight from "@/components/lib/iconOptions/githubLight";
 
 // TODO: setup nextAuth here...
 
 export default function SocialAuth() {
+    const { theme, setTheme } = useTheme()
+    const [ client, setClient ] = useState<boolean>(false)
+
+    useEffect(() => {
+        setClient(true)
+    }, [])
+
     return (
         <>
             <div className="flex items-center justify-center loginButtons gap-5 px-3">
@@ -39,7 +48,12 @@ export default function SocialAuth() {
                         size="md"
                         className="hover:scale-105 hover:bg-secondary/10 transition-all duration-300 shadow-xl flex-1"
                     >
-                        <IconChanger />
+                        {client
+                            ? theme === "light"
+                                ? <GithubDark />
+                                : <GithubLight />
+                            : ""
+                        }
                     </MyButton>
                 </div>
 
