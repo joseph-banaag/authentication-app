@@ -27,7 +27,6 @@ export const DashboardIconLight = (props) => (
   </svg>
 );
 
-
 export const DashboardIconDark = (props) => (
   <svg
     aria-hidden="true"
@@ -38,7 +37,7 @@ export const DashboardIconDark = (props) => (
     height="24px"
     viewBox="0 0 24 24"
     width="24px"
-    fill="#555555"
+    fill="#262626"
     {...props}
   >
     <g>
@@ -55,7 +54,7 @@ export const DashboardIconDark = (props) => (
   </svg>
 );
 
-
+// *Settings icons
 export const SettingsIconLight = (props) => (
   <svg
     aria-hidden="true"
@@ -74,7 +73,6 @@ export const SettingsIconLight = (props) => (
   </svg>
 );
 
-
 export const SettingsIconDark = (props) => (
   <svg
     aria-hidden="true"
@@ -85,7 +83,43 @@ export const SettingsIconDark = (props) => (
     height="24px"
     viewBox="0 0 24 24"
     width="24px"
-    fill="#555555"
+    fill="#262626"
+    {...props}
+  >
+    <rect fill="none" height="24" width="24" />
+    <path d="M19.5,12c0-0.23-0.01-0.45-0.03-0.68l1.86-1.41c0.4-0.3,0.51-0.86,0.26-1.3l-1.87-3.23c-0.25-0.44-0.79-0.62-1.25-0.42 l-2.15,0.91c-0.37-0.26-0.76-0.49-1.17-0.68l-0.29-2.31C14.8,2.38,14.37,2,13.87,2h-3.73C9.63,2,9.2,2.38,9.14,2.88L8.85,5.19 c-0.41,0.19-0.8,0.42-1.17,0.68L5.53,4.96c-0.46-0.2-1-0.02-1.25,0.42L2.41,8.62c-0.25,0.44-0.14,0.99,0.26,1.3l1.86,1.41 C4.51,11.55,4.5,11.77,4.5,12s0.01,0.45,0.03,0.68l-1.86,1.41c-0.4,0.3-0.51,0.86-0.26,1.3l1.87,3.23c0.25,0.44,0.79,0.62,1.25,0.42 l2.15-0.91c0.37,0.26,0.76,0.49,1.17,0.68l0.29,2.31C9.2,21.62,9.63,22,10.13,22h3.73c0.5,0,0.93-0.38,0.99-0.88l0.29-2.31 c0.41-0.19,0.8-0.42,1.17-0.68l2.15,0.91c0.46,0.2,1,0.02,1.25-0.42l1.87-3.23c0.25-0.44,0.14-0.99-0.26-1.3l-1.86-1.41 C19.49,12.45,19.5,12.23,19.5,12z M12.04,15.5c-1.93,0-3.5-1.57-3.5-3.5s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.97,15.5,12.04,15.5z" />
+  </svg>
+);
+
+export const SettingsIconLightLarge = (props) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    role="presentation"
+    xmlns="http://www.w3.org/2000/svg"
+    enableBackground="new 0 0 24 24"
+    height="32px"
+    viewBox="0 0 24 24"
+    width="32px"
+    fill="#cccccc"
+    {...props}
+  >
+    <rect fill="none" height="24" width="24" />
+    <path d="M19.5,12c0-0.23-0.01-0.45-0.03-0.68l1.86-1.41c0.4-0.3,0.51-0.86,0.26-1.3l-1.87-3.23c-0.25-0.44-0.79-0.62-1.25-0.42 l-2.15,0.91c-0.37-0.26-0.76-0.49-1.17-0.68l-0.29-2.31C14.8,2.38,14.37,2,13.87,2h-3.73C9.63,2,9.2,2.38,9.14,2.88L8.85,5.19 c-0.41,0.19-0.8,0.42-1.17,0.68L5.53,4.96c-0.46-0.2-1-0.02-1.25,0.42L2.41,8.62c-0.25,0.44-0.14,0.99,0.26,1.3l1.86,1.41 C4.51,11.55,4.5,11.77,4.5,12s0.01,0.45,0.03,0.68l-1.86,1.41c-0.4,0.3-0.51,0.86-0.26,1.3l1.87,3.23c0.25,0.44,0.79,0.62,1.25,0.42 l2.15-0.91c0.37,0.26,0.76,0.49,1.17,0.68l0.29,2.31C9.2,21.62,9.63,22,10.13,22h3.73c0.5,0,0.93-0.38,0.99-0.88l0.29-2.31 c0.41-0.19,0.8-0.42,1.17-0.68l2.15,0.91c0.46,0.2,1,0.02,1.25-0.42l1.87-3.23c0.25-0.44,0.14-0.99-0.26-1.3l-1.86-1.41 C19.49,12.45,19.5,12.23,19.5,12z M12.04,15.5c-1.93,0-3.5-1.57-3.5-3.5s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.97,15.5,12.04,15.5z" />
+  </svg>
+);
+
+export const SettingsIconDarkLarge = (props) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    role="presentation"
+    xmlns="http://www.w3.org/2000/svg"
+    enableBackground="new 0 0 24 24"
+    height="32px"
+    viewBox="0 0 24 24"
+    width="32px"
+    fill="#262626"
     {...props}
   >
     <rect fill="none" height="24" width="24" />
@@ -94,7 +128,7 @@ export const SettingsIconDark = (props) => (
 );
 
 
-
+// * Profile icons
 export const ProfileIconLight = (props) => (
   <svg
     aria-hidden="true"
@@ -118,7 +152,6 @@ export const ProfileIconLight = (props) => (
   </svg>
 );
 
-
 export const ProfileIconDark = (props) => (
   <svg
     aria-hidden="true"
@@ -129,7 +162,53 @@ export const ProfileIconDark = (props) => (
     height="24px"
     viewBox="0 0 24 24"
     width="24px"
-    fill="#555555"
+    fill="#262626"
+    {...props}
+  >
+    <g>
+      <rect fill="none" height="24" width="24" />
+      <rect fill="none" height="24" width="24" />
+    </g>
+    <g>
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-4.43-.82-6.14-2.88C7.55 15.8 9.68 15 12 15s4.45.8 6.14 2.12C16.43 19.18 14.03 20 12 20z" />
+    </g>
+  </svg>
+);
+
+export const ProfileIconLightLarge = (props) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    role="presentation"
+    xmlns="http://www.w3.org/2000/svg"
+    enableBackground="new 0 0 24 24"
+    height="32px"
+    viewBox="0 0 24 24"
+    width="32px"
+    fill="#cccccc"
+    {...props}
+  >
+    <g>
+      <rect fill="none" height="24" width="24" />
+      <rect fill="none" height="24" width="24" />
+    </g>
+    <g>
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-4.43-.82-6.14-2.88C7.55 15.8 9.68 15 12 15s4.45.8 6.14 2.12C16.43 19.18 14.03 20 12 20z" />
+    </g>
+  </svg>
+);
+
+export const ProfileIconDarkLarge = (props) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    role="presentation"
+    xmlns="http://www.w3.org/2000/svg"
+    enableBackground="new 0 0 24 24"
+    height="32px"
+    viewBox="0 0 24 24"
+    width="32px"
+    fill="#262626"
     {...props}
   >
     <g>
@@ -144,6 +223,7 @@ export const ProfileIconDark = (props) => (
 
 
 
+// * Security icons
 export const SecurityIconLight = (props) => (
   <svg
     aria-hidden="true"
@@ -161,7 +241,6 @@ export const SecurityIconLight = (props) => (
   </svg>
 );
 
-
 export const SecurityIconDark = (props) => (
   <svg
     aria-hidden="true"
@@ -172,7 +251,41 @@ export const SecurityIconDark = (props) => (
     height="24px"
     viewBox="0 0 24 24"
     width="24px"
-    fill="#555555"
+    fill="#262626"
+    {...props}
+  >
+    <path d="M11.19 1.36l-7 3.11C3.47 4.79 3 5.51 3 6.3V11c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V6.3c0-.79-.47-1.51-1.19-1.83l-7-3.11c-.51-.23-1.11-.23-1.62 0zM12 11.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" />
+  </svg>
+);
+
+export const SecurityIconLightLarge = (props) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    role="presentation"
+    xmlns="http://www.w3.org/2000/svg"
+    enableBackground="new 0 0 24 24"
+    height="32px"
+    viewBox="0 0 24 24"
+    width="32px"
+    fill="#cccccc"
+    {...props}
+  >
+    <path d="M11.19 1.36l-7 3.11C3.47 4.79 3 5.51 3 6.3V11c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V6.3c0-.79-.47-1.51-1.19-1.83l-7-3.11c-.51-.23-1.11-.23-1.62 0zM12 11.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" />
+  </svg>
+);
+
+export const SecurityIconDarkLarge = (props) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    role="presentation"
+    xmlns="http://www.w3.org/2000/svg"
+    enableBackground="new 0 0 24 24"
+    height="32px"
+    viewBox="0 0 24 24"
+    width="32px"
+    fill="#262626"
     {...props}
   >
     <path d="M11.19 1.36l-7 3.11C3.47 4.79 3 5.51 3 6.3V11c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V6.3c0-.79-.47-1.51-1.19-1.83l-7-3.11c-.51-.23-1.11-.23-1.62 0zM12 11.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" />
@@ -180,6 +293,8 @@ export const SecurityIconDark = (props) => (
 );
 
 
+
+// * Logout icons
 export const LogOutIconLight = (props) => (
   <svg
     aria-hidden="true"
@@ -205,7 +320,6 @@ export const LogOutIconLight = (props) => (
   </svg>
 );
 
-
 export const LogOutIconDark = (props) => (
   <svg
     aria-hidden="true"
@@ -216,7 +330,57 @@ export const LogOutIconDark = (props) => (
     height="24px"
     viewBox="0 0 24 24"
     width="24px"
-    fill="#555555"
+    fill="#262626"
+    {...props}
+  >
+    <g>
+      <path d="M0,0h24v24H0V0z" fill="none" />
+    </g>
+    <g>
+      <g>
+        <path d="M5,5h6c0.55,0,1-0.45,1-1v0c0-0.55-0.45-1-1-1H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h6c0.55,0,1-0.45,1-1v0 c0-0.55-0.45-1-1-1H5V5z" />
+        <path d="M20.65,11.65l-2.79-2.79C17.54,8.54,17,8.76,17,9.21V11h-7c-0.55,0-1,0.45-1,1v0c0,0.55,0.45,1,1,1h7v1.79 c0,0.45,0.54,0.67,0.85,0.35l2.79-2.79C20.84,12.16,20.84,11.84,20.65,11.65z" />
+      </g>
+    </g>
+  </svg>
+);
+
+export const LogOutIconLightLarge = (props) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    role="presentation"
+    xmlns="http://www.w3.org/2000/svg"
+    enableBackground="new 0 0 24 24"
+    height="32px"
+    viewBox="0 0 24 24"
+    width="32px"
+    fill="#cccccc"
+    {...props}
+  >
+    <g>
+      <path d="M0,0h24v24H0V0z" fill="none" />
+    </g>
+    <g>
+      <g>
+        <path d="M5,5h6c0.55,0,1-0.45,1-1v0c0-0.55-0.45-1-1-1H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h6c0.55,0,1-0.45,1-1v0 c0-0.55-0.45-1-1-1H5V5z" />
+        <path d="M20.65,11.65l-2.79-2.79C17.54,8.54,17,8.76,17,9.21V11h-7c-0.55,0-1,0.45-1,1v0c0,0.55,0.45,1,1,1h7v1.79 c0,0.45,0.54,0.67,0.85,0.35l2.79-2.79C20.84,12.16,20.84,11.84,20.65,11.65z" />
+      </g>
+    </g>
+  </svg>
+);
+
+export const LogOutIconDarkLarge = (props) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    role="presentation"
+    xmlns="http://www.w3.org/2000/svg"
+    enableBackground="new 0 0 24 24"
+    height="32px"
+    viewBox="0 0 24 24"
+    width="32px"
+    fill="#262626"
     {...props}
   >
     <g>

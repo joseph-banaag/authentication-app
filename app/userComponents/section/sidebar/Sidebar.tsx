@@ -2,8 +2,7 @@
 import React, { Suspense, useEffect, useState } from 'react'
 import { userNavigation, logOut } from "@/app/userComponents/constants"
 import { usePathname, useRouter } from 'next/navigation'
-import SkeletonLoader from "@/components/skeletons/Loader"
-import { useTheme } from "next-themes"
+import { useTheme } from "next-themes";
 import {
   Navbar,
   NavbarContent,
@@ -24,9 +23,17 @@ export default function Sidebar() {
   const [ username, setUsername ] = useState<string>("")
   const [ email, setEmail ] = useState<string>("")
   const [ isMenuOpen, setIsMenuOpen ] = React.useState(false);
+  const [ client, setClient ] = useState<boolean>(false)
+  const { theme, setTheme } = useTheme()
+
+  useEffect(() => {
+    setClient(true)
+  }, [])
 
   const storedUser = {
-    data: typeof window !== "undefined" ? sessionStorage.getItem("username") : ""
+    data: typeof window !== "undefined"
+      ? sessionStorage.getItem("username")
+      : ""
   }
 
   if (storedUser.data === "null" || storedUser.data === null || storedUser.data === undefined || storedUser.data === "undefined") {
@@ -47,7 +54,6 @@ export default function Sidebar() {
     const user_name = storedUser.data
 
     const currentUser = data.find((obj: { username: string; }) => obj.username === user_name)
-
 
     if (!currentUser) return null
 
@@ -71,11 +77,11 @@ export default function Sidebar() {
 
   return (
     <>
-      <Card className="relative min-h-screen md:flex hidden flex-col gap-5 justify-start items-center px-8 pt-16 shadow-2xl bg-background/60 dark:bg-default-100/50 rounded-none">
+      <Card className="relative min-h-screen md:flex hidden flex-col gap-5 justify-start items-center px-8 pt-9 shadow-2xl bg-background/60 dark:bg-default-100/50 rounded-none mx-auto">
 
-        <div className="flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default !dark:text-white py-3 px-6">
+        <div className="flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default !dark:text-white py-3 px-4 mx-2 shadow-xl min-w-[200px] fade-in">
           <ProfileAvatar />
-          <div className="ms-2 max-w-[120px] fade-in ">
+          <div className="ms-2 max-w-[120px]">
             <p className="text-sm font-bold truncate">{username}</p>
             <div className="overflow-hidden">
               <p className="text-xs font-thin dark:text-foreground/60 animate-scrolling-text">{email}</p>
@@ -87,8 +93,6 @@ export default function Sidebar() {
           {userNavigation.map((item) => {
             const isActive = pathname === item.route
             return (
-              // change this to link to add image in front. startContent is not applicable here.
-              // TODO: CREATE A FUNCTION THAT WILL CHANGE THE LEGEND TO JUST ICON IN SMALL SCREEN
               <Button
                 as={Link}
                 key={item.label}
@@ -97,18 +101,17 @@ export default function Sidebar() {
                 href={item.route}
                 className="text-medium w-full flex justify-start items-center px-3 py-6"
               >
-                {/* 
-              // TODO: LOGIC IS NOT WORKING. NEED FIXING.....
-               */}
-                {"light" === "light"
-                  ? item.iconDark
-                  : item.iconLight
+
+                {client
+                  ? theme === "light"
+                    ? item.iconDark
+                    : item.iconLight
+                  : ""
                 }
                 <p className={`${isActive && "text-[#FB542B] text-lg font-bold"} text-medium w-full flex justify-start items-center`}>{item.label}</p>
               </Button>
             )
           })}
-
         </div>
 
         <div className="fixed bottom-5">
@@ -119,12 +122,12 @@ export default function Sidebar() {
             variant="light"
             className="w-full text-medium px-3 py-6"
           >
-            {/* 
-            // TODO: LOGIC IS NOT WORKING. NEED FIXING.....
-          */}
-            {"light" === "light"
-              ? logOut.iconDark
-              : logOut.iconLight
+
+            {client
+              ? theme === "light"
+                ? logOut.iconDark
+                : logOut.iconLight
+              : ""
             }
             <p className="text-medium w-full flex justify-start items-center">{logOut.label}</p>
           </Button>
@@ -133,7 +136,7 @@ export default function Sidebar() {
 
       <Navbar
         onMenuOpenChange={setIsMenuOpen}
-        className="md:hidden flex flex-wrap p-2 drop-shadow-2xl absolute top-0 left-0">
+        className="md:hidden flex flex-wrap p-2 drop-shadow-2xl absolute top-0 left-0 mb-9">
 
         <NavbarContent justify="start">
           <NavbarMenuToggle
@@ -168,7 +171,7 @@ export default function Sidebar() {
           <div className="w-auto">
             <div className="flex flex-col gap-5 justify-start items-center pt-16 !bg-none">
 
-              <div className="flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default !dark:text-white sm:py-4 py-3 sm:px-6 px-4">
+              <div className="flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default !dark:text-white sm:py-4 py-3 sm:px-6 px-4 shadow-xl">
                 <div>
                   <ProfileAvatar />
                 </div>
@@ -191,9 +194,11 @@ export default function Sidebar() {
                       href={item.route}
                       className="text-medium flex justify-start items-center px-3 py-6"
                     >
-                      {"light" === "light"
-                        ? item.iconDark
-                        : item.iconLight
+                      {client
+                        ? theme === "light"
+                          ? item.iconDark
+                          : item.iconLight
+                        : ""
                       }
                       <p className={`${isActive && "text-[#FB542B] text-lg font-bold"} text-medium flex justify-start items-center`}>{item.label}</p>
                     </Button>
@@ -207,9 +212,11 @@ export default function Sidebar() {
                   variant="light"
                   className="text-medium px-3 py-6 fixed bottom-5"
                 >
-                  {"light" === "light"
-                    ? logOut.iconDark
-                    : logOut.iconLight
+                  {client
+                    ? theme === "light"
+                      ? logOut.iconDark
+                      : logOut.iconLight
+                    : ""
                   }
                   <p className="text-medium flex justify-start items-center">{logOut.label}</p>
                 </Button>

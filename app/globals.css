@@ -29,7 +29,7 @@ a:hover {
 }
 
 .fade-in {
-  animation: fadeIn 1s ease-in-out;
+  animation: fadeIn 750ms ease-in-out;
 }
 
 @keyframes scroll {
@@ -46,7 +46,7 @@ a:hover {
   font-size: 42px;
   height: 42px;
   font-weight: bold;
-  background: linear-gradient(90deg, rgba(251, 84, 43, 1) 30%, rgba(217, 217, 217, 1) 70%);
+  background: linear-gradient(90deg, rgba(251, 84, 43, 1) 30%, rgba(153, 153, 153, 1) 69%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -56,13 +56,19 @@ a:hover {
   animation: scroll 10s linear infinite;
 }
 
+.cardBody{
+  width: calc(100% - 40px);
+  margin: auto;
+}
+
 @media (max-width: 540px) {
   .mainPageLogo {
-    margin-top: -5em;
+    margin-top: 2em;
   }
-  .brandGradient{
+
+  .brandGradient {
     font-size: 36px;
-      height: 36px;
+    height: 36px;
   }
 }
 
@@ -75,8 +81,8 @@ a:hover {
 
 @media (max-width: 335px) {
   .mainPageLogo {
-      margin-top: -15em;
-    }
+    margin-top: -8em;
+  }
 }
 
 @media (max-width: 320px) {
@@ -84,7 +90,7 @@ a:hover {
     max-width: 170px;
     width: fit-content;
   }
-    
+
 }
 
 @media (max-width: 270px) {

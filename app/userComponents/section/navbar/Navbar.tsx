@@ -34,29 +34,20 @@ const getData = async () => {
 
 export default function Topbar() {
   const pathname = usePathname()
-  const [ mounted, setMounted ] = useState(false)
   const { theme, setTheme } = useTheme()
   const [ userName, setUserName ] = useState<string>("")
   const [ eMail, setEMail ] = useState<string>("")
+  const [ client, setClient ] = useState<boolean>(false)
   const router = useRouter()
 
   useEffect(() => {
-    setMounted(true)
+    setClient(true)
   }, [])
-
-  const handleThemeChangedDark = () => {
-    setTheme('dark')
-  }
-
-  const handleThemeChangedLight = () => {
-    setTheme('light')
-  }
 
 
   const handleClearStorage = () => {
     sessionStorage.clear();
   };
-  if (!mounted) return null
 
   const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 
@@ -181,9 +172,12 @@ export default function Topbar() {
                     variant="bordered"
                     endContent={
                       <p
-                        className="z-10 outline-none w-16 rounded-md text-xs font-semibold group-data-[hover=false]:border-default-500 border-small border-default-300 dark:border-default-200 bg-transparent text-default-500 flex justify-center items-center p-1 px-1.5"
+                        className="z-10 outline-none w-16 rounded-md text-xs font-semibold group-data-[hover=false]:border-default-500 border-small border-default-300 dark:border-default-200 bg-transparent text-default-500 flex justify-center items-center p-1 px-1.5 capitalize"
                       >
-                        {theme}
+                        {client
+                          ? theme
+                          : theme
+                        }
                       </p>
                     }
                     className="hover:bg-transparent border-none cursor-default"
@@ -196,7 +190,7 @@ export default function Topbar() {
                     className="hover:bg-transparent border-none cursor-default"
                   >
                     <Chip
-                      onClick={handleThemeChangedDark}
+                      onClick={() => setTheme("dark")}
                       endContent={<MoonIcon color="white" />}
                       variant="solid"
                       size="sm"
@@ -216,7 +210,7 @@ export default function Topbar() {
                     className="hover:bg-transparent border-none cursor-default"
                   >
                     <Chip
-                      onClick={handleThemeChangedLight}
+                      onClick={() => setTheme("light")}
                       endContent={<SunIcon color="white" />}
                       variant="solid"
                       size="sm"

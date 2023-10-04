@@ -104,11 +104,14 @@ export default function SignIn() {
       }
     }
 
-    return (
+    if (pathname === '/sign-in') {
+      check_user_info()
+      if (!check_user_info) return null
+    }
 
+    return (
       <>
         {setClicked(!clicked)}
-        {check_user_info()}
       </>
     )
   }
@@ -231,7 +234,7 @@ export default function SignIn() {
                 <Button
                   type="submit"
                   name="submit"
-                  className="bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300 ring ring-blue-300 hover:ring-blue-500"
+                  className="bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300"
                 >
                   <div className="text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center">
                     {clicked
