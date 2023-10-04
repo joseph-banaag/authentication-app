@@ -17,7 +17,11 @@ Currently implementing:
 
 ## Getting Started
 
-$ npm i
+-- $ npm I
+-- add .env.local in the root
+-- add connection string. MONGODB_URI=
+  -- make sure the network is configured
+
 First, run the development server:
 
 ```bash
@@ -27,6 +31,8 @@ yarn dev
 # or
 pnpm dev
 ```
+
+create a new account from /sign-up
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
