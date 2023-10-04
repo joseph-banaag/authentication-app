@@ -17,10 +17,10 @@ Currently implementing:
 
 ## Getting Started
 
-## -- $ npm I
-## -- add .env.local in the root
-## -- add connection string. MONGODB_URI=
-##  -- make sure the network is configured
+- $ npm I
+- add .env.local in the root
+- add connection string. MONGODB_URI=
+- make sure the network is configured
 
 First, run the development server:
 
@@ -32,7 +32,7 @@ yarn dev
 pnpm dev
 ```
 
-## -- create a new account from /sign-up
+- create a new account from /sign-up
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
