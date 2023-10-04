@@ -11,7 +11,7 @@ import {
     NavbarMenuItem,
 } from "@nextui-org/react";
 import { usePathname } from 'next/navigation'
-import { menuItems } from "../../constants"
+import { menuItems } from "@/components/constants"
 import ComponentChanger from "@/components/lib/ComponentChanger";
 import { ThemeSwitcher } from "@/components/toggle/ThemeSwitcher";
 

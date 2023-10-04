@@ -66,3 +66,26 @@ a:hover {
   }
 
 }
+
+@media (max-width: 482px) {
+  .userProfile {
+    max-width: 270px;
+    width: fit-content;
+  }
+}
+
+@media (max-width: 320px) {
+  .userProfile {
+    max-width: 170px;
+    width: fit-content;
+
+  }
+}
+
+@media (max-width: 270px) {
+  .userProfile {
+    display: none;
+    width: fit-content;
+
+  }
+}

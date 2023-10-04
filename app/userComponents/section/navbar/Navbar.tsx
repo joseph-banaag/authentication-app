@@ -76,22 +76,24 @@ export default function Topbar() {
     router.push("/")
   }
 
+  const getUserFromDB = async () => {
+    const data = await getData()
+    const user_name = storedUser.data
+
+    const currentUser = data.find((obj: { username: string; }) => obj.username === user_name)
+
+    if (!currentUser) return null
+
+    const username = currentUser.username
+    const email = currentUser.email
+
+    setUserName(username)
+    setEMail(email)
+  }
+
   if (pathname === "/dashboard") {
-    const getUserFromDB = async () => {
-      const data = await getData()
-      const user_name = storedUser.data
-
-      const currentUser = data.find((obj: { username: string; }) => obj.username === user_name)
-
-      if (!currentUser) return null
-
-      const username = currentUser.username
-      const email = currentUser.email
-
-      setUserName(username)
-      setEMail(email)
-    }
     getUserFromDB()
+    if (!getUserFromDB) return null
   }
 
   return (
@@ -109,7 +111,7 @@ export default function Topbar() {
 
           <NavbarItem className="flex justify-start items-center">
             <Dropdown
-              // backdrop="blur" //TODO: uncomment this for deployment
+              // backdrop="blur" // * TODO: BLUR EFFECT
               showArrow
               classNames={{
                 base: "p-0 border-small border-divider bg-background",
@@ -149,9 +151,9 @@ export default function Topbar() {
                         className="cursor-pointer sm:w-8 w-6 sm:h-8 h-6"
                       />
 
-                      <div className="px-1.5 ms-2">
-                        <p className="text-sm font-bold">{userName}</p>
-                        <div className="max-w-[100px] overflow-hidden">
+                      <div className="ms-2 max-w-[120px]">
+                        <p className="text-sm font-bold truncate">{userName}</p>
+                        <div className="overflow-hidden">
                           <p className="text-xs font-thin dark:text-foreground/60 animate-scrolling-text">{eMail}</p>
                         </div>
                       </div>
