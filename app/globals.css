@@ -18,6 +18,39 @@ a:hover {
   text-decoration: none;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.brandGradient {
+  font-size: 42px;
+  height: 42px;
+  font-weight: bold;
+  background: linear-gradient(90deg, rgba(251, 84, 43, 1) 30%, rgba(217, 217, 217, 1) 70%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
 @media (max-width: 298px) {
   .nav_name {
@@ -50,19 +83,14 @@ a:hover {
   animation: scroll 10s linear infinite;
 }
 
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
 @media (max-width: 540px) {
   .mainPageLogo {
-    margin-top: -5em;
+    margin-top: -10em;
+  }
+
+  .brandGradient{
+    font-size: 32px;
+      height: 32px;
   }
 
 }

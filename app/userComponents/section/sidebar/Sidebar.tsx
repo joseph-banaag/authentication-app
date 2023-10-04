@@ -11,11 +11,11 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarBrand,
-  Avatar,
   Button,
   Card,
   Image
 } from "@nextui-org/react";
+import ProfileAvatar from "@/components/utils/ProfileAvatar"
 
 
 export default function Sidebar() {
@@ -74,21 +74,13 @@ export default function Sidebar() {
       <Card className="relative min-h-screen md:flex hidden flex-col gap-5 justify-start items-center px-8 pt-16 shadow-2xl bg-background/60 dark:bg-default-100/50 rounded-none">
 
         <div className="flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default !dark:text-white py-3 px-6">
-          <Avatar
-            showFallback
-            radius="full"
-            isFocusable
-            src={image}
-            className="cursor-pointer sm:w-9 w-7 sm:h-9 h-7"
-          />
-          <Suspense fallback={<SkeletonLoader />}>
-            <div className="ms-2 max-w-[120px]">
-              <p className="text-sm font-bold truncate">{username}</p>
-              <div className="overflow-hidden">
-                <p className="text-xs font-thin dark:text-foreground/60 animate-scrolling-text">{email}</p>
-              </div>
+          <ProfileAvatar />
+          <div className="ms-2 max-w-[120px] fade-in ">
+            <p className="text-sm font-bold truncate">{username}</p>
+            <div className="overflow-hidden">
+              <p className="text-xs font-thin dark:text-foreground/60 animate-scrolling-text">{email}</p>
             </div>
-          </Suspense>
+          </div>
         </div>
 
         <div className="flex flex-1 flex-col gap-4 w-auto">
@@ -178,16 +170,9 @@ export default function Sidebar() {
 
               <div className="flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default !dark:text-white sm:py-4 py-3 sm:px-6 px-4">
                 <div>
-                  <Avatar
-                    showFallback
-                    radius="full"
-                    // isBordered
-                    isFocusable
-                    src={image}
-                    className="cursor-pointer sm:w-9 w-7 sm:h-9 h-7"
-                  />
+                  <ProfileAvatar />
                 </div>
-                <div className="ms-2 md:max-w-[400px] sm:max-w-[300px] truncate userProfile">
+                <div className="ms-2 md:max-w-[400px] sm:max-w-[300px] truncate userProfile fade-in">
                   <p className="text-sm font-bold">{username}</p>
                   <div className="w-full overflow-hidden">
                     <p className="text-xs font-thin dark:text-foreground/60 animate-scrolling-text delay-1000">{email}</p>

@@ -22,6 +22,7 @@ import { useEffect, useState } from "react";
 import { SunIcon } from "@/components/utils/icons/SunIcon";
 import { MoonIcon } from "@/components/utils/icons/MoonIcon";
 import BrandLogo from "@/app/userComponents/section/components/BrandLogo";
+import ProfileAvatar from "@/components/utils/ProfileAvatar";
 
 const getData = async () => {
   const res = await fetch("api/users")
@@ -131,15 +132,8 @@ export default function Topbar() {
                     className="!bg-default"
                     isReadOnly
                   >
-                    <div className="flex justify-center items-center p-1">
-                      <Avatar
-                        showFallback
-                        radius="full"
-                        isFocusable
-                        src={image}
-                        className="cursor-pointer sm:w-9 w-7 sm:h-9 h-7"
-                      />
-
+                    <div className="flex justify-center items-center p-1 fade-in">
+                      <ProfileAvatar />
                       <div className="ms-2 max-w-[120px]">
                         <p className="text-sm font-bold truncate">{userName}</p>
                         <div className="overflow-hidden">

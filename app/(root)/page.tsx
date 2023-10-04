@@ -39,9 +39,8 @@ export default function Home() {
       >
         <Link
           href="/"
-          color="foreground"
-          className="text-3xl font-semibold md:hidden flex pt-7 mainPageLogo">
-          <span className={`${dancing.className} text-secondary font-bold`}>Auth</span><span className={`${dancing.className}`}>entication</span>
+          className="sm:hidden block mainPageLogo">
+          <p className={`${dancing.className} brandGradient flex items-center overflow-hidden `}>Authentication</p>
         </Link>
         <div className='bg-fixed bg-center bg-cover z-[1]'>
           <Image
