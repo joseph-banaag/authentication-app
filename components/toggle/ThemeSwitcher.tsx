@@ -30,7 +30,7 @@ const ThemeSwitcher = () => {
   const ToggleLightStyle = () => {
     return (
       <>
-        <div className="w-11 h-5 rounded-full bg-violet-500 flex items-center ps-[2px]">
+        <div className="w-11 h-5 rounded-full bg-violet-600 flex items-center ps-[2px]">
           <SunIcon />
         </div>
       </>
@@ -66,8 +66,8 @@ const ThemeSwitcher = () => {
           className={`
           slider w-9 h-6 absolute left-[-20px] flex justify-center items-center
           ${clicked
-              ? "bg-violet-900 rounded-r-xl"
-              : "bg-violet-500 rounded-l-xl"
+              ? "bg-violet-900 rounded-r-md"
+              : "bg-violet-500 rounded-l-md"
             } 
             rounded-sm truncate !text-white`
           }
