@@ -22,7 +22,9 @@ export default function Settings() {
         transition={{ ease: "backIn", duration: .5 }}
         className="w-full min-h-screen relative p-14 mt-9"
       >
-        <Card className="w-full p-5 flex gap-2">
+        <Card
+          isBlurred
+          className="w-full p-5 flex gap-2">
           <CardHeader className="bg-default/80 !rounded-lg shadow-xl">
             <div className="flex items-center gap-3">
 
