@@ -78,6 +78,12 @@ Formula:
   margin: auto;
 }
 
+@media (max-width: 640px) {
+  .active .slider {
+    transform: translateX(38px);
+  }
+}
+
 @media (max-width: 540px) {
   .mainPageLogo {
     margin-top: 2em;

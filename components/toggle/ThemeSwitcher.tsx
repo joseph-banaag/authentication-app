@@ -14,15 +14,6 @@ const ThemeSwitcher = () => {
     setClient(true)
   }, [])
 
-
-  if (clicked === false) {
-    setTheme("dark")
-  } else if (clicked === true) {
-    setTheme("light")
-  } else {
-    return null
-  }
-
   const toggleButton = () => {
     setClicked(!clicked)
   };
@@ -30,7 +21,7 @@ const ThemeSwitcher = () => {
   const ToggleLightStyle = () => {
     return (
       <>
-        <div className="w-11 h-5 rounded-full bg-violet-600 flex items-center ps-[2px]">
+        <div className="sm:w-11 sm:h-5 w-9 h-4 rounded-full bg-violet-600 flex items-center sm:ps-2 ps-[5px]">
           <SunIcon />
         </div>
       </>
@@ -40,7 +31,7 @@ const ThemeSwitcher = () => {
   const ToggleDarkStyle = () => {
     return (
       <>
-        <div className="w-11 h-5 rounded-full bg-violet-900 flex items-center pe-[2px] flex-row-reverse">
+        <div className="sm:w-11 sm:h-5 w-9 h-4 rounded-full bg-violet-900 flex items-center sm:pe-2 pe-[5px] flex-row-reverse">
           <MoonIcon />
         </div>
       </>
@@ -51,7 +42,7 @@ const ThemeSwitcher = () => {
     <>
       <div
         onClick={toggleButton}
-        className={`relative w-11 h-5 p-0 flex items-center cursor-pointer rounded-2xl bg-violet-900 ms-2.5 !ps-[-5px] 
+        className={`relative sm:w-11 sm:h-5 w-9 h-4 p-0 flex items-center cursor-pointer rounded-2xl bg-violet-900 ms-2.5 !ps-[-5px] 
         ${clicked
             ? "active"
             : ""
@@ -64,13 +55,12 @@ const ThemeSwitcher = () => {
         }
         <div
           className={`
-          slider w-9 h-6 absolute left-[-20px] flex justify-center items-center
+          slider sm:w-9 sm:h-6 w-7 h-5 absolute sm:left-[-20px] left-[-15px] flex justify-center items-center rounded-sm truncate !text-white text-sm
           ${clicked
-              ? "bg-violet-900 rounded-r-md"
-              : "bg-violet-500 rounded-l-md"
-            } 
-            rounded-sm truncate !text-white`
-          }
+              ? ("bg-violet-900 rounded-r-md")
+              : ("bg-violet-500 rounded-l-md")
+            }          
+          `}
         >
           <small>{client
             ? theme
