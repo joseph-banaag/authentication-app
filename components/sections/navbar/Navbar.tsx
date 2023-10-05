@@ -13,7 +13,7 @@ import {
 import { usePathname } from 'next/navigation'
 import { menuItems } from "@/components/constants"
 import ComponentChanger from "@/components/lib/ComponentChanger";
-import { ThemeSwitcher } from "@/components/toggle/ThemeSwitcher";
+import ThemeSwitcher from "@/components/toggle/ThemeSwitcher";
 
 
 export default function Topbar() {

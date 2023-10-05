@@ -42,6 +42,23 @@ a:hover {
   }
 }
 
+.animate-scrolling-text {
+  animation: scroll 10s linear infinite;
+}
+
+.slider {
+  transition: transform 0.3s ease;
+}
+
+.active .slider {
+  transform: translateX(44px);
+}
+
+/* 
+Formula:
+  parent-width - (slider-width - offset-width) + offset-width
+*/
+
 .brandGradient {
   font-size: 42px;
   height: 42px;
@@ -56,7 +73,7 @@ a:hover {
   animation: scroll 10s linear infinite;
 }
 
-.cardBody{
+.cardBody {
   width: calc(100% - 40px);
   margin: auto;
 }
