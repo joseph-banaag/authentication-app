@@ -51,7 +51,7 @@ a:hover {
 }
 
 .active .slider {
-  transform: translateX(44px);
+  transform: translateX(48px);
 }
 
 /* 

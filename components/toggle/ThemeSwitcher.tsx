@@ -14,7 +14,14 @@ const ThemeSwitcher = () => {
     setClient(true)
   }, [])
 
-  console.log(clicked)
+
+  if (clicked === false) {
+    setTheme("dark")
+  } else if (clicked === true) {
+    setTheme("light")
+  } else {
+    return null
+  }
 
   const toggleButton = () => {
     setClicked(!clicked)
@@ -23,7 +30,7 @@ const ThemeSwitcher = () => {
   const ToggleLightStyle = () => {
     return (
       <>
-        <div className="w-11 h-5 rounded-full bg-violet-400 flex items-center ps-[2px]">
+        <div className="w-11 h-5 rounded-full bg-violet-500 flex items-center ps-[2px]">
           <SunIcon />
         </div>
       </>
@@ -57,18 +64,16 @@ const ThemeSwitcher = () => {
         }
         <div
           className={`
-          slider w-8 h-6 absolute left-[-16px] flex justify-center items-center
+          slider w-9 h-6 absolute left-[-20px] flex justify-center items-center
           ${clicked
-              ? "bg-violet-900"
-              : "bg-violet-400"
+              ? "bg-violet-900 rounded-r-xl"
+              : "bg-violet-500 rounded-l-xl"
             } 
-            rounded-sm truncate`
+            rounded-sm truncate !text-white`
           }
         >
           <small>{client
-            ? <p
-              className="dark:text-zinc-900 light:text-zinc-200 font-light text-xs "
-            >{theme}</p>
+            ? theme
             : ""}</small>
         </div>
       </div>
