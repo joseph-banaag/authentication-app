@@ -18,6 +18,25 @@ a:hover {
   text-decoration: none;
 }
 
+/* 
+Gradient background for dark theme:
+
+background-color:hsla(261, 76%, 10%, 1);
+background-image: radial-gradient(at 100% 100%, hsla(262, 76%, 34%, 0.25) 0px, transparent 50%),
+radial-gradient(at 16% 1%, hsla(11, 95%, 56%, 0.25) 0px, transparent 50%);
+
+*/
+
+/* 
+Gradient background for light theme:
+
+background-color:hsla(261, 0%, 90%, 1);
+background-image: radial-gradient(at 100% 100%, hsla(262, 76%, 34%, 0.5) 0px, transparent 50%),
+radial-gradient(at 16% 1%, hsla(11, 95%, 56%, 0.5) 0px, transparent 50%);
+
+*/
+
+
 @keyframes fadeIn {
   from {
     opacity: 0;

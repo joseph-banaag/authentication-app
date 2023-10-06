@@ -80,9 +80,9 @@ export default function SocialAuth() {
             </div>
 
             <div className="flex flex-1 justify-center items-center">
-                <hr className='w-full'></hr>
+                <hr className='w-full border-foreground'></hr>
                 <p className="sm:px-3 p-1 sm:text-medium text-xs sm:font-normal font-small">or</p>
-                <hr className='w-full'></hr>
+                <hr className='w-full border-foreground'></hr>
             </div>
         </>
     )

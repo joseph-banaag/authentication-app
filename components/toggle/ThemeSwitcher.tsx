@@ -34,7 +34,6 @@ const ThemeSwitcher = () => {
   }
 
   const storedThemeValue = storedTheme.data
-  console.log(storedThemeValue)
 
   return (
     <>
@@ -61,18 +60,18 @@ const ThemeSwitcher = () => {
             ? <button
               type="button"
               onClick={handleThemeToLight}
-              className="slider sm:w-9 sm:h-6 w-7 h-5 absolute sm:left-[-20px] left-[-15px] flex justify-center items-center rounded-sm truncate !text-white text-sm capitalize bg-violet-500 rounded-l-md ">
-              <small>{client
+              className="slider sm:w-9 sm:h-6 w-7 h-5 absolute sm:left-[-20px] left-[-15px] flex justify-center items-center rounded-sm truncate !text-white text-sm capitalize bg-violet-500 rounded-l-md p-[2px] shadow-lg">
+              <p className="sm:text-[12px] text-[10px] sm:font-normal font-small drop-shadow-md">{client
                 ? theme
-                : ""}</small>
+                : ""}</p>
             </button>
             : <button
               type="button"
               onClick={handleThemeToDark}
-              className="slider sm:w-9 sm:h-6 w-7 h-5 absolute sm:left-[-20px] left-[-15px] flex justify-center items-center rounded-sm truncate !text-white text-sm capitalize bg-violet-900 rounded-r-md ">
-              <small>{client
+              className="slider sm:w-9 sm:h-6 w-7 h-5 absolute sm:left-[-20px] left-[-15px] flex justify-center items-center rounded-sm truncate !text-white text-sm capitalize bg-violet-900 rounded-r-md p-[2px] shadow-lg">
+              <p className="sm:text-[12px] text-[10px] sm:font-normal font-small drop-shadow-md">{client
                 ? theme
-                : ""}</small>
+                : ""}</p>
             </button>
           : null
         }

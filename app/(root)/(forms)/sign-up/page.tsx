@@ -347,6 +347,9 @@ export default function SignUp() {
                   label="Username"
                   className="w-full flex-1"
                   classNames={{
+                    inputWrapper: [
+                      "border-foreground/30 shadow-xl"
+                    ],
                     label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
                     input: [
                       "sm:text-medium text-sm sm:font-normal font-normal",
@@ -378,6 +381,9 @@ export default function SignUp() {
                   label="Email"
                   className="w-full flex-1"
                   classNames={{
+                    inputWrapper: [
+                      "border-foreground/30 shadow-xl"
+                    ],
                     label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
                     input: [
                       "sm:text-medium text-sm sm:font-normal font-normal",
@@ -408,6 +414,9 @@ export default function SignUp() {
                   variant="bordered"
                   label="Password"
                   classNames={{
+                    inputWrapper: [
+                      "border-foreground/30 shadow-xl"
+                    ],
                     label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
                     input: [
                       "sm:text-medium text-sm sm:font-normal font-normal",
@@ -448,6 +457,9 @@ export default function SignUp() {
                   variant="bordered"
                   label="Confirm Password"
                   classNames={{
+                    inputWrapper: [
+                      "border-foreground/30 shadow-xl"
+                    ],
                     label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
                     input: [
                       "sm:text-medium text-sm sm:font-normal font-normal",
