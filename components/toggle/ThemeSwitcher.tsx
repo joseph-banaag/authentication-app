@@ -12,22 +12,30 @@ const ThemeSwitcher = () => {
     setClient(true)
   }, [])
 
+
+  const currentTheme = `${theme}`
+
   const toggleButton = () => {
     setClicked(!clicked)
+    localStorage.setItem("theme", currentTheme)
   };
 
   const handleThemeToLight = () => {
     setTheme("light")
-    console.log("The button is clicked!")
   }
 
   const handleThemeToDark = () => {
     setTheme("dark")
-    console.log("The button is clicked!")
   }
 
-  // 
-  // 
+  const storedTheme = {
+    data: typeof window !== "undefined"
+      ? localStorage.getItem("theme")
+      : ""
+  }
+
+  const storedThemeValue = storedTheme.data
+  console.log(storedThemeValue)
 
   return (
     <>
@@ -45,31 +53,24 @@ const ThemeSwitcher = () => {
           : <ToggleDarkStyle />
         }
 
-
-        {/* 
-        // TODO: DEFAULT POSITION: LEFT
-          current theme: dark
-          switch below: to light
-        */}
-        <div
-          onClick={handleThemeToLight}
-          className="slider sm:w-9 sm:h-6 w-7 h-5 absolute sm:left-[-20px] left-[-15px] flex justify-center items-center rounded-sm truncate !text-white text-sm capitalize bg-violet-900 rounded-r-md ">
-          <small>{client
-            ? theme
-            : ""}</small>
-        </div>
-
-        {/* 
-        // TODO: DEFAULT POSITION: RIGHT
-        */}
-        <div
-          onClick={handleThemeToDark}
-          className="slider sm:w-9 sm:h-6 w-7 h-5 absolute sm:left-[-20px] left-[-15px] flex justify-center items-center rounded-sm truncate !text-white text-sm capitalize bg-violet-500 rounded-l-md ">
-          <small>{client
-            ? theme
-            : ""}</small>
-        </div>
-
+        {client
+          ? storedThemeValue === "dark" || storedThemeValue === "" || storedThemeValue === null || storedThemeValue === "undefined"
+            ? <div
+              onClick={handleThemeToLight}
+              className="slider sm:w-9 sm:h-6 w-7 h-5 absolute sm:left-[-20px] left-[-15px] flex justify-center items-center rounded-sm truncate !text-white text-sm capitalize bg-violet-500 rounded-l-md ">
+              <small>{client
+                ? theme
+                : ""}</small>
+            </div>
+            : <div
+              onClick={handleThemeToDark}
+              className="slider sm:w-9 sm:h-6 w-7 h-5 absolute sm:left-[-20px] left-[-15px] flex justify-center items-center rounded-sm truncate !text-white text-sm capitalize bg-violet-900 rounded-r-md ">
+              <small>{client
+                ? theme
+                : ""}</small>
+            </div>
+          : null
+        }
       </div>
     </>
   )
