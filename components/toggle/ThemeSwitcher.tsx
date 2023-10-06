@@ -13,19 +13,18 @@ const ThemeSwitcher = () => {
   }, [])
 
 
-  const currentTheme = `${theme}`
-
   const toggleButton = () => {
     setClicked(!clicked)
-    localStorage.setItem("theme", currentTheme)
   };
 
   const handleThemeToLight = () => {
     setTheme("light")
+    localStorage.setItem("theme", "light")
   }
 
   const handleThemeToDark = () => {
     setTheme("dark")
+    localStorage.setItem("theme", "dark")
   }
 
   const storedTheme = {
@@ -57,23 +56,24 @@ const ThemeSwitcher = () => {
             : <ToggleDarkStyle />
           : ""
         }
-
         {client
           ? storedThemeValue === "dark" || !storedThemeValue
-            ? <div
+            ? <button
+              type="button"
               onClick={handleThemeToLight}
               className="slider sm:w-9 sm:h-6 w-7 h-5 absolute sm:left-[-20px] left-[-15px] flex justify-center items-center rounded-sm truncate !text-white text-sm capitalize bg-violet-500 rounded-l-md ">
               <small>{client
                 ? theme
                 : ""}</small>
-            </div>
-            : <div
+            </button>
+            : <button
+              type="button"
               onClick={handleThemeToDark}
               className="slider sm:w-9 sm:h-6 w-7 h-5 absolute sm:left-[-20px] left-[-15px] flex justify-center items-center rounded-sm truncate !text-white text-sm capitalize bg-violet-900 rounded-r-md ">
               <small>{client
                 ? theme
                 : ""}</small>
-            </div>
+            </button>
           : null
         }
       </div>
