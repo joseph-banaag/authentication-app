@@ -44,9 +44,6 @@ export default function Sidebar() {
   const currentUserInfo = async () => {
     const getData = async () => {
       const res = await fetch("api/users")
-      if (!res.ok) {
-        throw new Error("Failed to fetch data")
-      }
       return res.json()
     }
 

@@ -52,9 +52,9 @@ export default function PasswordReset() {
         onPress={onOpen}
         size="sm"
         variant="light"
-        className="cursor-pointer max-w-fit !hover:bg-none -ms-3"
+        className="cursor-pointer max-w-fit -ms-3 !over:bg-foreground/60"
       >
-        <h1 className="text-xs sm:font-normal text-violet-600 font-small flex justify-center items-center">
+        <h1 className="text-xs sm:font-normal text-violet-600 font-small flex justify-center items-center drop-shadow-md underline underline-offset-2">
           Forgot password?
         </h1>
       </Button>

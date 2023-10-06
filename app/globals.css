@@ -90,7 +90,7 @@ Formula:
   font-size: 42px;
   height: 42px;
   font-weight: bold;
-  background: linear-gradient(90deg, rgba(251, 84, 43, 1) 30%, rgba(153, 153, 153, 1) 69%);
+  background: linear-gradient(13deg, rgba(251, 84, 43, 1) 30%, rgba(71, 21, 157, 1) 69%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -126,6 +126,10 @@ Formula:
   .userProfile {
     max-width: 270px;
     width: fit-content;
+  }
+
+  .mainPageLogo {
+    margin-top: -2em;
   }
 }
 

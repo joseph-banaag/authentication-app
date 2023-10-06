@@ -24,7 +24,7 @@ export default function SocialAuth() {
                     <MyButton
                         variant="flat"
                         size="md"
-                        className="hover:scale-105 hover:bg-secondary/10 transition-all duration-300 flex-1 shadow-xl">
+                        className="hover:scale-105 transition-all duration-300 flex-1 shadow-xl bg-foreground/30 hover:bg-foreground/60">
                         <Image
                             priority
                             src={iconsSrc.facebook}
@@ -46,14 +46,15 @@ export default function SocialAuth() {
                     <MyButton
                         variant="flat"
                         size="md"
-                        className="hover:scale-105 hover:bg-secondary/10 transition-all duration-300 shadow-xl flex-1"
+                        className="hover:scale-105 transition-all duration-300 flex-1 shadow-xl bg-foreground/30 hover:bg-foreground/60"
                     >
-                        {client
+                        {/* {client
                             ? theme === "light"
                                 ? <GithubDark />
                                 : <GithubLight />
                             : ""
-                        }
+                        } */}
+                        <GithubLight />
                     </MyButton>
                 </div>
 
@@ -61,7 +62,7 @@ export default function SocialAuth() {
                     <MyButton
                         variant="flat"
                         size="md"
-                        className="hover:scale-105 hover:bg-secondary/10 transition-all duration-300 shadow-xl flex-1">
+                        className="hover:scale-105 transition-all duration-300 flex-1 shadow-xl bg-foreground/30 hover:bg-foreground/60">
                         <Image
                             priority
                             src={iconsSrc.google}
@@ -81,7 +82,7 @@ export default function SocialAuth() {
 
             <div className="flex flex-1 justify-center items-center">
                 <hr className='w-full border-foreground'></hr>
-                <p className="sm:px-3 p-1 sm:text-medium text-xs sm:font-normal font-small">or</p>
+                <p className="sm:px-3 p-1 sm:text-medium text-xs sm:font-normal font-small text-white">or</p>
                 <hr className='w-full border-foreground'></hr>
             </div>
         </>

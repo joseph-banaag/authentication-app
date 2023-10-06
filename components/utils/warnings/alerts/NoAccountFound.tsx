@@ -7,7 +7,7 @@ import AlertSpinner from "@/components/lib/AlertSpinner";
 
 
 export default function NoAccountFound() {
-    const [clicked, setClicked] = React.useState(false)
+    const [ clicked, setClicked ] = React.useState(false)
     const router = useRouter()
 
     const handleClick = () => {
@@ -27,7 +27,6 @@ export default function NoAccountFound() {
                         className="
                     border-none 
                     bg-background/70 
-                    dark:bg-[#fb542b]/50
                     max-w-[620px]
                     mx-auto
                     flex-1

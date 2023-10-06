@@ -37,7 +37,6 @@ export default function RootLayout({
       : ""
   }
   const currentTheme = storedTheme.data
-  console.log(currentTheme)
 
   return (
     <html

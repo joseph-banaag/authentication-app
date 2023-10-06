@@ -39,8 +39,8 @@ export default function Home() {
       >
         <Link
           href="/"
-          className="sm:hidden block mainPageLogo">
-          <p className={`${dancing.className} brandGradient flex items-center overflow-hidden `}>Authentication</p>
+          className="sm:hidden block mainPageLogo mt-6">
+          <p className={`${dancing.className} brandGradient flex items-center overflow-hidden drop-shadow-md`}>Authentication</p>
         </Link>
         <div className='bg-fixed bg-center bg-cover z-[1]'>
           <Image

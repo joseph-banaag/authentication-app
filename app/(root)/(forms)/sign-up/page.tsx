@@ -78,13 +78,13 @@ export default function SignUp() {
       if (password === "" && confirmed === "") {
         return (
           <>
-            <p className="animate-pulse text-xs text-red-400">Password is required!</p>
+            <p className="animate-pulse text-xs text-red-500 drop-shadow-xl">Password is required!</p>
           </>
         )
       } else if (password === undefined && confirmed === undefined) {
         return (
           <>
-            <p className="animate-pulse text-xs text-red-400">Password is required!</p>
+            <p className="animate-pulse text-xs text-red-500 drop-shadow-xl">Password is required!</p>
           </>
         )
       } else if (password === confirmed) {
@@ -96,7 +96,7 @@ export default function SignUp() {
       } else {
         return (
           <>
-            <p className="animate-pulse text-xs text-red-400">Passwords do not matched!</p>
+            <p className="animate-pulse text-xs text-red-500 drop-shadow-xl">Passwords do not matched!</p>
           </>
         )
       }
@@ -228,7 +228,7 @@ export default function SignUp() {
               name="submit"
               className="bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300"
             >
-              <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
+              <p className="text-white font-semibold flex-1">Continue</p>
             </Button >
           </>
         )
@@ -329,7 +329,6 @@ export default function SignUp() {
       >
         <div className="sm:p-5 p-3">
           <Card
-            isBlurred
             className="flex flex-col flex-1 rounded-2xl p-5 gap-5 mb-24 shadow-2xl max-w-[640px] bg-background/60 dark:bg-default-100/50" id="signOptions">
 
             <BrandLogoSignUp />
@@ -366,7 +365,7 @@ export default function SignUp() {
                   })}
                   name="username"
                 />
-                <p className="animate-pulse text-xs text-red-400">
+                <p className="animate-pulse text-xs text-red-500 drop-shadow-xl">
                   {errors.username?.types?.required && <span>Username is required</span>}
                   {errors.username?.types?.pattern && <span>Space is not allowed and at least 3 characters</span>}
                 </p>
@@ -400,7 +399,7 @@ export default function SignUp() {
                   })}
                   name="email"
                 />
-                <p className="animate-pulse text-xs text-red-400">
+                <p className="animate-pulse text-xs text-red-500 drop-shadow-xl">
                   {errors.email?.types?.required && <span>A valid email is required</span>}
                   {errors.email?.types?.pattern && <span>e.g. example@email.com</span>}
 
@@ -430,9 +429,9 @@ export default function SignUp() {
                   endContent={
                     <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
                       {isVisible ? (
-                        <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        <EyeSlashFilledIcon className="text-2xl text-foreground pointer-events-none" />
                       ) : (
-                        <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        <EyeFilledIcon className="text-2xl text-foreground pointer-events-none" />
                       )}
                     </button>
                   }
@@ -444,7 +443,7 @@ export default function SignUp() {
                   })}
                   name="password"
                 />
-                <p className="animate-pulse text-xs text-red-400">
+                <p className="animate-pulse text-xs text-red-500 drop-shadow-xl">
                   {errors.password?.types?.required && <span>Password is required</span>}
                   {errors.password?.types?.pattern && <span className="max-w-[30em] flex flex-wrap flex-shrink">Minimum password of 8 and must have an uppercase, lowercase, number, and special character.</span>}
                 </p>
@@ -473,9 +472,9 @@ export default function SignUp() {
                   endContent={
                     <button className="focus:outline-none" type="button" onClick={toggleIsConfirmed}>
                       {isConfirmed ? (
-                        <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        <EyeSlashFilledIcon className="text-2xl text-foreground pointer-events-none" />
                       ) : (
-                        <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        <EyeFilledIcon className="text-2xl text-foreground pointer-events-none" />
                       )}
                     </button>
                   }

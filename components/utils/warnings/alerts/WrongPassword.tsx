@@ -6,7 +6,7 @@ import AlertSpinner from "@/components/lib/AlertSpinner";
 
 
 export default function WrongPassword() {
-    const [clicked, setClicked] = React.useState(false)
+    const [ clicked, setClicked ] = React.useState(false)
 
     const handleClick = () => {
         const newClick = !clicked;
@@ -29,7 +29,6 @@ export default function WrongPassword() {
                         className="
                     border-none 
                     bg-background/70 
-                    dark:bg-[#fb542b]/50
                     max-w-[620px]
                     mx-auto
                     flex-1

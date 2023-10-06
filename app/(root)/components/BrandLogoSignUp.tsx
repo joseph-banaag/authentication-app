@@ -20,8 +20,8 @@ const BrandLogoSignUp = () => {
         />
       </div>
       <div className='py-3 px-2'>
-        <h1 className="sm:text-4xl text-xl sm:font-medium font-normal mb-1 drop-shadow-xl">Create your account</h1>
-        <p className="sm:text-medium text-xs sm:font-normal font-small drop-shadow-md">to access {Company.name} </p>
+        <h1 className="sm:text-4xl text-xl sm:font-medium font-normal mb-1 drop-shadow-xl text-white">Create your account</h1>
+        <p className="sm:text-medium text-xs sm:font-normal font-small drop-shadow-xl text-white">to access {Company.name} </p>
       </div>
     </>
   )

@@ -7,7 +7,7 @@ import AlertSpinner from "@/components/lib/AlertSpinner";
 
 
 export default function NoAccount() {
-    const [clicked, setClicked] = React.useState(false)
+    const [ clicked, setClicked ] = React.useState(false)
     const router = useRouter()
 
     const handleClick = () => {
@@ -22,7 +22,7 @@ export default function NoAccount() {
     return (
         <>
             <motion.div
-                initial={{ opacity: 0, y: 0}}
+                initial={{ opacity: 0, y: 0 }}
                 animate={{ opacity: 1, y: 100 }}
                 transition={{ delay: 1, ease: "easeOut", duration: 1 }}
             >
@@ -31,7 +31,6 @@ export default function NoAccount() {
                         className="
                     border-none 
                     bg-background/70 
-                    dark:bg-[#fb542b]/50
                     max-w-[620px]
                     mx-auto
                     flex-1

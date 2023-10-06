@@ -155,7 +155,6 @@ export default function SignIn() {
       >
         <div className="sm:p-5 p-3">
           <Card
-            isBlurred
             className="flex flex-col flex-1 rounded-2xl p-5 gap-5 mb-24 shadow-2xl max-w-[640px] bg-background/60 dark:bg-default-100/50" id="signOptions">
 
             <BrandLogoSignIn />
@@ -191,7 +190,7 @@ export default function SignIn() {
                     required: true
                   })}
                 />
-                <p className="animate-pulse text-xs text-red-400">
+                <p className="animate-pulse text-xs text-red-500 drop-shadow-xl">
                   {errors.username?.types?.required && <span>Username is required</span>}
                 </p>
               </div>
@@ -221,9 +220,9 @@ export default function SignIn() {
                   endContent={
                     <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
                       {isVisible ? (
-                        <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        <EyeSlashFilledIcon className="text-2xl text-foreground pointer-events-none" />
                       ) : (
-                        <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        <EyeFilledIcon className="text-2xl text-foreground pointer-events-none" />
                       )}
                     </button>
                   }
@@ -235,7 +234,7 @@ export default function SignIn() {
                   name="password"
                 />
 
-                <p className="animate-pulse text-xs text-red-400">
+                <p className="animate-pulse text-xs text-red-500 drop-shadow-xl">
                   {errors.password?.types?.required && <span>Password is required</span>}
                 </p>
               </div>
@@ -248,7 +247,7 @@ export default function SignIn() {
                   <div className="text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center">
                     {clicked
                       ? <SubmitSpinner />
-                      : <p>Continue</p>
+                      : <p className="text-white">Continue</p>
                     }</div>
                 </Button>
               </div>

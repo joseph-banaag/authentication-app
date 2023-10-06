@@ -7,7 +7,7 @@ import AlertSpinner from "@/components/lib/AlertSpinner";
 
 
 export default function AccountExist() {
-    const [clicked, setClicked] = React.useState(false)
+    const [ clicked, setClicked ] = React.useState(false)
     const router = useRouter()
 
     const handleClick = () => {
@@ -29,14 +29,12 @@ export default function AccountExist() {
                 <div className="p-3 fixed z-50 top-0 left-[50%] translate-x-[-50%] translate-y-[-50%] w-full">
                     <Card
                         className="
-                    border-none 
-                    bg-background/70 
-                    dark:bg-[#fb542b]/50
-                    max-w-[620px]
-                    mx-auto
-                    flex-1
-                    shadow-2xl
-                    "
+                            border-none 
+                            bg-background/70 
+                            max-w-[620px]
+                            mx-auto
+                            flex-1
+                            shadow-2xl"
                         shadow="sm"
                     >
                         <CardBody>

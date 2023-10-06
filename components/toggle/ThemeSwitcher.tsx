@@ -40,7 +40,7 @@ const ThemeSwitcher = () => {
     <>
       <div
         onClick={toggleButton}
-        className={`relative sm:w-11 sm:h-5 w-9 h-4 p-0 flex items-center cursor-pointer rounded-2xl bg-violet-900 ms-2.5 !ps-[-5px] 
+        className={`relative sm:w-11 sm:h-5 w-9 h-4 p-0 flex items-center cursor-default rounded-2xl bg-violet-900 ms-2.5 !ps-[-5px] 
         ${client
             ? theme === "light" || !theme
               ? "active"
