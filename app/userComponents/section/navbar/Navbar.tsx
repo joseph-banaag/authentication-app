@@ -49,6 +49,16 @@ export default function Topbar() {
     sessionStorage.clear();
   };
 
+  const changeThemeToLight = () => {
+    setTheme("light")
+    location.reload()
+  }
+
+  const changeThemeToDark = () => {
+    setTheme("dark")
+    location.reload()
+  }
+
   const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 
   const storedUser = {
@@ -190,7 +200,7 @@ export default function Topbar() {
                     className="hover:bg-transparent border-none cursor-default"
                   >
                     <Chip
-                      onClick={() => setTheme("dark")}
+                      onClick={changeThemeToDark}
                       endContent={<MoonIcon color="white" />}
                       variant="solid"
                       size="sm"
@@ -210,7 +220,7 @@ export default function Topbar() {
                     className="hover:bg-transparent border-none cursor-default"
                   >
                     <Chip
-                      onClick={() => setTheme("light")}
+                      onClick={changeThemeToLight}
                       endContent={<SunIcon color="white" />}
                       variant="solid"
                       size="sm"

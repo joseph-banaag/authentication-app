@@ -12,29 +12,37 @@ body {
   width: 100vw;
   min-width: 276px;
   height: auto;
+
+
 }
 
 a:hover {
   text-decoration: none;
 }
 
-/* 
-Gradient background for dark theme:
+.darkThemeBg {
+  background-color: hsla(261, 76%, 10%, 1);
+  background-image:
+    radial-gradient(at 0% 1%, hsla(262, 70%, 35%, 0.25) 0px, transparent 50%),
+    radial-gradient(at 97% 100%, hsla(262, 70%, 35%, 0.25) 0px, transparent 50%),
+    radial-gradient(at 14% 0%, hsla(262, 70%, 35%, 0.25) 0px, transparent 50%),
+    radial-gradient(at 74% 100%, hsla(262, 70%, 35%, 0.25) 0px, transparent 50%);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
-background-color:hsla(261, 76%, 10%, 1);
-background-image: radial-gradient(at 100% 100%, hsla(262, 76%, 34%, 0.25) 0px, transparent 50%),
-radial-gradient(at 16% 1%, hsla(11, 95%, 56%, 0.25) 0px, transparent 50%);
-
-*/
-
-/* 
-Gradient background for light theme:
-
-background-color:hsla(261, 0%, 90%, 1);
-background-image: radial-gradient(at 100% 100%, hsla(262, 76%, 34%, 0.5) 0px, transparent 50%),
-radial-gradient(at 16% 1%, hsla(11, 95%, 56%, 0.5) 0px, transparent 50%);
-
-*/
+.lightThemeBg {
+  background-color: hsla(262, 76%, 95%, 0.35);
+  background-image:
+    radial-gradient(at 0% 1%, hsla(262, 70%, 35%, 0.75) 0px, transparent 50%),
+    radial-gradient(at 97% 100%, hsla(262, 70%, 35%, 0.75) 0px, transparent 50%),
+    radial-gradient(at 14% 0%, hsla(262, 70%, 35%, 0.75) 0px, transparent 50%),
+    radial-gradient(at 74% 100%, hsla(262, 70%, 35%, 0.75) 0px, transparent 50%);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
 
 @keyframes fadeIn {

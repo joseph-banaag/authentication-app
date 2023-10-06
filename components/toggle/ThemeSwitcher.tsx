@@ -15,6 +15,7 @@ const ThemeSwitcher = () => {
 
   const toggleButton = () => {
     setClicked(!clicked)
+    location.reload()
   };
 
   const handleThemeToLight = () => {

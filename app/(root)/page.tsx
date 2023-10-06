@@ -56,10 +56,10 @@ export default function Home() {
           />
         </div>
         <div className="py-2 px-5 flex justify-center">
-          <h1 className="sm:text-medium text-sm text-end drop-shadow-md">Click <Link href="/sign-up" className="cursor-pointer text-[#FB542B] sm:text-medium text-sm font-semibold">Sign Up</Link> to create an account.</h1>
+          <h1 className="sm:text-medium text-sm text-end drop-shadow-lg">Click <Link href="/sign-up" className="cursor-pointer text-[#FB542B] sm:text-medium text-sm font-semibold">Sign Up</Link> to create an account.</h1>
         </div>
         <div className="py-2 px-5 flex justify-center items-center mt-2">
-          <h1 className="sm:text-sm text-xs text-end mr-1 drop-shadow-md">Access your existing account? Click <Link href="/sign-in" className="text-[#FB542B] font-semibold sm:text-sm text-xs cursor-pointer">Sign In</Link></h1>
+          <h1 className="sm:text-sm text-xs text-end mr-1 drop-shadow-lg">Access your existing account? Click <Link href="/sign-in" className="text-[#FB542B] font-semibold sm:text-sm text-xs cursor-pointer">Sign In</Link></h1>
         </div>
       </motion.div>
     </main>

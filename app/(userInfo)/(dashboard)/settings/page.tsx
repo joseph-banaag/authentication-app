@@ -14,6 +14,16 @@ export default function Settings() {
     setClient(true)
   }, [])
 
+  const changeThemeToLight = () => {
+    setTheme("light")
+    location.reload()
+  }
+
+  const changeThemeToDark = () => {
+    setTheme("dark")
+    location.reload()
+  }
+
   return (
     <>
       <motion.div
@@ -53,7 +63,7 @@ export default function Settings() {
             </div>
             <Button
               type="button"
-              onClick={() => setTheme('dark')}
+              onClick={changeThemeToDark}
               className="w-2"
               size="sm"
             >
@@ -62,7 +72,7 @@ export default function Settings() {
 
             <Button
               type="button"
-              onClick={() => setTheme('light')}
+              onClick={changeThemeToLight}
               className="w-2"
               size="sm"
             >

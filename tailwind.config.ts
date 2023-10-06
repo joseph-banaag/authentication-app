@@ -24,7 +24,7 @@ const config: Config = {
         light: {
           colors: {
             background: "#e6e6e6", // or DEFAULT
-            foreground: "#3d3d43", // or 50 to 900 DEFAULT
+            foreground: "#f2f2f3", // or 50 to 900 DEFAULT
             primary: {
               //... 50 to 900
               foreground: "#52525b",
