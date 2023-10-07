@@ -30,5 +30,3 @@ const BrandLogoSignIn = () => {
 
 export default BrandLogoSignIn
 
-
-// md:px-5 sm:px-4 px-2

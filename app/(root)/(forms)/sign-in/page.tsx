@@ -95,7 +95,7 @@ export default function SignIn() {
 
         if (usernameInput === db_username && passwordInput === db_password) {
           toast.success('Signed in successfully!', {
-            className: "bg-[#47159d], text-white"
+            className: "bg-[#47159d] text-white"
           })
           setClicked(!clicked)
 
@@ -155,19 +155,13 @@ export default function SignIn() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ ease: "backIn", duration: .5 }}
-        className="w-full min-h-screen flex flex-1 flex-col justify-center items-center mt-10 xl:grid xl:grid-cols-2"
+        className="formContainer"
       >
-        <div className="sm:p-5 p-3 flex xl:justify-center">
+        <div className="formWrapper">
           <Card
-            className={`flex flex-col flex-1 rounded-2xl p-5 gap-5 mb-24 shadow-2xl !max-w-[392px] bg-foreground/30 
-            ${client
-                ? theme === "dark"
-                  ? "bgBlurredDark"
-                  : "bgBlurredLight"
-                : ""
-              }
-            `} id="signOptions">
-
+            className="form"
+            id="signOptions">
+            
             <BrandLogoSignIn />
             <SocialAuth />
 
@@ -265,9 +259,7 @@ export default function SignIn() {
             </form>
           </Card>
         </div>
-        <div className="xl:flex">
-          <IllustrationSignIn />
-        </div>
+        <IllustrationSignIn />
       </motion.div>
     </>
   )
