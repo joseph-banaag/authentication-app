@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Input, Card, Button } from "@nextui-org/react";
 import { EyeFilledIcon } from "@/components/utils/icons/EyeFilledIcon";
@@ -14,6 +14,7 @@ import AccountExist from "@/components/utils/warnings/alerts/AccountExist";
 import IllustrationSigUp from '@/app/(root)/components/IllustrationSigUp';
 import BrandLogoSignUp from '@/app/(root)/components/BrandLogoSignUp';
 import { usePathname } from 'next/navigation'
+import { useTheme } from "next-themes";
 
 
 // this object is for type declaration of useForm() function specifically for register method.
@@ -38,11 +39,15 @@ export default function SignUp() {
   const [ clicked, setClicked ] = React.useState(false)
   const [ exist, setExist ] = React.useState(false)
   const pathname = usePathname()
+  const { theme } = useTheme()
+  const [ client, setClient ] = useState<boolean>(false)
+
 
   useEffect(() => {
     if (pathname === "/sign-up") {
       sessionStorage.clear();
     }
+    setClient(true)
   }, [
     pathname
   ])
@@ -325,11 +330,17 @@ export default function SignUp() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ ease: "backIn", duration: .5 }}
-        className="w-full min-h-screen flex flex-1 flex-col justify-center items-center mt-10"
+        className="w-full min-h-screen flex flex-1  flex-col justify-center items-center mt-10 xl:grid xl:grid-cols-2"
       >
-        <div className="sm:p-5 p-3">
+        <div className="sm:p-5 p-3 flex xl:justify-center">
           <Card
-            className="flex flex-col flex-1 rounded-2xl p-5 gap-5 mb-24 shadow-2xl max-w-[640px] bg-background/60 dark:bg-default-100/50" id="signOptions">
+            className={`flex flex-col flex-1 rounded-2xl p-5 gap-5 mb-24 shadow-2xl !max-w-[392px] ${client
+              ? theme === "dark"
+                ? "bgBlurredDark"
+                : "bgBlurredLight"
+              : ""
+              }`
+            } id="signOptions">
 
             <BrandLogoSignUp />
             <SocialAuth />
@@ -494,7 +505,9 @@ export default function SignUp() {
             </form>
           </Card>
         </div>
-        <IllustrationSigUp />
+        <div className="xl:flex">
+          <IllustrationSigUp />
+        </div>
       </motion.div>
     </>
   )

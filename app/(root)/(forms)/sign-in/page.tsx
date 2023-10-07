@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Button, Input, Card } from "@nextui-org/react";
 import { EyeFilledIcon } from "@/components/utils/icons/EyeFilledIcon";
@@ -15,6 +15,7 @@ import toast, { Toaster, ToastBar } from 'react-hot-toast';
 import BrandLogoSignIn from '@/app/(root)/components/BrandLogoSignIn';
 import IllustrationSignIn from '@/app/(root)/components/IllustrationSignIn';
 import { usePathname } from 'next/navigation'
+import { useTheme } from "next-themes";
 
 
 interface Inputs {
@@ -38,11 +39,14 @@ export default function SignIn() {
   const [ wrongPass, setWrongPass ] = React.useState<boolean>(false)
   const router = useRouter()
   const pathname = usePathname()
+  const { theme } = useTheme()
+  const [ client, setClient ] = useState<boolean>(false)
 
   useEffect(() => {
     if (pathname === "/sign-in") {
       sessionStorage.clear();
     }
+    setClient(true)
   }, [
     pathname
   ])
@@ -151,11 +155,18 @@ export default function SignIn() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ ease: "backIn", duration: .5 }}
-        className="w-full min-h-screen flex flex-1 flex-col justify-center items-center mt-10"
+        className="w-full min-h-screen flex flex-1 flex-col justify-center items-center mt-10 xl:grid xl:grid-cols-2"
       >
-        <div className="sm:p-5 p-3">
+        <div className="sm:p-5 p-3 flex xl:justify-center">
           <Card
-            className="flex flex-col flex-1 rounded-2xl p-5 gap-5 mb-24 shadow-2xl max-w-[640px] bg-background/60 dark:bg-default-100/50" id="signOptions">
+            className={`flex flex-col flex-1 rounded-2xl p-5 gap-5 mb-24 shadow-2xl !max-w-[392px] bg-foreground/30 
+            ${client
+                ? theme === "dark"
+                  ? "bgBlurredDark"
+                  : "bgBlurredLight"
+                : ""
+              }
+            `} id="signOptions">
 
             <BrandLogoSignIn />
             <SocialAuth />
@@ -177,7 +188,7 @@ export default function SignIn() {
                     inputWrapper: [
                       "border-foreground/30 shadow-xl"
                     ],
-                   
+
                     label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small",
                     input: [
                       "sm:text-medium text-sm sm:font-normal font-normal",
@@ -254,7 +265,9 @@ export default function SignIn() {
             </form>
           </Card>
         </div>
-        <IllustrationSignIn />
+        <div className="xl:flex">
+          <IllustrationSignIn />
+        </div>
       </motion.div>
     </>
   )

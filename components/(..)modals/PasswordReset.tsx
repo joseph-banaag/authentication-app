@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Modal,
   ModalContent,
@@ -12,10 +12,16 @@ import {
 import { MailIcon } from "@/components/utils/icons/MailIcon";
 import { useForm } from "react-hook-form";
 import FuncNotWorking from "../utils/warnings/functionNotWorking";
+import { useTheme } from "next-themes";
 
 export default function PasswordReset() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { theme } = useTheme()
+  const [ client, setClient ] = useState<boolean>(false)
 
+  useEffect(() => {
+    setClient(true)
+  }, [])
   const {
     register,
     handleSubmit,
@@ -34,7 +40,7 @@ export default function PasswordReset() {
     email: string
   }
 
-  const onSubmit = (data : Props) => {
+  const onSubmit = (data: Props) => {
     const email = data.email;
     // console.log(email);
 
@@ -54,17 +60,24 @@ export default function PasswordReset() {
         variant="light"
         className="cursor-pointer max-w-fit -ms-3 !over:bg-foreground/60"
       >
-        <h1 className="text-xs sm:font-normal text-violet-600 font-small flex justify-center items-center drop-shadow-md underline underline-offset-2">
+        <h1 className={`text-xs sm:font-normal font-small flex justify-center items-center drop-shadow-md
+        ${client
+            ? theme === "dark"
+              ? "text-violet-600"
+              : "text-white/70"
+            : ""
+          }
+        `}>
           Forgot password?
         </h1>
       </Button>
-
       <Modal
         placement="center"
         size="2xl"
         backdrop="blur"
         isOpen={isOpen}
         onOpenChange={onOpenChange}
+        className="bgBlurredDark border-2 border-zinc-600/50 !bg-zinc-800/70"
       >
         <ModalContent>
           {(onClose) => (

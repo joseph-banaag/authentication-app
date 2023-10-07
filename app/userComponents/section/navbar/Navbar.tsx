@@ -100,16 +100,26 @@ export default function Topbar() {
           </NavbarBrand>
         </NavbarContent>
 
-        <NavbarContent justify="end" className="flex justify-end gap-3">
+        <NavbarContent
+          justify="end"
+          className="flex justify-end gap-3">
 
           <NavbarItem className="flex justify-start items-center">
             <Dropdown
-              // backdrop="blur" // * TODO: BLUR EFFECT
+              backdrop="blur"
               showArrow
               classNames={{
                 base: "p-0 border-small border-divider bg-background",
                 arrow: "bg-default-200",
               }}
+              className={`
+              ${client
+                  ? theme === "dark"
+                    ? "bgBlurredDark"
+                    : "bgBlurredLight"
+                  : ""
+                }
+              `}
             >
               <DropdownTrigger>
                 <Avatar
@@ -122,6 +132,7 @@ export default function Topbar() {
               </DropdownTrigger>
               <DropdownMenu
                 aria-label="Dropdown section for signed in user"
+              // className="backdrop-blur-sm border bg-red-500"
               >
                 <DropdownSection
                   title="Signed in as:"
@@ -133,7 +144,7 @@ export default function Topbar() {
                     className="!bg-default"
                     isReadOnly
                   >
-                    <div className="flex justify-center items-center p-1 fade-in">
+                    <div className="flex justify-center items-center p-1 fade-in ">
                       <ProfileAvatar />
                       <div className="ms-2 max-w-[120px]">
                         <p className="text-sm font-bold truncate">{userName}</p>
@@ -161,7 +172,7 @@ export default function Topbar() {
                           size="sm"
                           variant="light"
                           href={items.route}
-                          className={`${isActive && "text-[#FB542B] text-lg font-bold"} text-medium w-full flex justify-start items-center`}
+                          className={`${isActive && "text-[#FB542B] sm:text-lg font-bold"} sm:text-medium w-full flex justify-start items-center`}
                         >
                           {theme === "light"
                             ? items.iconDark
@@ -186,7 +197,7 @@ export default function Topbar() {
                       >
                         {client
                           ? theme
-                          : theme
+                          : ""
                         }
                       </p>
                     }

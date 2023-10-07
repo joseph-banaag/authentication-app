@@ -6,13 +6,13 @@ import { Image } from '@nextui-org/react';
 const IllustrationSigUp = () => {
   return (
     <>
-      <div className="flex md:flex-row flex-col justify-center items-center p-10 z-0 mb-10 md:gap-11 gap-5">
-        <h1 className="sm:text-2xl text-medium font-bold text-[#FB542B] drop-shadow-xl">Create connection</h1>
+      <div className="xl:flex-col lg:flex md:flex-row justify-center items-center z-0 mb-10 md:gap-11 gap-5">
+        <h1 className="sm:text-5xl text-medium font-bold text-[#FB542B] drop-shadow-2xl subpixel-antialiased">Create connections</h1>
         <Image
           src={bgIllustration.connect.src}
           alt={bgIllustration.connect.name}
-          width={400}
-          height={400}
+          width={600}
+          height={600}
         />
       </div>
     </>
