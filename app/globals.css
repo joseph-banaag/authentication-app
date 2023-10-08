@@ -2,6 +2,97 @@
 @tailwind components;
 @tailwind utilities;
 
+/** FORM STYLES **/
+@layer utilities {
+  .warningMessage {
+    @apply fixed z-50 w-full h-[100%] backdrop-blur-lg top-0
+  }
+
+  .formContainer {
+    @apply w-full min-h-screen flex flex-1 flex-col justify-center items-center lg:grid lg:grid-cols-2 gap-5 lg:p-32 md:p-20 sm:p-16 p-2
+  }
+
+  .formWrapper {
+    @apply p-7 flex lg:justify-center items-center md:p-12 sm:p-11
+  }
+
+  .formContent {
+    @apply flex flex-col flex-1 rounded-2xl p-5 gap-5 shadow-2xl shadow-violet-950 !max-w-[392px] !min-w-[259px] bg-background/30
+  }
+
+  .formBrandContainer {
+    @apply w-full flex md:h-[9em] sm:h-[7em] h-[5em] justify-start md:p-4 sm:p-3 p-1
+  }
+
+  .formSignHeader {
+    @apply sm:text-4xl text-xl sm:font-medium font-normal mb-1 drop-shadow-xl text-white
+  }
+
+  .formSignText {
+    @apply sm:text-medium text-xs sm:font-normal drop-shadow-xl text-white
+  }
+
+  .formSocialButton {
+    @apply hover:scale-105 transition-all duration-300 shadow-xl bg-foreground/30 hover:bg-foreground/60 lg:px-unit-4 lg:min-w-unit-20 lg:h-unit-10 md:px-unit-4 md:min-w-unit-20 md:h-unit-10 sm:px-unit-4 sm:min-w-unit-20 sm:h-unit-10 px-unit-3 min-w-unit-16 h-unit-10
+  }
+
+  .formSocialDividerContainer {
+    @apply flex flex-1 justify-center items-center
+  }
+
+  .formSocialHorzLine {
+    @apply w-full border-foreground
+  }
+
+  .formSocialDivText {
+    @apply sm:px-3 p-1 sm:text-medium text-xs sm:font-normal text-foreground
+  }
+
+  .formInputWrapper {
+    @apply border-foreground/30 shadow-xl
+  }
+
+  .formLabel {
+    @apply text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal
+  }
+
+  .formInput {
+    @apply sm:text-medium text-sm sm:font-normal font-normal bg-transparent text-black/90 dark:text-white/90 placeholder:text-default-700/50 dark:placeholder:text-white/60
+  }
+
+  .passwordPeek {
+    @apply text-2xl text-foreground pointer-events-none
+  }
+
+  .formErrorMessage {
+    @apply animate-pulse text-xs text-red-500 drop-shadow-xl
+  }
+
+  .submitBtn {
+    @apply bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300
+  }
+
+  .submitBtnContent {
+    @apply text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center
+  }
+
+  .illustrationContainer {
+    @apply w-full min-h-[400px]
+  }
+
+  .illustrationWrapper {
+    @apply p-8
+  }
+
+  .illustrationHeader {
+    @apply xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl text-lg font-bold text-[#FB542B] drop-shadow-2xl flex flex-1 justify-center items-center mx-auto
+  }
+
+  .illustrationContent {
+    @apply xl:w-[500px] xl:h-[500px] lg:w-[450px] lg:h-[450px] sm:w-[350px] sm:h-[350px] w-[300px] h-[300px] mx-auto
+  }
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

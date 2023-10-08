@@ -5,7 +5,7 @@ import { Company } from "@/components/constants";
 const BrandLogoSignUp = () => {
   return (
     <>
-      <div className='w-full flex md:h-[8em] sm:h-[6em] h-[5em] justify-start mt-2 md:px-5 sm:px-3 px-1'>
+      <div className="formBrandContainer">
         <Image
           src={Company.imgSrc}
           alt={Company.name}
@@ -20,8 +20,8 @@ const BrandLogoSignUp = () => {
         />
       </div>
       <div className='py-3 px-2'>
-        <h1 className="sm:text-4xl text-xl sm:font-medium font-normal mb-1 drop-shadow-xl text-white">Create your account</h1>
-        <p className="sm:text-medium text-xs sm:font-normal font-small drop-shadow-xl text-white">to access {Company.name} </p>
+        <h1 className="formSignHeader">Create your account</h1>
+        <p className="formSignText">to access {Company.name} </p>
       </div>
     </>
   )

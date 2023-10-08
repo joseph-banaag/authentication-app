@@ -133,14 +133,14 @@ export default function SignIn() {
         )}
       </Toaster>
 
-      <div className={`fixed z-50 w-full h-[100%] backdrop-blur-lg top-0 ${noAccount
+      <div className={`warningMessage ${noAccount
         ? "block"
         : "hidden"} 
         `}>
         <NoAccount />
       </div>
 
-      <div className={`fixed z-50 w-full h-[100%] backdrop-blur-lg top-0 ${wrongPass
+      <div className={`warningMessage ${wrongPass
         ? "block"
         : "hidden"} 
         `}>
@@ -151,12 +151,11 @@ export default function SignIn() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ ease: "backIn", duration: .5 }}
-        className="w-full min-h-screen flex flex-1 flex-col justify-center items-center lg:grid lg:grid-cols-2 gap-5 lg:p-32 md:p-20 sm:p-16 p-2"
+        className="formContainer"
       >
-        <div className="p-7 flex lg:justify-center items-center md:p-12 sm:p-11">
+        <div className="formWrapper">
           <Card
-            className="flex flex-col flex-1 rounded-2xl p-5 gap-5 shadow-2xl shadow-violet-950 !max-w-[392px] !min-w-[259px] bg-background/30"
-            id="signOptions">
+            className="formContent">
 
             <BrandLogoSignIn />
             <SocialAuth />
@@ -173,25 +172,16 @@ export default function SignIn() {
                   isClearable
                   variant="bordered"
                   label="Username"
-                  className="w-full flex-1 transition-all duration-300"
                   classNames={{
-                    inputWrapper: [
-                      "border-foreground/30 shadow-xl"
-                    ],
-
-                    label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small",
-                    input: [
-                      "sm:text-medium text-sm sm:font-normal font-normal",
-                      "bg-transparent",
-                      "text-black/90 dark:text-white/90",
-                      "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                    ],
+                    inputWrapper: "formInputWrapper",
+                    label: "formLabel",
+                    input: "formInput",
                   }}
                   {...register("username", {
                     required: true
                   })}
                 />
-                <p className="animate-pulse text-xs text-red-500 drop-shadow-xl">
+                <p className="formErrorMessage">
                   {errors.username?.types?.required && <span>Username is required</span>}
                 </p>
               </div>
@@ -207,23 +197,16 @@ export default function SignIn() {
                   variant="bordered"
                   label="Password"
                   classNames={{
-                    inputWrapper: [
-                      "border-foreground/30 shadow-xl"
-                    ],
-                    label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
-                    input: [
-                      "sm:text-medium text-sm sm:font-normal font-normal",
-                      "bg-transparent",
-                      "text-black/90 dark:text-white/90",
-                      "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                    ],
+                    inputWrapper: "formInputWrapper",
+                    label: "formLabel",
+                    input: "formInput"
                   }}
                   endContent={
                     <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
                       {isVisible ? (
-                        <EyeSlashFilledIcon className="text-2xl text-foreground pointer-events-none" />
+                        <EyeSlashFilledIcon className="passwordPeek" />
                       ) : (
-                        <EyeFilledIcon className="text-2xl text-foreground pointer-events-none" />
+                        <EyeFilledIcon className="passwordPeek" />
                       )}
                     </button>
                   }
@@ -235,7 +218,7 @@ export default function SignIn() {
                   name="password"
                 />
 
-                <p className="animate-pulse text-xs text-red-500 drop-shadow-xl">
+                <p className="formErrorMessage">
                   {errors.password?.types?.required && <span>Password is required</span>}
                 </p>
               </div>
@@ -243,9 +226,9 @@ export default function SignIn() {
                 <Button
                   type="submit"
                   name="submit"
-                  className="bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300"
+                  className="submitBtn"
                 >
-                  <div className="text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center">
+                  <div className="submitBtnContent">
                     {clicked
                       ? <SubmitSpinner />
                       : <p className="text-white">Continue</p>

@@ -77,7 +77,7 @@ export default function PasswordReset() {
         backdrop="blur"
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        className="rounded-2xl shadow-2xl shadow-violet-950 bg-background/30"
+        className="rounded-2xl shadow-2xl shadow-violet-950 bg-background/80"
       >
         <ModalContent>
           {(onClose) => (

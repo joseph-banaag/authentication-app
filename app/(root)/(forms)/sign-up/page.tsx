@@ -79,13 +79,13 @@ export default function SignUp() {
       if (password === "" && confirmed === "") {
         return (
           <>
-            <p className="animate-pulse text-xs text-red-500 drop-shadow-xl">Password is required!</p>
+            <p className="formErrorMessage">Password is required!</p>
           </>
         )
       } else if (password === undefined && confirmed === undefined) {
         return (
           <>
-            <p className="animate-pulse text-xs text-red-500 drop-shadow-xl">Password is required!</p>
+            <p className="formErrorMessage">Password is required!</p>
           </>
         )
       } else if (password === confirmed) {
@@ -97,7 +97,7 @@ export default function SignUp() {
       } else {
         return (
           <>
-            <p className="animate-pulse text-xs text-red-500 drop-shadow-xl">Passwords do not matched!</p>
+            <p className="formErrorMessage">Passwords do not matched!</p>
           </>
         )
       }
@@ -217,7 +217,6 @@ export default function SignUp() {
 
     const pattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/;
 
-
     const changeSubmitButton = () => {
       if (password === "" || confirmed === "") {
         return (
@@ -245,9 +244,9 @@ export default function SignUp() {
                   type="submit"
                   onClick={handleButtonClick}
                   name="submit"
-                  className="bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300"
+                  className="submitBtn"
                 >
-                  <div className="text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center">{clicked
+                  <div className="submitBtnContent">{clicked
                     ? <SubmitSpinner />
                     : <p>Continue</p>}
                   </div>
@@ -263,9 +262,9 @@ export default function SignUp() {
                   onClick={handleButtonClick}
                   isDisabled
                   name="submit"
-                  className="bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300"
+                  className="submitBtn"
                 >
-                  <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
+                  <p className="submitBtnContent">Continue</p>
                 </Button >
               </>
             )
@@ -284,9 +283,9 @@ export default function SignUp() {
               onClick={handleButtonClick}
               isDisabled
               name="submit"
-              className="bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300"
+              className="submitBtn"
             >
-              <p className="text-slate-300 hover:text-white font-semibold flex-1">Continue</p>
+              <p className="submitBtnContent">Continue</p>
             </Button >
           </>
         )
@@ -318,7 +317,7 @@ export default function SignUp() {
         )}
       </Toaster>
 
-      <div className={`fixed z-50 w-full h-[100%] backdrop-blur-lg top-0 ${exist
+      <div className={`warningMessage ${exist
         ? "block"
         : "hidden"}`}>
         <AccountExist />
@@ -328,12 +327,11 @@ export default function SignUp() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ ease: "backIn", duration: .5 }}
-        className=" w-full min-h-screen flex flex-1 flex-col justify-center items-center lg:grid lg:grid-cols-2 gap-5 lg:p-32 md:p-20 sm:p-16 p-2"
+        className="formContainer"
       >
-        <div className="p-7 flex lg:justify-center items-center md:p-12 sm:p-11">
+        <div className="formWrapper">
           <Card
-            className="flex flex-col flex-1 rounded-2xl p-5 gap-5 shadow-2xl shadow-violet-950 !max-w-[392px] !min-w-[259px] bg-background/30"
-            id="signOptions">
+            className="formContent">
 
             <BrandLogoSignUp />
             <SocialAuth />
@@ -352,16 +350,9 @@ export default function SignUp() {
                   label="Username"
                   className="w-full flex-1"
                   classNames={{
-                    inputWrapper: [
-                      "border-foreground/30 shadow-xl"
-                    ],
-                    label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
-                    input: [
-                      "sm:text-medium text-sm sm:font-normal font-normal",
-                      "bg-transparent",
-                      "text-black/90 dark:text-white/90",
-                      "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                    ],
+                    inputWrapper: "formInputWrapper",
+                    label: "formLabel",
+                    input: "formInput"
                   }}
                   {...register("username", {
                     required: true,
@@ -369,7 +360,7 @@ export default function SignUp() {
                   })}
                   name="username"
                 />
-                <p className="animate-pulse text-xs text-red-500 drop-shadow-xl">
+                <p className="formErrorMessage">
                   {errors.username?.types?.required && <span>Username is required</span>}
                   {errors.username?.types?.pattern && <span>Space is not allowed and at least 3 characters</span>}
                 </p>
@@ -386,16 +377,9 @@ export default function SignUp() {
                   label="Email"
                   className="w-full flex-1"
                   classNames={{
-                    inputWrapper: [
-                      "border-foreground/30 shadow-xl"
-                    ],
-                    label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
-                    input: [
-                      "sm:text-medium text-sm sm:font-normal font-normal",
-                      "bg-transparent",
-                      "text-black/90 dark:text-white/90",
-                      "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                    ],
+                    inputWrapper: "formInputWrapper",
+                    label: "formLabel",
+                    input: "formInput"
                   }}
                   {...register("email", {
                     required: true,
@@ -403,7 +387,7 @@ export default function SignUp() {
                   })}
                   name="email"
                 />
-                <p className="animate-pulse text-xs text-red-500 drop-shadow-xl">
+                <p className="formErrorMessage">
                   {errors.email?.types?.required && <span>A valid email is required</span>}
                   {errors.email?.types?.pattern && <span>e.g. example@email.com</span>}
 
@@ -419,23 +403,16 @@ export default function SignUp() {
                   variant="bordered"
                   label="Password"
                   classNames={{
-                    inputWrapper: [
-                      "border-foreground/30 shadow-xl"
-                    ],
-                    label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
-                    input: [
-                      "sm:text-medium text-sm sm:font-normal font-normal",
-                      "bg-transparent",
-                      "text-black/90 dark:text-white/90",
-                      "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                    ],
+                    inputWrapper: "formInputWrapper",
+                    label: "formLabel",
+                    input: "formInput"
                   }}
                   endContent={
                     <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
                       {isVisible ? (
-                        <EyeSlashFilledIcon className="text-2xl text-foreground pointer-events-none" />
+                        <EyeSlashFilledIcon className="passwordPeek" />
                       ) : (
-                        <EyeFilledIcon className="text-2xl text-foreground pointer-events-none" />
+                        <EyeFilledIcon className="passwordPeek" />
                       )}
                     </button>
                   }
@@ -447,7 +424,7 @@ export default function SignUp() {
                   })}
                   name="password"
                 />
-                <p className="animate-pulse text-xs text-red-500 drop-shadow-xl">
+                <p className="formErrorMessage">
                   {errors.password?.types?.required && <span>Password is required</span>}
                   {errors.password?.types?.pattern && <span className="max-w-[30em] flex flex-wrap flex-shrink">Minimum password of 8 and must have an uppercase, lowercase, number, and special character.</span>}
                 </p>
@@ -462,23 +439,16 @@ export default function SignUp() {
                   variant="bordered"
                   label="Confirm Password"
                   classNames={{
-                    inputWrapper: [
-                      "border-foreground/30 shadow-xl"
-                    ],
-                    label: "text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal font-small ",
-                    input: [
-                      "sm:text-medium text-sm sm:font-normal font-normal",
-                      "bg-transparent",
-                      "text-black/90 dark:text-white/90",
-                      "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                    ],
+                    inputWrapper: "formInputWrapper",
+                    label: "formLabel",
+                    input: "formInput"
                   }}
                   endContent={
                     <button className="focus:outline-none" type="button" onClick={toggleIsConfirmed}>
                       {isConfirmed ? (
-                        <EyeSlashFilledIcon className="text-2xl text-foreground pointer-events-none" />
+                        <EyeSlashFilledIcon className="passwordPeek" />
                       ) : (
-                        <EyeFilledIcon className="text-2xl text-foreground pointer-events-none" />
+                        <EyeFilledIcon className="passwordPeek" />
                       )}
                     </button>
                   }
