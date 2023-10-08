@@ -7,7 +7,9 @@ const IllustrationSigUp = () => {
   return (
     <>
       <div className="illustrationContainer">
-        <h1 className="illustrationHeader">Create connections</h1>
+        <div className="p-8">
+          <h1 className="illustrationHeader">Create connections</h1>
+        </div>
         <div className="illustration">
           <Image
             src={bgIllustration.connect.src}

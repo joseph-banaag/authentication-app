@@ -6,7 +6,9 @@ const IllustrationSignIn = () => {
   return (
     <>
       <div className="illustrationContainer">
-        <h1 className="illustrationHeader">Connect with the community</h1>
+        <div className="p-8">
+          <h1 className="illustrationHeader">Connect with the community</h1>
+        </div>
         <div className="illustration">
           <Image
             src={bgIllustration.group.src}
