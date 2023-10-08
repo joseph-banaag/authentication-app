@@ -18,12 +18,12 @@ export default function WrongPassword() {
 
   return (
     <>
-      <div className="warningContainer">
+      <div className="p-3 fixed z-50 top-48 left-[50%] translate-x-[-50%] translate-y-[-50%] w-full">
         <Card
-          className="warningWrapper"
+          className="border bg-background/70 max-w-[620px] mx-auto border-background/90 flex-1 shadow-lg shadow-background/70"
         >
           <CardBody>
-            <p className="sm:text-medium text-xs sm:font-normal font-small drop-shadow-lg tracking-wide">
+            <p className="sm:text-medium text-xs sm:font-normal font-small drop-shadow-lg tracking-wide text-[#cbd5e1]">
               Username and password do not match. Please try again...
             </p>
           </CardBody>

@@ -133,14 +133,14 @@ export default function SignIn() {
         )}
       </Toaster>
 
-      <div className={`warningPopUpMessage ${noAccount
+      <div className={`fixed z-50 w-full h-[100%] backdrop-blur-lg top-0 ${noAccount
         ? "block"
         : "hidden"} 
         `}>
         <NoAccount />
       </div>
 
-      <div className={`warningPopUpMessage ${wrongPass
+      <div className={`fixed z-50 w-full h-[100%] backdrop-blur-lg top-0 ${wrongPass
         ? "block"
         : "hidden"} 
         `}>
@@ -151,11 +151,11 @@ export default function SignIn() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ ease: "backIn", duration: .5 }}
-        className="formContainer"
+        className="w-full min-h-screen flex flex-1 flex-col justify-center items-center lg:grid lg:grid-cols-2 gap-5 lg:p-32 md:p-20 sm:p-16 p-2"
       >
-        <div className="formWrapper ">
+        <div className="p-7 flex lg:justify-center items-center md:p-12 sm:p-11">
           <Card
-            className="form "
+            className="flex flex-col flex-1 rounded-2xl p-5 gap-5 shadow-2xl shadow-violet-950 !max-w-[392px] !min-w-[259px] bg-background/30"
             id="signOptions">
 
             <BrandLogoSignIn />

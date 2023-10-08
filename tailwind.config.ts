@@ -9,9 +9,7 @@ const config: Config = {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-      
-    },
+    extend: {},
   },
   darkMode: "class",
   plugins: [
@@ -20,7 +18,7 @@ const config: Config = {
         light: {
           colors: {
             background: "#e6e6e6", // or DEFAULT
-            foreground: "#f2f2f3", // or 50 to 900 DEFAULT
+            foreground: "#0f172a", // or 50 to 900 DEFAULT
             primary: {
               //... 50 to 900
               foreground: "#52525b",
@@ -31,7 +29,7 @@ const config: Config = {
         dark: {
           colors: {
             background: "#0a0316", // or DEFAULT
-            foreground: "#bcbcc2", // or 50 to 900 DEFAULT
+            foreground: "#cbd5e1", // or 50 to 900 DEFAULT
             primary: {
               //... 50 to 900
               foreground: "#52525b",

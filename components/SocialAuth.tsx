@@ -23,7 +23,7 @@ export default function SocialAuth() {
                     <Button
                         variant="flat"
                         size="md"
-                        className="socialButton"
+                        className="hover:scale-105 transition-all duration-300 shadow-xl bg-foreground/30 hover:bg-foreground/60 lg:px-unit-4 lg:min-w-unit-20 lg:h-unit-10 md:px-unit-4 md:min-w-unit-20 md:h-unit-10 sm:px-unit-4 sm:min-w-unit-20 sm:h-unit-10 px-unit-3 min-w-unit-16 h-unit-10"
                     >
                         <Image
                             priority
@@ -46,7 +46,7 @@ export default function SocialAuth() {
                     <Button
                         variant="flat"
                         size="md"
-                        className="socialButton"
+                        className="hover:scale-105 transition-all duration-300 shadow-xl bg-foreground/30 hover:bg-foreground/60 lg:px-unit-4 lg:min-w-unit-20 lg:h-unit-10 md:px-unit-4 md:min-w-unit-20 md:h-unit-10 sm:px-unit-4 sm:min-w-unit-20 sm:h-unit-10 px-unit-3 min-w-unit-16 h-unit-10"
                     >
                         {/* {client
                             ? theme === "light"
@@ -62,7 +62,7 @@ export default function SocialAuth() {
                     <Button
                         variant="flat"
                         size="md"
-                        className="socialButton"
+                        className="hover:scale-105 transition-all duration-300 shadow-xl bg-foreground/30 hover:bg-foreground/60 lg:px-unit-4 lg:min-w-unit-20 lg:h-unit-10 md:px-unit-4 md:min-w-unit-20 md:h-unit-10 sm:px-unit-4 sm:min-w-unit-20 sm:h-unit-10 px-unit-3 min-w-unit-16 h-unit-10"
                     >
                         <Image
                             priority

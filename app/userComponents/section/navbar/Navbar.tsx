@@ -122,7 +122,7 @@ export default function Topbar() {
                 base: "p-0 border-small border-divider bg-background",
                 arrow: "bg-background",
               }}
-              className="dropdownContainer"
+              className="rounded-2xl shadow-2xl shadow-violet-950 bg-background/90 border-none p-[5px]"
             >
               <DropdownTrigger>
                 <div className="w-2 h-8 flex flex-col gap-1 justify-center items-center cursor-pointer">

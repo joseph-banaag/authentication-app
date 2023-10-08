@@ -29,7 +29,7 @@ const ProfileModal = () => {
             <button
               type="button"
               onClick={() => setDisplayOn(false)}
-              className="modalClosed">
+              className="font-bold absolute top-3 right-3 drop-shadow-xl text-foreground hover:text-background hover:bg-foreground transform scale-105 p-1 rounded-full w-7 h-7 flex justify-center items-center cursor-pointer transition-all duration-300">
               x
             </button>
             <h1 className="text-white text-2xl font-semibold drop-shadow-xl">{userName}</h1>
