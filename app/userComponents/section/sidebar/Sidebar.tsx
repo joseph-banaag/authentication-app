@@ -78,7 +78,7 @@ export default function Sidebar() {
     <>
       <Card className=" min-h-screen md:flex hidden flex-col gap-5 justify-start items-center px-4 pt-9 shadow-2xl bg-background/60 dark:bg-default-100/50 rounded-none mx-auto ">
 
-        <div className="flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default !dark:text-white py-3 px-4 mx-2 shadow-xl min-w-[200px] fade-in">
+        <div className="flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default !dark:text-white py-3 px-4 mx-2 shadow-xl min-w-[200px] fadeIn">
           <ProfileAvatar />
           <div className="ms-2 max-w-[120px]">
             <p className="text-sm font-bold truncate">{username}</p>
@@ -166,7 +166,7 @@ export default function Sidebar() {
                 <div>
                   <ProfileAvatar />
                 </div>
-                <div className="ms-2 md:max-w-[400px] sm:max-w-[300px] truncate userProfile fade-in">
+                <div className="ms-2 md:max-w-[400px] sm:max-w-[300px] truncate userProfile fadeIn">
                   <p className="text-sm font-bold">{username}</p>
                   <div className="w-full overflow-hidden">
                     <p className="text-xs font-thin dark:text-foreground/60 animate-scrolling-text delay-1000">{email}</p>

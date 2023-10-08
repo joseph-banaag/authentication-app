@@ -318,7 +318,9 @@ export default function SignUp() {
         )}
       </Toaster>
 
-      <div className={`${exist ? "block" : "hidden"} fixed z-50 w-full h-[100%] backdrop-blur-md`}>
+      <div className={`warningPopUpMessage ${exist
+        ? "block"
+        : "hidden"}`}>
         <AccountExist />
       </div>
 
@@ -332,7 +334,7 @@ export default function SignUp() {
           <Card
             className="form"
             id="signOptions">
-            
+
             <BrandLogoSignUp />
             <SocialAuth />
 

@@ -133,17 +133,17 @@ export default function SignIn() {
         )}
       </Toaster>
 
-      <div className={`${noAccount
+      <div className={`warningPopUpMessage ${noAccount
         ? "block"
         : "hidden"} 
-                fixed z-50 w-full h-[100%] backdrop-blur-md`}>
+        `}>
         <NoAccount />
       </div>
 
-      <div className={`${wrongPass
+      <div className={`warningPopUpMessage ${wrongPass
         ? "block"
         : "hidden"} 
-                fixed z-50 w-full h-[100%] backdrop-blur-md`}>
+        `}>
         <WrongPassword />
       </div>
 
@@ -160,7 +160,7 @@ export default function SignIn() {
 
             <BrandLogoSignIn />
             <SocialAuth />
-            
+
             {/* form */}
             <form onSubmit={handleSubmit(OnSubmit)} className='flex flex-col gap-3'>
               <div className='flex flex-col'>

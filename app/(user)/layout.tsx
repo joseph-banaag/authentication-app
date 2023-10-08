@@ -6,6 +6,7 @@ import { Montserrat } from 'next/font/google'
 import Topbar from "@/app/userComponents/section/navbar/Navbar";
 import { ThemeProvider } from "@/app/(root)/providers"
 import { useTheme } from "next-themes";
+import ModalContextProvider from "@/app/(userInfo)/context/ModalContext";
 
 const monserrat = Montserrat({
   display: "swap",
@@ -43,18 +44,20 @@ export default function UserLayout({
       lang="en"
       className={`dark ${client
         ? currentTheme === "dark" || !currentTheme
-          ? "darkThemeBg text-foreground"
-          : "lightThemeBg text-white"
+          ? "darkThemeBg"
+          : "lightThemeBg"
         : "dark"
         }`}>
 
       <body className={monserrat.className}>
         <React.StrictMode>
           <ThemeProvider>
-            <div className="relative">
-              <Topbar />
-              {children}
-            </div>
+            <ModalContextProvider>
+              <div className="relative">
+                <Topbar />
+                {children}
+              </div>
+            </ModalContextProvider>
           </ThemeProvider>
         </React.StrictMode>
       </body>

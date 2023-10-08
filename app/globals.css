@@ -12,6 +12,7 @@ body {
   width: 100vw;
   min-width: 320px;
   height: auto;
+  position: relative;
 }
 
 .formContainer {
@@ -27,7 +28,7 @@ body {
 }
 
 .illustrationContainer {
-  @apply w-full min-h-[400px] 
+  @apply w-full min-h-[400px]
 }
 
 .illustrationHeader {
@@ -35,7 +36,7 @@ body {
 }
 
 .illustration {
-  @apply xl:w-[500px] xl:h-[500px] lg:w-[450px] lg:h-[450px] sm:w-[350px] sm:h-[350px] w-[300px] h-[300px] mx-auto 
+  @apply xl:w-[500px] xl:h-[500px] lg:w-[450px] lg:h-[450px] sm:w-[350px] sm:h-[350px] w-[300px] h-[300px] mx-auto
 }
 
 .overlays {
@@ -43,7 +44,19 @@ body {
 }
 
 .dropdownContainer {
-  @apply rounded-2xl shadow-2xl shadow-violet-950 bg-background/90 border-none p-[5px] backdrop-blur-sm
+  @apply rounded-2xl shadow-2xl shadow-violet-950 bg-background/90 border-none p-[5px]
+}
+
+.warningPopUpMessage {
+  @apply fixed z-50 w-full h-[100%] backdrop-blur-lg top-0
+}
+
+.warningContainer {
+  @apply p-3 fixed z-50 top-48 left-[50%] translate-x-[-50%] translate-y-[-50%] w-full
+}
+
+.warningWrapper {
+  @apply border bg-background/70 max-w-[620px] mx-auto border-background/90 flex-1 shadow-lg shadow-background/70
 }
 
 /* contains custom styles */
@@ -51,12 +64,17 @@ body {
   .socialButton {
     @apply hover:scale-105 transition-all duration-300 shadow-xl bg-foreground/30 hover:bg-foreground/60 lg:px-unit-4 lg:min-w-unit-20 lg:h-unit-10 md:px-unit-4 md:min-w-unit-20 md:h-unit-10 sm:px-unit-4 sm:min-w-unit-20 sm:h-unit-10 px-unit-3 min-w-unit-16 h-unit-10 !important
   }
+
+  .modalClosed {
+    @apply font-bold absolute top-3 right-3 drop-shadow-xl text-foreground hover:text-background hover:bg-foreground transform scale-105 p-1 rounded-full w-7 h-7 flex justify-center items-center cursor-pointer transition-all duration-300
+  }
 }
 
 a:hover {
   text-decoration: none;
 }
 
+/** MAIN PAGE BACKGROUNDS */
 .darkThemeBg {
   background-color: hsla(261, 76%, 10%, 1);
   background-image:
@@ -81,6 +99,9 @@ a:hover {
   background-repeat: no-repeat;
 }
 
+/** DASHBOARD PAGE BACKGROUNDS */
+
+/** SETTINGS PAGE BACKGROUNDS */
 
 @keyframes fadeIn {
   from {
@@ -92,8 +113,22 @@ a:hover {
   }
 }
 
-.fade-in {
-  animation: fadeIn 750ms ease-in-out;
+.fadeIn {
+  animation: fadeIn 300ms ease-in-out;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  animation: fadeOut 300ms ease-in-out;
 }
 
 @keyframes scroll {

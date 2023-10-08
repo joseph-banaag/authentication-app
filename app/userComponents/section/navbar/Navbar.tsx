@@ -24,6 +24,7 @@ import { MoonIcon } from "@/components/utils/icons/MoonIcon";
 import BrandLogo from "@/app/userComponents/section/components/BrandLogo";
 import ProfileAvatar from "@/components/ProfileAvatar";
 import ProfileModal from "@/components/ProfileModal";
+import { useModalContext } from "@/app/(userInfo)/context/ModalContext";
 
 const getData = async () => {
   const res = await fetch("api/users")
@@ -39,8 +40,10 @@ export default function Topbar() {
   const [ userName, setUserName ] = useState<string>("")
   const [ eMail, setEMail ] = useState<string>("")
   const [ client, setClient ] = useState<boolean>(false)
-  const [ displayOn, setDisplayOn ] = useState<boolean>(false)
   const router = useRouter()
+  const {
+    displayOn,
+    setDisplayOn } = useModalContext()
 
   useEffect(() => {
     setClient(true)
@@ -93,6 +96,10 @@ export default function Topbar() {
 
   return (
     <>
+      <div className={`z-[48] w-full h-screen fixed backdrop-blur-sm ${displayOn ? "block" : "hidden"}`} />
+      <div className={`${displayOn ? "block z-50" : "hidden"}`}>
+        <ProfileModal />
+      </div>
       <Navbar
         shouldHideOnScroll
         className="flex justify-around flex-wrap sm:p-3 p-0 drop-shadow-2xl">
@@ -101,30 +108,19 @@ export default function Topbar() {
             <BrandLogo />
           </NavbarBrand>
         </NavbarContent>
-
         <NavbarContent
           justify="end"
           className="flex justify-end gap-3">
-
           <NavbarItem className="flex justify-start items-center gap-2">
-            {/* 
-// TODO: CHANGE THIS AVATAR TO MODAL AND DISPLAY USER INFORMATION LIKE WHAT IS ON GOOGLE PROFILE
-
-// TODO: CREATE A FADE-OUT EFFECT AND EDIT THE FADE-IN EFFECT
-*/}
-
-            <div className={`${displayOn ? "block" : "hidden"} fade-in `}>
-              <ProfileModal />
-            </div>
             <div onClick={() => setDisplayOn(!displayOn)}>
               <ProfileAvatar />
             </div>
             <Dropdown
-              backdrop="blur"
+              // backdrop="blur" //* blur effect affecting the function while dev tools is on
               showArrow
               classNames={{
                 base: "p-0 border-small border-divider bg-background",
-                arrow: "bg-violet-950",
+                arrow: "bg-background",
               }}
               className="dropdownContainer"
             >
@@ -151,7 +147,7 @@ export default function Topbar() {
                       }`}
                     isReadOnly
                   >
-                    <div className="flex justify-center items-center p-1 fade-in">
+                    <div className="flex justify-center items-center p-1 fadeIn">
                       <ProfileAvatar />
                       <div className="ms-2 max-w-[120px]">
                         <p className="text-sm font-bold truncate">{userName}</p>
@@ -175,7 +171,6 @@ export default function Topbar() {
                       >
                         <Button
                           as={Link}
-                          // color="foreground"
                           size="sm"
                           variant="light"
                           href={items.route}

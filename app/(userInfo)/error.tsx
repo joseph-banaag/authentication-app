@@ -30,7 +30,7 @@ export default function Error({
           style={{
             objectFit: "cover"
           }}
-          className='fade-in-bg'
+          className='fadeIn'
         />
         <button onClick={() => reset()} className="bg-[#661fe0] px-5 py-2 rounded-2xl text-xl font-semibold">Try again</button>
       </div>
