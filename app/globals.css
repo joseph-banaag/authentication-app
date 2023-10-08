@@ -19,7 +19,7 @@ body {
 }
 
 .formWrapper {
-  @apply p-8 flex lg:justify-center md:p-12 sm:p-11 
+  @apply p-8 flex lg:justify-center md:p-12 sm:p-11
 }
 
 .form {
@@ -27,7 +27,7 @@ body {
 }
 
 .illustrationContainer {
-  @apply w-full min-h-[400px] md:p-8 
+  @apply w-full min-h-[400px] md:p-8
 }
 
 .illustrationHeader {
@@ -35,18 +35,22 @@ body {
 }
 
 .illustration {
-  @apply xl:w-[500px] xl:h-[500px] lg:w-[450px] lg:h-[450px] sm:w-[350px] sm:h-[350px] w-[300px] h-[300px] mx-auto 
+  @apply xl:w-[500px] xl:h-[500px] lg:w-[450px] lg:h-[450px] sm:w-[350px] sm:h-[350px] w-[300px] h-[300px] mx-auto
 }
 
 .overlays {
   @apply rounded-2xl shadow-2xl shadow-violet-950 bg-background/30
 }
 
-
 .dropdownContainer {
   @apply rounded-2xl shadow-2xl shadow-violet-950 bg-background/90 border-none p-[5px] backdrop-blur-sm
 }
 
+@layer base {
+  .socialButton {
+    @apply hover:scale-105 transition-all duration-300 shadow-xl bg-foreground/30 hover:bg-foreground/60 lg:px-unit-4 lg:min-w-unit-20 lg:h-unit-10 md:px-unit-4 md:min-w-unit-20 md:h-unit-10 sm:px-unit-4 sm:min-w-unit-20 sm:h-unit-10 px-unit-3 min-w-unit-16 h-unit-10 !important
+  }
+}
 
 a:hover {
   text-decoration: none;
