@@ -7,7 +7,6 @@ import { EyeSlashFilledIcon } from "@/components/utils/icons/EyeSlashFilledIcon"
 import { motion } from "framer-motion"
 import PasswordReset from "@/components/(..)modals/PasswordReset";
 import { useRouter } from 'next/navigation'
-import SocialAuth from "@/components/utils/SocialAuth";
 import SubmitSpinner from "@/components/lib/SubmitSpinner";
 import NoAccount from "@/components/utils/warnings/alerts/NoAccount";
 import WrongPassword from "@/components/utils/warnings/alerts/WrongPassword";
@@ -15,7 +14,7 @@ import toast, { Toaster, ToastBar } from 'react-hot-toast';
 import BrandLogoSignIn from '@/app/(root)/components/BrandLogoSignIn';
 import IllustrationSignIn from '@/app/(root)/components/IllustrationSignIn';
 import { usePathname } from 'next/navigation'
-import { useTheme } from "next-themes";
+import SocialAuth from "@/components/SocialAuth";
 
 
 interface Inputs {
@@ -39,14 +38,11 @@ export default function SignIn() {
   const [ wrongPass, setWrongPass ] = React.useState<boolean>(false)
   const router = useRouter()
   const pathname = usePathname()
-  const { theme } = useTheme()
-  const [ client, setClient ] = useState<boolean>(false)
 
   useEffect(() => {
     if (pathname === "/sign-in") {
       sessionStorage.clear();
     }
-    setClient(true)
   }, [
     pathname
   ])
@@ -157,11 +153,11 @@ export default function SignIn() {
         transition={{ ease: "backIn", duration: .5 }}
         className="formContainer"
       >
-        <div className="formWrapper">
+        <div className="formWrapper ">
           <Card
-            className="form"
+            className="form "
             id="signOptions">
-            
+
             <BrandLogoSignIn />
             <SocialAuth />
 

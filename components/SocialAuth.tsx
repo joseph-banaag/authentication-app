@@ -6,6 +6,7 @@ import { iconsSrc } from "@/components/constants";
 import { useTheme } from "next-themes";
 import GithubDark from "@/components/lib/iconOptions/githubDark";
 import GithubLight from "@/components/lib/iconOptions/githubLight";
+import { Button } from "@nextui-org/react";
 
 // TODO: setup nextAuth here...
 
@@ -19,12 +20,11 @@ export default function SocialAuth() {
 
     return (
         <>
-            <div className="flex items-center justify-center loginButtons gap-5 px-3">
+            <div className="grid grid-cols-3 items-center justify-center loginButtons gap-5 px-3">
                 <div>
-                    <MyButton
+                    <Button
                         variant="flat"
-                        size="md"
-                        className="hover:scale-105 transition-all duration-300 flex-1 shadow-xl bg-foreground/30 hover:bg-foreground/60">
+                        className="hover:scale-105 transition-all duration-300 shrink shadow-xl bg-foreground/30 hover:bg-foreground/60">
                         <Image
                             priority
                             src={iconsSrc.facebook}
@@ -39,11 +39,11 @@ export default function SocialAuth() {
                             }}
                             className="drop-shadow-md"
                         />
-                    </MyButton>
+                    </Button>
                 </div>
 
                 <div>
-                    <MyButton
+                    <Button
                         variant="flat"
                         size="md"
                         className="hover:scale-105 transition-all duration-300 flex-1 shadow-xl bg-foreground/30 hover:bg-foreground/60"
@@ -55,11 +55,11 @@ export default function SocialAuth() {
                             : ""
                         } */}
                         <GithubLight />
-                    </MyButton>
+                    </Button>
                 </div>
 
                 <div>
-                    <MyButton
+                    <Button
                         variant="flat"
                         size="md"
                         className="hover:scale-105 transition-all duration-300 flex-1 shadow-xl bg-foreground/30 hover:bg-foreground/60">
@@ -76,7 +76,7 @@ export default function SocialAuth() {
                             }}
                             className="drop-shadow-md"
                         />
-                    </MyButton>
+                    </Button>
                 </div>
             </div>
 

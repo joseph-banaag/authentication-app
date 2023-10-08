@@ -5,7 +5,7 @@ import { Company } from "@/components/constants";
 const BrandLogoSignIn = () => {
   return (
     <>
-      <div className='w-full flex md:h-[8em] sm:h-[6em] h-[5em] justify-start mt-2 md:px-5 sm:px-3 px-1'>
+      <div className='w-full flex md:h-[8em] sm:h-[6em] h-[5em] justify-start mt-2 md:px-5 sm:px-3 px-1 '>
         <Image
           src={Company.imgSrc}
           alt={Company.name}

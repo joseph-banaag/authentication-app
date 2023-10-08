@@ -35,14 +35,14 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ ease: "backIn", duration: .5 }}
-        className="relative flex flex-col justify-center items-center min-h-screen delay-3000 z-10 gap-5 mt-5"
+        className="relative flex flex-col justify-center items-center min-h-screen delay-3000 z-10 gap-5 mt-5 lg:p-20 md:p-14 sm:p-8 p-4"
       >
         <Link
           href="/"
-          className="sm:hidden block mainPageLogo mt-6">
-          <p className={`${dancing.className} brandGradient flex items-center overflow-hidden drop-shadow-md`}>Authentication</p>
+          className="sm:hidden flex">
+          <p className={`${dancing.className} brandGradient flex items-center overflow-hidden drop-shadow-md mx-auto`}>Authentication</p>
         </Link>
-        <div className='bg-fixed bg-center bg-cover z-[1]'>
+        <div className='bg-fixed bg-center bg-cover z-[1] mt-5'>
           <Image
             priority
             src={bgIllustration.homepage.src}

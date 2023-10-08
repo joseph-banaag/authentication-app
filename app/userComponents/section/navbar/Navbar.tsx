@@ -22,12 +22,13 @@ import { useEffect, useState } from "react";
 import { SunIcon } from "@/components/utils/icons/SunIcon";
 import { MoonIcon } from "@/components/utils/icons/MoonIcon";
 import BrandLogo from "@/app/userComponents/section/components/BrandLogo";
-import ProfileAvatar from "@/components/utils/ProfileAvatar";
+import ProfileAvatar from "@/components/ProfileAvatar";
+import ProfileModal from "@/components/ProfileModal";
 
 const getData = async () => {
   const res = await fetch("api/users")
   if (!res.ok) {
-    throw new Error("Failed to fetch data")
+    location.reload()
   }
   return res.json()
 }
@@ -38,16 +39,13 @@ export default function Topbar() {
   const [ userName, setUserName ] = useState<string>("")
   const [ eMail, setEMail ] = useState<string>("")
   const [ client, setClient ] = useState<boolean>(false)
+  const [ displayOn, setDisplayOn ] = useState<boolean>(false)
   const router = useRouter()
 
   useEffect(() => {
     setClient(true)
   }, [])
 
-
-  const handleClearStorage = () => {
-    sessionStorage.clear();
-  };
 
   const changeThemeToLight = () => {
     setTheme("light")
@@ -59,6 +57,7 @@ export default function Topbar() {
     location.reload()
   }
 
+
   const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 
   const storedUser = {
@@ -66,7 +65,9 @@ export default function Topbar() {
   }
 
   if (storedUser.data === "null" || storedUser.data === null || storedUser.data === undefined || storedUser.data === "undefined") {
-    router.push("/")
+    // router.push("/")
+    // TODO: UNCOMMENT THIS AFTER EDITING
+
   }
 
   const getUserFromDB = async () => {
@@ -85,8 +86,9 @@ export default function Topbar() {
   }
 
   if (pathname === "/dashboard") {
-    getUserFromDB()
-    if (!getUserFromDB) return null
+    // TODO: UNCOMMENT THIS AFTER EDITING
+    // getUserFromDB()
+    // if (!getUserFromDB) return null
   }
 
   return (
@@ -104,47 +106,52 @@ export default function Topbar() {
           justify="end"
           className="flex justify-end gap-3">
 
-          <NavbarItem className="flex justify-start items-center">
+          <NavbarItem className="flex justify-start items-center gap-2">
+            {/* 
+// TODO: CHANGE THIS AVATAR TO MODAL AND DISPLAY USER INFORMATION LIKE WHAT IS ON GOOGLE PROFILE
+
+// TODO: CREATE A FADE-OUT EFFECT AND EDIT THE FADE-IN EFFECT
+*/}
+
+            <div className={`${displayOn ? "block" : "hidden"} fade-in `}>
+              <ProfileModal />
+            </div>
+            <div onClick={() => setDisplayOn(!displayOn)}>
+              <ProfileAvatar />
+            </div>
             <Dropdown
               backdrop="blur"
               showArrow
               classNames={{
                 base: "p-0 border-small border-divider bg-background",
-                arrow: "bg-default-200",
+                arrow: "bg-violet-950",
               }}
-              className={`
-              ${client
-                  ? theme === "dark"
-                    ? "bgBlurredDark"
-                    : "bgBlurredLight"
-                  : ""
-                }
-              `}
+              className="dropdownContainer"
             >
               <DropdownTrigger>
-                <Avatar
-                  showFallback
-                  radius="full"
-                  isFocusable
-                  src={image}
-                  className="cursor-pointer sm:w-9 w-7 sm:h-9 h-7"
-                />
+                <div className="w-2 h-8 flex flex-col gap-1 justify-center items-center cursor-pointer">
+                  <div className="w-[4px] h-[4px] rounded-full bg-[#BCBCC2] mx-auto" />
+                  <div className="w-[4px] h-[4px] rounded-full bg-[#BCBCC2] mx-auto" />
+                  <div className="w-[4px] h-[4px] rounded-full bg-[#BCBCC2] mx-auto" />
+                </div>
               </DropdownTrigger>
               <DropdownMenu
                 aria-label="Dropdown section for signed in user"
-              // className="backdrop-blur-sm border bg-red-500"
               >
                 <DropdownSection
                   title="Signed in as:"
-                  className="block border-small border-neutral-400 border-opacity-40 rounded-lg !light:bg-default !dark:text-white p-1"
                 >
                   <DropdownItem
                     key="profile"
                     textValue="Currently logged in user"
-                    className="!bg-default"
+                    className={`
+                    ${theme === "dark"
+                        ? "!bg-zinc-900 shadow-lg"
+                        : "!bg-zinc-700 shadow-lg"
+                      }`}
                     isReadOnly
                   >
-                    <div className="flex justify-center items-center p-1 fade-in ">
+                    <div className="flex justify-center items-center p-1 fade-in">
                       <ProfileAvatar />
                       <div className="ms-2 max-w-[120px]">
                         <p className="text-sm font-bold truncate">{userName}</p>
@@ -172,12 +179,9 @@ export default function Topbar() {
                           size="sm"
                           variant="light"
                           href={items.route}
-                          className={`${isActive && "text-[#FB542B] sm:text-lg font-bold"} sm:text-medium w-full flex justify-start items-center`}
+                          className={`${isActive && "text-[#FB542B] sm:text-lg font-bold"} text-base w-full flex justify-start items-center`}
                         >
-                          {theme === "light"
-                            ? items.iconDark
-                            : items.iconLight}
-                          {items.label}
+                          {items.iconLight} {items.label}
                         </Button>
                       </DropdownItem>
                     )
@@ -254,7 +258,7 @@ export default function Topbar() {
                   >
                     <Link
                       href="/"
-                      onClick={handleClearStorage}
+                      onClick={() => sessionStorage.clear()}
                     >
                       <Chip
                         variant="solid"

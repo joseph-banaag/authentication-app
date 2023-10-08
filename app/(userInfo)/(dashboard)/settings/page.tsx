@@ -1,9 +1,21 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, {
+  useEffect,
+  useState
+} from 'react'
 import { motion } from "framer-motion"
-import { SettingsIconLightLarge, SettingsIconDarkLarge } from "@/components/utils/icons/SidebarIcons"
-import { Card, CardHeader, CardBody, CardFooter, Button } from "@nextui-org/react";
+import {
+  SettingsIconLightLarge,
+  SettingsIconDarkLarge
+} from "@/components/utils/icons/SidebarIcons"
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Button
+} from "@nextui-org/react";
 import { useTheme } from "next-themes";
+import { AppearanceIcon } from "@/components/utils/icons/SettingsIcon"
 
 
 export default function Settings() {
@@ -30,22 +42,16 @@ export default function Settings() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ ease: "backIn", duration: .5 }}
-        className="w-full min-h-screen relative p-14 mt-9"
+        className="w-full min-h-screen relative p-14 md:mt-0 mt-11"
       >
         <Card
-          isBlurred
           className="w-full p-5 flex gap-2">
           <CardHeader className="bg-default/80 !rounded-lg shadow-xl">
             <div className="flex items-center gap-3">
 
-              {client
-                ? theme === "light"
-                  ? <SettingsIconDarkLarge />
-                  : <SettingsIconLightLarge />
-                : ""
-              }
+              <AppearanceIcon className="w-8 h-8"/>
               <h1 className="text-2xl font-semibold">
-                Settings
+                Appearance
               </h1>
             </div>
           </CardHeader>

@@ -77,7 +77,7 @@ export default function PasswordReset() {
         backdrop="blur"
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        className="bgBlurredDark border-2 border-zinc-600/50 !bg-zinc-800/70"
+        className="overlays"
       >
         <ModalContent>
           {(onClose) => (

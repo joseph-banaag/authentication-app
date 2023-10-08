@@ -14,7 +14,7 @@ import {
   Card,
   Image
 } from "@nextui-org/react";
-import ProfileAvatar from "@/components/utils/ProfileAvatar"
+import ProfileAvatar from "@/components/ProfileAvatar"
 
 
 export default function Sidebar() {
@@ -37,7 +37,8 @@ export default function Sidebar() {
   }
 
   if (storedUser.data === "null" || storedUser.data === null || storedUser.data === undefined || storedUser.data === "undefined") {
-    router.push("/")
+    // TODO: UNCOMMENT THIS AFTER EDITING
+    // router.push("/")
   }
 
   // * GETTING INFORMATION FORM THE DATABASE
@@ -62,8 +63,9 @@ export default function Sidebar() {
   }
 
   if (pathname === "/profile" || pathname === "/security" || pathname === "/settings") {
-    currentUserInfo()
-    if (!currentUserInfo) return null
+    // TODO: UNCOMMENT THIS AFTER EDITING
+    // currentUserInfo()
+    // if (!currentUserInfo) return null
   }
 
   const logo = {
@@ -74,7 +76,7 @@ export default function Sidebar() {
 
   return (
     <>
-      <Card className="relative min-h-screen md:flex hidden flex-col gap-5 justify-start items-center px-8 pt-9 shadow-2xl bg-background/60 dark:bg-default-100/50 rounded-none mx-auto">
+      <Card className=" min-h-screen md:flex hidden flex-col gap-5 justify-start items-center px-4 pt-9 shadow-2xl bg-background/60 dark:bg-default-100/50 rounded-none mx-auto ">
 
         <div className="flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default !dark:text-white py-3 px-4 mx-2 shadow-xl min-w-[200px] fade-in">
           <ProfileAvatar />
@@ -86,7 +88,7 @@ export default function Sidebar() {
           </div>
         </div>
 
-        <div className="flex flex-1 flex-col gap-4 w-auto">
+        <div className="flex flex-1 flex-col gap-4 w-full">
           {userNavigation.map((item) => {
             const isActive = pathname === item.route
             return (
@@ -94,24 +96,16 @@ export default function Sidebar() {
                 as={Link}
                 key={item.label}
                 size="sm"
-                variant="bordered"
+                variant="light"
                 href={item.route}
-                className="text-medium w-full flex justify-start items-center px-3 py-6"
+                className="text-medium w-full flex justify-center items-center  px-3 py-6"
               >
-
-                {client
-                  ? theme === "light"
-                    ? item.iconDark
-                    : item.iconLight
-                  : ""
-                }
-                <p className={`${isActive && "text-[#FB542B] text-lg font-bold"} text-medium w-full flex justify-start items-center`}>{item.label}</p>
+                {item.iconLight}
+                <p className={`${isActive && "text-[#FB542B] text-lg font-bold"} text-base w-full flex justify-start items-center`}>{item.label}</p>
               </Button>
             )
           })}
-        </div>
 
-        <div className="fixed bottom-5">
           <Button
             as={Link}
             href={logOut.route}
@@ -126,7 +120,7 @@ export default function Sidebar() {
                 : logOut.iconLight
               : ""
             }
-            <p className="text-medium w-full flex justify-start items-center">{logOut.label}</p>
+            <p className="text-base w-full flex justify-start items-center">{logOut.label}</p>
           </Button>
         </div>
       </Card>
@@ -187,7 +181,7 @@ export default function Sidebar() {
                       as={Link}
                       key={item.label}
                       size="sm"
-                      variant="bordered"
+                      variant="light"
                       href={item.route}
                       className="text-medium flex justify-start items-center px-3 py-6"
                     >
