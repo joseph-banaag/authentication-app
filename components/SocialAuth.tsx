@@ -20,11 +20,13 @@ export default function SocialAuth() {
 
     return (
         <>
-            <div className="grid grid-cols-3 items-center justify-center loginButtons gap-5 px-3">
+            <div className="flex items-center justify-evenly gap-[3px]">
                 <div>
                     <Button
                         variant="flat"
-                        className="hover:scale-105 transition-all duration-300 shrink shadow-xl bg-foreground/30 hover:bg-foreground/60">
+                        size="md"
+                        className="hover:scale-105 transition-all duration-300 shadow-xl bg-foreground/30 hover:bg-foreground/60 lg:px-unit-4 lg:min-w-unit-20 lg:h-unit-10 md:px-unit-4 md:min-w-unit-20 md:h-unit-10 sm:px-unit-4 sm:min-w-unit-20 sm:h-unit-10 x-unit-3 min-w-unit-16 h-unit-8"
+                    >
                         <Image
                             priority
                             src={iconsSrc.facebook}
@@ -46,7 +48,7 @@ export default function SocialAuth() {
                     <Button
                         variant="flat"
                         size="md"
-                        className="hover:scale-105 transition-all duration-300 flex-1 shadow-xl bg-foreground/30 hover:bg-foreground/60"
+                        className="hover:scale-105 transition-all duration-300 shadow-xl bg-foreground/30 hover:bg-foreground/60 lg:px-unit-4 lg:min-w-unit-20 lg:h-unit-10 md:px-unit-4 md:min-w-unit-20 md:h-unit-10 sm:px-unit-4 sm:min-w-unit-20 sm:h-unit-10 x-unit-3 min-w-unit-16 h-unit-8"
                     >
                         {/* {client
                             ? theme === "light"
@@ -62,7 +64,8 @@ export default function SocialAuth() {
                     <Button
                         variant="flat"
                         size="md"
-                        className="hover:scale-105 transition-all duration-300 flex-1 shadow-xl bg-foreground/30 hover:bg-foreground/60">
+                        className="hover:scale-105 transition-all duration-300 shadow-xl bg-foreground/30 hover:bg-foreground/60 lg:px-unit-4 lg:min-w-unit-20 lg:h-unit-10 md:px-unit-4 md:min-w-unit-20 md:h-unit-10 sm:px-unit-4 sm:min-w-unit-20 sm:h-unit-10 x-unit-3 min-w-unit-16 h-unit-8"
+                    >
                         <Image
                             priority
                             src={iconsSrc.google}

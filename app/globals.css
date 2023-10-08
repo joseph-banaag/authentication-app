@@ -10,7 +10,7 @@
 html,
 body {
   width: 100vw;
-  min-width: 450px;
+  min-width: 320px;
   height: auto;
 }
 
@@ -19,11 +19,11 @@ body {
 }
 
 .formWrapper {
-  @apply p-8 flex lg:justify-center md:p-16 sm:p-11 
+  @apply p-8 flex lg:justify-center md:p-12 sm:p-11 
 }
 
 .form {
-  @apply flex flex-col flex-1 rounded-2xl p-5 gap-5 shadow-2xl shadow-violet-950 !max-w-[392px] !min-w-[316px] bg-background/30
+  @apply flex flex-col flex-1 rounded-2xl p-5 gap-5 shadow-2xl shadow-violet-950 !max-w-[392px] !min-w-[259px] bg-background/30
 }
 
 .illustrationContainer {
@@ -179,12 +179,6 @@ Formula:
   }
 }
 
-@media (max-width: 240px) {
-  .loginButtons {
-    padding: 0;
-    gap: 1;
-  }
-}
 
 @media (max-width: 262px) {
   #signOptions {
