@@ -6,7 +6,6 @@ import Topbar from "@/components/sections/navbar/Navbar"
 import Footer from "@/components/sections/footer/page"
 import * as React from "react";
 import { ThemeProvider } from "@/app/(root)/providers"
-import { useTheme } from "next-themes"
 
 
 const monserrat = Montserrat({
@@ -42,7 +41,7 @@ export default function RootLayout({
     <html
       suppressHydrationWarning
       lang="en"
-      className={`dark text-foreground ${client
+      className={`dark ${client
         ? currentTheme === "dark" || !currentTheme
           ? "darkThemeBg"
           : "lightThemeBg"

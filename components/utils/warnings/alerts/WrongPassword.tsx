@@ -18,24 +18,24 @@ export default function WrongPassword() {
 
   return (
     <>
-      <div className="p-3 fixed z-50 top-48 left-[50%] translate-x-[-50%] translate-y-[-50%] w-full">
+      <div className="warningMessageContainer">
         <Card
-          className="border bg-background/70 max-w-[620px] mx-auto border-background/90 flex-1 shadow-lg shadow-background/70"
+          className="warningMessageWrapper"
         >
           <CardBody>
-            <p className="sm:text-medium text-xs sm:font-normal font-small drop-shadow-lg tracking-wide text-[#cbd5e1]">
+            <p className="warningMessageCardBody">
               Username and password do not match. Please try again...
             </p>
           </CardBody>
-          <CardFooter className="flex flex-row-reverse">
+          <CardFooter className="warningMessageCardFooter">
             <Button
               onClick={handleClick}
               color="secondary"
               size="sm"
               variant="bordered"
-              className="bg-violet-800 hover:bg-violet-900 shadow-xl transition-all duration-300"
+              className="warningMessageSubmitBtn"
             >
-              <div className="text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center">
+              <div className="warningMessageSubmitContent">
                 {clicked
                   ? <AlertSpinner />
                   : "OK"}

@@ -25,11 +25,11 @@
   }
 
   .formSignHeader {
-    @apply sm:text-4xl text-xl sm:font-medium font-normal mb-1 drop-shadow-xl text-white
+    @apply lg:text-4xl text-3xl md:font-bold font-semibold mb-1 drop-shadow-xl !important
   }
 
   .formSignText {
-    @apply sm:text-medium text-xs sm:font-normal drop-shadow-xl text-white
+    @apply sm:text-medium text-xs sm:font-normal drop-shadow-xl text-foreground
   }
 
   .formSocialButton {
@@ -53,11 +53,11 @@
   }
 
   .formLabel {
-    @apply text-black/50 dark:text-white/90 sm:text-sm text-xs sm:font-normal
+    @apply text-foreground sm:text-sm text-xs sm:font-normal
   }
 
   .formInput {
-    @apply sm:text-medium text-sm sm:font-normal font-normal bg-transparent text-black/90 dark:text-white/90 placeholder:text-default-700/50 dark:placeholder:text-white/60
+    @apply sm:text-medium text-sm sm:font-normal font-normal bg-transparent text-foreground placeholder:text-default-700/50 dark:placeholder:text-white/60
   }
 
   .passwordPeek {
@@ -93,6 +93,60 @@
   }
 }
 
+/** MAIN ROOT PAGE **/
+@layer utilities {
+  .mainRootPage {
+    @apply relative flex flex-col justify-center items-center min-h-screen z-10 gap-5 mt-5 lg:p-20 md:p-14 sm:p-8 p-4
+  }
+
+  .mainPageRootHeaderContainer {
+    @apply flex flex-col gap-5 mx-auto
+  }
+
+  .mainRootPageHeaderWrapper {
+    @apply py-2 px-5 flex justify-center
+  }
+
+  .mainRootPageHeader1 {
+    @apply lg:text-lg lg:font-semibold font-normal md:text-medium text-sm text-end drop-shadow-lg text-foreground
+  }
+
+  .mainRootPageHeader2 {
+    @apply md:text-sm text-xs text-end mr-1 drop-shadow-md text-foreground
+  }
+
+  .mainRootPageLinks {
+    @apply cursor-pointer text-[#FB542B] !important
+  }
+}
+
+/** WARNING MESSAGES STYLE **/
+@layer utilities {
+  .warningMessageContainer {
+    @apply p-3 fixed z-50 top-48 left-[50%] translate-x-[-50%] translate-y-[-50%] w-full 
+  }
+
+  .warningMessageWrapper {
+    @apply border bg-background/70 max-w-[620px] mx-auto border-violet-950 flex-1 shadow-lg shadow-violet-950
+  }
+
+  .warningMessageCardBody {
+    @apply sm:text-medium text-xs sm:font-normal drop-shadow-lg tracking-wide text-foreground
+  }
+
+  .warningMessageCardFooter {
+    @apply flex flex-row-reverse
+  }
+
+  .warningMessageSubmitBtn {
+    @apply bg-violet-800 hover:bg-violet-900 shadow-xl transition-all duration-300
+  }
+
+  .warningMessageSubmitContent {
+    @apply text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center
+  }
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -123,7 +177,7 @@ a:hover {
   background-size: cover;
   background-repeat: no-repeat;
   color-scheme: dark;
-  color: #e2e8f0;
+  color: #e2e8f0 !important;
 }
 
 .lightThemeBg {
@@ -137,7 +191,7 @@ a:hover {
   background-size: cover;
   background-repeat: no-repeat;
   color-scheme: light;
-  color: #0f172a;
+  color: #0f172a !important;
 }
 
 /** DASHBOARD PAGE BACKGROUNDS */

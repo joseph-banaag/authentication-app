@@ -17,23 +17,21 @@ const config: Config = {
       themes: {
         light: {
           colors: {
-            background: "#e6e6e6", // or DEFAULT
-            foreground: "#0f172a", // or 50 to 900 DEFAULT
+            background: "#FFFFFF",
+            foreground: "#11181C",
             primary: {
-              //... 50 to 900
-              foreground: "#52525b",
-              DEFAULT: "#52525b",
+              foreground: "#FFFFFF",
+              DEFAULT: "#006FEE",
             },
           },
         },
         dark: {
           colors: {
-            background: "#0a0316", // or DEFAULT
-            foreground: "#cbd5e1", // or 50 to 900 DEFAULT
+            background: "#14062d",
+            foreground: "#ECEDEE",
             primary: {
-              //... 50 to 900
-              foreground: "#52525b",
-              DEFAULT: "#52525b",
+              foreground: "#C9CCCF",
+              DEFAULT: "#006FEE",
             },
           },
         },

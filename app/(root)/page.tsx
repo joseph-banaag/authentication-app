@@ -35,7 +35,7 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ ease: "backIn", duration: .5 }}
-        className="relative flex flex-col justify-center items-center min-h-screen delay-3000 z-10 gap-5 mt-5 lg:p-20 md:p-14 sm:p-8 p-4"
+        className="mainRootPage"
       >
         <Link
           href="/"
@@ -55,11 +55,13 @@ export default function Home() {
             className='fade-in-bg'
           />
         </div>
-        <div className="py-2 px-5 flex justify-center">
-          <h1 className="sm:text-medium text-sm text-end drop-shadow-lg">Click <Link href="/sign-up" className="cursor-pointer text-[#FB542B] sm:text-medium text-sm font-semibold">Sign Up</Link> to create an account.</h1>
-        </div>
-        <div className="py-2 px-5 flex justify-center items-center mt-2">
-          <h1 className="sm:text-sm text-xs text-end mr-1 drop-shadow-2xl">Access your existing account? Click <Link href="/sign-in" className="text-[#FB542B] font-semibold sm:text-sm text-xs cursor-pointer">Sign In</Link></h1>
+        <div className="mainRootPageHeaderContainer">
+          <div className="mainRootPageHeaderWrapper">
+            <h1 className="mainRootPageHeader1">Click <Link href="/sign-up" className="mainRootPageLinks mainRootPageHeader1">Sign Up</Link> to create an account.</h1>
+          </div>
+          <div className="mainRootPageHeaderWrapper">
+            <h2 className="mainRootPageHeader2">Access your existing account? Click <Link href="/sign-in" className="mainRootPageLinks mainRootPageHeader2">Sign In</Link></h2>
+          </div>
         </div>
       </motion.div>
     </main>
