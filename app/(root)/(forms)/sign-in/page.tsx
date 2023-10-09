@@ -5,7 +5,6 @@ import { Button, Input, Card } from "@nextui-org/react";
 import { EyeFilledIcon } from "@/components/utils/icons/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "@/components/utils/icons/EyeSlashFilledIcon";
 import { motion } from "framer-motion"
-import PasswordReset from "@/components/(..)modals/PasswordReset";
 import { useRouter } from 'next/navigation'
 import SubmitSpinner from "@/components/lib/SubmitSpinner";
 import NoAccount from "@/components/utils/warnings/alerts/NoAccount";
@@ -15,6 +14,9 @@ import BrandLogoSignIn from '@/app/(root)/components/BrandLogoSignIn';
 import IllustrationSignIn from '@/app/(root)/components/IllustrationSignIn';
 import { usePathname } from 'next/navigation'
 import SocialAuth from "@/components/SocialAuth";
+import PasswordReset from "@/components/utils/warnings/alerts/PasswordReset";
+import PasswordResetModal from "@/components/PasswordResetModal";
+import { useModalContext } from "@/app/context/ModalContext";
 
 
 interface Inputs {
@@ -38,6 +40,8 @@ export default function SignIn() {
   const [ wrongPass, setWrongPass ] = React.useState<boolean>(false)
   const router = useRouter()
   const pathname = usePathname()
+  const { resetReq } = useModalContext()
+
 
   useEffect(() => {
     if (pathname === "/sign-in") {
@@ -147,6 +151,13 @@ export default function SignIn() {
         <WrongPassword />
       </div>
 
+      <div className={`warningMessage ${resetReq
+        ? "block"
+        : "hidden"} 
+        `}>
+        <PasswordResetModal />
+      </div>
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -186,7 +197,8 @@ export default function SignIn() {
                 </p>
               </div>
               <div className='flex flex-col'>
-                <div className="flex justify-end">
+                <div
+                  className="flex justify-end">
                   <PasswordReset />
                 </div>
                 <Input

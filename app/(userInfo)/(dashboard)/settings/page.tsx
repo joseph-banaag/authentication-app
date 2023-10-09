@@ -42,7 +42,7 @@ export default function Settings() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ ease: "backIn", duration: .5 }}
-        className="w-full min-h-screen relative p-14 md:mt-0 mt-11"
+        className="w-full h-screen lg:p-14 border"
       >
         <Card
           className="w-full p-5 flex gap-2">

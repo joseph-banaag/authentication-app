@@ -6,6 +6,7 @@ import Topbar from "@/components/sections/navbar/Navbar"
 import Footer from "@/components/sections/footer/page"
 import * as React from "react";
 import { ThemeProvider } from "@/app/(root)/providers"
+import ModalContextProvider from "@/app/context/ModalContext"
 
 
 const monserrat = Montserrat({
@@ -51,9 +52,11 @@ export default function RootLayout({
       <body className={monserrat.className}>
         <React.StrictMode>
           <ThemeProvider>
+            <ModalContextProvider>
             <Topbar />
             {children}
-            <Footer />
+              <Footer />
+            </ModalContextProvider>
           </ThemeProvider>
         </React.StrictMode>
       </body>

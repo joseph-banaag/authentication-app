@@ -1,7 +1,6 @@
 "use client"
 import React from "react";
 import { Card, CardBody, Button, CardFooter } from "@nextui-org/react";
-import { motion } from "framer-motion"
 import { useRouter } from 'next/navigation'
 import AlertSpinner from "@/components/lib/AlertSpinner";
 

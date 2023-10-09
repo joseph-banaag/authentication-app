@@ -13,7 +13,6 @@ import {
   DropdownItem,
   DropdownSection,
   Button,
-  Avatar,
 } from "@nextui-org/react";
 import { usePathname, useRouter } from 'next/navigation'
 import { userNavigation } from "@/app/userComponents/constants/index"
@@ -24,7 +23,7 @@ import { MoonIcon } from "@/components/utils/icons/MoonIcon";
 import BrandLogo from "@/app/userComponents/section/components/BrandLogo";
 import ProfileAvatar from "@/components/ProfileAvatar";
 import ProfileModal from "@/components/ProfileModal";
-import { useModalContext } from "@/app/(userInfo)/context/ModalContext";
+import { useModalContext } from "@/app/context/ModalContext";
 
 const getData = async () => {
   const res = await fetch("api/users")
@@ -133,9 +132,11 @@ export default function Topbar() {
               </DropdownTrigger>
               <DropdownMenu
                 aria-label="Dropdown section for signed in user"
+                className="p-2"
               >
                 <DropdownSection
                   title="Signed in as:"
+                  className="dark text-foreground"
                 >
                   <DropdownItem
                     key="profile"
@@ -168,13 +169,14 @@ export default function Topbar() {
                       <DropdownItem
                         key={items.label}
                         textValue="Dropdown menu items"
+                        className="my-1"
                       >
                         <Button
                           as={Link}
                           size="sm"
                           variant="light"
                           href={items.route}
-                          className={`${isActive && "text-[#FB542B] sm:text-lg font-bold"} text-base w-full flex justify-start items-center`}
+                          className={`${isActive && "text-[#FB542B] sm:text-lg font-bold"} text-base w-full flex justify-start items-center !p-0`}
                         >
                           {items.iconLight} {items.label}
                         </Button>
@@ -200,7 +202,7 @@ export default function Topbar() {
                         }
                       </p>
                     }
-                    className="hover:bg-transparent border-none cursor-default"
+                    className="dark text-foreground hover:bg-transparent border-none cursor-default"
                   >
                     <p className="text-sm font-semibold drop-shadow-md" color="foreground">Theme</p>
                   </DropdownItem>
@@ -245,6 +247,7 @@ export default function Topbar() {
                 </DropdownSection>
                 <DropdownSection
                   title="Danger zone"
+                  className="dark text-foreground"
                 >
                   <DropdownItem
                     textValue="Dropdown logout button"

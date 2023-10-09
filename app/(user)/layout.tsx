@@ -6,7 +6,7 @@ import { Montserrat } from 'next/font/google'
 import Topbar from "@/app/userComponents/section/navbar/Navbar";
 import { ThemeProvider } from "@/app/(root)/providers"
 import { useTheme } from "next-themes";
-import ModalContextProvider from "@/app/(userInfo)/context/ModalContext";
+import ModalContextProvider from "@/app/context/ModalContext";
 
 const monserrat = Montserrat({
   display: "swap",
@@ -47,7 +47,8 @@ export default function UserLayout({
           ? "darkThemeBg"
           : "lightThemeBg"
         : "dark"
-        }`}>
+        }`}
+    >
 
       <body className={monserrat.className}>
         <React.StrictMode>

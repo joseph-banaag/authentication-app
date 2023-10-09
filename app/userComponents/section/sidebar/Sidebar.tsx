@@ -113,13 +113,7 @@ export default function Sidebar() {
             variant="light"
             className="w-full text-medium px-3 py-6"
           >
-
-            {client
-              ? theme === "light"
-                ? logOut.iconDark
-                : logOut.iconLight
-              : ""
-            }
+            {logOut.iconLight}
             <p className="text-base w-full flex justify-start items-center">{logOut.label}</p>
           </Button>
         </div>

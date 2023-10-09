@@ -4,10 +4,6 @@
 
 /** FORM STYLES **/
 @layer utilities {
-  .warningMessage {
-    @apply fixed z-50 w-full h-[100%] backdrop-blur-lg top-0
-  }
-
   .formContainer {
     @apply w-full min-h-screen flex flex-1 flex-col justify-center items-center lg:grid lg:grid-cols-2 gap-5 lg:p-32 md:p-20 sm:p-16 p-2
   }
@@ -122,8 +118,12 @@
 
 /** WARNING MESSAGES STYLE **/
 @layer utilities {
+  .warningMessage {
+    @apply fixed z-50 w-full h-[100%] backdrop-blur-lg top-0
+  }
+
   .warningMessageContainer {
-    @apply p-3 fixed z-50 top-48 left-[50%] translate-x-[-50%] translate-y-[-50%] w-full 
+    @apply p-3 fixed z-50 top-48 left-[50%] translate-x-[-50%] translate-y-[-50%] w-full fadeIn
   }
 
   .warningMessageWrapper {
@@ -146,6 +146,33 @@
     @apply text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center
   }
 }
+
+/** FOOTER ROOT PAGE **/
+@layer utilities {
+  .footerContainer {
+    @apply flex flex-1 flex-col justify-center items-center p-[1em] bg-violet-950 gap-1.5
+  }
+
+  .footerMessage {
+    @apply text-xs text-foreground text-center
+  }
+
+  .footerIllustrationProvider {
+    @apply text-violet-500 underline underline-offset-4 cursor-pointer text-xs font-semibold
+  }
+
+}
+
+@layer utilities {
+  .textColor {
+    @apply text-[#11181C] !important
+  }
+
+  .textHeading {
+    @apply text-3xl font-semibold tracking-wide
+  }
+}
+
 
 * {
   box-sizing: border-box;
@@ -177,7 +204,7 @@ a:hover {
   background-size: cover;
   background-repeat: no-repeat;
   color-scheme: dark;
-  color: #e2e8f0 !important;
+  color: #ECEDEE !important;
 }
 
 .lightThemeBg {
@@ -191,7 +218,7 @@ a:hover {
   background-size: cover;
   background-repeat: no-repeat;
   color-scheme: light;
-  color: #0f172a !important;
+  color: #11181C !important;
 }
 
 /** DASHBOARD PAGE BACKGROUNDS */

@@ -4,6 +4,8 @@ import { createContext, useContext, useState } from 'react';
 interface ModalContextType {
   displayOn: boolean,
   setDisplayOn: (displayOn: boolean) => void,
+  resetReq: boolean,
+  setResetReq: (resetReq: boolean) => void,
 }
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined)
@@ -11,11 +13,13 @@ const ModalContext = createContext<ModalContextType | undefined>(undefined)
 
 const ModalContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [ displayOn, setDisplayOn ] = useState<boolean>(false)
+  const [ resetReq, setResetReq ] = useState<boolean>(false)
 
   return (
     <>
       <ModalContext.Provider value={{
-        displayOn, setDisplayOn
+        displayOn, setDisplayOn,
+        resetReq, setResetReq
       }}>
         {children}
       </ModalContext.Provider>

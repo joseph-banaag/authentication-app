@@ -1,5 +1,5 @@
 "use client"
-import { useModalContext } from "@/app/(userInfo)/context/ModalContext"
+import { useModalContext } from "@/app/context/ModalContext"
 import { Avatar } from "@nextui-org/react"
 import React, { useState } from 'react'
 
@@ -52,15 +52,3 @@ const ProfileModal = () => {
 }
 
 export default ProfileModal
-
-{/*
-
-<Avatar
-        showFallback
-        radius="full"
-        isFocusable
-        src={image}
-        className="cursor-pointer sm:w-9 w-7 sm:h-9 h-7"
-      />
-
-*/}
