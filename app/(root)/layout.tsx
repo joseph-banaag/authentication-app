@@ -42,10 +42,10 @@ export default function RootLayout({
     <html
       suppressHydrationWarning
       lang="en"
-      className={`dark ${client
+      className={`dark text-foreground ${client
         ? currentTheme === "dark" || !currentTheme
-          ? "darkThemeBg text-foreground"
-          : "lightThemeBg text-white"
+          ? "darkThemeBg"
+          : "lightThemeBg"
         : "dark"
         }`}>
 
