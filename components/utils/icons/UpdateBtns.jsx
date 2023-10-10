@@ -18,7 +18,6 @@ export const CloseBtn = (props) => (
   </svg>
 );
 
-
 export const EditIcon = (props) => (
   <svg
     aria-hidden="true"
@@ -37,7 +36,6 @@ export const EditIcon = (props) => (
   </svg>
 );
 
-
 export const SaveIcon = (props) => (
   <svg
     aria-hidden="true"
@@ -53,5 +51,23 @@ export const SaveIcon = (props) => (
   >
     <path d="M0 0h24v24H0z" fill="none" />
     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+  </svg>
+);
+
+export const ArrowBack = (props) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    role="presentation"
+    xmlns="http://www.w3.org/2000/svg"
+    enableBackground="new 0 0 24 24"
+    height="32px"
+    viewBox="0 0 24 24"
+    width="32px"
+    fill="currentColor"
+    {...props}
+  >
+    <path d="M0 0h24v24H0V0z" fill="none" opacity=".87" />
+    <path d="M17.51 3.87L15.73 2.1 5.84 12l9.9 9.9 1.77-1.77L9.38 12l8.13-8.13z" />
   </svg>
 );

@@ -14,6 +14,7 @@ import IllustrationSigUp from '@/app/(root)/components/IllustrationSigUp';
 import BrandLogoSignUp from '@/app/(root)/components/BrandLogoSignUp';
 import { usePathname } from 'next/navigation'
 import SocialAuth from "@/components/SocialAuth";
+import DisabledButton from "@/components/toggle/DisabledButton";
 
 
 // this object is for type declaration of useForm() function specifically for register method.
@@ -220,19 +221,7 @@ export default function SignUp() {
 
     const changeSubmitButton = () => {
       if (password === "" || confirmed === "") {
-        return (
-          <>
-            <Button
-              type="submit"
-              onClick={handleButtonClick}
-              isDisabled
-              name="submit"
-              className="bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300"
-            >
-              <p className="text-white font-semibold flex-1">Continue</p>
-            </Button >
-          </>
-        )
+        return <DisabledButton />
       } else if (password === confirmed) {
 
         const checkPattern = pattern.test(password)
@@ -256,19 +245,7 @@ export default function SignUp() {
             )
           } else {
             toast.error("Passwords does not meet the requirements. Check for errors.")
-            return (
-              <>
-                <Button
-                  type="submit"
-                  onClick={handleButtonClick}
-                  isDisabled
-                  name="submit"
-                  className="submitBtn"
-                >
-                  <p className="submitBtnContent">Continue</p>
-                </Button >
-              </>
-            )
+            return <DisabledButton />
           }
         }
         return (
@@ -277,19 +254,7 @@ export default function SignUp() {
           </>
         )
       } else {
-        return (
-          <>
-            <Button
-              type="submit"
-              onClick={handleButtonClick}
-              isDisabled
-              name="submit"
-              className="submitBtn"
-            >
-              <p className="submitBtnContent">Continue</p>
-            </Button >
-          </>
-        )
+        return <DisabledButton />
       }
     }
     return (
