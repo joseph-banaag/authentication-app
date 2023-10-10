@@ -216,9 +216,9 @@ export default function SignIn() {
                   endContent={
                     <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
                       {isVisible ? (
-                        <EyeSlashFilledIcon className="passwordPeek" />
+                        <EyeSlashFilledIcon className="contentIcon" />
                       ) : (
-                        <EyeFilledIcon className="passwordPeek" />
+                        <EyeFilledIcon className="contentIcon" />
                       )}
                     </button>
                   }

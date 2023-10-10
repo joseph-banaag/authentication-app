@@ -14,7 +14,7 @@ import {
   Card,
   Image
 } from "@nextui-org/react";
-import ProfileAvatar from "@/components/ProfileAvatar"
+import ProfileAvatar from "@/components/utils/profileModal/ProfileAvatar"
 
 
 export default function Sidebar() {

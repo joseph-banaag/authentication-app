@@ -41,12 +41,7 @@ export default function SettingsLayout({
     <html
       suppressHydrationWarning
       lang="en"
-      className={`dark ${client
-        ? currentTheme === "dark" || !currentTheme
-          ? "darkThemeBg text-foreground"
-          : "lightThemeBg text-white"
-        : "dark"
-        }`}>
+      className="dark text-foreground bg-background">
 
       <body className={monserrat.className}>
         <React.StrictMode>

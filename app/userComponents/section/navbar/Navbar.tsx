@@ -21,8 +21,8 @@ import { useEffect, useState } from "react";
 import { SunIcon } from "@/components/utils/icons/SunIcon";
 import { MoonIcon } from "@/components/utils/icons/MoonIcon";
 import BrandLogo from "@/app/userComponents/section/components/BrandLogo";
-import ProfileAvatar from "@/components/ProfileAvatar";
-import ProfileModal from "@/components/ProfileModal";
+import ProfileAvatar from "@/components/utils/profileModal/ProfileAvatar";
+import ProfileModal from "@/components/utils/profileModal/ProfileModal";
 import { useModalContext } from "@/app/context/ModalContext";
 
 const getData = async () => {
@@ -121,7 +121,7 @@ export default function Topbar() {
                 base: "p-0 border-small border-divider bg-background",
                 arrow: "bg-background",
               }}
-              className="rounded-2xl shadow-2xl shadow-violet-950 bg-background/90 border-none p-[5px]"
+              className="rounded-md shadow-2xl shadow-foreground/10 bg-background/90 border-md"
             >
               <DropdownTrigger>
                 <div className="w-2 h-8 flex flex-col gap-1 justify-center items-center cursor-pointer">
@@ -132,20 +132,15 @@ export default function Topbar() {
               </DropdownTrigger>
               <DropdownMenu
                 aria-label="Dropdown section for signed in user"
-                className="p-2"
               >
                 <DropdownSection
                   title="Signed in as:"
-                  className="dark text-foreground"
+                  className="text-foreground border-small border-foreground/20 p-1 rounded-md"
                 >
                   <DropdownItem
                     key="profile"
                     textValue="Currently logged in user"
-                    className={`
-                    ${theme === "dark"
-                        ? "!bg-zinc-900 shadow-lg"
-                        : "!bg-zinc-700 shadow-lg"
-                      }`}
+                    className="border-none bg-default dark:bg-default/50"
                     isReadOnly
                   >
                     <div className="flex justify-center items-center p-1 fadeIn">
@@ -176,9 +171,12 @@ export default function Topbar() {
                           size="sm"
                           variant="light"
                           href={items.route}
-                          className={`${isActive && "text-[#FB542B] sm:text-lg font-bold"} text-base w-full flex justify-start items-center !p-0`}
+                          className={`${isActive && "!text-[#FB542B] sm:text-lg font-bold"} text-base font-semibold text-foreground/80 w-full flex justify-start items-center !p-0`}
                         >
-                          {items.iconLight} {items.label}
+                          <p className={isActive ? "text-foreground/90" : "text-foreground/60"}>
+                            {items.iconLight}
+                          </p>
+                          {items.label}
                         </Button>
                       </DropdownItem>
                     )
@@ -194,7 +192,7 @@ export default function Topbar() {
                     variant="bordered"
                     endContent={
                       <p
-                        className="z-10 outline-none w-16 rounded-md text-xs font-semibold group-data-[hover=false]:border-default-500 border-small border-default-300 dark:border-default-200 bg-transparent text-default-500 flex justify-center items-center p-1 px-1.5 capitalize"
+                        className="z-10 outline-none w-16 rounded-md text-xs font-semibold group-data-[hover=false]:border-default-500 border-small border-default-300 dark:border-default-200 bg-transparent text-foreground flex justify-center items-center p-1 px-1.5 capitalize"
                       >
                         {client
                           ? theme
@@ -202,7 +200,7 @@ export default function Topbar() {
                         }
                       </p>
                     }
-                    className="dark text-foreground hover:bg-transparent border-none cursor-default"
+                    className="text-foreground hover:bg-transparent border-none cursor-default"
                   >
                     <p className="text-sm font-semibold drop-shadow-md" color="foreground">Theme</p>
                   </DropdownItem>
@@ -247,7 +245,7 @@ export default function Topbar() {
                 </DropdownSection>
                 <DropdownSection
                   title="Danger zone"
-                  className="dark text-foreground"
+                  className="text-foreground"
                 >
                   <DropdownItem
                     textValue="Dropdown logout button"
@@ -269,7 +267,7 @@ export default function Topbar() {
                         {/* 
                           // TODO: create a function that will clear the localstorage once this button is pressed.
                           */}
-                        <p className="text-white font-semibold text-xs hover:text-yellow-500">Logout</p>
+                        <p className="text-white/90 font-semibold text-xs drop-shadow-md">Logout</p>
                       </Chip>
                     </Link>
                   </DropdownItem>

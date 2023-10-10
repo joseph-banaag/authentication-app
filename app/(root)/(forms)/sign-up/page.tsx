@@ -23,6 +23,7 @@ interface Inputs {
   email: string;
   confirmPw: string;
 }
+
 const getData = async () => {
   const res = await fetch("api/users")
   if (!res.ok) {
@@ -410,9 +411,9 @@ export default function SignUp() {
                   endContent={
                     <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
                       {isVisible ? (
-                        <EyeSlashFilledIcon className="passwordPeek" />
+                        <EyeSlashFilledIcon className="contentIcon" />
                       ) : (
-                        <EyeFilledIcon className="passwordPeek" />
+                        <EyeFilledIcon className="contentIcon" />
                       )}
                     </button>
                   }
@@ -446,9 +447,9 @@ export default function SignUp() {
                   endContent={
                     <button className="focus:outline-none" type="button" onClick={toggleIsConfirmed}>
                       {isConfirmed ? (
-                        <EyeSlashFilledIcon className="passwordPeek" />
+                        <EyeSlashFilledIcon className="contentIcon" />
                       ) : (
-                        <EyeFilledIcon className="passwordPeek" />
+                        <EyeFilledIcon className="contentIcon" />
                       )}
                     </button>
                   }

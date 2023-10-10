@@ -42,14 +42,8 @@ export default function UserLayout({
     <html
       suppressHydrationWarning
       lang="en"
-      className={`dark ${client
-        ? currentTheme === "dark" || !currentTheme
-          ? "darkThemeBg"
-          : "lightThemeBg"
-        : "dark"
-        }`}
+      className="dark text-foreground bg-background"
     >
-
       <body className={monserrat.className}>
         <React.StrictMode>
           <ThemeProvider>

@@ -46,7 +46,7 @@ const PasswordResetModal = () => {
 
   return (
     <>
-      <div className="p-3 fixed z-50 top-56 left-[50%] translate-x-[-50%] translate-y-[-50%] w-full fadeIn">
+      <div className="passwordResetModalContainer">
         <Card
           className="warningMessageWrapper"
         >
@@ -54,23 +54,23 @@ const PasswordResetModal = () => {
             className="block">
             <div
               onClick={() => setResetReq(false)}
-              className="font-bold absolute top-3 right-3 drop-shadow-xl text-foreground hover:text-background hover:bg-foreground transform scale-105 p-1 rounded-full w-7 h-7 flex justify-center items-center cursor-pointer transition-all duration-300"
+              className="passwordResetModalHeader"
             >x</div>
-            <h1 className="sm:text-4xl text-xl md:font-semibold tracking-wide font-normal mb-1 ">
+            <h1 className="passwordResetModalHeader1">
               Recover your account
             </h1>
             <FuncNotWorking />
           </CardHeader>
 
           <CardBody
-          className="flex flex-col gap-1">
+            className="flex flex-col gap-1">
             <p className="sm:text-medium text-xs sm:font-normal">
               Enter your email address to reset your password
             </p>
             <div className='flex flex-col'>
               <Input
                 startContent={
-                  <MailIcon className="text-2xl text-default-400 pointer-events-none sm:flex flex-shrink-0 hidden" />
+                  <MailIcon className="contentIcon" />
                 }
                 autoComplete="off"
                 aria-autocomplete="none"

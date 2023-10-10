@@ -62,3 +62,8 @@ export async function GET(request: Request) {
     { status: 200 }
   );
 }
+
+// UPDATE OPERATION
+export async function PUT(request: Request) {
+  
+}
