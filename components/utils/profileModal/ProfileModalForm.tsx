@@ -10,25 +10,31 @@ import {
 } from "@/components/utils/icons/UpdateBtns"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Input } from "@nextui-org/react";
+import { usePathname } from "next/navigation"
 
 interface Inputs {
   username: string
 }
+
+
+
 const ProfileModalForm = () => {
   const {
     displayOn,
     setDisplayOn } = useModalContext()
   const [ isDismissable, setIsDismissable ] = useState<boolean>(false)
   const [ editUser, setEditUser ] = useState<boolean>(false)
+  const pathname = usePathname()
+
 
   const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 
   const username = "joshua_Miguel_23"
-
+  const email = "josephrbanaag51@gmail.com"
 
   // TODO: create a function that will trigger overlay click to close the modal window
 
-  
+
 
   const handleUpdateUser = () => {
     setEditUser(false)
@@ -53,7 +59,31 @@ const ProfileModalForm = () => {
 
   const OnSubmit: SubmitHandler<Inputs> = (data, e) => {
     e?.preventDefault()
-    console.log(data)
+    const newUsername = data.username
+
+    const currentUsername = "joshuaMiguel_23"
+
+    const updateData = async () => {
+      try {
+        const res = await fetch("api/users", {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json"
+          },
+          body: JSON.stringify({
+            newUsername,
+            currentUsername
+          })
+        })
+
+        if (!res.ok) {
+          throw new Error("Invalid response.")
+        }
+      } catch (error) {
+        throw new Error(`There was a problem sending the requested data to be updated. Error: ${error}`)
+      }
+    }
+    updateData()
   }
 
   const UpdateUsername = () => {
@@ -67,7 +97,7 @@ const ProfileModalForm = () => {
         </button>
         <form
           onSubmit={handleSubmit(OnSubmit)}
-          className="flex flex-col gap-1 px-1">
+          className="flex flex-col px-1">
           <Input
             autoComplete="off"
             aria-autocomplete="none"
@@ -83,7 +113,7 @@ const ProfileModalForm = () => {
             })}
             name="username"
           />
-          <p className="formErrorMessage">
+          <p className="formErrorMessage absolute top-[60px]">
             {errors.username?.types?.required && <span>Username is required</span>}
             {errors.username?.types?.pattern && <span>Space is not allowed and at least 3 characters</span>}
           </p>
@@ -155,6 +185,13 @@ const ProfileModalForm = () => {
               <EditIcon className="w-5 h-5 text-background/50 drop-shadow-xl transform hover:scale-105 hover:text-white transition-all duration-300" />
             </button>
           }
+        </div>
+      </div>
+      <div className="mt-8 w-full flex flex-col justify-center gap-1 px-2 pt-6">
+        <div className="mx-auto">
+          <h1 className="text-xs text-foreground drop-shadow-md ">
+            {email}
+          </h1>
         </div>
       </div>
     </>

@@ -170,8 +170,8 @@ export default function SignUp() {
               created_on
             })
           })
+          
           toast.success('Successfully created a new account!')
-
 
           setTimeout(() => {
             router.push('/dashboard')
