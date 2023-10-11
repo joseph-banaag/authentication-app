@@ -25,9 +25,7 @@ interface Inputs {
 }
 
 const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/users", {
-    cache: "force-cache"
-  })
+  const res = await fetch("http://localhost:3000/api/users")
   if (!res.ok) {
     throw new Error("Failed to fetch data")
   }
@@ -81,7 +79,7 @@ export default function SignIn() {
       const passwordInput = password
       const usernameInput = user_name
 
-      const userInfo_DB = data_from_DB.find((obj: { username: string; }) => obj.username === usernameInput)
+      const userInfo_DB = data_from_DB.find(({username}: { username: string; }) => username === usernameInput)
 
       if (userInfo_DB === undefined) {
         // no existing account

@@ -42,9 +42,7 @@ export default function Sidebar() {
 
   const currentUserInfo = async () => {
     const getData = async () => {
-      const res = await fetch("http://localhost:3000/api/users", {
-        cache: "force-cache"
-      })
+      const res = await fetch("http://localhost:3000/api/users")
       if (!res.ok) {
         throw new Error("Failed to fetch data")
       }
@@ -54,7 +52,7 @@ export default function Sidebar() {
     const data = await getData()
     const user_name = storedUser.data
 
-    const currentUser = data.find((obj: { username: string; }) => obj.username === user_name)
+    const currentUser = data.find(({username}: { username: string; }) => username === user_name)
 
     if (!currentUser) return null
 

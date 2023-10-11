@@ -26,9 +26,7 @@ interface Inputs {
 }
 
 const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/users", {
-    cache: "force-cache"
-  })
+  const res = await fetch("http://localhost:3000/api/users")
   if (!res.ok) {
     throw new Error("Failed to fetch data")
   }
@@ -154,7 +152,7 @@ export default function SignUp() {
         // this will handle a database that has existing documents and create a new account
         const user_input = `${user_name}`;
 
-        const userInfo_Document = data_from_DB.find((obj: { username: string; }) => obj.username === user_input)
+        const userInfo_Document = data_from_DB.find(({ username }: { username: string; }) => username === user_input)
 
 
         if (userInfo_Document === undefined) {
@@ -172,7 +170,7 @@ export default function SignUp() {
               created_on
             })
           })
-          
+
           toast.success('Successfully created a new account!')
 
           setTimeout(() => {
@@ -198,7 +196,7 @@ export default function SignUp() {
 
     const data_from_DB = await getData()
 
-    const DB_docs = data_from_DB.find((obj: { username: string; }) => obj.username === usernameInput)
+    const DB_docs = data_from_DB.find(({username}: { username: string; }) => username === usernameInput)
 
     if (DB_docs === undefined) {
       setClicked(!clicked)

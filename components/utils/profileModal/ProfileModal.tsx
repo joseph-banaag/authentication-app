@@ -13,9 +13,7 @@ const ProfileModal = () => {
   const pathname = usePathname()
 
   const getData = async () => {
-    const res = await fetch("http://localhost:3000/api/users", {
-      cache: "force-cache"
-    })
+    const res = await fetch("http://localhost:3000/api/users")
     if (!res.ok) {
       throw new Error("Failed to fetch data")
     }
@@ -32,7 +30,7 @@ const ProfileModal = () => {
     }
     const username = `${storedUsername.data}`
 
-    const userInfo = dataFromDB.find((obj: { username: string }) => obj.username === username)
+    const userInfo = dataFromDB.find(({username} : {username: string}) => username === username)
 
     if (!userInfo) return null
 

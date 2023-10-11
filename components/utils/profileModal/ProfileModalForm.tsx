@@ -105,9 +105,16 @@ const ProfileModalForm = () => {
             type="text"
             variant="underlined"
             className="!max-w-[200px] flex-1 text-default-100"
-            {...register("username")}
+            {...register("username", {
+              required: true,
+              pattern: /[\w!@#$%^&*()-+=<>?/\\,.;:'"[\]{}|]{3,}/gi
+            })}
             name="username"
           />
+          <p className="formErrorMessage">
+            {errors.username?.types?.required && <span>Username is required</span>}
+            {errors.username?.types?.pattern && <span>Space is not allowed and at least 3 characters</span>}
+          </p>
           <button
             type="submit"
             className="absolute top-2 right-2"

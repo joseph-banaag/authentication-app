@@ -25,15 +25,6 @@ import ProfileAvatar from "@/components/utils/profileModal/ProfileAvatar";
 import ProfileModal from "@/components/utils/profileModal/ProfileModal";
 import { useModalContext } from "@/app/context/ModalContext";
 
-const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/users", {
-    cache: "force-cache"
-  })
-  if (!res.ok) {
-    throw new Error("Failed to fetch data")
-  }
-  return res.json()
-}
 
 export default function Topbar() {
   const pathname = usePathname()
@@ -51,6 +42,34 @@ export default function Topbar() {
     setClient(true)
   }, [])
 
+
+  const currentUserInfo = async () => {
+    const getData = async () => {
+      const res = await fetch("http://localhost:3000/api/users")
+      if (!res.ok) {
+        throw new Error("Failed to fetch data")
+      }
+      return res.json()
+    }
+
+    const data = await getData()
+    const user_name = storedUser.data
+
+    const currentUser = data.find(({ username }: { username: string; }) => username === user_name)
+
+    if (!currentUser) return null
+
+    const userName = currentUser.username
+    const eMail = currentUser.email
+
+    setUserName(userName)
+    setEMail(eMail)
+  }
+
+  if (pathname === "/dashboard") {
+    currentUserInfo()
+    if (!currentUserInfo) return null
+  }
   const changeThemeToLight = () => {
     setTheme("light")
     location.reload()
@@ -69,31 +88,9 @@ export default function Topbar() {
 
   if (storedUser.data === "null" || storedUser.data === null || storedUser.data === undefined || storedUser.data === "undefined") {
     router.push("/")
+    // TODO: uncomment code above
   }
 
-  const getUserFromDB = async () => {
-    const data = await getData()
-    const user_name = storedUser.data
-
-    const currentUser = data.find((obj: { username: string; }) => obj.username === user_name)
-
-    if (!currentUser) return null
-
-    const username = currentUser.username
-    const email = currentUser.email
-
-    if (pathname === "/dashboard") {
-      setUserName(username)
-      setEMail(email)
-    }
-
-  }
-
-  if (pathname === "/dashboard") {
-    // TODO: UNCOMMENT THIS AFTER EDITING
-    getUserFromDB()
-    if (!getUserFromDB) return null
-  }
 
   return (
     <>
