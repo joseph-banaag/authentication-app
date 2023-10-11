@@ -15,31 +15,29 @@ import { usePathname } from "next/navigation"
 interface Inputs {
   username: string
 }
-
-
-
 const ProfileModalForm = () => {
   const {
     displayOn,
     setDisplayOn } = useModalContext()
-  const [ isDismissable, setIsDismissable ] = useState<boolean>(false)
+  const [ client, setClient ] = useState<boolean>(false)
   const [ editUser, setEditUser ] = useState<boolean>(false)
   const pathname = usePathname()
+
+  useEffect(() => {
+    setClient(true)
+  }, [])
 
 
   const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 
-  const username = "joshua_Miguel_23"
+  const storedUsername = {
+    data: typeof window !== "undefined"
+      ? sessionStorage.getItem("username")
+      : ""
+  }
+  const username = `${storedUsername.data}`
   const email = "josephrbanaag51@gmail.com"
 
-  // TODO: create a function that will trigger overlay click to close the modal window
-
-
-
-  const handleUpdateUser = () => {
-    setEditUser(false)
-    console.log("username updated successfully!")
-  }
 
   const handleEditProfileImg = () => {
     console.log("profile image updated successfully!")
@@ -57,33 +55,37 @@ const ProfileModalForm = () => {
     mode: "all"
   })
 
-  const OnSubmit: SubmitHandler<Inputs> = (data, e) => {
+  const OnSubmit: SubmitHandler<Inputs> = async (data, e) => {
     e?.preventDefault()
     const newUsername = data.username
 
-    const currentUsername = "joshuaMiguel_23"
+    // TODO: get the username from the database
+    const currentUsername = username
 
-    const updateData = async () => {
-      try {
-        const res = await fetch("api/users", {
-          method: "PUT",
-          headers: {
-            "Content-type": "application/json"
-          },
-          body: JSON.stringify({
-            newUsername,
-            currentUsername
-          })
+    try {
+      const res = await fetch("api/users", {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify({
+          newUsername,
+          currentUsername
         })
+      })
 
-        if (!res.ok) {
-          throw new Error("Invalid response.")
-        }
-      } catch (error) {
-        throw new Error(`There was a problem sending the requested data to be updated. Error: ${error}`)
+      if (!res.ok) {
+        throw new Error("Invalid response.")
       }
+
+      setTimeout(() => {
+        sessionStorage.setItem("username", newUsername)
+        location.reload()
+      }, 2000);
+
+    } catch (error) {
+      throw new Error(`There was a problem sending the requested data to be updated. Error: ${error}`)
     }
-    updateData()
   }
 
   const UpdateUsername = () => {
@@ -107,16 +109,9 @@ const ProfileModalForm = () => {
             type="text"
             variant="underlined"
             className="!max-w-[200px] flex-1 text-default-100"
-            {...register("username", {
-              required: true,
-              pattern: /[\w!@#$%^&*()-+=<>?/\\,.;:'"[\]{}|]{3,}/gi
-            })}
+            {...register("username")}
             name="username"
           />
-          <p className="formErrorMessage absolute top-[60px]">
-            {errors.username?.types?.required && <span>Username is required</span>}
-            {errors.username?.types?.pattern && <span>Space is not allowed and at least 3 characters</span>}
-          </p>
           <button
             type="submit"
             className="absolute top-2 right-2"
@@ -127,7 +122,6 @@ const ProfileModalForm = () => {
       </>
     )
   }
-
   return (
     <>
       <div className="rounded-t-lg bg-foreground/60 shadow-md">
@@ -149,7 +143,7 @@ const ProfileModalForm = () => {
           <div className="px-3 overflow-hidden">
             {editUser
               ? <UpdateUsername />
-              : <h1 className="text-default-900 text-2xl font-semibold drop-shadow-lg tracking-wider truncate ">{username}</h1>
+              : <h1 className="text-default-900 text-2xl font-semibold drop-shadow-lg tracking-wider truncate ">{client ? username : ""}</h1>
             }
           </div>
         </div>

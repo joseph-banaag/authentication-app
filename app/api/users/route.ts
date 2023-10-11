@@ -82,7 +82,9 @@ export async function PUT(request: Request) {
     });
 
     console.log(updateResult)
+    
     return new NextResponse(JSON.stringify(updateResult));
+
   } catch (error) {
     throw new Error(
       `There was a problem updating the document. Error: ${error}`
