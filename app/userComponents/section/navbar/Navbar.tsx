@@ -26,7 +26,7 @@ import ProfileModal from "@/components/utils/profileModal/ProfileModal";
 import { useModalContext } from "@/app/context/ModalContext";
 
 const getData = async () => {
-  const res = await fetch("api/users", {
+  const res = await fetch("http://localhost:3000/api/users", {
     cache: "force-cache"
   })
   if (!res.ok) {

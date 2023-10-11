@@ -15,12 +15,24 @@ export const client = new MongoClient(uri, {
 
 const connectToDB = async () => {
   try {
-    console.log("Establishing connection...")
+    console.log("Establishing connection...");
     await client.connect();
     console.log("You are connected to the database");
   } catch (error) {
     throw new Error(
       `There was an error connecting to the database. Error: ${error}`
+    );
+  }
+};
+
+const disconnectDB = async () => {
+  try {
+    console.log("Closing the connection")
+    await client.close();
+    console.log("Database connection is now closed")
+  } catch (error) {
+    throw new Error(
+      `There was an error disconnecting the database connection. Error: ${error}`
     );
   }
 };
