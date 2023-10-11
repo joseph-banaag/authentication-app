@@ -66,8 +66,6 @@ export async function GET(request: Request) {
 // UPDATE OPERATION
 export async function PUT(request: Request) {
   const { newUsername, currentUsername } = await request.json();
-  console.log(newUsername);
-  console.log(currentUsername);
 
   await connectToDB();
   try {
@@ -81,8 +79,6 @@ export async function PUT(request: Request) {
       $set: newData,
     });
 
-    console.log(updateResult)
-    
     return new NextResponse(JSON.stringify(updateResult));
 
   } catch (error) {

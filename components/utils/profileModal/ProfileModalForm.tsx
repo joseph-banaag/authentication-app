@@ -36,8 +36,6 @@ const ProfileModalForm = () => {
       : ""
   }
   const username = `${storedUsername.data}`
-  const email = "josephrbanaag51@gmail.com"
-
 
   const handleEditProfileImg = () => {
     console.log("profile image updated successfully!")
@@ -58,8 +56,6 @@ const ProfileModalForm = () => {
   const OnSubmit: SubmitHandler<Inputs> = async (data, e) => {
     e?.preventDefault()
     const newUsername = data.username
-
-    // TODO: get the username from the database
     const currentUsername = username
 
     try {
@@ -179,13 +175,6 @@ const ProfileModalForm = () => {
               <EditIcon className="w-5 h-5 text-background/50 drop-shadow-xl transform hover:scale-105 hover:text-white transition-all duration-300" />
             </button>
           }
-        </div>
-      </div>
-      <div className="mt-8 w-full flex flex-col justify-center gap-1 px-2 pt-6">
-        <div className="mx-auto">
-          <h1 className="text-xs text-foreground drop-shadow-md ">
-            {email}
-          </h1>
         </div>
       </div>
     </>

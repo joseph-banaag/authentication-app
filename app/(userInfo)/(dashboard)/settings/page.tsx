@@ -6,7 +6,6 @@ import React, {
 import { motion } from "framer-motion"
 import {
   SettingsIconLightLarge,
-  SettingsIconDarkLarge
 } from "@/components/utils/icons/SidebarIcons"
 import {
   Card,

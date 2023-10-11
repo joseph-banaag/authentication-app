@@ -37,14 +37,15 @@ export default function Sidebar() {
   }
 
   if (storedUser.data === "null" || storedUser.data === null || storedUser.data === undefined || storedUser.data === "undefined") {
-    // TODO: UNCOMMENT THIS AFTER EDITING
-    // router.push("/")
+    router.push("/")
   }
 
-  // * GETTING INFORMATION FORM THE DATABASE
   const currentUserInfo = async () => {
     const getData = async () => {
       const res = await fetch("api/users")
+      if (!res.ok) {
+        throw new Error("Failed to fetch data")
+      }
       return res.json()
     }
 
@@ -64,8 +65,8 @@ export default function Sidebar() {
 
   if (pathname === "/profile" || pathname === "/security" || pathname === "/settings") {
     // TODO: UNCOMMENT THIS AFTER EDITING
-    // currentUserInfo()
-    // if (!currentUserInfo) return null
+    currentUserInfo()
+    if (!currentUserInfo) return null
   }
 
   const logo = {
@@ -179,12 +180,7 @@ export default function Sidebar() {
                       href={item.route}
                       className="text-medium flex justify-start items-center px-3 py-6"
                     >
-                      {client
-                        ? theme === "light"
-                          ? item.iconDark
-                          : item.iconLight
-                        : ""
-                      }
+                      {item.iconLight}
                       <p className={`${isActive && "text-[#FB542B] text-lg font-bold"} text-medium flex justify-start items-center`}>{item.label}</p>
                     </Button>
                   )
@@ -197,12 +193,7 @@ export default function Sidebar() {
                   variant="light"
                   className="text-medium px-3 py-6 fixed bottom-5"
                 >
-                  {client
-                    ? theme === "light"
-                      ? logOut.iconDark
-                      : logOut.iconLight
-                    : ""
-                  }
+                  {logOut.iconLight}
                   <p className="text-medium flex justify-start items-center">{logOut.label}</p>
                 </Button>
               </div>

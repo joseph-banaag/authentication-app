@@ -36,7 +36,7 @@
   "terminal.integrated.fontWeightBold": "normal",
   "editor.tabSize": 2,
   "workbench.tree.indent": 20,
-  "editor.minimap.maxColumn": 40,
+  "editor.minimap.maxColumn": 30,
   "editor.minimap.size": "fill",
   "workbench.panel.defaultLocation": "right"
 }

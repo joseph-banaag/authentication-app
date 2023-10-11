@@ -26,9 +26,11 @@ import ProfileModal from "@/components/utils/profileModal/ProfileModal";
 import { useModalContext } from "@/app/context/ModalContext";
 
 const getData = async () => {
-  const res = await fetch("api/users")
+  const res = await fetch("api/users", {
+    cache: "force-cache"
+  })
   if (!res.ok) {
-    location.reload()
+    throw new Error("Failed to fetch data")
   }
   return res.json()
 }
@@ -40,6 +42,7 @@ export default function Topbar() {
   const [ eMail, setEMail ] = useState<string>("")
   const [ client, setClient ] = useState<boolean>(false)
   const router = useRouter()
+
   const {
     displayOn,
     setDisplayOn } = useModalContext()
@@ -47,7 +50,6 @@ export default function Topbar() {
   useEffect(() => {
     setClient(true)
   }, [])
-
 
   const changeThemeToLight = () => {
     setTheme("light")
@@ -59,7 +61,6 @@ export default function Topbar() {
     location.reload()
   }
 
-
   const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 
   const storedUser = {
@@ -67,9 +68,7 @@ export default function Topbar() {
   }
 
   if (storedUser.data === "null" || storedUser.data === null || storedUser.data === undefined || storedUser.data === "undefined") {
-    // router.push("/")
-    // TODO: UNCOMMENT THIS AFTER EDITING
-
+    router.push("/")
   }
 
   const getUserFromDB = async () => {
@@ -83,14 +82,17 @@ export default function Topbar() {
     const username = currentUser.username
     const email = currentUser.email
 
-    setUserName(username)
-    setEMail(email)
+    if (pathname === "/dashboard") {
+      setUserName(username)
+      setEMail(email)
+    }
+
   }
 
   if (pathname === "/dashboard") {
     // TODO: UNCOMMENT THIS AFTER EDITING
-    // getUserFromDB()
-    // if (!getUserFromDB) return null
+    getUserFromDB()
+    if (!getUserFromDB) return null
   }
 
   return (
@@ -121,7 +123,7 @@ export default function Topbar() {
                 base: "p-0 border-small border-divider bg-background",
                 arrow: "bg-background",
               }}
-              className="rounded-md shadow-2xl shadow-foreground/10 bg-background/90 border-md"
+              className="rounded-md shadow-2xl shadow-violet-950 bg-background/90 border-md"
             >
               <DropdownTrigger>
                 <div className="w-2 h-8 flex flex-col gap-1 justify-center items-center cursor-pointer">
