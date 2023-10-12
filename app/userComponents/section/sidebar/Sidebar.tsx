@@ -31,7 +31,10 @@ export default function Sidebar() {
   }
 
   if (storedUser.data === "null" || storedUser.data === null || storedUser.data === undefined || storedUser.data === "undefined") {
-    router.push("/")
+    // router.push("/")
+    // TODO: UNCOMMENT
+
+
   }
 
   const currentUserInfo = async () => {
@@ -60,8 +63,10 @@ export default function Sidebar() {
   }
 
   if (pathname === "/profile" || pathname === "/security" || pathname === "/settings") {
-    currentUserInfo()
-    if (!currentUserInfo) return null
+    // currentUserInfo()
+    // if (!currentUserInfo) return null
+    // TODO: UNCOMMENT
+
   }
 
   const logo = {
@@ -95,8 +100,12 @@ export default function Sidebar() {
                 href={item.route}
                 className="text-medium w-full flex justify-center items-center  px-3 py-6"
               >
-                {item.iconLight}
-                <p className={`${isActive && "text-[#FB542B] text-lg font-bold"} text-base w-full flex justify-start items-center`}>{item.label}</p>
+                <p className={isActive
+                  ? "text-foreground/90"
+                  : "text-foreground/60"}>
+                  {item.iconLight}
+                </p>
+                <p className={`${isActive && "isActiveStyle"} linkItems`}>{item.label}</p>
               </Button>
             )
           })}
@@ -106,10 +115,12 @@ export default function Sidebar() {
             href={logOut.route}
             size="sm"
             variant="light"
-            className="w-full text-medium px-3 py-6"
+            className="absolute bottom-14"
           >
-            {logOut.iconLight}
-            <p className="text-base w-full flex justify-start items-center">{logOut.label}</p>
+            <p className="text-foreground/60">
+              {logOut.iconLight}
+            </p>
+            <p className="linkItems">{logOut.label}</p>
           </Button>
         </div>
       </Card>
@@ -190,8 +201,10 @@ export default function Sidebar() {
                 variant="light"
                 className="text-medium px-3 py-6 fixed bottom-5"
               >
-                {logOut.iconLight}
-                <p className="text-medium flex justify-start items-center">{logOut.label}</p>
+                <p className="text-foreground/60">
+                  {logOut.iconLight}
+                </p>
+                <p className="linkItems">{logOut.label}</p>
               </Button>
             </div>
           </div>

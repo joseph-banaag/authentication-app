@@ -69,8 +69,10 @@ export default function Topbar() {
   }
 
   if (pathname === "/dashboard") {
-    currentUserInfo()
-    if (!currentUserInfo) return null
+    // currentUserInfo()
+    // if (!currentUserInfo) return null
+    // TODO: UNCOMMENT
+
   }
   const changeThemeToLight = () => {
     setTheme("light")
@@ -89,7 +91,8 @@ export default function Topbar() {
   }
 
   if (storedUser.data === "null" || storedUser.data === null || storedUser.data === undefined || storedUser.data === "undefined") {
-    router.push("/")
+    // router.push("/")
+    // TODO: UNCOMMENT
   }
 
 
@@ -130,6 +133,14 @@ export default function Topbar() {
               }}
               className="navDropdownContainer"
             >
+
+              {/* 
+              //TODO: CHANGE THE TRIGGER TO ROTATE
+              the top bar will rotate clockwise and the bottom will rotate counter clockwise the middle bar will disappear.
+
+              use transform, rotate, duration of 300ms when clicked
+            
+              */}
               <DropdownTrigger>
                 <div className="navDropdownTriggerContainer">
                   <div className="navDropdownTrigger" />
@@ -180,7 +191,9 @@ export default function Topbar() {
                           href={items.route}
                           className={`${isActive && "isActiveStyle"} linkItems`}
                         >
-                          <p className={isActive ? "text-foreground/90" : "text-foreground/60"}>
+                          <p className={isActive
+                            ? "text-foreground/90"
+                            : "text-foreground/60"}>
                             {items.iconLight}
                           </p>
                           {items.label}

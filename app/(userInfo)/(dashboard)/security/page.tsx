@@ -1,6 +1,12 @@
 "use client"
-import React from 'react'
+import React from "react";
 import { motion } from "framer-motion"
+import {
+  Card,
+  Button
+} from "@nextui-org/react";
+import { SecurityIconLight } from "@/components/utils/icons/SettingsIcon"
+
 
 export default function Security() {
   return (
@@ -8,21 +14,24 @@ export default function Security() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ ease: "backIn", duration: 0.5 }}
-        className="w-full min-h-screen mt-28 relative"
+        transition={{ ease: "backIn", duration: .5 }}
+        className="w-full h-screen flex flex-col p-14 md:mt-0 mt-14"
       >
-          <div className="p-5 gap-3 flex flex-1 flex-col justify-start items-center">
-            <h1 className="text-3xl">Security page</h1>
-            <p className="max-w-md mx-auto p-5 border rounded-2xl indent-12 text-center">This page will contain everything about the user&apos;s security settings. This includes all editable information related to the user</p>
-            <div className="max-w-md mx-auto p-5 px-9 border rounded-2xl flex flex-col items-center justify-center ">
-              <ul className="list-disc">
-                <p className="mb-4">User Information:</p>
-                <li>Physical / Home Address</li>
-                <li>Contact information</li>
-                <li>2FA</li>
-              </ul>
+        <div className="flex flex-col gap-2">
+          <Card
+            className="border-none w-full dark:bg-default/50 px-3 py-4 rounded-md"
+            shadow="md"
+          >
+            <div className="flex items-center justify-start gap-2">
+              <SecurityIconLight className="text-foreground/90"/>
+              <h1 className="textHeading">
+                Security
+              </h1>
             </div>
-          </div>
+          </Card>
+
+
+        </div>
       </motion.div>
     </>
   )

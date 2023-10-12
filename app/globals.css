@@ -177,12 +177,13 @@
 
 /** TEXT FORMATTING AND STYLES **/
 @layer utilities {
-  .textColor {
-    @apply text-[#11181C] !important
-  }
 
   .textHeading {
-    @apply text-3xl font-semibold tracking-wide
+    @apply text-3xl font-semibold tracking-wide text-foreground/90
+  }
+
+  .textColor {
+    @apply text-foreground/80
   }
 }
 
@@ -236,11 +237,11 @@
   }
 
   .navDropdownTriggerContainer {
-    @apply w-2 h-8 flex flex-col gap-1 justify-center items-center cursor-pointer
+    @apply flex flex-col gap-[7px] justify-center items-center cursor-pointer transition-all duration-300
   }
 
   .navDropdownTrigger {
-    @apply w-[4px] h-[4px] rounded-full bg-[#BCBCC2] mx-auto
+    @apply w-[25px] h-[2px] rounded-full bg-[#BCBCC2] transition-all duration-300 mx-auto
   }
 
   .navbarBrand {
@@ -301,23 +302,23 @@
     @apply font-bold absolute top-2 right-2 drop-shadow-xl transform hover:scale-105 hover:bg-foreground hover:border-foreground text-background/70 rounded-full flex justify-center items-center cursor-pointer transition-all duration-300
   }
 
-  .profileModalFormUsername{
+  .profileModalFormUsername {
     @apply text-default-900 text-2xl font-semibold drop-shadow-lg tracking-wider truncate
   }
 
-  .profileModalFormEditIcon{
+  .profileModalFormEditIcon {
     @apply absolute top-8 right-2 cursor-pointer
   }
 
-  .profileModalFormEditIconStyle{
+  .profileModalFormEditIconStyle {
     @apply w-5 h-5 text-background/50 drop-shadow-xl transform hover:scale-105 hover:text-white transition-all duration-300
   }
 
-  .profileModalFormEditIconImg{
+  .profileModalFormEditIconImg {
     @apply absolute -bottom-3 right-[50%] translate-x-[50%] cursor-pointer z-50
   }
 
-  .profileModalFormEditIconStyleImg{
+  .profileModalFormEditIconStyleImg {
     @apply w-5 h-5 text-white drop-shadow-xl transform hover:scale-105 hover:text-default bg-default hover:bg-default-600 transition-all duration-300 rounded-full p-[2px]
   }
 }
