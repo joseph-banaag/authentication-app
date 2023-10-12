@@ -46,6 +46,7 @@ export default function Topbar() {
   const {
     displayOn,
     setDisplayOn } = useModalContext()
+  const [ isOpen, setIsOpen ] = useState<boolean>(false)
 
   useEffect(() => {
     setClient(true)
@@ -96,21 +97,28 @@ export default function Topbar() {
   return (
     <>
       <div
+        onClick={() => setIsOpen(false)}
+        className={`fixed w-full h-screen z-[48] ${isOpen
+          ? "block"
+          : "hidden"
+          }
+        `} />
+      <div
         onClick={() => setDisplayOn(false)}
-        className={`navbarContainer 
+        className={`profileModalOverlay 
       ${displayOn
             ? "block"
             : "hidden"
           }`} />
       <div className={`${displayOn
         ? "block z-50"
-        : "hidden"
+        : "fadeOut hidden"
         }`}>
         <ProfileModal />
       </div>
       <Navbar
         shouldHideOnScroll
-        className="navbarWrapper">
+        className="navbarContainer">
         <NavbarContent justify="start" className="flex justify-start">
           <NavbarBrand className="navbarBrand">
             <BrandLogo />
@@ -141,10 +149,15 @@ export default function Topbar() {
             
               */}
               <DropdownTrigger>
-                <div className="navDropdownTriggerContainer">
-                  <div className="navDropdownTrigger" />
-                  <div className="navDropdownTrigger" />
-                  <div className="navDropdownTrigger" />
+                <div
+                  onClick={() => setIsOpen(!isOpen)}
+                  className={`navDropdownTriggerContainer ${isOpen
+                    ? "open"
+                    : ""
+                    }`}>
+                  <div className="menuBar" />
+                  <div className="menuBar" />
+                  <div className="menuBar" />
                 </div>
               </DropdownTrigger>
               <DropdownMenu

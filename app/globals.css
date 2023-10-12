@@ -220,16 +220,16 @@
 
 /** USER NAVBAR STYLES **/
 @layer utilities {
-  .navbarContainer {
+  .profileModalOverlay {
     @apply z-[48] w-full h-screen fixed backdrop-blur-sm
   }
 
-  .navbarWrapper {
+  .navbarContainer {
     @apply flex justify-around flex-wrap sm:p-3 p-0 drop-shadow-2xl
   }
 
   .navDropdownContainer {
-    @apply rounded-md shadow-2xl shadow-violet-950 bg-background/90
+    @apply rounded-md shadow-2xl shadow-violet-950 bg-background/90 z-50
   }
 
   .navDropdownBase {
@@ -237,11 +237,23 @@
   }
 
   .navDropdownTriggerContainer {
-    @apply flex flex-col gap-[7px] justify-center items-center cursor-pointer transition-all duration-300
+    @apply flex flex-col gap-[7px] w-[24px] h-[24px] justify-center items-center cursor-pointer transition-all duration-300
   }
 
-  .navDropdownTrigger {
-    @apply w-[25px] h-[2px] rounded-full bg-[#BCBCC2] transition-all duration-300 mx-auto
+  .menuBar {
+    @apply w-full h-[3px] rounded-full bg-[#BCBCC2] transition-all duration-300 mx-auto
+  }
+
+  .open .menuBar:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 6px);
+  }
+
+  .open .menuBar:nth-child(2) {
+    transform: scale(0, 0);
+  }
+
+  .open .menuBar:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -6px);
   }
 
   .navbarBrand {
@@ -386,6 +398,8 @@ a:hover {
 
 .fadeIn {
   animation: fadeIn 300ms ease-in-out;
+  transform: scale(1);
+  transform-origin: 50% 0% opx;
 }
 
 @keyframes fadeOut {
