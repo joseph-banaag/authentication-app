@@ -1,5 +1,5 @@
 "use client"
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 interface ModalContextType {
   displayOn: boolean,
@@ -14,6 +14,12 @@ const ModalContext = createContext<ModalContextType | undefined>(undefined)
 const ModalContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [ displayOn, setDisplayOn ] = useState<boolean>(false)
   const [ resetReq, setResetReq ] = useState<boolean>(false)
+  const [ mounted, setMounted ] = useState<boolean>(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+  if (!mounted) return null
 
   return (
     <>

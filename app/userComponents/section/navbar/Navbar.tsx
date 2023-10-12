@@ -26,6 +26,16 @@ import ProfileModal from "@/components/utils/profileModal/ProfileModal";
 import { useModalContext } from "@/app/context/ModalContext";
 
 
+const getData = async () => {
+  const res = await fetch("http://localhost:3000/api/users", {
+    cache: "force-cache"
+  })
+  if (!res.ok) {
+    throw new Error("Failed to fetch data")
+  }
+  return res.json()
+}
+
 export default function Topbar() {
   const pathname = usePathname()
   const { theme, setTheme } = useTheme()
@@ -43,16 +53,6 @@ export default function Topbar() {
 
 
   const currentUserInfo = async () => {
-    const getData = async () => {
-      const res = await fetch("http://localhost:3000/api/users", {
-        cache: "force-cache"
-      })
-      if (!res.ok) {
-        throw new Error("Failed to fetch data")
-      }
-      return res.json()
-    }
-
     const data = await getData()
     const user_name = storedUser.data
 

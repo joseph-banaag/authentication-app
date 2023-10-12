@@ -22,6 +22,7 @@ const ProfileModalForm = () => {
   const [ client, setClient ] = useState<boolean>(false)
   const [ editUser, setEditUser ] = useState<boolean>(false)
   const pathname = usePathname()
+  
 
   const {
     register,

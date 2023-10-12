@@ -1,8 +1,7 @@
 "use client"
 import { useModalContext } from "@/app/context/ModalContext"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ProfileModalForm from "@/components/utils/profileModal/ProfileModalForm"
-import { usePathname } from "next/navigation"
 
 
 const ProfileModal = () => {
@@ -10,7 +9,6 @@ const ProfileModal = () => {
     displayOn,
   } = useModalContext()
   const [ email, setEmail ] = useState<string>("")
-  const pathname = usePathname()
 
   const getData = async () => {
     const res = await fetch("http://localhost:3000/api/users", {
