@@ -31,8 +31,7 @@ export default function Sidebar() {
   }
 
   if (storedUser.data === "null" || storedUser.data === null || storedUser.data === undefined || storedUser.data === "undefined") {
-    // router.push("/")
-    // TODO: UNCOMMENT
+    router.push("/")
 
 
   }
@@ -63,9 +62,8 @@ export default function Sidebar() {
   }
 
   if (pathname === "/profile" || pathname === "/security" || pathname === "/settings") {
-    // currentUserInfo()
-    // if (!currentUserInfo) return null
-    // TODO: UNCOMMENT
+    currentUserInfo()
+    if (!currentUserInfo) return null
 
   }
 

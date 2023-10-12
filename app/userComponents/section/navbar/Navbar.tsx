@@ -33,7 +33,6 @@ export default function Topbar() {
   const [ eMail, setEMail ] = useState<string>("")
   const [ client, setClient ] = useState<boolean>(false)
   const router = useRouter()
-
   const {
     displayOn,
     setDisplayOn } = useModalContext()
@@ -69,9 +68,8 @@ export default function Topbar() {
   }
 
   if (pathname === "/dashboard") {
-    // currentUserInfo()
-    // if (!currentUserInfo) return null
-    // TODO: UNCOMMENT
+    currentUserInfo()
+    if (!currentUserInfo) return null
 
   }
   const changeThemeToLight = () => {
@@ -91,8 +89,7 @@ export default function Topbar() {
   }
 
   if (storedUser.data === "null" || storedUser.data === null || storedUser.data === undefined || storedUser.data === "undefined") {
-    // router.push("/")
-    // TODO: UNCOMMENT
+    router.push("/")
   }
 
 
