@@ -22,6 +22,7 @@ const ProfileModalForm = () => {
   const [ client, setClient ] = useState<boolean>(false)
   const [ editUser, setEditUser ] = useState<boolean>(false)
   const pathname = usePathname()
+
   const {
     register,
     handleSubmit,
@@ -31,7 +32,7 @@ const ProfileModalForm = () => {
     defaultValues: {
       username: ""
     },
-    criteriaMode: "all",
+    criteriaMode: "firstError",
     mode: "all"
   })
 
@@ -94,7 +95,7 @@ const ProfileModalForm = () => {
         <button
           type="button"
           onClick={() => setEditUser(false)}
-          className="font-bold absolute top-2 left-2 drop-shadow-xl transform hover:scale-105 hover:bg-foreground hover:border-foreground text-background/60 rounded-full flex justify-center items-center cursor-pointer transition-all duration-300 p-1">
+          className="profileModalFormArrowBack">
           <ArrowBack className="w-4 h-4" />
         </button>
         <form
@@ -123,7 +124,7 @@ const ProfileModalForm = () => {
             type="submit"
             className="absolute top-2 right-2"
           >
-            <SaveIcon className="w-6 h-6 text-success-100 transform hover:scale-105 transition-all duration-300" />
+            <SaveIcon className="profileModalFormSaveIcon" />
           </button>
         </form>
       </>
@@ -131,8 +132,8 @@ const ProfileModalForm = () => {
   }
   return (
     <>
-      <div className="rounded-t-lg bg-foreground/60 shadow-md">
-        <div className={`w-full h-[70px] rounded-t-lg  justify-center flex mb-1
+      <div className="profileModalFormContainer">
+        <div className={`profileModalFormWrapper
           ${editUser
             ? "items-center"
             : "items-end"
@@ -143,14 +144,14 @@ const ProfileModalForm = () => {
             : <button
               type="button"
               onClick={() => setDisplayOn(false)}
-              className="font-bold absolute top-2 right-2 drop-shadow-xl transform hover:scale-105 hover:bg-foreground hover:border-foreground text-background/70 rounded-full flex justify-center items-center cursor-pointer transition-all duration-300 ">
+              className="profileModalFormCloseBtn">
               <CloseBtn className="w-5 h-5" />
             </button>
           }
           <div className="px-3 overflow-hidden">
             {editUser
               ? <UpdateUsername />
-              : <h1 className="text-default-900 text-2xl font-semibold drop-shadow-lg tracking-wider truncate ">{client ? username : ""}</h1>
+              : <h1 className="profileModalFormUsername ">{client ? username : ""}</h1>
             }
           </div>
         </div>
@@ -168,8 +169,8 @@ const ProfileModalForm = () => {
               <button
                 type="button"
                 onClick={handleEditProfileImg}
-                className="absolute -bottom-3 right-[50%] translate-x-[50%] cursor-pointer z-50">
-                <EditIcon className="w-5 h-5 text-white drop-shadow-xl transform hover:scale-105 hover:text-default bg-default hover:bg-default-600 transition-all duration-300 rounded-full p-[2px]" />
+                className="profileModalFormEditIconImg">
+                <EditIcon className="profileModalFormEditIconStyleImg" />
               </button>
             </div>
           </div>
@@ -182,8 +183,8 @@ const ProfileModalForm = () => {
             : <button
               type="button"
               onClick={() => setEditUser(!editUser)}
-              className="absolute top-8 right-2 cursor-pointer">
-              <EditIcon className="w-5 h-5 text-background/50 drop-shadow-xl transform hover:scale-105 hover:text-white transition-all duration-300" />
+              className="profileModalFormEditIcon">
+              <EditIcon className="profileModalFormEditIconStyle" />
             </button>
           }
         </div>

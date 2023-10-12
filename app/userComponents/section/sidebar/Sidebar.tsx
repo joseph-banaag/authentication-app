@@ -23,12 +23,6 @@ export default function Sidebar() {
   const [ username, setUsername ] = useState<string>("")
   const [ email, setEmail ] = useState<string>("")
   const [ isMenuOpen, setIsMenuOpen ] = React.useState(false);
-  const [ client, setClient ] = useState<boolean>(false)
-  const { theme, setTheme } = useTheme()
-
-  useEffect(() => {
-    setClient(true)
-  }, [])
 
   const storedUser = {
     data: typeof window !== "undefined"
@@ -78,9 +72,8 @@ export default function Sidebar() {
 
   return (
     <>
-      <Card className=" min-h-screen md:flex hidden flex-col gap-5 justify-start items-center px-4 pt-9 shadow-2xl bg-background/60 dark:bg-default-100/50 rounded-none mx-auto ">
-
-        <div className="flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default !dark:text-white py-3 px-4 mx-2 shadow-xl min-w-[200px] fadeIn">
+      <Card className="sidebarContainer">
+        <div className="sidebarWrapper">
           <ProfileAvatar />
           <div className="ms-2 max-w-[120px]">
             <p className="text-sm font-bold truncate">{username}</p>
@@ -123,7 +116,7 @@ export default function Sidebar() {
 
       <Navbar
         onMenuOpenChange={setIsMenuOpen}
-        className="md:hidden flex flex-wrap p-2 drop-shadow-2xl absolute top-0 left-0 mb-9">
+        className="sidebarNavContainer">
 
         <NavbarContent justify="start">
           <NavbarMenuToggle
@@ -134,7 +127,7 @@ export default function Sidebar() {
             <Link
               href="/dashboard"
             >
-              <p className="lg:text-xl sm:text-lg font-bold cursor-pointer sm:flex hidden drop-shadow-lg !text-[#FB542B]">Authentication</p>
+              <p className="sidebarNavBrandLogo">Authentication</p>
             </Link>
 
             <Link
@@ -155,49 +148,51 @@ export default function Sidebar() {
         </NavbarContent>
 
         <NavbarMenu className="!min-w-[276px] !max-h-auto ">
-          <div className="w-auto">
-            <div className="flex flex-col gap-5 justify-start items-center pt-16 !bg-none">
-
-              <div className="flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default !dark:text-white sm:py-4 py-3 sm:px-6 px-4 shadow-xl">
-                <div>
-                  <ProfileAvatar />
-                </div>
-                <div className="ms-2 md:max-w-[400px] sm:max-w-[300px] truncate userProfile fadeIn">
-                  <p className="text-sm font-bold">{username}</p>
-                  <div className="w-full overflow-hidden">
-                    <p className="text-xs font-thin dark:text-foreground/60 animate-scrolling-text delay-1000">{email}</p>
-                  </div>
+          <div className="sidebarNavMenuWrapper">
+            <div className="sidebarNavProfileContainer">
+              <div>
+                <ProfileAvatar />
+              </div>
+              <div className="sidebarNavProfileInfo">
+                <p className="text-sm font-bold">{username}</p>
+                <div className="w-full overflow-hidden">
+                  <p className="text-xs font-thin dark:text-foreground/60 animate-scrolling-text delay-1000">{email}</p>
                 </div>
               </div>
-              <div className="flex flex-1 flex-col gap-4">
-                {userNavigation.map((item) => {
-                  const isActive = pathname === item.route
-                  return (
-                    <Button
-                      as={Link}
-                      key={item.label}
-                      size="sm"
-                      variant="light"
-                      href={item.route}
-                      className="text-medium flex justify-start items-center px-3 py-6"
-                    >
+            </div>
+            <div className="flex flex-1 flex-col gap-4">
+              {userNavigation.map((item) => {
+                const isActive = pathname === item.route
+                return (
+                  <Button
+                    as={Link}
+                    key={item.label}
+                    size="sm"
+                    variant="light"
+                    href={item.route}
+                    className="text-medium flex justify-start items-center px-3 py-6"
+                  >
+                    <p className={isActive
+                      ? "text-foreground/90"
+                      : "text-foreground/60"}>
                       {item.iconLight}
-                      <p className={`${isActive && "text-[#FB542B] text-lg font-bold"} text-medium flex justify-start items-center`}>{item.label}</p>
-                    </Button>
-                  )
-                })}
+                    </p>
 
-                <Button
-                  as={Link}
-                  href={logOut.route}
-                  size="sm"
-                  variant="light"
-                  className="text-medium px-3 py-6 fixed bottom-5"
-                >
-                  {logOut.iconLight}
-                  <p className="text-medium flex justify-start items-center">{logOut.label}</p>
-                </Button>
-              </div>
+                    <p className={`${isActive && "isActiveStyle"} linkItems`}>{item.label}</p>
+                  </Button>
+                )
+              })}
+
+              <Button
+                as={Link}
+                href={logOut.route}
+                size="sm"
+                variant="light"
+                className="text-medium px-3 py-6 fixed bottom-5"
+              >
+                {logOut.iconLight}
+                <p className="text-medium flex justify-start items-center">{logOut.label}</p>
+              </Button>
             </div>
           </div>
         </NavbarMenu>

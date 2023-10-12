@@ -1,6 +1,4 @@
-import { NextResponse } from "next/server";
 import connectToDB, { client } from "@/app/lib/mongodb";
-import { ObjectId } from "mongodb";
 
 // INSERT OPERATION
 export async function POST(request: Request) {
@@ -23,6 +21,7 @@ export async function POST(request: Request) {
     const AddAcc = await collection.insertOne(newDoc);
 
     console.log("Successfully added a new user");
+
     return Response.json(AddAcc);
   } catch (error) {
     throw new Error(
@@ -47,7 +46,6 @@ export async function GET(request: Request) {
 
     console.log("List of the documents will be found through PostMan");
     return Response.json(createdUsers);
-    // return new NextResponse(JSON.stringify(toGet));
   } catch (error) {
     throw new Error(
       `There was a problem getting the information from the database. Error: ${error}`
@@ -67,11 +65,8 @@ export async function PUT(request: Request) {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
 
-    // const newData = { username: newUsername };
-    // const toUpdate = { username: currentUsername };
-
-    const newData = { username: "testUser100" };
-    const toUpdate = { username: "testUser100a" };
+    const newData = { username: newUsername };
+    const toUpdate = { username: currentUsername };
 
     const updateResult = await collection.updateOne(toUpdate, {
       $set: newData,
@@ -79,7 +74,6 @@ export async function PUT(request: Request) {
 
     console.log("Successfully updated an account");
     return Response.json(updateResult);
-    // return new NextResponse(JSON.stringify(updateResult));
   } catch (error) {
     throw new Error(
       `There was a problem updating the document. Error: ${error}`
@@ -104,8 +98,6 @@ export async function DELETE(request: Request) {
     const deleteResult = await collection.deleteMany(toDelete);
     console.log("Successfully removed an account");
     return Response.json(deleteResult);
-
-    // return new NextResponse(JSON.stringify(deleteResult));
   } catch (error) {
     throw new Error(
       `There was a problem deleting the document. Error: ${error}`

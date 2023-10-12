@@ -25,7 +25,6 @@ const ProfileModal = () => {
   const userDetail = async () => {
     const dataFromDB = await getData()
 
-
     const storedUsername = {
       data: typeof window !== "undefined"
         ? sessionStorage.getItem("username")
@@ -38,25 +37,23 @@ const ProfileModal = () => {
     if (!userInfo) return null
 
     const email = userInfo.email
-    if (pathname === "/dashboard") {
-      setEmail(email)
-    }
+    setEmail(email)
   }
   userDetail();
 
   return (
     <>
       <div
-        className={`absolute z-50 top-5 xl:right-[15%] lg:right-28 md:right-14 right-7 rounded-lg w-[280px] p-1 shadow-xl bg-default/60 
+        className={`profileModalContainer
         ${displayOn
             ? "fadeIn"
             : "fadeOut"}
             `}
       >
         <ProfileModalForm />
-        <div className="mt-8 w-full flex flex-col justify-center gap-1 px-2 pt-6">
+        <div className="profileModalEmailContainer">
           <div className="mx-auto">
-            <h1 className="text-xs text-foreground drop-shadow-md ">
+            <h1 className="profileModalEmailContent">
               {email}
             </h1>
           </div>

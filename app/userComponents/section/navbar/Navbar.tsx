@@ -95,15 +95,22 @@ export default function Topbar() {
 
   return (
     <>
-      <div className={`z-[48] w-full h-screen fixed backdrop-blur-sm ${displayOn ? "block" : "hidden"}`} />
-      <div className={`${displayOn ? "block z-50" : "hidden"}`}>
+      <div className={`navbarContainer 
+      ${displayOn
+          ? "block"
+          : "hidden"
+        }`} />
+      <div className={`${displayOn
+        ? "block z-50"
+        : "hidden"
+        }`}>
         <ProfileModal />
       </div>
       <Navbar
         shouldHideOnScroll
-        className="flex justify-around flex-wrap sm:p-3 p-0 drop-shadow-2xl">
+        className="navbarWrapper">
         <NavbarContent justify="start" className="flex justify-start">
-          <NavbarBrand className="flex-1 w-full justify-start flex gap-2">
+          <NavbarBrand className="navbarBrand">
             <BrandLogo />
           </NavbarBrand>
         </NavbarContent>
@@ -118,16 +125,16 @@ export default function Topbar() {
               // backdrop="blur" //* blur effect affecting the function while dev tools is on
               showArrow
               classNames={{
-                base: "p-0 border-small border-divider bg-background",
+                base: "navDropdownBase",
                 arrow: "bg-background",
               }}
-              className="rounded-md shadow-2xl shadow-violet-950 bg-background/90 border-md"
+              className="navDropdownContainer"
             >
               <DropdownTrigger>
-                <div className="w-2 h-8 flex flex-col gap-1 justify-center items-center cursor-pointer">
-                  <div className="w-[4px] h-[4px] rounded-full bg-[#BCBCC2] mx-auto" />
-                  <div className="w-[4px] h-[4px] rounded-full bg-[#BCBCC2] mx-auto" />
-                  <div className="w-[4px] h-[4px] rounded-full bg-[#BCBCC2] mx-auto" />
+                <div className="navDropdownTriggerContainer">
+                  <div className="navDropdownTrigger" />
+                  <div className="navDropdownTrigger" />
+                  <div className="navDropdownTrigger" />
                 </div>
               </DropdownTrigger>
               <DropdownMenu
@@ -171,7 +178,7 @@ export default function Topbar() {
                           size="sm"
                           variant="light"
                           href={items.route}
-                          className={`${isActive && "!text-[#FB542B] sm:text-lg font-bold"} text-base font-semibold text-foreground/80 w-full flex justify-start items-center !p-0`}
+                          className={`${isActive && "isActiveStyle"} linkItems`}
                         >
                           <p className={isActive ? "text-foreground/90" : "text-foreground/60"}>
                             {items.iconLight}
@@ -192,7 +199,7 @@ export default function Topbar() {
                     variant="bordered"
                     endContent={
                       <p
-                        className="z-10 outline-none w-16 rounded-md text-xs font-semibold group-data-[hover=false]:border-default-500 border-small border-default-300 dark:border-default-200 bg-transparent text-foreground flex justify-center items-center p-1 px-1.5 capitalize"
+                        className="themeIndicator"
                       >
                         {client
                           ? theme
@@ -200,7 +207,7 @@ export default function Topbar() {
                         }
                       </p>
                     }
-                    className="text-foreground hover:bg-transparent border-none cursor-default"
+                    className="themeIndicatorContainer"
                   >
                     <p className="text-sm font-semibold drop-shadow-md" color="foreground">Theme</p>
                   </DropdownItem>
@@ -264,9 +271,6 @@ export default function Topbar() {
                         }}
                         className="cursor-pointer flex flex-1 justify-center items-center"
                       >
-                        {/* 
-                          // TODO: create a function that will clear the localstorage once this button is pressed.
-                          */}
                         <p className="text-white/90 font-semibold text-xs drop-shadow-md">Logout</p>
                       </Chip>
                     </Link>

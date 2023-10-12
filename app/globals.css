@@ -186,6 +186,141 @@
   }
 }
 
+/** SIDEBAR STYLES **/
+@layer utilities {
+  .sidebarContainer {
+    @apply min-h-screen md:flex hidden flex-col gap-5 justify-start items-center px-4 pt-9 shadow-2xl bg-background/60 dark:bg-default-100/50 rounded-none mx-auto
+  }
+
+  .sidebarWrapper {
+    @apply flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default text-white/70 py-3 px-4 mx-2 shadow-xl min-w-[200px] fadeIn
+  }
+
+  .sidebarNavContainer {
+    @apply md:hidden flex flex-wrap p-2 drop-shadow-2xl absolute top-0 left-0 mb-9
+  }
+
+  .sidebarNavBrandLogo {
+    @apply lg:text-xl sm:text-lg font-bold cursor-pointer sm:flex hidden drop-shadow-lg !text-[#FB542B]
+  }
+
+  .sidebarNavMenuWrapper {
+    @apply flex flex-col gap-5 justify-start items-center pt-16 !bg-none
+  }
+
+  .sidebarNavProfileContainer {
+    @apply flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default text-white/70 sm:py-4 py-3 sm:px-6 px-4 shadow-xl
+  }
+
+  .sidebarNavProfileInfo {
+    @apply ms-2 md:max-w-[400px] sm:max-w-[300px] truncate userProfile fadeIn
+  }
+}
+
+/** USER NAVBAR STYLES **/
+@layer utilities {
+  .navbarContainer {
+    @apply z-[48] w-full h-screen fixed backdrop-blur-sm
+  }
+
+  .navbarWrapper {
+    @apply flex justify-around flex-wrap sm:p-3 p-0 drop-shadow-2xl
+  }
+
+  .navDropdownContainer {
+    @apply rounded-md shadow-2xl shadow-violet-950 bg-background/90
+  }
+
+  .navDropdownBase {
+    @apply p-0 border-small border-divider bg-background
+  }
+
+  .navDropdownTriggerContainer {
+    @apply w-2 h-8 flex flex-col gap-1 justify-center items-center cursor-pointer
+  }
+
+  .navDropdownTrigger {
+    @apply w-[4px] h-[4px] rounded-full bg-[#BCBCC2] mx-auto
+  }
+
+  .navbarBrand {
+    @apply flex-1 w-full justify-start flex gap-2
+  }
+
+  .isActiveStyle {
+    @apply !text-[#FB542B] sm:text-lg font-bold
+  }
+
+  .linkItems {
+    @apply text-base font-semibold text-foreground/80 w-full flex justify-start items-center !p-0
+  }
+
+  .themeIndicator {
+    @apply z-10 outline-none w-16 rounded-md text-xs font-semibold group-data-[hover=false]:border-default-500 border-small border-default-300 dark:border-default-200 bg-transparent text-foreground flex justify-center items-center p-1 px-1.5 capitalize
+  }
+
+  .themeIndicatorContainer {
+    @apply text-foreground hover:bg-transparent border-none cursor-default
+  }
+}
+
+/** PROFILE MODAL **/
+@layer utilities {
+  .profileModalContainer {
+    @apply absolute z-50 top-5 xl:right-[15%] lg:right-28 md:right-14 right-7 rounded-lg w-[280px] p-1 shadow-xl bg-default/60
+  }
+
+  .profileModalEmailContainer {
+    @apply mt-8 w-full flex flex-col justify-center gap-1 px-2 pt-6
+  }
+
+  .profileModalEmailContent {
+    @apply text-xs text-foreground drop-shadow-md
+  }
+}
+
+/** PROFILE MODAL FORM **/
+@layer utilities {
+  .profileModalFormArrowBack {
+    @apply font-bold absolute top-2 left-2 drop-shadow-xl transform hover:scale-105 hover:bg-foreground hover:border-foreground text-background/60 rounded-full flex justify-center items-center cursor-pointer transition-all duration-300 p-1
+  }
+
+  .profileModalFormSaveIcon {
+    @apply w-6 h-6 text-success-100 transform hover:scale-105 transition-all duration-300
+  }
+
+  .profileModalFormContainer {
+    @apply rounded-t-lg bg-foreground/60 shadow-md
+  }
+
+  .profileModalFormWrapper {
+    @apply w-full h-[70px] rounded-t-lg justify-center flex mb-1
+  }
+
+  .profileModalFormCloseBtn {
+    @apply font-bold absolute top-2 right-2 drop-shadow-xl transform hover:scale-105 hover:bg-foreground hover:border-foreground text-background/70 rounded-full flex justify-center items-center cursor-pointer transition-all duration-300
+  }
+
+  .profileModalFormUsername{
+    @apply text-default-900 text-2xl font-semibold drop-shadow-lg tracking-wider truncate
+  }
+
+  .profileModalFormEditIcon{
+    @apply absolute top-8 right-2 cursor-pointer
+  }
+
+  .profileModalFormEditIconStyle{
+    @apply w-5 h-5 text-background/50 drop-shadow-xl transform hover:scale-105 hover:text-white transition-all duration-300
+  }
+
+  .profileModalFormEditIconImg{
+    @apply absolute -bottom-3 right-[50%] translate-x-[50%] cursor-pointer z-50
+  }
+
+  .profileModalFormEditIconStyleImg{
+    @apply w-5 h-5 text-white drop-shadow-xl transform hover:scale-105 hover:text-default bg-default hover:bg-default-600 transition-all duration-300 rounded-full p-[2px]
+  }
+}
 
 * {
   box-sizing: border-box;

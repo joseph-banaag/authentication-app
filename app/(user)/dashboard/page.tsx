@@ -25,10 +25,6 @@ export default function Dashboard() {
         <div className="p-5 gap-3 flex flex-1 flex-col justify-start items-center">
           <h1 className="textHeading">Welcome {isClient ? user : ""}</h1>
           <p className="">This page will contain everything about the dashboard. If the application is an e-commerce store, all items like cart items will be shown here.</p>
-
-          {/* 
-              // todo: create a function that will get the account information and what will be attached to the welcome screen
-            */}
         </div>
 
       </motion.div>
