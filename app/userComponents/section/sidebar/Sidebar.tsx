@@ -66,7 +66,6 @@ export default function Sidebar() {
   }
 
   if (pathname === "/profile" || pathname === "/security" || pathname === "/settings") {
-    // TODO: UNCOMMENT THIS AFTER EDITING
     currentUserInfo()
     if (!currentUserInfo) return null
   }

@@ -46,8 +46,7 @@ export default function Topbar() {
   const currentUserInfo = async () => {
     const getData = async () => {
       const res = await fetch("http://localhost:3000/api/users", {
-        cache: "force-cache",
-        
+        cache: "force-cache"
       })
       if (!res.ok) {
         throw new Error("Failed to fetch data")
@@ -91,7 +90,6 @@ export default function Topbar() {
 
   if (storedUser.data === "null" || storedUser.data === null || storedUser.data === undefined || storedUser.data === "undefined") {
     router.push("/")
-    // TODO: uncomment code above
   }
 
 

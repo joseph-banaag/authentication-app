@@ -22,10 +22,25 @@ const ProfileModalForm = () => {
   const [ client, setClient ] = useState<boolean>(false)
   const [ editUser, setEditUser ] = useState<boolean>(false)
   const pathname = usePathname()
+  const {
+    register,
+    handleSubmit,
+    setFocus,
+    formState: { errors }
+  } = useForm<Inputs>({
+    defaultValues: {
+      username: ""
+    },
+    criteriaMode: "all",
+    mode: "all"
+  })
 
   useEffect(() => {
     setClient(true)
-  }, [])
+    setFocus("username")
+  }, [
+    setFocus
+  ])
 
 
   const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
@@ -41,17 +56,6 @@ const ProfileModalForm = () => {
     console.log("profile image updated successfully!")
   }
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm<Inputs>({
-    defaultValues: {
-      username: ""
-    },
-    criteriaMode: "all",
-    mode: "all"
-  })
 
   const OnSubmit: SubmitHandler<Inputs> = async (data, e) => {
     e?.preventDefault()
@@ -97,6 +101,7 @@ const ProfileModalForm = () => {
           onSubmit={handleSubmit(OnSubmit)}
           className="flex flex-col px-1">
           <Input
+
             autoComplete="off"
             aria-autocomplete="none"
             aria-labelledby="username"
@@ -111,8 +116,7 @@ const ProfileModalForm = () => {
             })}
             name="username"
           />
-          <p className="formErrorMessage">
-            {errors.username?.types?.required && <span>Username is required</span>}
+          <p className="formErrorMessage absolute top-[60px]">
             {errors.username?.types?.pattern && <span>Space is not allowed and at least 3 characters</span>}
           </p>
           <button
