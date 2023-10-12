@@ -132,7 +132,6 @@ export default function Topbar() {
               <ProfileAvatar />
             </div>
             <Dropdown
-              // backdrop="blur" //* blur effect affecting the function while dev tools is on
               showArrow
               classNames={{
                 base: "navDropdownBase",
@@ -141,13 +140,6 @@ export default function Topbar() {
               className="navDropdownContainer"
             >
 
-              {/* 
-              //TODO: CHANGE THE TRIGGER TO ROTATE
-              the top bar will rotate clockwise and the bottom will rotate counter clockwise the middle bar will disappear.
-
-              use transform, rotate, duration of 300ms when clicked
-            
-              */}
               <DropdownTrigger>
                 <div
                   onClick={() => setIsOpen(!isOpen)}
