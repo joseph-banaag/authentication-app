@@ -33,7 +33,7 @@ const ProfileModalForm = () => {
     defaultValues: {
       username: ""
     },
-    criteriaMode: "firstError",
+    criteriaMode: "all",
     mode: "all"
   })
 

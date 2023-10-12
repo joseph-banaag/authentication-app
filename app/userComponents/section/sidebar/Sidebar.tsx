@@ -22,7 +22,14 @@ export default function Sidebar() {
   const router = useRouter()
   const [ username, setUsername ] = useState<string>("")
   const [ email, setEmail ] = useState<string>("")
-  const [ isMenuOpen, setIsMenuOpen ] = React.useState(false);
+  const [ isMenuOpen, setIsMenuOpen ] = useState(false);
+  const [ mounted, setMounted ] = useState<boolean>(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
 
   const storedUser = {
     data: typeof window !== "undefined"
@@ -32,8 +39,6 @@ export default function Sidebar() {
 
   if (storedUser.data === "null" || storedUser.data === null || storedUser.data === undefined || storedUser.data === "undefined") {
     router.push("/")
-
-
   }
 
   const currentUserInfo = async () => {
@@ -64,7 +69,6 @@ export default function Sidebar() {
   if (pathname === "/profile" || pathname === "/security" || pathname === "/settings") {
     currentUserInfo()
     if (!currentUserInfo) return null
-
   }
 
   const logo = {

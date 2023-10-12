@@ -95,11 +95,13 @@ export default function Topbar() {
 
   return (
     <>
-      <div className={`navbarContainer 
+      <div
+        onClick={() => setDisplayOn(false)}
+        className={`navbarContainer 
       ${displayOn
-          ? "block"
-          : "hidden"
-        }`} />
+            ? "block"
+            : "hidden"
+          }`} />
       <div className={`${displayOn
         ? "block z-50"
         : "hidden"
