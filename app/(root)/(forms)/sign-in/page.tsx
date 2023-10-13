@@ -81,7 +81,7 @@ export default function SignIn() {
       const passwordInput = password
       const usernameInput = user_name
 
-      const userInfo_DB = data_from_DB.find(({username}: { username: string; }) => username === usernameInput)
+      const userInfo_DB = data_from_DB.find(({ username }: { username: string; }) => username === usernameInput)
 
       if (userInfo_DB === undefined) {
         // no existing account
@@ -140,7 +140,7 @@ export default function SignIn() {
         )}
       </Toaster>
 
-      <div className={`warningMessage ${!noAccount
+      <div className={`warningMessage ${noAccount
         ? "block"
         : "hidden"} 
         `}>
