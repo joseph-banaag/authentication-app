@@ -20,7 +20,7 @@ export default function Dashboard() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ ease: "backIn", duration: 1 }}
-        className="w-full min-h-screen lg:p-14 relative px-1"
+        className="w-full min-h-screen p-14 relative px-1"
       >
         <div className="p-5 gap-3 flex flex-1 flex-col justify-start items-center">
           <h1 className="textHeading">Welcome {isClient ? user : ""}</h1>

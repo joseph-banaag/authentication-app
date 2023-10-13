@@ -203,15 +203,15 @@ body {
 /** SIDEBAR STYLES **/
 @layer utilities {
   .sidebarContainer {
-    @apply min-h-screen md:flex hidden flex-col gap-5 justify-start items-center px-4 pt-9 shadow-2xl bg-background/60 dark:bg-default-100/50 rounded-none mx-auto
+    @apply min-h-screen md:flex hidden flex-col gap-5 justify-start items-center md:px-4 px-2 pt-9 shadow-2xl bg-background/60 dark:bg-default-100/50 rounded-none mx-auto min-w-[210px]
   }
 
   .sidebarWrapper {
-    @apply flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default text-white/70 py-3 px-4 mx-2 shadow-xl min-w-[200px] fadeIn
+    @apply flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default text-white/70 py-3 px-4 mx-2 shadow-xl min-w-[170px] fadeIn
   }
 
   .sidebarNavContainer {
-    @apply md:hidden flex flex-wrap p-2 drop-shadow-2xl absolute top-0 left-0 mb-9
+    @apply md:hidden flex flex-1 drop-shadow-2xl fixed top-0 left-0 w-full z-50 
   }
 
   .sidebarNavBrandLogo {

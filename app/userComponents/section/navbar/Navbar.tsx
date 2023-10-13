@@ -68,7 +68,7 @@ export default function Topbar() {
     setEMail(eMail)
   }
 
-  if (pathname === "/dashboard") {
+  if (pathname === "/dashboard" || pathname === "/settings" || pathname === "/security" || pathname === "/profile") {
     currentUserInfo()
     if (!currentUserInfo) return null
 

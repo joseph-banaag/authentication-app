@@ -15,6 +15,7 @@ import {
   Image
 } from "@nextui-org/react";
 import ProfileAvatar from "@/components/utils/profileModal/ProfileAvatar"
+import Topbar from "@/app/userComponents/section/navbar/Navbar";
 
 
 export default function Sidebar() {
@@ -127,91 +128,10 @@ export default function Sidebar() {
         </div>
       </Card>
 
-      <Navbar
-        onMenuOpenChange={setIsMenuOpen}
+      <div
         className="sidebarNavContainer">
-
-        <NavbarContent justify="start">
-          <NavbarMenuToggle
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            className="md:hidden font-bold"
-          />
-          <NavbarBrand className="flex flex-1 ms-2">
-            <Link
-              href="/dashboard"
-            >
-              <p className="sidebarNavBrandLogo">Authentication</p>
-            </Link>
-
-            <Link
-              href="/dashboard"
-              className="w-full sm:hidden flex flex-row-reverse">
-              <Image
-                src={logo.src}
-                alt={logo.name}
-                width={48}
-                height={48}
-                style={{
-                  objectFit: "cover",
-                }}
-                className="sm:w-10 w-7 sm:h-10 h-7 border-2 rounded-md border-default-200/80"
-              />
-            </Link>
-          </NavbarBrand>
-        </NavbarContent>
-
-        <NavbarMenu className="!min-w-[276px] !max-h-auto ">
-          <div className="sidebarNavMenuWrapper">
-            <div className="sidebarNavProfileContainer">
-              <div>
-                <ProfileAvatar />
-              </div>
-              <div className="sidebarNavProfileInfo">
-                <p className="text-sm font-bold">{username}</p>
-                <div className="w-full overflow-hidden">
-                  <p className="text-xs font-thin dark:text-foreground/60 animate-scrolling-text delay-1000">{email}</p>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-1 flex-col gap-4">
-              {userNavigation.map((item) => {
-                const isActive = pathname === item.route
-                return (
-                  <Button
-                    as={Link}
-                    key={item.label}
-                    size="sm"
-                    variant="light"
-                    href={item.route}
-                    className="text-medium flex justify-start items-center px-3 py-6"
-                  >
-                    <p className={isActive
-                      ? "text-foreground/90"
-                      : "text-foreground/60"}>
-                      {item.iconLight}
-                    </p>
-
-                    <p className={`${isActive && "isActiveStyle"} linkItems`}>{item.label}</p>
-                  </Button>
-                )
-              })}
-
-              <Button
-                as={Link}
-                href={logOut.route}
-                size="sm"
-                variant="light"
-                className="text-medium px-3 py-6 fixed bottom-5"
-              >
-                <p className="text-foreground/60">
-                  {logOut.iconLight}
-                </p>
-                <p className="linkItems">{logOut.label}</p>
-              </Button>
-            </div>
-          </div>
-        </NavbarMenu>
-      </Navbar>
+        <Topbar />
+      </div>
     </>
   )
 }

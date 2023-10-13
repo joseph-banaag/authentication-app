@@ -2,6 +2,7 @@
 import { useModalContext } from "@/app/context/ModalContext"
 import React, { useEffect, useState } from 'react'
 import ProfileModalForm from "@/components/utils/profileModal/ProfileModalForm"
+import { useTheme } from "next-themes"
 
 
 const ProfileModal = () => {
@@ -9,6 +10,7 @@ const ProfileModal = () => {
     displayOn,
   } = useModalContext()
   const [ email, setEmail ] = useState<string>("")
+  const { theme } = useTheme()
 
   const getData = async () => {
     const res = await fetch("http://localhost:3000/api/users", {
@@ -58,9 +60,12 @@ const ProfileModal = () => {
         </div>
         <div className="w-full flex flex-col justify-center gap-1 px-2 py-3">
           <hr className="border-default/90" />
-          <h1 className="text-xs">
-            Current theme
-          </h1>
+          <div className="flex gap-2">
+            <h1 className="text-xs">
+              Current theme:
+            </h1>
+            <p className="textColor text-xs capitalize">{theme}</p>
+          </div>
         </div>
       </div>
     </>

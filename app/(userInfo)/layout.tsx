@@ -6,6 +6,7 @@ import * as React from "react";
 import { ThemeProvider } from "@/app/(root)/providers"
 import Sidebar from "@/app/userComponents/section/sidebar/Sidebar";
 import { useTheme } from "next-themes";
+import ModalContextProvider from "@/app/context/ModalContext";
 
 const monserrat = Montserrat({
   display: "swap",
@@ -46,10 +47,12 @@ export default function SettingsLayout({
       <body className={monserrat.className}>
         <React.StrictMode>
           <ThemeProvider>
-            <div className="flex relative">
-              <Sidebar />
-              {children}
-            </div>
+            <ModalContextProvider>
+              <div className="flex relative">
+                <Sidebar />
+                {children}
+              </div>
+            </ModalContextProvider>
           </ThemeProvider>
         </React.StrictMode>
       </body>
