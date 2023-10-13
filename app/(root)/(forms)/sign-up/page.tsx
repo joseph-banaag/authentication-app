@@ -122,7 +122,9 @@ export default function SignUp() {
     const email_acc = data.email
     const created_on = `${creationDate}`
 
-    sessionStorage.setItem("username", user_name)
+    const usernameLower = user_name.toLowerCase()
+
+    sessionStorage.setItem("username", usernameLower)
 
     const check_existing_acc = async () => {
       const data_from_DB = await getData()
@@ -138,7 +140,7 @@ export default function SignUp() {
           body: JSON.stringify({
             password,
             confirmed,
-            user_name,
+            usernameLower,
             email_acc,
             created_on
           })
@@ -152,7 +154,7 @@ export default function SignUp() {
 
       } else if (data_from_DB.length > 0) {
         // this will handle a database that has existing documents and create a new account
-        const user_input = `${user_name}`;
+        const user_input = `${usernameLower}`;
 
         const userInfo_Document = data_from_DB.find(({ username }: { username: string; }) => username === user_input)
 
@@ -167,7 +169,7 @@ export default function SignUp() {
             body: JSON.stringify({
               password,
               confirmed,
-              user_name,
+              usernameLower,
               email_acc,
               created_on
             })
@@ -194,11 +196,14 @@ export default function SignUp() {
   // this has logic to route the user to sign in if the given account is existing in the database
   const handleButtonClick = async () => {
     const usernameInput = watch("username")
+    const usernameInputLower = usernameInput.toLowerCase()
     const emailInput = watch("email")
+
+    console.log(usernameInput)
 
     const data_from_DB = await getData()
 
-    const DB_docs = data_from_DB.find(({username}: { username: string; }) => username === usernameInput)
+    const DB_docs = data_from_DB.find(({ username }: { username: string; }) => username === usernameInputLower)
 
     if (DB_docs === undefined) {
       setClicked(!clicked)
@@ -206,7 +211,7 @@ export default function SignUp() {
       const db_username = DB_docs.username
       const db_email = DB_docs.email
 
-      if (usernameInput === db_username || emailInput === db_email) {
+      if (usernameInputLower === db_username || emailInput === db_email) {
         // alert for an existing account
         setExist(!exist)
 

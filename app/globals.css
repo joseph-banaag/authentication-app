@@ -41,7 +41,7 @@ body {
   }
 
   .textBaseColor {
-    @apply text-foreground/80 text-[14px] font-normal
+    @apply text-foreground/80 text-base font-normal
   }
 
   .textColor {
@@ -176,7 +176,7 @@ body {
   }
 
   .warningMessageWrapper {
-    @apply border bg-background/70 max-w-[620px] mx-auto border-violet-950 flex-1 shadow-lg shadow-violet-950
+    @apply border bg-default/70 max-w-[620px] mx-auto border-violet-950 flex-1 shadow-lg shadow-violet-950
   }
 
   .warningMessageCardBody {
@@ -215,7 +215,7 @@ body {
   }
 
   .footerMessage {
-    @apply text-xs textBaseColor text-center
+    @apply text-xs text-foreground/50 text-center
   }
 
   .footerIllustrationProvider {

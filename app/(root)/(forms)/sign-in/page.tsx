@@ -140,7 +140,7 @@ export default function SignIn() {
         )}
       </Toaster>
 
-      <div className={`warningMessage ${noAccount
+      <div className={`warningMessage ${!noAccount
         ? "block"
         : "hidden"} 
         `}>
