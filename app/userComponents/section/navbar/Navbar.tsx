@@ -119,14 +119,16 @@ export default function Topbar() {
       <Navbar
         shouldHideOnScroll
         className="navbarContainer">
-        <NavbarContent justify="start" className="flex justify-start">
+        <NavbarContent
+          justify="start"
+          className="flex justify-start">
           <NavbarBrand className="navbarBrand">
             <BrandLogo />
           </NavbarBrand>
         </NavbarContent>
         <NavbarContent
           justify="end"
-          className="flex justify-end gap-3">
+          className="flex justify-end">
           <NavbarItem className="flex justify-start items-center gap-2">
             <div onClick={() => setDisplayOn(!displayOn)}>
               <ProfileAvatar />
@@ -157,7 +159,7 @@ export default function Topbar() {
               >
                 <DropdownSection
                   title="Signed in as:"
-                  className="text-foreground border-small border-foreground/20 p-1 rounded-md"
+                  className="textBaseColor border-small border-foreground/20 p-1 rounded-md"
                 >
                   <DropdownItem
                     key="profile"
@@ -170,7 +172,7 @@ export default function Topbar() {
                       <div className="ms-2 max-w-[120px]">
                         <p className="text-sm font-bold truncate">{userName}</p>
                         <div className="overflow-hidden">
-                          <p className="text-xs font-thin dark:text-foreground/60 animate-scrolling-text">{eMail}</p>
+                          <p className="text-xs font-thin dark:text-foreground/80 animate-scrolling-text">{eMail}</p>
                         </div>
                       </div>
                     </div>
@@ -269,7 +271,7 @@ export default function Topbar() {
                 </DropdownSection>
                 <DropdownSection
                   title="Danger zone"
-                  className="text-foreground"
+                  className="textBaseColor"
                 >
                   <DropdownItem
                     textValue="Dropdown logout button"

@@ -86,7 +86,7 @@ export default function Sidebar() {
           <div className="ms-2 max-w-[120px]">
             <p className="text-sm font-bold truncate">{username}</p>
             <div className="overflow-hidden">
-              <p className="text-xs font-thin dark:text-foreground/60 animate-scrolling-text">{email}</p>
+              <p className="text-xs font-thin dark: animate-scrolling-text">{email}</p>
             </div>
           </div>
         </div>

@@ -15,6 +15,42 @@ body {
   position: relative;
 }
 
+/************************************ CONSTANT STYLES ************************************/
+
+/** TEXT FORMATTING AND STYLES **/
+@layer utilities {
+
+  .textHeadingResponsive {
+    @apply md:text-3xl md:font-bold text-2xl font-semibold tracking-wide text-foreground/90
+  }
+
+  .textHeading2Md {
+    @apply md:text-2xl md:font-semibold tracking-wide text-foreground/90
+  }
+
+  .textHeading2Sm {
+    @apply sm:text-xl font-medium
+  }
+
+  .textHeading2Xs {
+    @apply text-lg
+  }
+
+  .textHeading2Responsive {
+    @apply textHeading2Md textHeading2Sm textHeading2Xs
+  }
+
+  .textBaseColor {
+    @apply text-foreground/80 text-[14px] font-normal
+  }
+
+  .textColor {
+    @apply text-foreground/80
+  }
+}
+
+/************************************************************************/
+
 /** FORM STYLES **/
 @layer utilities {
   .formContainer {
@@ -38,7 +74,7 @@ body {
   }
 
   .formSignText {
-    @apply sm:text-medium text-xs sm:font-normal drop-shadow-xl text-foreground
+    @apply sm:text-medium text-xs sm:font-normal drop-shadow-xl textBaseColor
   }
 
   .formSocialButton {
@@ -54,7 +90,7 @@ body {
   }
 
   .formSocialDivText {
-    @apply sm:px-3 p-1 sm:text-medium text-xs sm:font-normal text-foreground
+    @apply sm:px-3 p-1 sm:text-medium text-xs sm:font-normal textBaseColor
   }
 
   .formInputWrapper {
@@ -62,15 +98,15 @@ body {
   }
 
   .formLabel {
-    @apply text-foreground sm:text-sm text-xs sm:font-normal
+    @apply textBaseColor sm:text-sm text-xs sm:font-normal
   }
 
   .formInput {
-    @apply sm:text-medium text-sm sm:font-normal font-normal bg-transparent text-foreground placeholder:text-default-700/50 dark:placeholder:text-white/60
+    @apply sm:text-medium text-sm sm:font-normal font-normal bg-transparent textBaseColor placeholder:text-default-700/50 dark:placeholder:text-white/60
   }
 
   .contentIcon {
-    @apply text-2xl text-foreground pointer-events-none
+    @apply text-2xl textBaseColor pointer-events-none
   }
 
   .formErrorMessage {
@@ -117,11 +153,11 @@ body {
   }
 
   .mainRootPageHeader1 {
-    @apply lg:text-lg lg:font-semibold font-normal md:text-medium text-sm text-end drop-shadow-lg text-foreground
+    @apply lg:text-lg lg:font-semibold font-normal md:text-medium text-sm text-end drop-shadow-lg text-foreground/90
   }
 
   .mainRootPageHeader2 {
-    @apply md:text-sm text-xs text-end mr-1 drop-shadow-md text-foreground
+    @apply md:text-sm text-xs text-end mr-1 drop-shadow-md text-foreground/80
   }
 
   .mainRootPageLinks {
@@ -144,7 +180,7 @@ body {
   }
 
   .warningMessageCardBody {
-    @apply sm:text-medium text-xs sm:font-normal drop-shadow-lg tracking-wide text-foreground
+    @apply sm:text-medium text-xs sm:font-normal drop-shadow-lg tracking-wide text-foreground/90
   }
 
   .warningMessageCardFooter {
@@ -164,7 +200,7 @@ body {
   }
 
   .passwordResetModalHeader {
-    @apply font-bold absolute top-3 right-3 drop-shadow-xl text-foreground hover:text-background hover:bg-foreground transform scale-105 p-1 rounded-full w-7 h-7 flex justify-center items-center cursor-pointer transition-all duration-300
+    @apply font-bold absolute top-3 right-3 drop-shadow-xl textBaseColor hover:text-background hover:bg-foreground transform scale-105 p-1 rounded-full w-7 h-7 flex justify-center items-center cursor-pointer transition-all duration-300
   }
 
   .passwordResetModalHeader1 {
@@ -179,25 +215,13 @@ body {
   }
 
   .footerMessage {
-    @apply text-xs text-foreground text-center
+    @apply text-xs textBaseColor text-center
   }
 
   .footerIllustrationProvider {
     @apply text-violet-500 underline underline-offset-4 cursor-pointer text-xs font-semibold
   }
 
-}
-
-/** TEXT FORMATTING AND STYLES **/
-@layer utilities {
-
-  .textHeading {
-    @apply text-3xl font-semibold tracking-wide text-foreground/90
-  }
-
-  .textColor {
-    @apply text-foreground/80
-  }
 }
 
 /** SIDEBAR STYLES **/
@@ -211,7 +235,7 @@ body {
   }
 
   .sidebarNavContainer {
-    @apply md:hidden flex flex-1 drop-shadow-2xl fixed top-0 left-0 w-full z-50 
+    @apply md:hidden flex flex-1 drop-shadow-2xl fixed top-0 left-0 w-full z-50
   }
 
   .sidebarNavBrandLogo {
@@ -238,7 +262,7 @@ body {
   }
 
   .navbarContainer {
-    @apply flex justify-around flex-wrap sm:p-3 p-0 drop-shadow-2xl
+    @apply flex flex-wrap justify-center drop-shadow-2xl !gap-0
   }
 
   .navDropdownContainer {
@@ -250,23 +274,23 @@ body {
   }
 
   .navDropdownTriggerContainer {
-    @apply flex flex-col gap-[7px] w-[24px] h-[24px] justify-center items-center cursor-pointer transition-all duration-300
+    @apply flex flex-col gap-[6px] w-[24px] h-[24px] justify-center items-center cursor-pointer transition-all duration-300
   }
 
   .menuBar {
-    @apply w-full h-[3px] rounded-full bg-[#BCBCC2] transition-all duration-300 mx-auto
+    @apply w-full h-[2px] rounded-full bg-[#BCBCC2] transition-all duration-300 mx-auto
   }
 
   .open .menuBar:nth-child(1) {
-    transform: rotate(45deg) translate(8px, 6px);
+    transform: rotate(45deg) translate(8px, 3px);
   }
 
   .open .menuBar:nth-child(2) {
-    transform: scale(0, 0);
+    transform: scale(0, 0)
   }
 
   .open .menuBar:nth-child(3) {
-    transform: rotate(-45deg) translate(8px, -6px);
+    transform: rotate(-45deg) translate(8px, -3px);
   }
 
   .navbarBrand {
@@ -274,19 +298,19 @@ body {
   }
 
   .isActiveStyle {
-    @apply !text-[#FB542B] sm:text-lg font-bold
+    @apply !text-[#FB542B] !text-lg font-bold
   }
 
   .linkItems {
-    @apply text-base font-semibold text-foreground/80 w-full flex justify-start items-center !p-0
+    @apply text-base font-semibold textBaseColor w-full flex justify-start items-center !p-0
   }
 
   .themeIndicator {
-    @apply z-10 outline-none w-16 rounded-md text-xs font-semibold group-data-[hover=false]:border-default-500 border-small border-default-300 dark:border-default-200 bg-transparent text-foreground flex justify-center items-center p-1 px-1.5 capitalize
+    @apply z-10 outline-none w-16 rounded-md text-xs font-semibold group-data-[hover=false]:border-default-500 border-small border-default-300 dark:border-default-200 bg-transparent textBaseColor flex justify-center items-center p-1 px-1.5 capitalize
   }
 
   .themeIndicatorContainer {
-    @apply text-foreground hover:bg-transparent border-none cursor-default
+    @apply textBaseColor hover:bg-transparent border-none cursor-default
   }
 }
 
@@ -301,7 +325,7 @@ body {
   }
 
   .profileModalEmailContent {
-    @apply text-xs text-foreground drop-shadow-md
+    @apply text-xs textBaseColor drop-shadow-md
   }
 }
 
@@ -347,7 +371,30 @@ body {
     @apply w-5 h-5 text-white drop-shadow-xl transform hover:scale-105 hover:text-default bg-default hover:bg-default-600 transition-all duration-300 rounded-full p-[2px]
   }
 
- 
+
+}
+
+/** PAGES STYLES **/
+@layer utilities {
+  .pageContainer {
+    @apply w-full h-screen flex flex-col md:p-14 sm:p-8 p-4 md:mt-0 mt-14
+  }
+
+  .cardContainer {
+    @apply border-none w-full dark:bg-default/50 md:px-3 md:py-4 sm:px-2 sm:py-3 px-1 py-2 rounded-md
+  }
+
+  .cardHeadingContainer {
+    @apply flex items-center justify-start gap-2
+  }
+
+  .cardIconStyle {
+    @apply text-foreground/90 md:w-[32px] md:h-[32px] w-[30px] h-[30px]
+  }
+
+  .cardContentWrapper {
+    @apply flex flex-col gap-2 optionList
+  }
 }
 
 

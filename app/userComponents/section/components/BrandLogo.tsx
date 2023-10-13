@@ -28,7 +28,7 @@ export default function BrandLogo() {
       <Link
         href="/dashboard"
       >
-        <p className="lg:text-xl sm:text-lg font-bold nav_name cursor-pointer sm:flex hidden drop-shadow-lg !text-[#FB542B]">Authentication</p>
+        <p className="lg:text-2xl md:text-xl sm:text-lg font-bold nav_name cursor-pointer sm:flex hidden drop-shadow-lg !text-[#FB542B]">Authentication</p>
       </Link>
     </>
   )

@@ -15,16 +15,16 @@ export default function Security() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ ease: "backIn", duration: .5 }}
-        className="w-full h-screen flex flex-col p-14 md:mt-0 mt-14"
+        className="pageContainer"
       >
         <div className="flex flex-col gap-2">
           <Card
-            className="border-none w-full dark:bg-default/50 px-3 py-4 rounded-md"
+            className="cardContainer"
             shadow="md"
           >
-            <div className="flex items-center justify-start gap-2">
-              <SecurityIconLight className="text-foreground/90"/>
-              <h1 className="textHeading">
+            <div className="cardHeadingContainer">
+              <SecurityIconLight className="cardIconStyle"/>
+              <h1 className="textHeadingResponsive">
                 Security
               </h1>
             </div>

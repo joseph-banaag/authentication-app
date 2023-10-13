@@ -36,27 +36,27 @@ export default function Settings() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ ease: "backIn", duration: .5 }}
-        className="w-full h-screen flex flex-col p-14 md:mt-0 mt-14"
+        className="pageContainer"
       >
         <div className="flex flex-col gap-2">
           <Card
-            className="border-none w-full dark:bg-default/50 px-3 py-4 rounded-md"
+            className="cardContainer"
             shadow="md"
           >
-            <div className="flex items-center justify-start gap-2">
-              <AppearanceIcon className="text-foreground/90"/>
-              <h1 className="textHeading">
+            <div className="cardHeadingContainer">
+              <AppearanceIcon className="cardIconStyle" />
+              <h1 className="textHeadingResponsive">
                 Appearance
               </h1>
             </div>
           </Card>
 
-          <div className="flex flex-col gap-2 optionList">
-            <div className="flex gap-3 text-foreground/80">
-              <h1 className="capitalize font-semibold ">
-                Current theme :
+          <div className="cardContentWrapper">
+            <div className="flex gap-3 textBaseColor">
+              <h1 className="capitalize textHeading2Responsive">
+                Current theme:
               </h1>
-              <div className="capitalize">
+              <div className="capitalize textBaseColor flex justify-center items-center ">
                 {client
                   ? theme
                   : ""
@@ -66,7 +66,7 @@ export default function Settings() {
             <Button
               type="button"
               onClick={changeThemeToDark}
-              className="w-2 text-foreground/80"
+              className="w-2 textBaseColor"
               size="sm"
             >
               Dark
@@ -75,7 +75,7 @@ export default function Settings() {
             <Button
               type="button"
               onClick={changeThemeToLight}
-              className="w-2 text-foreground/80"
+              className="w-2 textBaseColor"
               size="sm"
             >
               Light
@@ -83,7 +83,7 @@ export default function Settings() {
           </div>
         </div>
 
-        
+
 
       </motion.div>
     </>
