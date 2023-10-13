@@ -9,7 +9,17 @@ const config: Config = {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    screens: {
+      mobileS: "320px",
+      mobileM: "375px",
+      mobileL: "425px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      laptopL: "1440px",
+      screen2Xl: "1536px",
+    },
   },
   darkMode: "class",
   plugins: [
