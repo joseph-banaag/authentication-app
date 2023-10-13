@@ -123,6 +123,7 @@ export default function SignUp() {
     const created_on = `${creationDate}`
 
     const usernameLower = user_name.toLowerCase()
+    const emailLower = email_acc.toLowerCase()
 
     sessionStorage.setItem("username", usernameLower)
 
@@ -141,7 +142,7 @@ export default function SignUp() {
             password,
             confirmed,
             usernameLower,
-            email_acc,
+            emailLower,
             created_on
           })
         })
@@ -170,7 +171,7 @@ export default function SignUp() {
               password,
               confirmed,
               usernameLower,
-              email_acc,
+              emailLower,
               created_on
             })
           })
@@ -196,10 +197,10 @@ export default function SignUp() {
   // this has logic to route the user to sign in if the given account is existing in the database
   const handleButtonClick = async () => {
     const usernameInput = watch("username")
-    const usernameInputLower = usernameInput.toLowerCase()
     const emailInput = watch("email")
 
-    console.log(usernameInput)
+    const usernameInputLower = usernameInput.toLowerCase()
+    const emailInputLower = emailInput.toLowerCase()
 
     const data_from_DB = await getData()
 
@@ -211,10 +212,9 @@ export default function SignUp() {
       const db_username = DB_docs.username
       const db_email = DB_docs.email
 
-      if (usernameInputLower === db_username || emailInput === db_email) {
+      if (usernameInputLower === db_username || emailInputLower === db_email) {
         // alert for an existing account
         setExist(!exist)
-
       }
     }
   }

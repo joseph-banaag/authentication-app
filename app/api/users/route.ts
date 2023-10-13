@@ -2,7 +2,7 @@ import connectToDB, { client } from "@/app/lib/mongodb";
 
 // INSERT OPERATION
 export async function POST(request: Request) {
-  const { password, usernameLower, email_acc, created_on } =
+  const { password, usernameLower, emailLower, created_on } =
     await request.json();
 
   await connectToDB();
@@ -12,7 +12,7 @@ export async function POST(request: Request) {
     const collection = db.collection("user_information");
 
     const newDoc = {
-      email: `${email_acc}`,
+      email: `${emailLower}`,
       username: `${usernameLower}`,
       password: `${password}`,
       created_on: `${created_on}`,

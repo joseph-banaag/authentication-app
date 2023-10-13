@@ -74,12 +74,14 @@ export default function SignIn() {
     const user_name = data.username
     e?.preventDefault()
 
-    sessionStorage.setItem("username", user_name)
+    const usernameLower = user_name.toLowerCase()
+
+    sessionStorage.setItem("username", usernameLower)
 
     const check_user_info = async () => {
       const data_from_DB = await getData()
       const passwordInput = password
-      const usernameInput = user_name
+      const usernameInput = usernameLower
 
       const userInfo_DB = data_from_DB.find(({ username }: { username: string; }) => username === usernameInput)
 
