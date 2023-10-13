@@ -92,39 +92,42 @@ export default function Sidebar() {
         </div>
 
         <div className="flex flex-1 flex-col gap-4 w-full">
-          {userNavigation.map((item) => {
-            const isActive = pathname === item.route
-            return (
-              <Button
-                as={Link}
-                key={item.label}
-                size="sm"
-                variant="light"
-                href={item.route}
-                className="text-medium w-full flex justify-center items-center  px-3 py-6"
-              >
-                <p className={isActive
-                  ? "text-foreground/90"
-                  : "text-foreground/60"}>
-                  {item.iconLight}
-                </p>
-                <p className={`${isActive && "isActiveStyle"} linkItems`}>{item.label}</p>
-              </Button>
-            )
-          })}
-
-          <Button
-            as={Link}
-            href={logOut.route}
-            size="sm"
-            variant="light"
-            className="absolute bottom-14"
-          >
-            <p className="text-foreground/60">
-              {logOut.iconLight}
-            </p>
-            <p className="linkItems">{logOut.label}</p>
-          </Button>
+          <div className="flex flex-1 flex-col gap-4 w-full">
+            {userNavigation.map((item) => {
+              const isActive = pathname === item.route
+              return (
+                <Button
+                  as={Link}
+                  key={item.label}
+                  size="sm"
+                  variant="light"
+                  href={item.route}
+                  className="text-medium w-full flex justify-center items-center  px-3 py-6"
+                >
+                  <p className={isActive
+                    ? "text-foreground/90"
+                    : "text-foreground/60"}>
+                    {item.iconLight}
+                  </p>
+                  <p className={`${isActive && "isActiveStyle"} linkItems`}>{item.label}</p>
+                </Button>
+              )
+            })}
+          </div>
+          <div className="mb-10">
+            <Button
+              as={Link}
+              href={logOut.route}
+              size="sm"
+              variant="light"
+              className="text-medium w-full flex justify-center items-center  px-3 py-6"
+            >
+              <p className="text-foreground/60">
+                {logOut.iconLight}
+              </p>
+              <p className="linkItems">{logOut.label}</p>
+            </Button>
+          </div>
         </div>
       </Card>
 

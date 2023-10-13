@@ -64,6 +64,9 @@ const ProfileModalForm = () => {
     const newUsername = data.username
     const currentUsername = username
 
+    const newUsernameLower = newUsername.toLowerCase()
+
+
     try {
       const res = await fetch("api/users", {
         method: "PUT",
@@ -71,7 +74,7 @@ const ProfileModalForm = () => {
           "Content-type": "application/json"
         },
         body: JSON.stringify({
-          newUsername,
+          newUsernameLower,
           currentUsername
         })
       })
@@ -81,7 +84,7 @@ const ProfileModalForm = () => {
       }
 
       setTimeout(() => {
-        sessionStorage.setItem("username", newUsername)
+        sessionStorage.setItem("username", newUsernameLower)
         location.reload()
       }, 2000);
 
@@ -103,7 +106,6 @@ const ProfileModalForm = () => {
           onSubmit={handleSubmit(OnSubmit)}
           className="flex flex-col px-1">
           <Input
-
             autoComplete="off"
             aria-autocomplete="none"
             aria-labelledby="username"

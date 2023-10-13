@@ -10,6 +10,8 @@ import {
 } from "@nextui-org/react";
 import { useTheme } from "next-themes";
 import { AppearanceIcon } from "@/components/utils/icons/SettingsIcon"
+import { MoonIcon } from "@/components/utils/icons/MoonIcon";
+import { SunIcon } from "@/components/utils/icons/SunIcon";
 
 
 export default function Settings() {
@@ -52,39 +54,43 @@ export default function Settings() {
           </Card>
 
           <div className="cardContentWrapper">
-            <div className="flex gap-3 textBaseColor">
-              <h1 className="capitalize textHeading2Responsive">
-                Current theme:
-              </h1>
-              <div className="capitalize textBaseColor flex justify-center items-center ">
-                {client
-                  ? theme
-                  : ""
-                }
+            <h1 className="textHeading2Responsive ">Change Theme</h1>
+
+            <div className="flex flex-col gap-2">
+              <Button
+                onClick={changeThemeToDark}
+                size="sm"
+                variant="light"
+                className="border border-default/80 bg-default text-sm font-medium  shadow-xl tracking-normal text-white/80 transform hover:scale-105 transition-all duration-300 w-[90px] cursor-pointer flex justify-center items-center"
+              >
+                Dark
+                <MoonIcon className="!w-[16px] !h-[16px] flex justify-center items-center textColor" />
+              </Button>
+
+              <Button
+                onClick={changeThemeToLight}
+                size="sm"
+                variant="light"
+                className="border border-default/80 bg-default text-sm font-medium  shadow-xl tracking-normal text-white/80 transform hover:scale-105 transition-all duration-300 w-[90px] cursor-pointer flex justify-center items-center"
+              >
+                Light
+                <SunIcon className="!w-[16px] !h-[16px] flex justify-center items-center textColor" />
+              </Button>
+
+              <div className="flex gap-3">
+                <h2 className="capitalize textBaseColor">
+                  Current theme:
+                </h2>
+                <div className="capitalize textBaseColor flex justify-center items-center underline underline-offset-4">
+                  {client
+                    ? theme
+                    : ""
+                  }
+                </div>
               </div>
             </div>
-            <Button
-              type="button"
-              onClick={changeThemeToDark}
-              className="w-2 textBaseColor"
-              size="sm"
-            >
-              Dark
-            </Button>
-
-            <Button
-              type="button"
-              onClick={changeThemeToLight}
-              className="w-2 textBaseColor"
-              size="sm"
-            >
-              Light
-            </Button>
           </div>
         </div>
-
-
-
       </motion.div>
     </>
   )

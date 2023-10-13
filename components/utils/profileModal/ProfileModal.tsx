@@ -64,7 +64,7 @@ const ProfileModal = () => {
             <h1 className="text-xs">
               Current theme:
             </h1>
-            <p className="textBaseColor text-xs capitalize">{theme}</p>
+            <p className="xSmallTextColor capitalize">{theme}</p>
           </div>
         </div>
       </div>

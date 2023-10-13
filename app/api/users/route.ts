@@ -58,14 +58,14 @@ export async function GET(request: Request) {
 
 // UPDATE OPERATION
 export async function PUT(request: Request) {
-  const { newUsername, currentUsername } = await request.json();
+  const { newUsernameLower, currentUsername } = await request.json();
 
   await connectToDB();
   try {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
 
-    const newData = { username: newUsername };
+    const newData = { username: newUsernameLower };
     const toUpdate = { username: currentUsername };
 
     const updateResult = await collection.updateOne(toUpdate, {

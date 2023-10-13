@@ -24,28 +24,24 @@ body {
     @apply md:text-3xl md:font-bold text-2xl font-semibold tracking-wide text-foreground/90
   }
 
-  .textHeading2Md {
-    @apply md:text-2xl md:font-semibold tracking-wide text-foreground/90
-  }
-
-  .textHeading2Sm {
-    @apply sm:text-xl font-medium
-  }
-
-  .textHeading2Xs {
-    @apply text-lg
-  }
-
   .textHeading2Responsive {
-    @apply textHeading2Md textHeading2Sm textHeading2Xs
+    @apply md:text-xl md:font-semibold tracking-wide text-foreground/90 sm:text-xl font-medium text-lg drop-shadow-md
   }
 
   .textBaseColor {
-    @apply text-foreground/80 text-base font-normal
+    @apply text-foreground/80 text-base font-normal drop-shadow-md
+  }
+
+  .smallTextColor {
+    @apply textColor text-[14px] font-normal drop-shadow-md
+  }
+
+  .xSmallTextColor {
+    @apply textColor text-xs font-thin drop-shadow-md
   }
 
   .textColor {
-    @apply text-foreground/80
+    @apply text-foreground/80 drop-shadow-md
   }
 }
 
@@ -106,7 +102,7 @@ body {
   }
 
   .contentIcon {
-    @apply text-2xl textBaseColor pointer-events-none
+    @apply text-2xl text-foreground/70 drop-shadow-md pointer-events-none
   }
 
   .formErrorMessage {
@@ -231,7 +227,7 @@ body {
   }
 
   .sidebarWrapper {
-    @apply flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default text-white/70 py-3 px-4 mx-2 shadow-xl min-w-[170px] fadeIn
+    @apply flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default textColor py-3 px-4 mx-2 shadow-xl min-w-[170px] fadeIn
   }
 
   .sidebarNavContainer {
@@ -298,7 +294,7 @@ body {
   }
 
   .isActiveStyle {
-    @apply !text-[#FB542B] !text-lg font-bold
+    @apply !text-[#FB542B] !text-lg !font-bold
   }
 
   .linkItems {
@@ -306,7 +302,7 @@ body {
   }
 
   .themeIndicator {
-    @apply z-10 outline-none w-16 rounded-md text-xs font-semibold group-data-[hover=false]:border-default-500 border-small border-default-300 dark:border-default-200 bg-transparent textBaseColor flex justify-center items-center p-1 px-1.5 capitalize
+    @apply z-10 outline-none w-16 rounded-md font-semibold group-data-[hover=false]:border-default-500 border-small border-default-300 dark:border-default-200 bg-transparent xSmallTextColor flex justify-center items-center p-1 px-1.5 capitalize
   }
 
   .themeIndicatorContainer {
@@ -325,7 +321,7 @@ body {
   }
 
   .profileModalEmailContent {
-    @apply text-xs textBaseColor drop-shadow-md
+    @apply xSmallTextColor
   }
 }
 
@@ -393,7 +389,7 @@ body {
   }
 
   .cardContentWrapper {
-    @apply flex flex-col gap-2 optionList
+    @apply flex flex-col gap-5 optionList 
   }
 }
 

@@ -237,7 +237,7 @@ export default function Topbar() {
                   >
                     <Chip
                       onClick={changeThemeToDark}
-                      endContent={<MoonIcon color="white" />}
+                      endContent={<MoonIcon className="!text-white" />}
                       variant="solid"
                       size="sm"
                       classNames={{
@@ -257,7 +257,7 @@ export default function Topbar() {
                   >
                     <Chip
                       onClick={changeThemeToLight}
-                      endContent={<SunIcon color="white" />}
+                      endContent={<SunIcon className="!text-white" />}
                       variant="solid"
                       size="sm"
                       classNames={{
