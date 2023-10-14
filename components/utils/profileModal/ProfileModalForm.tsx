@@ -10,7 +10,7 @@ import {
 } from "@/components/utils/icons/UpdateBtns"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Input } from "@nextui-org/react";
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 
 interface Inputs {
   username: string
@@ -21,8 +21,16 @@ const ProfileModalForm = () => {
     setDisplayOn } = useModalContext()
   const [ client, setClient ] = useState<boolean>(false)
   const [ editUser, setEditUser ] = useState<boolean>(false)
-  const pathname = usePathname()
-  
+  const router = useRouter()
+
+  const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
+
+  const storedUsername = {
+    data: typeof window !== "undefined"
+      ? sessionStorage.getItem("username")
+      : ""
+  }
+  const username = `${storedUsername.data}`
 
   const {
     register,
@@ -31,7 +39,7 @@ const ProfileModalForm = () => {
     formState: { errors }
   } = useForm<Inputs>({
     defaultValues: {
-      username: ""
+      username: `${username}`
     },
     criteriaMode: "all",
     mode: "all"
@@ -44,18 +52,8 @@ const ProfileModalForm = () => {
     setFocus
   ])
 
-
-  const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
-
-  const storedUsername = {
-    data: typeof window !== "undefined"
-      ? sessionStorage.getItem("username")
-      : ""
-  }
-  const username = `${storedUsername.data}`
-
   const handleEditProfileImg = () => {
-    console.log("profile image updated successfully!")
+    router.push("/profile")
   }
 
 
@@ -65,7 +63,6 @@ const ProfileModalForm = () => {
     const currentUsername = username
 
     const newUsernameLower = newUsername.toLowerCase()
-
 
     try {
       const res = await fetch("api/users", {
@@ -148,7 +145,7 @@ const ProfileModalForm = () => {
               type="button"
               onClick={() => setDisplayOn(false)}
               className="profileModalFormCloseBtn">
-              <CloseBtn className="w-5 h-5" />
+              <CloseBtn className="w-5 h-5 drop-shadow-2xl" />
             </button>
           }
           <div className="px-3 overflow-hidden">

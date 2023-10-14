@@ -144,7 +144,7 @@ export default function Topbar() {
 
               <DropdownTrigger>
                 <div
-                  onClick={() => setIsOpen(!isOpen)}
+                  onClick={() => setIsOpen(true)}
                   className={`navDropdownTriggerContainer ${isOpen
                     ? "open"
                     : ""

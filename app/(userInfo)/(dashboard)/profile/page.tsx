@@ -37,7 +37,7 @@ export default function Profile() {
         <div className="flex flex-col gap-2">
           <Card
             className="cardContainer"
-            shadow="md"
+            shadow="sm"
           >
             <div className="cardHeadingContainer">
               <ProfileIconLight className="cardIconStyle" />
@@ -68,7 +68,7 @@ export default function Profile() {
                     <div
                       onClick={handledUpdateProfile}
                       className="profileUpdateImageUploadBtn">
-                      <EditIcon className="w-[24px] h-[24px] shadow-md" />
+                      <EditIcon className="profileUpdateEditIcon" />
                     </div>
                   </div>
 
@@ -107,10 +107,10 @@ export default function Profile() {
                 </div>
 
                 <div className="profileUpdateInfoContentWrapper laptopL:flex-row">
-                  <div className="w-full flex flex-row">
-                    <ul className="w-full border border-foreground/30 rounded-md p-0 ">
+                  <div className="w-full flex flex-row border p-1 rounded-lg border-foreground/30">
+                    <ul className="w-full border border-foreground/30 rounded-sm p-0 ">
 
-                      <li className="px-2 py-3 grid grid-cols-2">
+                      <li className="profileUpdateInfoItems">
                         <div className="text-xs font-medium tracking-wide textColor flex justify-start items-center">
                           Username:
                         </div>
@@ -122,7 +122,7 @@ export default function Profile() {
                         <hr className="w-[95%] border-foreground/30" />
                       </div>
 
-                      <li className="px-2 py-3 grid grid-cols-2">
+                      <li className="profileUpdateInfoItems">
                         <div className="text-xs font-medium tracking-wide textColor flex justify-start items-center">
                           Email:
                         </div>
@@ -134,7 +134,7 @@ export default function Profile() {
                         <hr className="w-[95%] border-foreground/30" />
                       </div>
 
-                      <li className="px-2 py-3 grid grid-cols-2">
+                      <li className="profileUpdateInfoItems">
                         <div className="text-xs font-medium tracking-wide textColor flex justify-start items-center">
                           Password:
                         </div>
@@ -149,7 +149,7 @@ export default function Profile() {
                         <hr className="w-[95%] border-foreground/30" />
                       </div>
 
-                      <li className="px-2 py-3 grid grid-cols-2">
+                      <li className="profileUpdateInfoItems">
                         <div className="text-xs font-medium tracking-wide textColor flex justify-start items-center">
                           Created on:
                         </div>
@@ -158,11 +158,11 @@ export default function Profile() {
                         </div>
                       </li>
                     </ul>
-                    <div className="flex justify-center items-center px-1">
+                    <div className="flex justify-center items-center ps-1">
                       <div
                         onClick={handledUpdateUserInfo}
                         className="profileUpdateInfoBtn">
-                        <EditIcon className="w-[24px] h-[24px] shadow-md" />
+                        <EditIcon className="profileUpdateEditIcon" />
                       </div>
                     </div>
                   </div>

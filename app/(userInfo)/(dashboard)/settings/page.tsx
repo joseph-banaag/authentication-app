@@ -24,12 +24,10 @@ export default function Settings() {
 
   const changeThemeToLight = () => {
     setTheme("light")
-    location.reload()
   }
 
   const changeThemeToDark = () => {
     setTheme("dark")
-    location.reload()
   }
 
   return (
@@ -71,7 +69,7 @@ export default function Settings() {
                 onClick={changeThemeToLight}
                 size="sm"
                 variant="light"
-                className="border border-default/80 bg-default text-sm font-medium  shadow-xl tracking-normal text-foreground/80 transform hover:scale-105 transition-all duration-300 w-[90px] cursor-pointer flex justify-center items-center"
+                className="border border-default/80 bg-default text-sm font-medium shadow-xl tracking-normal text-foreground/80 transform hover:scale-105 transition-all duration-300 w-[90px] cursor-pointer flex justify-center items-center"
               >
                 Light
                 <SunIcon className="!w-[16px] !h-[16px] flex justify-center items-center textColor" />

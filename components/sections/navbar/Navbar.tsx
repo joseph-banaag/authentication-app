@@ -24,7 +24,7 @@ export default function Topbar() {
     <>
       <Navbar
         onMenuOpenChange={setIsMenuOpen}
-        className="flex flex-wrap p-3 drop-shadow-2xl">
+        className="flex flex-wrap p-3 shadow-2xl">
         <NavbarContent justify="start">
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}

@@ -98,6 +98,7 @@ export async function DELETE(request: Request) {
     const deleteResult = await collection.deleteMany(toDelete);
     console.log("Successfully removed an account");
     return Response.json(deleteResult);
+    
   } catch (error) {
     throw new Error(
       `There was a problem deleting the document. Error: ${error}`

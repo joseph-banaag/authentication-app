@@ -132,7 +132,7 @@ export default function Sidebar() {
       </Card>
 
       <div
-        className="sidebarNavContainer">
+        className="sidebarNavContainer !z-[1000]">
         <Topbar />
       </div>
     </>

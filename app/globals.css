@@ -258,11 +258,11 @@ body {
   }
 
   .navbarContainer {
-    @apply flex flex-wrap justify-center drop-shadow-2xl !gap-0
+    @apply flex flex-wrap justify-center shadow-2xl !gap-0
   }
 
   .navDropdownContainer {
-    @apply rounded-md shadow-2xl shadow-violet-950 bg-background/90 z-50
+    @apply rounded-md drop-shadow-2xl shadow-default/20 bg-background/90 z-50
   }
 
   .navDropdownBase {
@@ -313,7 +313,7 @@ body {
 /** PROFILE MODAL STYLES **/
 @layer utilities {
   .profileModalContainer {
-    @apply absolute z-50 top-5 xl:right-[15%] lg:right-28 md:right-14 right-7 rounded-lg w-[280px] p-1 shadow-xl bg-default/60
+    @apply absolute z-50 top-[5%] mobileM:right-[15%] mobileM:translate-x-0 right-[50%] translate-x-[50%] rounded-lg w-[280px] p-1 drop-shadow-2xl shadow-default/20 bg-default/60
   }
 
   .profileModalEmailContainer {
@@ -364,7 +364,7 @@ body {
   }
 
   .profileModalFormEditIconStyleImg {
-    @apply w-5 h-5 text-white drop-shadow-xl transform hover:scale-105 hover:text-default bg-default hover:bg-default-600 transition-all duration-300 rounded-full p-[2px]
+    @apply w-5 h-5 text-white/90 drop-shadow-2xl transform hover:scale-105 hover:text-white bg-default-600 dark:bg-default hover:bg-emerald-700 dark:hover:bg-emerald-700 transition-all duration-300 rounded-full p-[2px]
   }
 
 
@@ -373,19 +373,19 @@ body {
 /** PAGES STYLES **/
 @layer utilities {
   .pageContainer {
-    @apply w-full min-h-screen flex flex-col md:p-14 sm:p-8 p-4 md:mt-0 mt-14
+    @apply w-full min-h-screen flex flex-col md:p-14 sm:pt-14 pt-12 px-6 md:mt-0 mt-14
   }
 
   .cardContainer {
-    @apply border-none w-full dark:bg-default/50 md:px-3 md:py-4 sm:px-2 sm:py-3 px-1 py-2 rounded-md
+    @apply border-none w-full dark:bg-default/30 md:px-3 md:py-4 sm:px-2 sm:py-3 px-1 py-2 rounded-2xl
   }
 
   .cardHeadingContainer {
-    @apply flex items-center justify-start gap-2
+    @apply flex items-center justify-start gap-2 px-4
   }
 
   .cardIconStyle {
-    @apply text-foreground/90 md:w-[32px] md:h-[32px] w-[30px] h-[30px] 
+    @apply text-foreground/90 md:w-[32px] md:h-[32px] w-[30px] h-[30px]
   }
 
   .cardContentWrapper {
@@ -396,22 +396,29 @@ body {
     @apply flex justify-center items-center relative w-full
   }
 
-  .profileUpdateImagePlaceholder{
+  .profileUpdateImagePlaceholder {
     @apply lg:w-[150px] lg:h-[150px] md:w-[130px] md:h-[130px] w-[100px] h-[100px] text-foreground/80 border-2 border-foreground/80 rounded-full
   }
 
-  .profileUpdateImageUploadBtn{
-    @apply absolute right-[50%] translate-x-[50%] bottom-1 bg-emerald-700 rounded-full p-1 transform hover:scale-105 hover:bg-emerald-950/70 transition-all duration-300 cursor-pointer
+  .profileUpdateImageUploadBtn {
+    @apply absolute right-[50%] translate-x-[50%] -bottom-4 bg-default-600 dark:bg-default rounded-full p-1 transform hover:scale-105 hover:bg-emerald-700 dark:hover:bg-emerald-700 transition-all duration-300 cursor-pointer drop-shadow-xl
   }
 
-  .profileUpdateInfoBtn{
-    @apply bg-emerald-700 rounded-full p-1 transform hover:scale-105 hover:bg-emerald-950/70 transition-all duration-300 cursor-pointer w-[28px] h-[28px] flex justify-center items-center 
+  .profileUpdateInfoBtn {
+    @apply bg-default-600 dark:bg-default rounded-full p-1 transform hover:scale-105 hover:bg-emerald-700 dark:hover:bg-emerald-700 transition-all duration-300 cursor-pointer w-[28px] h-[28px] flex justify-center items-center drop-shadow-xl
   }
 
-  .profileUpdateContentDesignContainer{
+  .profileUpdateContentDesignContainer {
     @apply flex flex-col justify-center items-center gap-4 px-3
   }
 
+  .profileUpdateEditIcon {
+    @apply w-[24px] h-[24px] drop-shadow-md text-white/90
+  }
+
+  .profileUpdateInfoItems {
+    @apply px-2 py-3 mobileM:grid mobileM:grid-cols-2 flex flex-col
+  }
 }
 
 /** PROFILE PAGE STYLES **/
