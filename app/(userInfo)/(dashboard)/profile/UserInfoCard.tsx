@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { EyeFilledIcon } from "@/components/utils/icons/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "@/components/utils/icons/EyeSlashFilledIcon";
 import { useForm, SubmitHandler } from "react-hook-form"
+import { creationDate } from "@/components/lib/createdDate"
 
 
 
@@ -80,8 +81,23 @@ const UserInfoCard = () => {
   const passwordLength = password.length
   const maskedPassword = "*".repeat(passwordLength)
 
+
+
   const handledUpdateUserInfo = () => {
+    const updated_on = `${creationDate}`
+
+    console.log(updated_on)
     console.log("UserInfo updated successfully!")
+
+
+    {/* 
+  // TODO: update: username, password, email, and add new data. updated_on.
+    // once the update is completed the database will receive the updated files + new file called updated_on:
+    username
+    email
+    password
+    updated_on
+  */}
   }
 
   const OnSubmit: SubmitHandler<Inputs> = (data, e) => {
@@ -92,13 +108,20 @@ const UserInfoCard = () => {
   const handleShowPassword = () => {
 
     console.log("the password are matched!")
-    // TODO: add the setPassword here if the logic of checking current password and user provided password is correct
+
+    {/* 
+  // TODO: create a function that will ask user to put the password first before viewing the current password 
+
+  add the setPassword here if the logic of checking current password and user provided password is correct
+  */}
+
   }
   return (
     <>
       <div className="profileUpdateInfoContentWrapper laptopL:flex-row">
-        <div className="w-full flex mobileL:flex-row flex-col border p-1 rounded-lg border-foreground/30 ">
-          <ul className="w-full border border-foreground/30 rounded-sm p-0 ">
+
+        <div className="w-full flex flex-col border pb-1 rounded-[9px] border-foreground/30 ">
+          <ul className="w-full border border-collapse border-foreground/30 rounded-t-lg p-0 ">
 
             <li className="profileUpdateInfoItems">
               <div className="text-xs font-medium tracking-wide textColor flex justify-start items-center">
@@ -160,7 +183,7 @@ const UserInfoCard = () => {
               </div>
             </li>
           </ul>
-          <div className="flex justify-center items-center mobileL:ps-1 pt-1">
+          <div className="flex justify-center items-center pt-1">
             <div
               onClick={handledUpdateUserInfo}
               className="profileUpdateInfoBtn">
@@ -168,6 +191,7 @@ const UserInfoCard = () => {
             </div>
           </div>
         </div>
+
         <div className="profileUpdateContentDesignContainer">
           <div className="laptopL:flex hidden justify-center items-center ">
             <Image

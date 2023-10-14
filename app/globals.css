@@ -149,11 +149,11 @@ body {
   }
 
   .mainRootPageHeader1 {
-    @apply lg:text-lg lg:font-semibold font-normal md:text-medium text-sm text-end drop-shadow-lg text-foreground/90
+    @apply lg:text-lg lg:font-semibold font-medium tracking-wide md:text-medium text-sm text-end drop-shadow-lg
   }
 
   .mainRootPageHeader2 {
-    @apply md:text-sm text-xs text-end mr-1 drop-shadow-md text-foreground/80
+    @apply md:text-sm text-xs text-end mr-1 drop-shadow-md font-medium tracking-wide
   }
 
   .mainRootPageLinks {
@@ -397,7 +397,7 @@ body {
   }
 
   .profileUpdateImagePlaceholder {
-    @apply lg:w-[150px] lg:h-[150px] md:w-[130px] md:h-[130px] w-[100px] h-[100px] text-foreground/80 border-2 border-foreground/80 rounded-full
+    @apply lg:w-[150px] lg:h-[150px] md:w-[130px] md:h-[130px] w-[100px] h-[100px] text-foreground/30 border-2 border-foreground/30 rounded-full
   }
 
   .profileUpdateImageUploadBtn {
@@ -428,7 +428,7 @@ body {
   }
 
   .profileUpdateInfoContentWrapper {
-    @apply border border-foreground/30 rounded-lg px-3 py-8 flex flex-col mobileL:gap-4 justify-center items-center gap-6 relative
+    @apply border border-foreground/30 rounded-lg px-3 py-8 flex flex-col justify-center items-center gap-6 relative
   }
 }
 
@@ -448,7 +448,7 @@ a:hover {
   background-size: cover;
   background-repeat: no-repeat;
   color-scheme: dark;
-  color: #ECEDEE !important;
+  color: hsla(210, 6%, 93%, 0.80) !important;
 }
 
 .lightThemeBg {
@@ -462,7 +462,7 @@ a:hover {
   background-size: cover;
   background-repeat: no-repeat;
   color-scheme: light;
-  color: #11181C !important;
+  color: hsla(202, 24%, 9%, 0.80) !important;
 }
 
 /** DASHBOARD PAGE BACKGROUNDS */
