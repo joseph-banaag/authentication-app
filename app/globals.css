@@ -417,7 +417,7 @@ body {
   }
 
   .profileUpdateInfoItems {
-    @apply px-2 py-3 mobileM:grid mobileM:grid-cols-2 flex flex-col
+    @apply px-2 py-4 mobileM:grid mobileM:grid-cols-2 flex flex-col
   }
 }
 

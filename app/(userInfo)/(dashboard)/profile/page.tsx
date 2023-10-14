@@ -3,15 +3,13 @@ import React from "react";
 import { motion } from "framer-motion"
 import {
   Card,
-  Button,
   Avatar
 } from "@nextui-org/react";
 import { ProfileIconLight } from "@/components/utils/icons/SettingsIcon"
-import ProfileAvatar from "@/components/utils/profileModal/ProfileAvatar";
 import { UserProfilePlaceholder } from "@/components/utils/icons/UserProfilePlaceholder"
 import { EditIcon } from "@/components/utils/icons/UpdateBtns";
 import Image from "next/image";
-
+import UserInfoCard from "./UserInfoCard";
 
 export default function Profile() {
 
@@ -23,9 +21,6 @@ export default function Profile() {
     console.log("Profile photo updated successfully!")
   }
 
-  const handledUpdateUserInfo = () => {
-    console.log("UserInfo updated successfully!")
-  }
   return (
     <>
       <motion.div
@@ -106,104 +101,10 @@ export default function Profile() {
                   </div>
                 </div>
 
-                <div className="profileUpdateInfoContentWrapper laptopL:flex-row">
-                  <div className="w-full flex flex-row border p-1 rounded-lg border-foreground/30">
-                    <ul className="w-full border border-foreground/30 rounded-sm p-0 ">
-
-                      <li className="profileUpdateInfoItems">
-                        <div className="text-xs font-medium tracking-wide textColor flex justify-start items-center">
-                          Username:
-                        </div>
-                        <div className="text-sm text-foreground/90">
-                          Username:
-                        </div>
-                      </li>
-                      <div className="w-full flex justify-end">
-                        <hr className="w-[95%] border-foreground/30" />
-                      </div>
-
-                      <li className="profileUpdateInfoItems">
-                        <div className="text-xs font-medium tracking-wide textColor flex justify-start items-center">
-                          Email:
-                        </div>
-                        <div className="text-sm text-foreground/90">
-                          Email:
-                        </div>
-                      </li>
-                      <div className="w-full flex justify-end">
-                        <hr className="w-[95%] border-foreground/30" />
-                      </div>
-
-                      <li className="profileUpdateInfoItems">
-                        <div className="text-xs font-medium tracking-wide textColor flex justify-start items-center">
-                          Password:
-                        </div>
-                        <div className="text-sm text-foreground/90">
-                          **************
-                          {/* 
-                        //TODO: get the length of the password and convert it to asterisk ****
-                        */}
-                        </div>
-                      </li>
-                      <div className="w-full flex justify-end">
-                        <hr className="w-[95%] border-foreground/30" />
-                      </div>
-
-                      <li className="profileUpdateInfoItems">
-                        <div className="text-xs font-medium tracking-wide textColor flex justify-start items-center">
-                          Created on:
-                        </div>
-                        <div className="text-sm text-foreground/90">
-                          Created on:
-                        </div>
-                      </li>
-                    </ul>
-                    <div className="flex justify-center items-center ps-1">
-                      <div
-                        onClick={handledUpdateUserInfo}
-                        className="profileUpdateInfoBtn">
-                        <EditIcon className="profileUpdateEditIcon" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="profileUpdateContentDesignContainer">
-                    <div className="laptopL:flex hidden justify-center items-center ">
-                      <Image
-                        alt="Update profile image"
-                        src="/assets/settingsIcon/profileUpdate.png"
-                        width={120}
-                        height={120}
-                        style={{
-                          objectFit: "contain",
-                          width: "auto",
-                          height: "auto"
-                        }}
-                      />
-                    </div>
-                    <div className="laptopL:hidden flex justify-center items-center">
-                      <Image
-                        priority
-                        alt="Update profile image"
-                        src="/assets/settingsIcon/profileUpdateL.png"
-                        width={200}
-                        height={200}
-                        style={{
-                          objectFit: "contain",
-                          width: "auto",
-                          height: "auto"
-                        }}
-                      />
-                    </div>
-                    <h1 className="textHeading2Responsive text-center">
-                      Update your info
-                    </h1>
-                  </div>
-                </div>
+                <UserInfoCard />
               </div>
             </div>
           </div>
-
-
         </div>
       </motion.div>
     </>
