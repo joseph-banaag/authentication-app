@@ -16,7 +16,6 @@ import { useModalContext } from "@/app/context/ModalContext";
 
 const PasswordResetModal = () => {
   const { resetReq, setResetReq } = useModalContext()
-
   const {
     register,
     handleSubmit,

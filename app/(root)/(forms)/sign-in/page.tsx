@@ -43,18 +43,6 @@ export default function SignIn() {
   const router = useRouter()
   const pathname = usePathname()
   const { resetReq } = useModalContext()
-
-
-  useEffect(() => {
-    if (pathname === "/sign-in") {
-      sessionStorage.clear();
-    }
-  }, [
-    pathname
-  ])
-
-  const toggleVisibility = () => setIsVisible(!isVisible);
-
   const {
     register,
     handleSubmit,
@@ -67,6 +55,19 @@ export default function SignIn() {
     criteriaMode: "all",
     mode: "all"
   });
+
+
+
+  useEffect(() => {
+    if (pathname === "/sign-in") {
+      sessionStorage.clear();
+    }
+  }, [
+    pathname
+  ])
+
+  const toggleVisibility = () => setIsVisible(!isVisible);
+
 
 
   const OnSubmit: SubmitHandler<Inputs> = (data, e) => {

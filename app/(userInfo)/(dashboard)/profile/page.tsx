@@ -10,6 +10,7 @@ import { UserProfilePlaceholder } from "@/components/utils/icons/UserProfilePlac
 import { EditIcon } from "@/components/utils/icons/UpdateBtns";
 import Image from "next/image";
 import UserInfoCard from "./UserInfoCard";
+import UserInfoUpdateModal from "@/app/(userInfo)/(dashboard)/profile/UserInfoUpdateModal";
 
 export default function Profile() {
 
@@ -23,6 +24,10 @@ export default function Profile() {
 
   return (
     <>
+      <div className="profileModalOverlay  hidden" />
+      <div className="z-[100] hidden">
+        <UserInfoUpdateModal />
+    </div>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

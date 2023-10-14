@@ -8,8 +8,6 @@ import { EyeSlashFilledIcon } from "@/components/utils/icons/EyeSlashFilledIcon"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { creationDate } from "@/components/lib/createdDate"
 
-
-
 const getData = async () => {
   const res = await fetch("http://localhost:3000/api/users", {
     cache: "force-cache"
@@ -33,17 +31,19 @@ const UserInfoCard = () => {
   const [ id, setId ] = useState<string>("")
   const [ createdOn, setCreatedOn ] = useState<string>("")
   const [ showPass, setShowPass ] = useState<boolean>(false)
+  const [ updateUserInfo, setUpdateUserInfo ] = useState<boolean>(false)
+  const {
+    register,
+    handleSubmit,
+    watch,
+  } = useForm<Inputs>();
 
   useEffect(() => {
     setMounted(true)
   }, [
     setMounted
   ])
-  const {
-    register,
-    handleSubmit,
-    watch,
-  } = useForm<Inputs>();
+
 
   if (!mounted) return null
 
@@ -183,9 +183,10 @@ const UserInfoCard = () => {
               </div>
             </li>
           </ul>
+
           <div className="flex justify-center items-center pt-1">
             <div
-              onClick={handledUpdateUserInfo}
+              onClick={() => setUpdateUserInfo(true)}
               className="profileUpdateInfoBtn">
               <EditIcon className="profileUpdateEditIcon" />
             </div>

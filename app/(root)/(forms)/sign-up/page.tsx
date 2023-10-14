@@ -42,21 +42,6 @@ export default function SignUp() {
   const [ clicked, setClicked ] = React.useState(false)
   const [ exist, setExist ] = React.useState(false)
   const pathname = usePathname()
-
-
-  useEffect(() => {
-    if (pathname === "/sign-up") {
-      sessionStorage.clear();
-    }
-  }, [
-    pathname
-  ])
-
-  const router = useRouter()
-
-  const toggleVisibility = () => setIsVisible(!isVisible);
-  const toggleIsConfirmed = () => setIsConfirmed(!isConfirmed)
-
   const {
     register,
     handleSubmit,
@@ -72,6 +57,22 @@ export default function SignUp() {
     criteriaMode: "all",
     mode: "all"
   })
+
+
+  useEffect(() => {
+    if (pathname === "/sign-up") {
+      sessionStorage.clear();
+    }
+  }, [
+    pathname
+  ])
+
+  const router = useRouter()
+
+  const toggleVisibility = () => setIsVisible(!isVisible);
+  const toggleIsConfirmed = () => setIsConfirmed(!isConfirmed)
+
+
 
 
   // this function is for the error message regarding password
@@ -363,7 +364,6 @@ export default function SignUp() {
                 <p className="formErrorMessage">
                   {errors.email?.types?.required && <span>A valid email is required</span>}
                   {errors.email?.types?.pattern && <span>e.g. example@email.com</span>}
-
                 </p>
               </div>
 

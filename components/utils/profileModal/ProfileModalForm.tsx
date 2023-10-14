@@ -23,8 +23,6 @@ const ProfileModalForm = () => {
   const [ editUser, setEditUser ] = useState<boolean>(false)
   const router = useRouter()
 
-  const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
-
   const storedUsername = {
     data: typeof window !== "undefined"
       ? sessionStorage.getItem("username")
@@ -51,6 +49,8 @@ const ProfileModalForm = () => {
   }, [
     setFocus
   ])
+
+  const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 
   const handleEditProfileImg = () => {
     router.push("/profile")
