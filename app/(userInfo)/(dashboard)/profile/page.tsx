@@ -23,6 +23,9 @@ export default function Profile() {
     console.log("Profile photo updated successfully!")
   }
 
+  const handledUpdateUserInfo = () => {
+    console.log("UserInfo updated successfully!")
+  }
   return (
     <>
       <motion.div
@@ -43,7 +46,7 @@ export default function Profile() {
               </h1>
             </div>
           </Card>
-          <div className="cardContentWrapper py-10">
+          <div className="cardContentWrapper py-10 ">
             <div className="items-center ">
               <div className="flex flex-col justify-center items-center">
                 <Avatar
@@ -57,69 +60,144 @@ export default function Profile() {
                 <h1 className="textHeadingResponsive py-10 flex justify-center items-center text-center flex-wrap flex-1">Welcome, {username}</h1>
               </div>
 
-              <div className="lg:grid lg:grid-cols-2 flex flex-col gap-1">
+              <div className="profileUpdateInfoWrapper">
 
-                <div className="border border-foreground/80 rounded-lg px-3 py-8 flex sm:flex-row flex-col mobileL:gap-4 justify-center items-center gap-6 relative">
-                  <div className="border-2 border-foreground/80 rounded-full flex justify-center items-center relative">
-                    <UserProfilePlaceholder className="lg:w-[150px] lg:h-[150px] md:w-[130px] md:h-[130px] w-[100px] h-[100px] text-foreground/80" />
+                <div className="profileUpdateInfoContentWrapper sm:flex-row">
+                  <div className="profileUpdateImageContainer">
+                    <UserProfilePlaceholder className="profileUpdateImagePlaceholder" />
                     <div
                       onClick={handledUpdateProfile}
-                      className="absolute right-[50%] translate-x-[50%] bottom-1 bg-default rounded-full p-1 transform hover:scale-105 hover:bg-default/50 transition-all duration-300 cursor-pointer">
-                      <EditIcon className="w-[24px] h-[24px]" />
+                      className="profileUpdateImageUploadBtn">
+                      <EditIcon className="w-[24px] h-[24px] shadow-md" />
                     </div>
                   </div>
-                  <div className="flex flex-col justify-center items-center gap-3">
+
+                  <div className="profileUpdateContentDesignContainer">
                     <div className="lg:flex hidden justify-center items-center">
                       <Image
                         alt="Update profile image"
                         src="/assets/settingsIcon/customization.png"
                         width={90}
                         height={90}
-                        objectFit="contain"
+                        style={{
+                          objectFit: "contain",
+                          width: "auto",
+                          height: "auto"
+                        }}
                       />
                     </div>
-                    <div className="lg:hidden flex">
+                    <div className="lg:hidden flex justify-center items-center">
                       <Image
+                        priority
                         alt="Update profile image"
                         src="/assets/settingsIcon/accPersonalization.png"
                         width={200}
                         height={200}
-                        objectFit="contain"
+                        style={{
+                          objectFit: "contain",
+                          width: "auto",
+                          height: "auto"
+                        }}
                       />
                     </div>
                     <h1 className="textHeading2Responsive text-center">
                       Update your profile photo
                     </h1>
                   </div>
-
                 </div>
 
-                <div className="border border-foreground/80 rounded-lg px-3 py-8 flex lg:flex-row flex-col justify-center items-center gap-3 relative">
-                  <div className="w-1/2 border">
-                    <ul className="flex flex-col gap-2">
-                      <li>
-                        Username:
+                <div className="profileUpdateInfoContentWrapper laptopL:flex-row">
+                  <div className="w-full flex flex-row">
+                    <ul className="w-full border border-foreground/30 rounded-md p-0 ">
+
+                      <li className="px-2 py-3 grid grid-cols-2">
+                        <div className="text-xs font-medium tracking-wide textColor flex justify-start items-center">
+                          Username:
+                        </div>
+                        <div className="text-sm text-foreground/90">
+                          Username:
+                        </div>
                       </li>
-                      <li>
-                        Email:
+                      <div className="w-full flex justify-end">
+                        <hr className="w-[95%] border-foreground/30" />
+                      </div>
+
+                      <li className="px-2 py-3 grid grid-cols-2">
+                        <div className="text-xs font-medium tracking-wide textColor flex justify-start items-center">
+                          Email:
+                        </div>
+                        <div className="text-sm text-foreground/90">
+                          Email:
+                        </div>
                       </li>
-                      <li>
-                        Password:
+                      <div className="w-full flex justify-end">
+                        <hr className="w-[95%] border-foreground/30" />
+                      </div>
+
+                      <li className="px-2 py-3 grid grid-cols-2">
+                        <div className="text-xs font-medium tracking-wide textColor flex justify-start items-center">
+                          Password:
+                        </div>
+                        <div className="text-sm text-foreground/90">
+                          **************
+                          {/* 
+                        //TODO: get the length of the password and convert it to asterisk ****
+                        */}
+                        </div>
                       </li>
-                      <li>
-                        Created on:
+                      <div className="w-full flex justify-end">
+                        <hr className="w-[95%] border-foreground/30" />
+                      </div>
+
+                      <li className="px-2 py-3 grid grid-cols-2">
+                        <div className="text-xs font-medium tracking-wide textColor flex justify-start items-center">
+                          Created on:
+                        </div>
+                        <div className="text-sm text-foreground/90">
+                          Created on:
+                        </div>
                       </li>
                     </ul>
+                    <div className="flex justify-center items-center px-1">
+                      <div
+                        onClick={handledUpdateUserInfo}
+                        className="profileUpdateInfoBtn">
+                        <EditIcon className="w-[24px] h-[24px] shadow-md" />
+                      </div>
+                    </div>
                   </div>
-
-                  <div className="w-1/2 border">
-                    <div>image1</div>
-                    <div>image2</div>
-                    <h2 className="tracking-wide text-foreground/90 font-medium text-lg drop-shadow-md text-center">
-                      Update your account information
-                    </h2>
+                  <div className="profileUpdateContentDesignContainer">
+                    <div className="laptopL:flex hidden justify-center items-center ">
+                      <Image
+                        alt="Update profile image"
+                        src="/assets/settingsIcon/profileUpdate.png"
+                        width={120}
+                        height={120}
+                        style={{
+                          objectFit: "contain",
+                          width: "auto",
+                          height: "auto"
+                        }}
+                      />
+                    </div>
+                    <div className="laptopL:hidden flex justify-center items-center">
+                      <Image
+                        priority
+                        alt="Update profile image"
+                        src="/assets/settingsIcon/profileUpdateL.png"
+                        width={200}
+                        height={200}
+                        style={{
+                          objectFit: "contain",
+                          width: "auto",
+                          height: "auto"
+                        }}
+                      />
+                    </div>
+                    <h1 className="textHeading2Responsive text-center">
+                      Update your info
+                    </h1>
                   </div>
-
                 </div>
               </div>
             </div>

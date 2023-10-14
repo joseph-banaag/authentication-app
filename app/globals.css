@@ -385,14 +385,45 @@ body {
   }
 
   .cardIconStyle {
-    @apply text-foreground/90 md:w-[32px] md:h-[32px] w-[30px] h-[30px]
+    @apply text-foreground/90 md:w-[32px] md:h-[32px] w-[30px] h-[30px] 
   }
 
   .cardContentWrapper {
-    @apply flex flex-col gap-5 optionList
+    @apply flex flex-col gap-5 optionList w-full
   }
+
+  .profileUpdateImageContainer {
+    @apply flex justify-center items-center relative w-full
+  }
+
+  .profileUpdateImagePlaceholder{
+    @apply lg:w-[150px] lg:h-[150px] md:w-[130px] md:h-[130px] w-[100px] h-[100px] text-foreground/80 border-2 border-foreground/80 rounded-full
+  }
+
+  .profileUpdateImageUploadBtn{
+    @apply absolute right-[50%] translate-x-[50%] bottom-1 bg-emerald-700 rounded-full p-1 transform hover:scale-105 hover:bg-emerald-950/70 transition-all duration-300 cursor-pointer
+  }
+
+  .profileUpdateInfoBtn{
+    @apply bg-emerald-700 rounded-full p-1 transform hover:scale-105 hover:bg-emerald-950/70 transition-all duration-300 cursor-pointer w-[28px] h-[28px] flex justify-center items-center 
+  }
+
+  .profileUpdateContentDesignContainer{
+    @apply flex flex-col justify-center items-center gap-4 px-3
+  }
+
 }
 
+/** PROFILE PAGE STYLES **/
+@layer utilities {
+  .profileUpdateInfoWrapper {
+    @apply lg:grid lg:grid-cols-2 flex flex-col gap-3
+  }
+
+  .profileUpdateInfoContentWrapper {
+    @apply border border-foreground/30 rounded-lg px-3 py-8 flex flex-col mobileL:gap-4 justify-center items-center gap-6 relative
+  }
+}
 
 a:hover {
   text-decoration: none;
