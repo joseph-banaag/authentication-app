@@ -3,7 +3,7 @@ import { bgIllustration } from "@/components/constants";
 import { Image } from '@nextui-org/react';
 
 
-const IllustrationSigUp = () => {
+const IllustrationSigUp = (): React.JSX.Element | null => {
   return (
     <>
       <div className="illustrationContainer">

@@ -19,7 +19,7 @@ const getData = async () => {
   return res.json()
 }
 
-const UserInfoUpdateModal = (): React.ReactNode => {
+const UserInfoUpdateModal = (): React.JSX.Element | null => {
   const [ mounted, setMounted ] = useState<boolean>(false)
   const [ username, setUsername ] = useState<string>("")
   const [ email, setEmail ] = useState<string>("")

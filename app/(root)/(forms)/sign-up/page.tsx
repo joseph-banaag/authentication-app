@@ -36,7 +36,7 @@ const getData = async () => {
 }
 
 // * main function here...
-export default function SignUp(): React.ReactNode {
+export default function SignUp(): React.JSX.Element | null {
   const [ isVisible, setIsVisible ] = React.useState(false);
   const [ isConfirmed, setIsConfirmed ] = React.useState(false);
   const [ clicked, setClicked ] = React.useState(false)

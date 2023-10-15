@@ -1,7 +1,7 @@
 import React from 'react'
 import { SunIcon } from "@/components/utils/icons/SunIcon"
 
-const ToggleLightStyle = (): React.ReactNode => {
+const ToggleLightStyle = (): React.JSX.Element | null => {
   return (
     <>
       <div className="sm:w-11 sm:h-5 w-9 h-4 rounded-full bg-violet-600 flex items-center sm:ps-2 ps-[5px]">

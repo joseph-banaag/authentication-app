@@ -25,7 +25,7 @@ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
-}) {
+}): React.JSX.Element | null {
   const [ client, setClient ] = React.useState<boolean>(false)
   React.useEffect(() => {
     setClient(true)
@@ -53,8 +53,8 @@ export default function RootLayout({
         <React.StrictMode>
           <ThemeProvider>
             <ModalContextProvider>
-            <Topbar />
-            {children}
+              <Topbar />
+              {children}
               <Footer />
             </ModalContextProvider>
           </ThemeProvider>

@@ -2,7 +2,7 @@ import { Image } from '@nextui-org/react'
 import React from 'react'
 import { bgIllustration } from "@/components/constants";
 
-const IllustrationSignIn = () => {
+const IllustrationSignIn = (): React.JSX.Element | null => {
   return (
     <>
       <div className="illustrationContainer">

@@ -7,7 +7,7 @@ export default function Error({
   error,
 }: {
   error: Error & { digest?: string }
-}) {
+  }): React.JSX.Element | null {
   const [ isClient, setIsClient ] = useState<boolean>(false)
 
   useEffect(() => {

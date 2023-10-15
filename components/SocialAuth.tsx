@@ -6,7 +6,7 @@ import { Button } from "@nextui-org/react";
 
 // TODO: setup nextAuth here...
 
-export default function SocialAuth(): React.ReactNode {
+export default function SocialAuth(): React.JSX.Element | null {
   return (
     <>
       <div className="flex items-center justify-evenly gap-[3px]">

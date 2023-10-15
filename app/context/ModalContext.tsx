@@ -13,7 +13,7 @@ interface ModalContextType {
 const ModalContext = createContext<ModalContextType | undefined>(undefined)
 
 
-const ModalContextProvider = ({ children }: { children: React.ReactNode }) => {
+const ModalContextProvider = ({ children }: { children: React.ReactNode }): React.JSX.Element | null => {
   const [ displayOn, setDisplayOn ] = useState<boolean>(false)
   const [ resetReq, setResetReq ] = useState<boolean>(false)
   const [ mounted, setMounted ] = useState<boolean>(false)

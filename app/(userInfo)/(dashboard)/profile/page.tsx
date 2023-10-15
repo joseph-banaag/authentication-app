@@ -13,7 +13,7 @@ import UserInfoCard from "@/app/(userInfo)/(dashboard)/profile/components/UserIn
 import UserInfoUpdateModal from "@/app/(userInfo)/(dashboard)/profile/components/UserInfoUpdateModal";
 import { useModalContext } from "@/app/context/ModalContext";
 
-export default function Profile(): React.ReactNode {
+export default function Profile(): React.JSX.Element | null {
   const {
     updateUserInfo,
     setUpdateUserInfo

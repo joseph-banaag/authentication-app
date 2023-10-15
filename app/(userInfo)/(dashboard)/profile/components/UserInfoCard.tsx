@@ -23,7 +23,7 @@ interface Inputs {
   password: string;
 }
 
-const UserInfoCard = (): React.ReactNode => {
+const UserInfoCard = (): React.JSX.Element | null => {
   const pathname = usePathname()
   const [ mounted, setMounted ] = useState<boolean>(false)
   const [ username, setUsername ] = useState<string>("")

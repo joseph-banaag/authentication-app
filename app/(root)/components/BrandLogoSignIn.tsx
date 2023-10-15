@@ -2,7 +2,7 @@ import { Image } from '@nextui-org/react'
 import React from 'react'
 import { Company } from "@/components/constants";
 
-const BrandLogoSignIn = () => {
+const BrandLogoSignIn = (): React.JSX.Element | null => {
   return (
     <>
       <div className="formBrandContainer">

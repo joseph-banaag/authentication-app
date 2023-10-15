@@ -25,7 +25,7 @@ export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode
-}) {
+  }): React.JSX.Element | null {
   const [ client, setClient ] = React.useState<boolean>(false)
   React.useEffect(() => {
     setClient(true)

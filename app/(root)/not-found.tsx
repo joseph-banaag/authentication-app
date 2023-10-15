@@ -7,7 +7,7 @@ export default function NotFound({
   error,
 }: {
   error: Error & { digest?: string }
-}) {
+  }): React.JSX.Element | null {
   const [ isClient, setIsClient ] = useState<boolean>(false)
 
   useEffect(() => {

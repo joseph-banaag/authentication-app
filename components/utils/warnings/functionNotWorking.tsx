@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function FuncNotWorking(): React.ReactNode {
+export default function FuncNotWorking(): React.JSX.Element | null {
   return (
     <>
           <p className="text-xs font-normal text-red-500">

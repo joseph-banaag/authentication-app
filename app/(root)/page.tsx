@@ -18,7 +18,7 @@ const dancing = Dancing_Script({
 })
 
 
-export default function Home() {
+export default function Home(): JSX.Element | null {
   const pathname = usePathname()
 
   useEffect(() => {

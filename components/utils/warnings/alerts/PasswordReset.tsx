@@ -7,7 +7,7 @@ import {
 import { useModalContext } from "@/app/context/ModalContext";
 
 
-const PasswordReset = (): React.ReactNode => {
+const PasswordReset = (): React.JSX.Element | null => {
   const { theme } = useTheme()
   const [ client, setClient ] = useState<boolean>(false)
   const { resetReq, setResetReq } = useModalContext()

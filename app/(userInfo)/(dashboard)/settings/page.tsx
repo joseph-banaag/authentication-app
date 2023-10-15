@@ -14,7 +14,7 @@ import { MoonIcon } from "@/components/utils/icons/MoonIcon";
 import { SunIcon } from "@/components/utils/icons/SunIcon";
 
 
-export default function Settings(): React.ReactNode {
+export default function Settings(): React.JSX.Element | null {
   const { theme, setTheme } = useTheme()
   const [ client, setClient ] = useState<boolean>(false)
 
