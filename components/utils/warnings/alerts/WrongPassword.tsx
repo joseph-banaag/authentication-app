@@ -4,7 +4,7 @@ import { Card, CardBody, Button, CardFooter } from "@nextui-org/react";
 import AlertSpinner from "@/components/lib/AlertSpinner";
 
 
-export default function WrongPassword() {
+export default function WrongPassword(): React.ReactNode {
   const [ clicked, setClicked ] = React.useState(false)
 
   const handleClick = () => {

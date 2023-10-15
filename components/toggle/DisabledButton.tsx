@@ -1,7 +1,7 @@
 import { Button } from "@nextui-org/react"
 import React from 'react'
 
-const DisabledButton = () => {
+const DisabledButton = (): React.ReactNode => {
   return (
     <Button
       type="submit"

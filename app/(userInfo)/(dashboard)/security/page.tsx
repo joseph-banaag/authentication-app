@@ -10,7 +10,7 @@ import { DeleteIcon } from "@/components/utils/icons/DeleteIcon"
 import Link from "next/link";
 
 
-export default function Security() {
+export default function Security(): React.ReactNode {
   const [ isChanged, setIsChanged ] = useState<boolean>(false)
 
   const handleAccountDeletion = () => {

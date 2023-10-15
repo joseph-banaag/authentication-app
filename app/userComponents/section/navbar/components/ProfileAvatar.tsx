@@ -1,7 +1,7 @@
 import { Avatar } from "@nextui-org/react"
 import React from 'react'
 
-const ProfileAvatar = () => {
+const ProfileAvatar = (): React.ReactNode => {
 
   const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 

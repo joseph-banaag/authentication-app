@@ -9,10 +9,10 @@ import { ProfileIconLight } from "@/components/utils/icons/SettingsIcon"
 import { UserProfilePlaceholder } from "@/components/utils/icons/UserProfilePlaceholder"
 import { EditIcon } from "@/components/utils/icons/UpdateBtns";
 import Image from "next/image";
-import UserInfoCard from "./UserInfoCard";
-import UserInfoUpdateModal from "@/app/(userInfo)/(dashboard)/profile/UserInfoUpdateModal";
+import UserInfoCard from "@/app/(userInfo)/(dashboard)/profile/components/UserInfoCard";
+import UserInfoUpdateModal from "@/app/(userInfo)/(dashboard)/profile/components/UserInfoUpdateModal";
 
-export default function Profile() {
+export default function Profile(): React.ReactNode {
 
   const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 

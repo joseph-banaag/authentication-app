@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import ToggleLightStyle from "@/components/toggle/ToggleLightStyle"
 import ToggleDarkStyle from "@/components/toggle/ToggleDarkStyle"
 
-const ThemeSwitcher = () => {
+const ThemeSwitcher = (): React.ReactNode => {
   const { theme, setTheme } = useTheme()
   const [ client, setClient ] = useState<boolean>(false)
   const [ clicked, setClicked ] = useState<boolean>(false)

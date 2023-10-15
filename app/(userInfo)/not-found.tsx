@@ -5,10 +5,8 @@ import { Image } from "@nextui-org/react"
 
 export default function NotFound({
   error,
-  reset,
 }: {
   error: Error & { digest?: string }
-  reset: () => void
 }) {
   const [ isClient, setIsClient ] = useState<boolean>(false)
 
@@ -32,7 +30,7 @@ export default function NotFound({
           }}
           className='fadeIn'
         />
-        <button onClick={() => reset()} className="bg-[#661fe0] px-5 py-2 rounded-2xl text-xl font-semibold">Try again</button>
+        <button onClick={() => location.reload()} className="bg-[#661fe0] px-5 py-2 rounded-2xl text-xl font-semibold">Try again</button>
       </div>
     </>
   )

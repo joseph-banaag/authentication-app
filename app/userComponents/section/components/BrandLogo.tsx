@@ -2,7 +2,7 @@ import React from 'react'
 import Image from "next/image";
 import { Link } from '@nextui-org/react';
 
-export default function BrandLogo() {
+export default function BrandLogo(): React.ReactNode {
 
   const logo = {
     src: "/assets/logo/user_logo.svg",

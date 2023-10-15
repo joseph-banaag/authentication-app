@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import AlertSpinner from "@/components/lib/AlertSpinner";
 
 
-export default function NoAccountFound() {
+export default function NoAccountFound(): React.ReactNode {
     const [ clicked, setClicked ] = React.useState(false)
     const router = useRouter()
 

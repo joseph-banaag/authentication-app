@@ -1,7 +1,7 @@
 import SkeletonLoader from "@/components/skeletons/Loader"
 import React from 'react'
 
-export default function Loading() {
+export default function Loading(): React.ReactNode {
   return (
     <>
       <SkeletonLoader />

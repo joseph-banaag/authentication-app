@@ -14,11 +14,11 @@ import {
   Card,
   Image
 } from "@nextui-org/react";
-import ProfileAvatar from "@/components/utils/profileModal/ProfileAvatar"
 import Topbar from "@/app/userComponents/section/navbar/Navbar";
+import ProfileAvatar from "../navbar/components/ProfileAvatar";
 
 
-export default function Sidebar() {
+export default function Sidebar(): React.ReactNode {
   const pathname = usePathname()
   const router = useRouter()
   const [ username, setUsername ] = useState<string>("")

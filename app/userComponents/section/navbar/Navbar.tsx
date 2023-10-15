@@ -21,9 +21,9 @@ import { useEffect, useState } from "react";
 import { SunIcon } from "@/components/utils/icons/SunIcon";
 import { MoonIcon } from "@/components/utils/icons/MoonIcon";
 import BrandLogo from "@/app/userComponents/section/components/BrandLogo";
-import ProfileAvatar from "@/components/utils/profileModal/ProfileAvatar";
-import ProfileModal from "@/components/utils/profileModal/ProfileModal";
 import { useModalContext } from "@/app/context/ModalContext";
+import ProfileModal from "@/app/userComponents/section/navbar/components/ProfileModal";
+import ProfileAvatar from "@/app/userComponents/section/navbar/components/ProfileAvatar";
 
 
 const getData = async () => {
@@ -36,7 +36,7 @@ const getData = async () => {
   return res.json()
 }
 
-export default function Topbar() {
+export default function Topbar(): React.ReactNode {
   const pathname = usePathname()
   const { theme, setTheme } = useTheme()
   const [ userName, setUserName ] = useState<string>("")

@@ -57,7 +57,7 @@ export default function Home() {
         </div>
         <div className="mainRootPageHeaderContainer">
           <div className="mainRootPageHeaderWrapper">
-            <h1 className="mainRootPageHeader1">Click <Link href="/sign-up" className="mainRootPageLinks mainRootPageHeader1">Sign Up</Link> to create an account.</h1>
+            <h1 className="mainRootPageHeader1">Click <Link href="/sign-up" className="mainRootPageLinks mainRootPageHeader1">Sign Up</Link> to create an account</h1>
           </div>
           <div className="mainRootPageHeaderWrapper">
             <h2 className="mainRootPageHeader2">Access your existing account? Click <Link href="/sign-in" className="mainRootPageLinks mainRootPageHeader2">Sign In</Link></h2>

@@ -15,7 +15,7 @@ import { usePathname, useRouter } from "next/navigation"
 interface Inputs {
   username: string
 }
-const ProfileModalForm = () => {
+const ProfileModalForm = (): React.ReactNode => {
   const {
     displayOn,
     setDisplayOn } = useModalContext()

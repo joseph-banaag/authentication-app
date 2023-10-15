@@ -14,7 +14,7 @@ import FuncNotWorking from "@/components/utils/warnings/functionNotWorking";
 import { useModalContext } from "@/app/context/ModalContext";
 
 
-const PasswordResetModal = () => {
+const PasswordResetModal = (): React.ReactNode => {
   const { resetReq, setResetReq } = useModalContext()
   const {
     register,

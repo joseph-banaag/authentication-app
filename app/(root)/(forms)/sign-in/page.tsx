@@ -35,7 +35,7 @@ const getData = async () => {
 }
 
 //  main function here...
-export default function SignIn() {
+export default function SignIn(): React.ReactNode {
   const [ isVisible, setIsVisible ] = React.useState<boolean>(false);
   const [ clicked, setClicked ] = React.useState<boolean>(false)
   const [ noAccount, setNoAccount ] = React.useState<boolean>(false)
@@ -55,7 +55,6 @@ export default function SignIn() {
     criteriaMode: "all",
     mode: "all"
   });
-
 
 
   useEffect(() => {

@@ -1,11 +1,11 @@
 "use client"
 import { useModalContext } from "@/app/context/ModalContext"
 import React, { useEffect, useState } from 'react'
-import ProfileModalForm from "@/components/utils/profileModal/ProfileModalForm"
 import { useTheme } from "next-themes"
+import ProfileModalForm from "@/app/userComponents/section/navbar/components/ProfileModalForm"
 
 
-const ProfileModal = () => {
+const ProfileModal = (): React.ReactNode => {
   const {
     displayOn,
   } = useModalContext()
