@@ -21,7 +21,7 @@ const metadata: Metadata = {
 }
 
 
-export default function SettingsLayout({
+export default function UserLayout({
   children,
 }: {
   children: React.ReactNode

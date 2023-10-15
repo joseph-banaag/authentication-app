@@ -26,6 +26,7 @@ const UserInfoUpdateModal = (): React.ReactNode => {
   const [ password, setPassword ] = useState<string>("")
   const [ id, setId ] = useState<string>("")
   const [ createdOn, setCreatedOn ] = useState<string>("")
+
   const {
     register,
     handleSubmit,
@@ -39,6 +40,7 @@ const UserInfoUpdateModal = (): React.ReactNode => {
     criteriaMode: "all",
     mode: "all"
   })
+
 
   useEffect(() => {
     setMounted(true)
@@ -82,15 +84,17 @@ const UserInfoUpdateModal = (): React.ReactNode => {
 
   const OnSubmit: SubmitHandler<Inputs> = async (data, e) => {
     e?.preventDefault
-    console.log(data)
+    console.log(data.username)
   }
 
+  // TODO: FORM IS NOT WORKING. data is not getting the value from the form
 
   return (
     <>
-      <div className="absolute top-[15%] right-[50%] translate-x-[50%] border-2 border-default w-[50%] bg-default/90 p-10 rounded-2xl">
+      <div className="absolute top-[15%] right-[50%] translate-x-[50%] border-2 border-default w-[80%] max-w-[700px] bg-default/90 md:p-10 sm:p-7 mobileL:p-5 p-3 rounded-2xl fadeIn">
         <div className="flex flex-col justify-center items-center gap-3">
           <form onSubmit={handleSubmit(OnSubmit)} className='flex flex-col gap-7'>
+            <small className="text-warning animate animate-pulse">Form is not yet working</small>
             <ul className="w-full border-2 border-collapse border-foreground/30 rounded-lg px-2 py-3 ">
               {/*** USERNAME ***/}
               <li className="profileUpdateInfoItems">
@@ -213,7 +217,9 @@ const UserInfoUpdateModal = (): React.ReactNode => {
               </li>
             </ul>
           </form>
-          <SaveIcon className="w-10 h-10 text-success-300 hover:text-success-400 transform hover:scale-105 transition-all duration-300" />
+          <SaveIcon
+            onClick={OnSubmit}
+            className="w-10 h-10 text-success-700 hover:text-success-600  dark:text-success-300 dark:hover:text-success-400 transform hover:scale-105 transition-all duration-300" />
         </div>
       </div>
     </>

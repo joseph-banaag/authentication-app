@@ -254,7 +254,7 @@ body {
 /** USER NAVBAR STYLES **/
 @layer utilities {
   .profileModalOverlay {
-    @apply z-[48] w-full h-screen fixed backdrop-blur-sm
+    @apply z-[48] w-full h-[100%] fixed backdrop-blur-sm
   }
 
   .navbarContainer {
@@ -332,7 +332,7 @@ body {
   }
 
   .profileModalFormSaveIcon {
-    @apply w-6 h-6 text-success-100 transform hover:scale-105 transition-all duration-300
+    @apply w-6 h-6 text-success-300 hover:text-success-400 transform hover:scale-105 transition-all duration-300 
   }
 
   .profileModalFormContainer {

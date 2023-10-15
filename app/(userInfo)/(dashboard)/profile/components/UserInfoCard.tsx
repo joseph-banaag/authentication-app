@@ -7,6 +7,7 @@ import { EyeFilledIcon } from "@/components/utils/icons/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "@/components/utils/icons/EyeSlashFilledIcon";
 import { useForm, SubmitHandler } from "react-hook-form"
 import { creationDate } from "@/components/lib/createdDate"
+import { useModalContext } from "@/app/context/ModalContext";
 
 const getData = async () => {
   const res = await fetch("http://localhost:3000/api/users", {
@@ -31,7 +32,11 @@ const UserInfoCard = (): React.ReactNode => {
   const [ id, setId ] = useState<string>("")
   const [ createdOn, setCreatedOn ] = useState<string>("")
   const [ showPass, setShowPass ] = useState<boolean>(false)
-  const [ updateUserInfo, setUpdateUserInfo ] = useState<boolean>(false)
+  const {
+    updateUserInfo,
+    setUpdateUserInfo
+  } = useModalContext()
+
   const {
     register,
     handleSubmit,
@@ -43,7 +48,6 @@ const UserInfoCard = (): React.ReactNode => {
   }, [
     setMounted
   ])
-
 
   if (!mounted) return null
 

@@ -6,6 +6,8 @@ interface ModalContextType {
   setDisplayOn: (displayOn: boolean) => void,
   resetReq: boolean,
   setResetReq: (resetReq: boolean) => void,
+  updateUserInfo: boolean,
+  setUpdateUserInfo: (updateUserInfo: boolean) => void
 }
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined)
@@ -15,6 +17,8 @@ const ModalContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [ displayOn, setDisplayOn ] = useState<boolean>(false)
   const [ resetReq, setResetReq ] = useState<boolean>(false)
   const [ mounted, setMounted ] = useState<boolean>(false)
+  const [ updateUserInfo, setUpdateUserInfo ] = useState<boolean>(false)
+
 
   useEffect(() => {
     setMounted(true)
@@ -25,7 +29,8 @@ const ModalContextProvider = ({ children }: { children: React.ReactNode }) => {
     <>
       <ModalContext.Provider value={{
         displayOn, setDisplayOn,
-        resetReq, setResetReq
+        resetReq, setResetReq,
+        updateUserInfo, setUpdateUserInfo
       }}>
         {children}
       </ModalContext.Provider>

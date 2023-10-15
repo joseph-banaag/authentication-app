@@ -1,5 +1,5 @@
 "use client"
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion"
 import {
   Card,
@@ -11,8 +11,13 @@ import { EditIcon } from "@/components/utils/icons/UpdateBtns";
 import Image from "next/image";
 import UserInfoCard from "@/app/(userInfo)/(dashboard)/profile/components/UserInfoCard";
 import UserInfoUpdateModal from "@/app/(userInfo)/(dashboard)/profile/components/UserInfoUpdateModal";
+import { useModalContext } from "@/app/context/ModalContext";
 
 export default function Profile(): React.ReactNode {
+  const {
+    updateUserInfo,
+    setUpdateUserInfo
+  } = useModalContext()
 
   const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 
@@ -24,10 +29,12 @@ export default function Profile(): React.ReactNode {
 
   return (
     <>
-      <div className="profileModalOverlay  hidden" />
-      <div className="z-[100] hidden">
+      <div
+        onClick={() => setUpdateUserInfo(false)}
+        className={`profileModalOverlay  ${updateUserInfo ? "block" : "hidden"}`} />
+      <div className={`z-[100]  ${updateUserInfo ? "block" : "hidden"}`}>
         <UserInfoUpdateModal />
-    </div>
+      </div>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
