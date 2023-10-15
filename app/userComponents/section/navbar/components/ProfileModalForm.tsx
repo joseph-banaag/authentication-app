@@ -122,6 +122,7 @@ const ProfileModalForm = (): React.ReactNode => {
           </p>
           <button
             type="submit"
+            name="submit"
             className="absolute top-2 right-2"
           >
             <SaveIcon className="profileModalFormSaveIcon" />

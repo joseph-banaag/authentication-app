@@ -1,0 +1,136 @@
+      
+        <div className="flex flex-col justify-center items-center gap-3">
+          <form
+            onSubmit={handleSubmit(OnSubmit)}
+            className='flex flex-col gap-7'>
+            <small className="text-warning animate animate-pulse">Form is not yet working</small>
+            <ul className="w-full border-2 border-collapse border-foreground/30 rounded-lg px-2 py-3 ">
+              {/*** USERNAME ***/}
+              <li className="profileUpdateInfoItems">
+                <div className="text-xs font-medium tracking-wide textColor flex justify-start items-center">
+                  Username:
+                </div>
+                <div className="flex flex-col">
+                  <Input
+                    autoComplete="off"
+                    aria-autocomplete="none"
+                    aria-labelledby="username"
+                    id="username"
+                    isClearable
+                    type="text"
+                    variant="bordered"
+                    label="Username"
+                    className="w-full flex-1"
+                    classNames={{
+                      inputWrapper: "formInputWrapper",
+                      label: "formLabel",
+                      input: "formInput"
+                    }}
+                    {...register("username", {
+                      required: true,
+                      pattern: /[\w!@#$%^&*()-+=<>?/\\,.;:'"[\]{}|]{3,}/gi
+                    })}
+                    name="username"
+                  />
+                  <p className="formErrorMessage">
+                    {errors.username?.types?.required && <span>Username is required</span>}
+                    {errors.username?.types?.pattern && <span>Space is not allowed and at least 3 characters</span>}
+                  </p>
+                </div>
+              </li>
+              <div className="w-full flex justify-end">
+                <hr className="w-[95%] border-foreground/30" />
+              </div>
+
+              {/*** EMAIL ***/}
+              <li className="profileUpdateInfoItems">
+                <div className="text-xs font-medium tracking-wide textColor flex justify-start items-center">
+                  Email:
+                </div>
+                <div className="flex flex-col">
+                  <Input
+                    autoComplete="off"
+                    aria-autocomplete="none"
+                    aria-labelledby="email"
+                    id="email"
+                    isClearable
+                    type="email"
+                    variant="bordered"
+                    label="Email"
+                    className="w-full flex-1"
+                    classNames={{
+                      inputWrapper: "formInputWrapper",
+                      label: "formLabel",
+                      input: "formInput"
+                    }}
+                    {...register("email", {
+                      required: true,
+                      pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/gi
+                    })}
+                    name="email"
+                  />
+                  <p className="formErrorMessage">
+                    {errors.email?.types?.required && <span>A valid email is required</span>}
+                    {errors.email?.types?.pattern && <span>e.g. example@email.com</span>}
+                  </p>
+                </div>
+              </li>
+              <div className="w-full flex justify-end">
+                <hr className="w-[95%] border-foreground/30" />
+              </div>
+
+              {/*** PASSWORD ***/}
+              <li className="profileUpdateInfoItems">
+                <div className="text-xs font-medium tracking-wide textColor flex justify-start items-center">
+                  Password:
+                </div>
+                <div className="flex flex-col">
+                  <Input
+                    autoComplete="off"
+                    aria-autocomplete="none"
+                    aria-labelledby="password"
+                    id="password"
+                    variant="bordered"
+                    label="Password"
+                    classNames={{
+                      inputWrapper: "formInputWrapper",
+                      label: "formLabel",
+                      input: "formInput"
+                    }}
+
+                    type="text"
+                    className="w-full flex-1"
+                    {...register("password", {
+                      pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/,
+                      required: true
+                    })}
+                    name="password"
+                  />
+                  <p className="formErrorMessage">
+                    {errors.password?.types?.required && <span>Password is required</span>}
+                    {errors.password?.types?.pattern && <span className="max-w-[30em] flex flex-wrap flex-shrink">Minimum password of 8 and must have an uppercase, lowercase, number, and special character.</span>}
+                  </p>
+                </div>
+              </li>
+              <div className="w-full flex justify-end">
+                <hr className="w-[95%] border-foreground/30" />
+              </div>
+
+              <li className="profileUpdateInfoItems">
+                <div className="text-xs font-medium tracking-wide textColor flex justify-start items-center">
+                  Created on:
+                </div>
+                <div className="text-sm text-foreground/90 min-w-[100px] ">
+                  {createdOn}
+                </div>
+              </li>
+            </ul>
+          </form>
+          <button
+            type="submit"
+            name="submit"
+          >
+            submit
+          </button>
+        </div>
+      </div>

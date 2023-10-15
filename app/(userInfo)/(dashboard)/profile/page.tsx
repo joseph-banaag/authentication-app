@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion"
 import {
   Card,
@@ -14,6 +14,15 @@ import UserInfoUpdateModal from "@/app/(userInfo)/(dashboard)/profile/components
 import { useModalContext } from "@/app/context/ModalContext";
 
 export default function Profile(): React.JSX.Element | null {
+  const [ mounted, setMounted ] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [
+    setMounted
+  ])
+
+
   const {
     updateUserInfo,
     setUpdateUserInfo
