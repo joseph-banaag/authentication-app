@@ -4,6 +4,7 @@ import { Input } from "@nextui-org/react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { creationDate } from "@/components/lib/createdDate"
 import { EditIcon } from "@/components/utils/icons/UpdateBtns";
+import Image from "next/image";
 
 
 type Inputs = {
@@ -32,6 +33,10 @@ const UserInfoUpdateModal = (): React.JSX.Element | null => {
   const [ isSuccessUsername, setIsSuccessUsername ] = useState(false)
   const [ isSuccessEmail, setIsSuccessEmail ] = useState(false)
   const [ isSuccessPassword, setIsSuccessPassword ] = useState(false)
+
+  console.log(isSuccessEmail)
+  console.log(isSuccessPassword)
+  console.log(isSuccessUsername)
 
   const {
     register,
@@ -82,42 +87,98 @@ const UserInfoUpdateModal = (): React.JSX.Element | null => {
   }
   completeUserDetail()
 
+  // click the modal for show password and edit profile if the password is correct turn the state for modal to false and turn the state of the modal for edit password to true 
 
-  // TODO: fix the error when these feature is added to the form. see the console for the error message. 
+  // TODO: ASKED FOR THE USER PASSWORD BEFORE ENABLING THE EDIT PROFILE FORM
 
-  const updateUsername = watch("username")
-  const usernamePattern = /[\w!@#$%^&*()-+=<>?/\\,.;:'"[\]{}|]{3,}/gi
-  const checkUsernamePattern = usernamePattern.test(updateUsername)
-  if (checkUsernamePattern === true) {
-    // setIsSuccessUsername(true)
+
+  // TODO: Need fixing. The feature below cause infinite loop due to multiple rerenders
+  {/*
+  const changedUsernameToSuccess = () => {
+    const updateUsername = watch("username")
+    const usernamePattern = /[\w!@#$%^&*()-+=<>?/\\,.;:'"[\]{}|]{3,}/gi
+    const checkUsernamePattern = usernamePattern.test(updateUsername)
+    console.log(checkUsernamePattern)
+    if (checkUsernamePattern === true) {
+      // setIsSuccessUsername(true)
+    }
+  }
+  if (watch("username") !== "") {
+    changedUsernameToSuccess()
   }
 
-  const updateEmail = watch("email")
-  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/gi
-  const checkEmailPattern = emailPattern.test(updateEmail)
-  if (checkEmailPattern === true) {
-    // setIsSuccessEmail(true)
+  const changedPasswordToSuccess = () => {
+    const updateUsername = watch("username")
+    const usernamePattern = /[\w!@#$%^&*()-+=<>?/\\,.;:'"[\]{}|]{3,}/gi
+    const checkUsernamePattern = usernamePattern.test(updateUsername)
+    console.log(checkUsernamePattern)
+    if (checkUsernamePattern === true) {
+      setIsSuccessUsername(true)
+    }
+  }
+
+  const changeEmailToSuccess = () => {
+    const updateEmail = watch("email")
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/gi
+    const checkEmailPattern = emailPattern.test(updateEmail)
+    console.log(checkEmailPattern)
+    if (checkEmailPattern === true) {
+      setIsSuccessEmail(true)
+    }
   }
 
   const updatePassword = watch("password")
   const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/
   const checkPasswordPattern = passwordPattern.test(updatePassword)
+  console.log(checkPasswordPattern)
   if (checkPasswordPattern === true) {
     // setIsSuccessPassword(true)
   }
 
-  const OnSubmit: SubmitHandler<Inputs> = data => console.log(data);
+   */}
+
+  const OnSubmit: SubmitHandler<Inputs> = data => {
+    console.log(data);
+  }
 
   return (
     <>
       <div className="absolute top-[15%] right-[50%] translate-x-[50%] border-2 border-default w-[80%] max-w-[700px] bg-default/90 md:p-10 sm:p-7 mobileL:p-5 p-3 rounded-2xl fadeIn">
-        <div className="flex flex-row w-full border-2 border-foreground/20 rounded-xl">
-          <div className="w-[30%] flex justify-center items-center">
-            image
+
+        <div className="flex sm:flex-row flex-col w-full border-2 border-foreground/20 rounded-xl">
+          <div className="sm:w-[30%] w-full flex justify-center items-center">
+            <div className="sm:flex hidden border rounded-full shadow-xl ">
+              <Image
+                alt="Update profile image"
+                src="/assets/settingsIcon/safetyGuideSmall.png"
+                width={90}
+                height={90}
+                style={{
+                  objectFit: "contain",
+                  width: "auto",
+                  height: "auto"
+                }}
+              />
+            </div>
+
+            <div className="sm:hidden flex py-5 ">
+              <Image
+                alt="Update profile image"
+                src="/assets/settingsIcon/safetyGuide.png"
+                width={90}
+                height={90}
+                style={{
+                  objectFit: "contain",
+                  width: "auto",
+                  height: "auto"
+                }}
+                className="drop-shadow-xl"
+              />
+            </div>
           </div>
           <form
             onSubmit={handleSubmit(OnSubmit)}
-            className='flex flex-col gap-4 w-[70%] px-2 py-3 mt-5'>
+            className='flex flex-col gap-4 sm:w-[70%] w-full px-2 py-3 mt-5 mx-auto'>
             <div className='flex flex-col'>
               <Input
                 defaultValue={username}
@@ -195,6 +256,7 @@ const UserInfoUpdateModal = (): React.JSX.Element | null => {
                 defaultValue={password}
                 autoComplete="off"
                 aria-autocomplete="none"
+                isClearable
                 aria-labelledby="password"
                 id="password"
                 variant="bordered"
