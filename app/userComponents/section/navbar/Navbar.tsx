@@ -83,8 +83,6 @@ export default function Topbar(): React.ReactNode {
     location.reload()
   }
 
-  const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
-
   const storedUser = {
     data: typeof window !== "undefined" ? sessionStorage.getItem("username") : ""
   }
@@ -92,7 +90,6 @@ export default function Topbar(): React.ReactNode {
   if (storedUser.data === "null" || storedUser.data === null || storedUser.data === undefined || storedUser.data === "undefined") {
     router.push("/")
   }
-
 
   return (
     <>

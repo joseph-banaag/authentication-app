@@ -1,18 +1,11 @@
 "use client"
-import React, { Suspense, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { userNavigation, logOut } from "@/app/userComponents/constants"
 import { usePathname, useRouter } from 'next/navigation'
-import { useTheme } from "next-themes";
 import {
-  Navbar,
-  NavbarContent,
   Link,
-  NavbarMenuToggle,
-  NavbarMenu,
-  NavbarBrand,
   Button,
   Card,
-  Image
 } from "@nextui-org/react";
 import Topbar from "@/app/userComponents/section/navbar/Navbar";
 import ProfileAvatar from "../navbar/components/ProfileAvatar";
@@ -23,7 +16,6 @@ export default function Sidebar(): React.ReactNode {
   const router = useRouter()
   const [ username, setUsername ] = useState<string>("")
   const [ email, setEmail ] = useState<string>("")
-  const [ isMenuOpen, setIsMenuOpen ] = useState(false);
   const [ mounted, setMounted ] = useState<boolean>(false)
 
   useEffect(() => {
@@ -37,6 +29,7 @@ export default function Sidebar(): React.ReactNode {
       ? sessionStorage.getItem("username")
       : ""
   }
+
 
   if (storedUser.data === "null" || storedUser.data === null || storedUser.data === undefined || storedUser.data === "undefined") {
     router.push("/")
@@ -76,7 +69,6 @@ export default function Sidebar(): React.ReactNode {
     src: "/assets/logo/user_logo.svg",
     name: "Logo"
   }
-  const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
 
   return (
     <>
