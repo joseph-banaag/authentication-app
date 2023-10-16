@@ -20,34 +20,27 @@ export default function NoAccountFound(): React.JSX.Element | null {
             <motion.div
                 initial={{ opacity: 0, y: 0 }}
                 animate={{ opacity: 1, y: 100 }}
-                transition={{ delay: 1, ease: "easeOut", duration: 1 }}
+                transition={{ delay: 1, ease: "easeOut", duration: .700 }}
             >
-                <div className="p-3 fixed z-50 top-10 left-[50%] translate-x-[-50%] translate-y-[-50%] w-full">
+                <div className="warningMessageContainer">
                     <Card
-                        className="
-                    border-none 
-                    bg-background/70 
-                    max-w-[620px]
-                    mx-auto
-                    flex-1
-                    shadow-2xl
-                    "
+                        className="warningMessageWrapper"
                         shadow="sm"
                     >
                         <CardBody>
-                            <p className="sm:text-medium text-xs sm:font-normal font-small drop-shadow-lg tracking-wide">
-                                An error occurred. No account found. Please sign in again...
+                            <p className="warningMessageCardBody">
+                                An error occurred. No account found. Please create an account...
                             </p>
                         </CardBody>
-                        <CardFooter className="flex flex-row-reverse">
+                        <CardFooter className="warningMessageCardFooter">
                             <Button
                                 onClick={handleClick}
                                 color="secondary"
                                 size="sm"
                                 variant="bordered"
-                                className="bg-violet-800 hover:bg-violet-900 shadow-xl transition-all duration-300"
+                                className="warningMessageSubmitBtn"
                             >
-                                <div className="text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center">
+                                <div className="warningMessageSubmitContent">
                                     {clicked
                                         ? <AlertSpinner />
                                         : "OK"}

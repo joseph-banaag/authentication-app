@@ -13,8 +13,13 @@ import UserInfoCard from "@/app/(userInfo)/(dashboard)/profile/components/UserIn
 import UserInfoUpdateModal from "@/app/(userInfo)/(dashboard)/profile/components/UserInfoUpdateModal";
 import { useModalContext } from "@/app/context/ModalContext";
 
+
 export default function Profile(): React.JSX.Element | null {
   const [ mounted, setMounted ] = useState(false)
+  const {
+    updateUserInfo,
+    setUpdateUserInfo
+  } = useModalContext()
 
   useEffect(() => {
     setMounted(true)
@@ -22,15 +27,15 @@ export default function Profile(): React.JSX.Element | null {
     setMounted
   ])
 
+  const storedUser = {
+    data: typeof window !== "undefined"
+      ? sessionStorage.getItem("username")
+      : ""
+  }
 
-  const {
-    updateUserInfo,
-    setUpdateUserInfo
-  } = useModalContext()
+  const username = `${storedUser.data}`
 
   const image = "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg"
-
-  const username = "joshua_Miguel_23"
 
   const handledUpdateProfile = () => {
     console.log("Profile photo updated successfully!")

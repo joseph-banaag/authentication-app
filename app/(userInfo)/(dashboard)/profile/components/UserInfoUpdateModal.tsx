@@ -149,7 +149,7 @@ const UserInfoUpdateModal = (): React.JSX.Element | null => {
           <div className="sm:w-[30%] w-full flex justify-center items-center">
             <div className="sm:flex hidden border rounded-full shadow-xl ">
               <Image
-                alt="Update profile image"
+                alt="Update user info small"
                 src="/assets/settingsIcon/safetyGuideSmall.png"
                 width={90}
                 height={90}
@@ -163,7 +163,7 @@ const UserInfoUpdateModal = (): React.JSX.Element | null => {
 
             <div className="sm:hidden flex py-5 ">
               <Image
-                alt="Update profile image"
+                alt="Update user info large"
                 src="/assets/settingsIcon/safetyGuide.png"
                 width={90}
                 height={90}

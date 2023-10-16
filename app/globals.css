@@ -164,7 +164,7 @@ body {
 /** WARNING MESSAGES STYLE **/
 @layer utilities {
   .warningMessage {
-    @apply fixed z-50 w-full h-[100%] backdrop-blur-lg top-0
+    @apply fixed z-50 w-full h-[100%] backdrop-blur-2xl top-0
   }
 
   .warningMessageContainer {
