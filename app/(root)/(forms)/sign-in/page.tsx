@@ -60,7 +60,6 @@ export default function SignIn(): React.JSX.Element | null {
   useEffect(() => {
     if (pathname === "/sign-in") {
       sessionStorage.clear();
-      document.cookie = "cookieName="
     }
   }, [
     pathname

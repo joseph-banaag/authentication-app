@@ -62,7 +62,6 @@ export default function SignUp(): React.JSX.Element | null {
   useEffect(() => {
     if (pathname === "/sign-up") {
       sessionStorage.clear();
-      document.cookie = "cookieName="
     }
   }, [
     pathname
