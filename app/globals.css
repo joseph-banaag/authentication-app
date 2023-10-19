@@ -332,7 +332,7 @@ body {
   }
 
   .profileModalFormSaveIcon {
-    @apply w-6 h-6 text-success-300 hover:text-success-400 transform hover:scale-105 transition-all duration-300 
+    @apply w-6 h-6 text-success-300 hover:text-success-400 transform hover:scale-105 transition-all duration-300
   }
 
   .profileModalFormContainer {
