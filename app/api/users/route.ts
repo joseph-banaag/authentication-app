@@ -1,9 +1,13 @@
 import connectToDB, { client } from "@/app/lib/mongodb";
+import { hashPassword } from "@/app/utils/passwordUtils";
 
 // INSERT OPERATION
 export async function POST(request: Request) {
   const { password, usernameLower, emailLower, created_on } =
     await request.json();
+
+  const hashed = await hashPassword(password);
+  console.log(hashed);
 
   await connectToDB();
 
@@ -25,7 +29,7 @@ export async function POST(request: Request) {
     return Response.json(AddAcc);
   } catch (error) {
     throw new Error(
-      `There was a problem creating a new document. Error: ${error}`
+      `There was a problem creating a new document. Error: ${error}`,
     );
   } finally {
     await client.close();
@@ -48,7 +52,7 @@ export async function GET(request: Request) {
     return Response.json(createdUsers);
   } catch (error) {
     throw new Error(
-      `There was a problem getting the information from the database. Error: ${error}`
+      `There was a problem getting the information from the database. Error: ${error}`,
     );
   } finally {
     await client.close();
@@ -76,7 +80,7 @@ export async function PUT(request: Request) {
     return Response.json(updateResult);
   } catch (error) {
     throw new Error(
-      `There was a problem updating the document. Error: ${error}`
+      `There was a problem updating the document. Error: ${error}`,
     );
   } finally {
     await client.close();
@@ -98,10 +102,9 @@ export async function DELETE(request: Request) {
     const deleteResult = await collection.deleteMany(toDelete);
     console.log("Successfully removed an account");
     return Response.json(deleteResult);
-    
   } catch (error) {
     throw new Error(
-      `There was a problem deleting the document. Error: ${error}`
+      `There was a problem deleting the document. Error: ${error}`,
     );
   } finally {
     await client.close();
