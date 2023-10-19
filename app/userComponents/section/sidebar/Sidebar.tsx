@@ -30,8 +30,8 @@ export default function Sidebar(): React.ReactNode {
       : ""
   }
 
-
-  if (storedUser.data === "null" || storedUser.data === null || storedUser.data === undefined || storedUser.data === "undefined") {
+  const storedData = storedUser.data
+  if (!storedData) {
     router.push("/")
   }
 
@@ -70,6 +70,10 @@ export default function Sidebar(): React.ReactNode {
     name: "Logo"
   }
 
+  const handleClearStoredData = () => {
+    sessionStorage.clear()
+    document.cookie = "cookieName="
+  }
   return (
     <>
       <Card className="sidebarContainer">
@@ -108,6 +112,7 @@ export default function Sidebar(): React.ReactNode {
           </div>
           <div className="mb-10">
             <Button
+              onClick={handleClearStoredData}
               as={Link}
               href={logOut.route}
               size="sm"

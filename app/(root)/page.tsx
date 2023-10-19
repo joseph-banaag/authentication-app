@@ -25,6 +25,7 @@ export default function Home(): JSX.Element | null {
     if (pathname === "/") {
       sessionStorage.clear();
     }
+    document.cookie = "cookieName="
   }, [
     pathname
   ])

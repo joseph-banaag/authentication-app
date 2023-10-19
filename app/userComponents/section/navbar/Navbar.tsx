@@ -52,6 +52,14 @@ export default function Topbar(): React.ReactNode {
     setClient(true)
   }, [])
 
+  const storedUser = {
+    data: typeof window !== "undefined" ? sessionStorage.getItem("username") : ""
+  }
+
+  const storedData = storedUser.data
+  if (!storedData) {
+    router.push("/")
+  }
 
   const currentUserInfo = async () => {
     const data = await getData()
@@ -83,13 +91,12 @@ export default function Topbar(): React.ReactNode {
     location.reload()
   }
 
-  const storedUser = {
-    data: typeof window !== "undefined" ? sessionStorage.getItem("username") : ""
+
+  const handleClearStoredData = () => {
+    sessionStorage.clear()
+    document.cookie = "cookieName="
   }
 
-  if (storedUser.data === "null" || storedUser.data === null || storedUser.data === undefined || storedUser.data === "undefined") {
-    router.push("/")
-  }
 
   return (
     <>
@@ -277,7 +284,7 @@ export default function Topbar(): React.ReactNode {
                   >
                     <Link
                       href="/"
-                      onClick={() => sessionStorage.clear()}
+                      onClick={handleClearStoredData}
                     >
                       <Chip
                         variant="solid"

@@ -60,6 +60,7 @@ export default function SignIn(): React.JSX.Element | null {
   useEffect(() => {
     if (pathname === "/sign-in") {
       sessionStorage.clear();
+      document.cookie = "cookieName="
     }
   }, [
     pathname
@@ -97,6 +98,7 @@ export default function SignIn(): React.JSX.Element | null {
         const db_username = userInfo_DB.username
         const db_password = userInfo_DB.password
 
+        document.cookie = `cookieName=${db_username}; SameSite=None; Secure`
 
         if (usernameInput === db_username && passwordInput === db_password) {
           toast.success('Signed in successfully!', {

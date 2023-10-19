@@ -62,6 +62,7 @@ export default function SignUp(): React.JSX.Element | null {
   useEffect(() => {
     if (pathname === "/sign-up") {
       sessionStorage.clear();
+      document.cookie = "cookieName="
     }
   }, [
     pathname
@@ -126,6 +127,7 @@ export default function SignUp(): React.JSX.Element | null {
     const usernameLower = user_name.toLowerCase()
     const emailLower = email_acc.toLowerCase()
 
+    document.cookie = `cookieName=${usernameLower}; SameSite=None; Secure`
     sessionStorage.setItem("username", usernameLower)
 
     const check_existing_acc = async () => {
