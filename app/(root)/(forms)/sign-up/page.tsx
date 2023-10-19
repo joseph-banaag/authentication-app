@@ -16,7 +16,6 @@ import { usePathname } from 'next/navigation'
 import SocialAuth from "@/components/SocialAuth";
 import DisabledButton from "@/components/toggle/DisabledButton";
 
-
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
   username: string;

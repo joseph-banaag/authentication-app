@@ -7,7 +7,6 @@ export async function POST(request: Request) {
     await request.json();
 
   const hashed = await hashPassword(password);
-  console.log(hashed);
 
   await connectToDB();
 
@@ -18,7 +17,7 @@ export async function POST(request: Request) {
     const newDoc = {
       email: `${emailLower}`,
       username: `${usernameLower}`,
-      password: `${password}`,
+      password: `${hashed}`,
       created_on: `${created_on}`,
     };
 
