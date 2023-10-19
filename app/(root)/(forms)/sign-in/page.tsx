@@ -77,7 +77,7 @@ export default function SignIn(): React.JSX.Element | null {
 
     const usernameLower = user_name.toLowerCase()
 
-    sessionStorage.setItem("username", usernameLower)
+    sessionStorage.setItem("sessionName", usernameLower)
 
     const check_user_info = async () => {
       const data_from_DB = await getData()

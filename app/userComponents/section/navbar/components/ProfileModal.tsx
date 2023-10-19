@@ -27,7 +27,7 @@ const ProfileModal = (): React.ReactNode => {
 
     const storedUsername = {
       data: typeof window !== "undefined"
-        ? sessionStorage.getItem("username")
+        ? sessionStorage.getItem("sessionName")
         : ""
     }
     const currentUsername = `${storedUsername.data}`

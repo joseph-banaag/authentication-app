@@ -53,7 +53,7 @@ const UserInfoCard = (): React.JSX.Element | null => {
 
   const storedUser = {
     data: typeof window !== "undefined"
-      ? sessionStorage.getItem("username")
+      ? sessionStorage.getItem("sessionName")
       : ""
   }
 

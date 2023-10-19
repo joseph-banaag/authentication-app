@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 export default function Dashboard(): React.JSX.Element | null {
   const [ isClient, setIsClient ] = useState<boolean>(false)
   const storedUser = {
-    data: typeof window !== "undefined" ? sessionStorage.getItem("username") : ""
+    data: typeof window !== "undefined" ? sessionStorage.getItem("sessionName") : ""
   }
 
   useEffect(() => {

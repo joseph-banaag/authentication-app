@@ -29,7 +29,7 @@ export default function Profile(): React.JSX.Element | null {
 
   const storedUser = {
     data: typeof window !== "undefined"
-      ? sessionStorage.getItem("username")
+      ? sessionStorage.getItem("sessionName")
       : ""
   }
 

@@ -26,7 +26,7 @@ export default function Sidebar(): React.ReactNode {
 
   const storedUser = {
     data: typeof window !== "undefined"
-      ? sessionStorage.getItem("username")
+      ? sessionStorage.getItem("sessionName")
       : ""
   }
 

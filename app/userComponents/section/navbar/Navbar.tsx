@@ -53,7 +53,7 @@ export default function Topbar(): React.ReactNode {
   }, [])
 
   const storedUser = {
-    data: typeof window !== "undefined" ? sessionStorage.getItem("username") : ""
+    data: typeof window !== "undefined" ? sessionStorage.getItem("sessionName") : ""
   }
 
   const storedData = storedUser.data

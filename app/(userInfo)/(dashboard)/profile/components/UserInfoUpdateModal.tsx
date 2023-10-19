@@ -59,7 +59,7 @@ const UserInfoUpdateModal = (): React.JSX.Element | null => {
 
   const storedUser = {
     data: typeof window !== "undefined"
-      ? sessionStorage.getItem("username")
+      ? sessionStorage.getItem("sessionName")
       : ""
   }
   const user_name = `${storedUser.data}`

@@ -25,7 +25,7 @@ const ProfileModalForm = (): React.ReactNode => {
 
   const storedUsername = {
     data: typeof window !== "undefined"
-      ? sessionStorage.getItem("username")
+      ? sessionStorage.getItem("sessionName")
       : ""
   }
   const username = `${storedUsername.data}`
@@ -81,7 +81,7 @@ const ProfileModalForm = (): React.ReactNode => {
       }
 
       setTimeout(() => {
-        sessionStorage.setItem("username", newUsernameLower)
+        sessionStorage.setItem("sessionName", newUsernameLower)
         location.reload()
       }, 2000);
 
