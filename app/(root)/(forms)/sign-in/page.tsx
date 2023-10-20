@@ -93,7 +93,7 @@ export default function SignIn(): React.JSX.Element | null {
         const db_username = userInfo_DB.username;
         const db_password = userInfo_DB.password;
         const hashed = userInfo_DB.password;
-        console.log(hashed)
+        console.log(hashed);
 
         document.cookie = `cookieName=${db_username}; SameSite=None; Secure`;
         // const hashedPassword = bcrypt.compareSync(passwordInput, hashed);
