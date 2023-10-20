@@ -17,7 +17,6 @@ import SocialAuth from "@/components/SocialAuth";
 import PasswordReset from "@/components/utils/warnings/alerts/PasswordReset";
 import PasswordResetModal from "@/components/PasswordResetModal";
 import { useModalContext } from "@/app/context/ModalContext";
-import bcrypt from "bcrypt";
 
 interface Inputs {
   username: string;
@@ -96,8 +95,6 @@ export default function SignIn(): React.JSX.Element | null {
         console.log(hashed);
 
         document.cookie = `cookieName=${db_username}; SameSite=None; Secure`;
-        // const hashedPassword = bcrypt.compareSync(passwordInput, hashed);
-        // console.log(hashedPassword);
 
         if (usernameInput === db_username && passwordInput === db_password) {
           toast.success("Signed in successfully!", {
