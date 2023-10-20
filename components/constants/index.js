@@ -46,5 +46,3 @@ export const iconsSrc = {
   githubDark: "/assets/github/githubDark.svg",
   nameGit: "github",
 };
-
-

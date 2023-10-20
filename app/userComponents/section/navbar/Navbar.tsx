@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import * as React from "react";
 import {
   Navbar,
@@ -14,8 +14,8 @@ import {
   DropdownSection,
   Button,
 } from "@nextui-org/react";
-import { usePathname, useRouter } from 'next/navigation'
-import { userNavigation } from "@/app/userComponents/constants/index"
+import { usePathname, useRouter } from "next/navigation";
+import { userNavigation } from "@/app/userComponents/constants/index";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { SunIcon } from "@/components/utils/icons/SunIcon";
@@ -25,114 +25,105 @@ import { useModalContext } from "@/app/context/ModalContext";
 import ProfileModal from "@/app/userComponents/section/navbar/components/ProfileModal";
 import ProfileAvatar from "@/app/userComponents/section/navbar/components/ProfileAvatar";
 
-
 const getData = async () => {
   const res = await fetch("http://localhost:3000/api/users", {
-    cache: "force-cache"
-  })
+    cache: "force-cache",
+  });
   if (!res.ok) {
-    throw new Error("Failed to fetch data")
+    throw new Error("Failed to fetch data");
   }
-  return res.json()
-}
+  return res.json();
+};
 
 export default function Topbar(): React.ReactNode {
-  const pathname = usePathname()
-  const { theme, setTheme } = useTheme()
-  const [ userName, setUserName ] = useState<string>("")
-  const [ eMail, setEMail ] = useState<string>("")
-  const [ client, setClient ] = useState<boolean>(false)
-  const router = useRouter()
-  const {
-    displayOn,
-    setDisplayOn } = useModalContext()
-  const [ isOpen, setIsOpen ] = useState<boolean>(false)
+  const pathname = usePathname();
+  const { theme, setTheme } = useTheme();
+  const [userName, setUserName] = useState<string>("");
+  const [eMail, setEMail] = useState<string>("");
+  const [client, setClient] = useState<boolean>(false);
+  const router = useRouter();
+  const { displayOn, setDisplayOn } = useModalContext();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    setClient(true)
-  }, [])
+    setClient(true);
+  }, []);
 
   const storedUser = {
-    data: typeof window !== "undefined" ? sessionStorage.getItem("sessionName") : ""
-  }
+    data:
+      typeof window !== "undefined"
+        ? sessionStorage.getItem("sessionName")
+        : "",
+  };
 
-  const storedData = storedUser.data
+  const storedData = storedUser.data;
   if (!storedData) {
-    router.push("/")
+    router.push("/");
   }
 
   const currentUserInfo = async () => {
-    const data = await getData()
-    const user_name = storedUser.data
+    const data = await getData();
+    const user_name = storedUser.data;
 
-    const currentUser = data.find(({ username }: { username: string; }) => username === user_name)
+    const currentUser = data.find(
+      ({ username }: { username: string }) => username === user_name,
+    );
 
-    if (!currentUser) return null
+    if (!currentUser) return null;
 
-    const userName = currentUser.username
-    const eMail = currentUser.email
+    const userName = currentUser.username;
+    const eMail = currentUser.email;
 
-    setUserName(userName)
-    setEMail(eMail)
-  }
+    setUserName(userName);
+    setEMail(eMail);
+  };
 
-  if (pathname === "/dashboard" || pathname === "/settings" || pathname === "/security" || pathname === "/profile") {
-    currentUserInfo()
-    if (!currentUserInfo) return null
-
+  if (
+    pathname === "/dashboard" ||
+    pathname === "/settings" ||
+    pathname === "/security" ||
+    pathname === "/profile"
+  ) {
+    currentUserInfo();
+    if (!currentUserInfo) return null;
   }
   const changeThemeToLight = () => {
-    setTheme("light")
-    location.reload()
-  }
+    setTheme("light");
+    location.reload();
+  };
 
   const changeThemeToDark = () => {
-    setTheme("dark")
-    location.reload()
-  }
-
+    setTheme("dark");
+    location.reload();
+  };
 
   const handleClearStoredData = () => {
-    sessionStorage.clear()
-    document.cookie = "cookieName="
-  }
-
+    sessionStorage.clear();
+    document.cookie = "cookieName=";
+  };
 
   return (
     <>
       <div
         onClick={() => setIsOpen(false)}
-        className={`fixed w-full h-screen z-[48] ${isOpen
-          ? "block"
-          : "hidden"
-          }
-        `} />
+        className={`fixed w-full h-screen z-[48] ${isOpen ? "block" : "hidden"}
+        `}
+      />
       <div
         onClick={() => setDisplayOn(false)}
         className={`profileModalOverlay 
-      ${displayOn
-            ? "block"
-            : "hidden"
-          }`} />
-      <div className={`${displayOn
-        ? "block z-50"
-        : "fadeOut hidden"
-        }`}>
+      ${displayOn ? "block" : "hidden"}`}
+      />
+      <div className={`${displayOn ? "block z-50" : "fadeOut hidden"}`}>
         <ProfileModal />
       </div>
-      <Navbar
-        shouldHideOnScroll
-        className="navbarContainer">
-        <NavbarContent
-          justify="start"
-          className="flex justify-start">
+      <Navbar shouldHideOnScroll className="navbarContainer">
+        <NavbarContent justify="start" className="flex justify-start">
           <NavbarBrand className="navbarBrand">
             <BrandLogo />
           </NavbarBrand>
         </NavbarContent>
-        <NavbarContent
-          justify="end"
-          className="flex justify-end">
+        <NavbarContent justify="end" className="flex justify-end">
           <NavbarItem className="flex justify-start items-center gap-2">
             <div onClick={() => setDisplayOn(!displayOn)}>
               <ProfileAvatar />
@@ -145,22 +136,19 @@ export default function Topbar(): React.ReactNode {
               }}
               className="navDropdownContainer"
             >
-
               <DropdownTrigger>
                 <div
                   onClick={() => setIsOpen(true)}
-                  className={`navDropdownTriggerContainer ${isOpen
-                    ? "open"
-                    : ""
-                    }`}>
+                  className={`navDropdownTriggerContainer ${
+                    isOpen ? "open" : ""
+                  }`}
+                >
                   <div className="menuBar" />
                   <div className="menuBar" />
                   <div className="menuBar" />
                 </div>
               </DropdownTrigger>
-              <DropdownMenu
-                aria-label="Dropdown section for signed in user"
-              >
+              <DropdownMenu aria-label="Dropdown section for signed in user">
                 <DropdownSection
                   title="Signed in as:"
                   className="textBaseColor border-small border-foreground/20 p-1 rounded-md"
@@ -176,18 +164,17 @@ export default function Topbar(): React.ReactNode {
                       <div className="ms-2 max-w-[120px]">
                         <p className="text-sm font-bold truncate">{userName}</p>
                         <div className="overflow-hidden">
-                          <p className="text-xs font-thin dark:text-foreground/80 animate-scrolling-text">{eMail}</p>
+                          <p className="text-xs font-thin dark:text-foreground/80 animate-scrolling-text">
+                            {eMail}
+                          </p>
                         </div>
                       </div>
                     </div>
                   </DropdownItem>
                 </DropdownSection>
-                <DropdownSection
-                  showDivider
-                  aria-label="Dropdown menu list"
-                >
+                <DropdownSection showDivider aria-label="Dropdown menu list">
                   {userNavigation.map((items) => {
-                    const isActive = pathname === items.route
+                    const isActive = pathname === items.route;
                     return (
                       <DropdownItem
                         key={items.label}
@@ -201,15 +188,19 @@ export default function Topbar(): React.ReactNode {
                           href={items.route}
                           className={`${isActive && "isActiveStyle"} linkItems`}
                         >
-                          <p className={isActive
-                            ? "text-foreground/90"
-                            : "text-foreground/60"}>
+                          <p
+                            className={
+                              isActive
+                                ? "text-foreground/90"
+                                : "text-foreground/60"
+                            }
+                          >
                             {items.iconLight}
                           </p>
                           {items.label}
                         </Button>
                       </DropdownItem>
-                    )
+                    );
                   })}
                 </DropdownSection>
                 <DropdownSection
@@ -221,18 +212,16 @@ export default function Topbar(): React.ReactNode {
                     isReadOnly
                     variant="bordered"
                     endContent={
-                      <p
-                        className="themeIndicator"
-                      >
-                        {client
-                          ? theme
-                          : ""
-                        }
-                      </p>
+                      <p className="themeIndicator">{client ? theme : ""}</p>
                     }
                     className="themeIndicatorContainer"
                   >
-                    <p className="text-sm font-semibold drop-shadow-md" color="foreground">Theme</p>
+                    <p
+                      className="text-sm font-semibold drop-shadow-md"
+                      color="foreground"
+                    >
+                      Theme
+                    </p>
                   </DropdownItem>
                   <DropdownItem
                     textValue="Dropdown dark theme option"
@@ -250,9 +239,7 @@ export default function Topbar(): React.ReactNode {
                       className="cursor-pointer flex flex-1 justify-center items-center w-full"
                     >
                       <p className="text-white font-semibold text-xs">Dark</p>
-
                     </Chip>
-
                   </DropdownItem>
                   <DropdownItem
                     textValue="Dropdown light theme option"
@@ -273,19 +260,13 @@ export default function Topbar(): React.ReactNode {
                     </Chip>
                   </DropdownItem>
                 </DropdownSection>
-                <DropdownSection
-                  title="Danger zone"
-                  className="textBaseColor"
-                >
+                <DropdownSection title="Danger zone" className="textBaseColor">
                   <DropdownItem
                     textValue="Dropdown logout button"
                     variant="bordered"
                     className="hover:bg-transparent border-none cursor-default"
                   >
-                    <Link
-                      href="/"
-                      onClick={handleClearStoredData}
-                    >
+                    <Link href="/" onClick={handleClearStoredData}>
                       <Chip
                         variant="solid"
                         size="sm"
@@ -294,7 +275,9 @@ export default function Topbar(): React.ReactNode {
                         }}
                         className="cursor-pointer flex flex-1 justify-center items-center"
                       >
-                        <p className="text-white/90 font-semibold text-xs drop-shadow-md">Logout</p>
+                        <p className="text-white/90 font-semibold text-xs drop-shadow-md">
+                          Logout
+                        </p>
                       </Chip>
                     </Link>
                   </DropdownItem>
@@ -305,5 +288,5 @@ export default function Topbar(): React.ReactNode {
         </NavbarContent>
       </Navbar>
     </>
-  )
+  );
 }

@@ -20,19 +20,19 @@ const connectToDB = async () => {
     console.log("You are connected to the database");
   } catch (error) {
     throw new Error(
-      `There was an error connecting to the database. Error: ${error}`
+      `There was an error connecting to the database. Error: ${error}`,
     );
   }
 };
 
 const disconnectDB = async () => {
   try {
-    console.log("Closing the connection")
+    console.log("Closing the connection");
     await client.close();
-    console.log("Database connection is now closed")
+    console.log("Database connection is now closed");
   } catch (error) {
     throw new Error(
-      `There was an error disconnecting the database connection. Error: ${error}`
+      `There was an error disconnecting the database connection. Error: ${error}`,
     );
   }
 };

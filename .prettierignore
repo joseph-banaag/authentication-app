@@ -1,0 +1,14 @@
+# Ignore artifacts:
+build
+coverage
+.next
+out
+.env*.local
+.tsbuildinfo
+.pnp.js
+.pnp
+.DS_Store
+*.pem
+.vercel
+node_modules
+

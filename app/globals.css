@@ -19,29 +19,28 @@ body {
 
 /** TEXT FORMATTING AND STYLES **/
 @layer utilities {
-
   .textHeadingResponsive {
-    @apply md:text-3xl md:font-bold text-2xl font-semibold tracking-wide text-foreground/90
+    @apply md:text-3xl md:font-bold text-2xl font-semibold tracking-wide text-foreground/90;
   }
 
   .textHeading2Responsive {
-    @apply md:text-xl md:font-semibold tracking-wide text-foreground/90 sm:text-xl font-medium text-lg drop-shadow-md
+    @apply md:text-xl md:font-semibold tracking-wide text-foreground/90 sm:text-xl font-medium text-lg drop-shadow-md;
   }
 
   .textBaseColor {
-    @apply text-foreground/80 text-base font-normal drop-shadow-md
+    @apply text-foreground/80 text-base font-normal drop-shadow-md;
   }
 
   .smallTextColor {
-    @apply textColor text-[14px] font-normal drop-shadow-md
+    @apply textColor text-[14px] font-normal drop-shadow-md;
   }
 
   .xSmallTextColor {
-    @apply textColor text-xs font-thin drop-shadow-md
+    @apply textColor text-xs font-thin drop-shadow-md;
   }
 
   .textColor {
-    @apply text-foreground/80 drop-shadow-md
+    @apply text-foreground/80 drop-shadow-md;
   }
 }
 
@@ -50,231 +49,230 @@ body {
 /** FORM STYLES **/
 @layer utilities {
   .formContainer {
-    @apply w-full min-h-screen flex flex-1 flex-col justify-center items-center lg:grid lg:grid-cols-2 gap-5 lg:p-32 md:p-20 sm:p-16 p-2
+    @apply w-full min-h-screen flex flex-1 flex-col justify-center items-center lg:grid lg:grid-cols-2 gap-5 lg:p-32 md:p-20 sm:p-16 p-2;
   }
 
   .formWrapper {
-    @apply p-7 flex lg:justify-center items-center md:p-12 sm:p-11
+    @apply p-7 flex lg:justify-center items-center md:p-12 sm:p-11;
   }
 
   .formContent {
-    @apply flex flex-col flex-1 rounded-2xl p-5 gap-5 shadow-2xl shadow-violet-950 !max-w-[392px] !min-w-[259px] bg-background/30
+    @apply flex flex-col flex-1 rounded-2xl p-5 gap-5 shadow-2xl shadow-violet-950 !max-w-[392px] !min-w-[259px] bg-background/30;
   }
 
   .formBrandContainer {
-    @apply w-full flex md:h-[9em] sm:h-[7em] h-[5em] justify-start md:p-4 sm:p-3 p-1
+    @apply w-full flex md:h-[9em] sm:h-[7em] h-[5em] justify-start md:p-4 sm:p-3 p-1;
   }
 
   .formSignHeader {
-    @apply lg:text-4xl text-3xl md:font-bold font-semibold mb-1 drop-shadow-xl !important
+    @apply lg:text-4xl text-3xl md:font-bold font-semibold mb-1 drop-shadow-xl !important;
   }
 
   .formSignText {
-    @apply sm:text-medium text-xs sm:font-normal drop-shadow-xl textBaseColor
+    @apply sm:text-medium text-xs sm:font-normal drop-shadow-xl textBaseColor;
   }
 
   .formSocialButton {
-    @apply hover:scale-105 transition-all duration-300 shadow-xl bg-foreground/30 hover:bg-foreground/60 lg:px-unit-4 lg:min-w-unit-20 lg:h-unit-10 md:px-unit-4 md:min-w-unit-20 md:h-unit-10 sm:px-unit-4 sm:min-w-unit-20 sm:h-unit-10 px-unit-3 min-w-unit-16 h-unit-10
+    @apply hover:scale-105 transition-all duration-300 shadow-xl bg-foreground/30 hover:bg-foreground/60 lg:px-unit-4 lg:min-w-unit-20 lg:h-unit-10 md:px-unit-4 md:min-w-unit-20 md:h-unit-10 sm:px-unit-4 sm:min-w-unit-20 sm:h-unit-10 px-unit-3 min-w-unit-16 h-unit-10;
   }
 
   .formSocialDividerContainer {
-    @apply flex flex-1 justify-center items-center
+    @apply flex flex-1 justify-center items-center;
   }
 
   .formSocialHorzLine {
-    @apply w-full border-foreground
+    @apply w-full border-foreground;
   }
 
   .formSocialDivText {
-    @apply sm:px-3 p-1 sm:text-medium text-xs sm:font-normal textBaseColor
+    @apply sm:px-3 p-1 sm:text-medium text-xs sm:font-normal textBaseColor;
   }
 
   .formInputWrapper {
-    @apply border-foreground/30 shadow-xl
+    @apply border-foreground/30 shadow-xl;
   }
 
   .formLabel {
-    @apply textBaseColor sm:text-sm text-xs sm:font-normal
+    @apply textBaseColor sm:text-sm text-xs sm:font-normal;
   }
 
   .formInput {
-    @apply sm:text-medium text-sm sm:font-normal font-normal bg-transparent textBaseColor placeholder:text-default-700/50 dark:placeholder:text-white/60
+    @apply sm:text-medium text-sm sm:font-normal font-normal bg-transparent textBaseColor placeholder:text-default-700/50 dark:placeholder:text-white/60;
   }
 
   .contentIcon {
-    @apply text-2xl text-foreground/70 drop-shadow-md pointer-events-none
+    @apply text-2xl text-foreground/70 drop-shadow-md pointer-events-none;
   }
 
   .formErrorMessage {
-    @apply animate-pulse text-xs text-red-500 drop-shadow-xl
+    @apply animate-pulse text-xs text-red-500 drop-shadow-xl;
   }
 
   .submitBtn {
-    @apply bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300
+    @apply bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300;
   }
 
   .submitBtnContent {
-    @apply text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center
+    @apply text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center;
   }
 
   .illustrationContainer {
-    @apply w-full min-h-[400px]
+    @apply w-full min-h-[400px];
   }
 
   .illustrationWrapper {
-    @apply p-8
+    @apply p-8;
   }
 
   .illustrationHeader {
-    @apply xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl text-lg font-bold text-[#FB542B] drop-shadow-2xl flex flex-1 justify-center items-center mx-auto text-center
+    @apply xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl text-lg font-bold text-[#FB542B] drop-shadow-2xl flex flex-1 justify-center items-center mx-auto text-center;
   }
 
   .illustrationContent {
-    @apply xl:w-[500px] xl:h-[500px] lg:w-[450px] lg:h-[450px] sm:w-[350px] sm:h-[350px] w-[300px] h-[300px] mx-auto
+    @apply xl:w-[500px] xl:h-[500px] lg:w-[450px] lg:h-[450px] sm:w-[350px] sm:h-[350px] w-[300px] h-[300px] mx-auto;
   }
 }
 
 /** MAIN ROOT PAGE **/
 @layer utilities {
   .mainRootPage {
-    @apply relative flex flex-col justify-center items-center min-h-screen z-10 gap-5 mt-5 lg:p-20 md:p-14 sm:p-8 p-4
+    @apply relative flex flex-col justify-center items-center min-h-screen z-10 gap-5 mt-5 lg:p-20 md:p-14 sm:p-8 p-4;
   }
 
   .mainPageRootHeaderContainer {
-    @apply flex flex-col gap-5 mx-auto
+    @apply flex flex-col gap-5 mx-auto;
   }
 
   .mainRootPageHeaderWrapper {
-    @apply py-2 px-5 flex justify-center
+    @apply py-2 px-5 flex justify-center;
   }
 
   .mainRootPageHeader1 {
-    @apply lg:text-lg lg:font-semibold font-medium tracking-wide md:text-medium text-sm text-end drop-shadow-lg
+    @apply lg:text-lg lg:font-semibold font-medium tracking-wide md:text-medium text-sm text-end drop-shadow-lg;
   }
 
   .mainRootPageHeader2 {
-    @apply md:text-sm text-xs text-end mr-1 drop-shadow-md font-medium tracking-wide
+    @apply md:text-sm text-xs text-end mr-1 drop-shadow-md font-medium tracking-wide;
   }
 
   .mainRootPageLinks {
-    @apply cursor-pointer text-[#FB542B] !important
+    @apply cursor-pointer text-[#FB542B] !important;
   }
 }
 
 /** WARNING MESSAGES STYLE **/
 @layer utilities {
   .warningMessage {
-    @apply fixed z-50 w-full h-[100%] backdrop-blur-2xl top-0
+    @apply fixed z-50 w-full h-[100%] backdrop-blur-2xl top-0;
   }
 
   .warningMessageContainer {
-    @apply p-3 fixed z-50 top-48 left-[50%] translate-x-[-50%] translate-y-[-50%] w-full fadeIn
+    @apply p-3 fixed z-50 top-48 left-[50%] translate-x-[-50%] translate-y-[-50%] w-full fadeIn;
   }
 
   .warningMessageWrapper {
-    @apply border bg-default/70 max-w-[620px] mx-auto border-violet-950 flex-1 shadow-lg shadow-violet-950
+    @apply border bg-default/70 max-w-[620px] mx-auto border-violet-950 flex-1 shadow-lg shadow-violet-950;
   }
 
   .warningMessageCardBody {
-    @apply sm:text-medium text-xs sm:font-normal drop-shadow-lg tracking-wide text-foreground/90
+    @apply sm:text-medium text-xs sm:font-normal drop-shadow-lg tracking-wide text-foreground/90;
   }
 
   .warningMessageCardFooter {
-    @apply flex flex-row-reverse
+    @apply flex flex-row-reverse;
   }
 
   .warningMessageSubmitBtn {
-    @apply bg-violet-800 hover:bg-violet-900 shadow-xl transition-all duration-300
+    @apply bg-violet-800 hover:bg-violet-900 shadow-xl transition-all duration-300;
   }
 
   .warningMessageSubmitContent {
-    @apply text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center
+    @apply text-slate-300 hover:text-white font-semibold flex-1 flex justify-center items-center;
   }
 
   .passwordResetModalContainer {
-    @apply p-3 fixed z-50 top-56 left-[50%] translate-x-[-50%] translate-y-[-50%] w-full fadeIn
+    @apply p-3 fixed z-50 top-56 left-[50%] translate-x-[-50%] translate-y-[-50%] w-full fadeIn;
   }
 
   .passwordResetModalHeader {
-    @apply font-bold absolute top-3 right-3 drop-shadow-xl textBaseColor hover:text-background hover:bg-foreground transform scale-105 p-1 rounded-full w-7 h-7 flex justify-center items-center cursor-pointer transition-all duration-300
+    @apply font-bold absolute top-3 right-3 drop-shadow-xl textBaseColor hover:text-background hover:bg-foreground transform scale-105 p-1 rounded-full w-7 h-7 flex justify-center items-center cursor-pointer transition-all duration-300;
   }
 
   .passwordResetModalHeader1 {
-    @apply lg:text-4xl md:text-3xl sm:text-2xl text-xl md:font-semibold tracking-wide font-normal mb-1
+    @apply lg:text-4xl md:text-3xl sm:text-2xl text-xl md:font-semibold tracking-wide font-normal mb-1;
   }
 }
 
 /** FOOTER ROOT PAGE **/
 @layer utilities {
   .footerContainer {
-    @apply flex flex-1 flex-col justify-center items-center p-[1em] bg-violet-950 gap-1.5
+    @apply flex flex-1 flex-col justify-center items-center p-[1em] bg-violet-950 gap-1.5;
   }
 
   .footerMessage {
-    @apply text-xs text-foreground/50 text-center
+    @apply text-xs text-foreground/50 text-center;
   }
 
   .footerIllustrationProvider {
-    @apply text-violet-500 underline underline-offset-4 cursor-pointer text-xs font-semibold
+    @apply text-violet-500 underline underline-offset-4 cursor-pointer text-xs font-semibold;
   }
-
 }
 
 /** SIDEBAR STYLES **/
 @layer utilities {
   .sidebarContainer {
-    @apply min-h-screen md:flex hidden flex-col gap-5 justify-start items-center md:px-4 px-2 pt-9 shadow-2xl bg-background/60 dark:bg-default-100/50 rounded-none mx-auto min-w-[210px]
+    @apply min-h-screen md:flex hidden flex-col gap-5 justify-start items-center md:px-4 px-2 pt-9 shadow-2xl bg-background/60 dark:bg-default-100/50 rounded-none mx-auto min-w-[210px];
   }
 
   .sidebarWrapper {
-    @apply flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default textColor py-3 px-4 mx-2 shadow-xl min-w-[170px] fadeIn
+    @apply flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default textColor py-3 px-4 mx-2 shadow-xl min-w-[170px] fadeIn;
   }
 
   .sidebarNavContainer {
-    @apply md:hidden flex flex-1 drop-shadow-2xl fixed top-0 left-0 w-full z-50
+    @apply md:hidden flex flex-1 drop-shadow-2xl fixed top-0 left-0 w-full z-50;
   }
 
   .sidebarNavBrandLogo {
-    @apply lg:text-xl sm:text-lg font-bold cursor-pointer sm:flex hidden drop-shadow-lg !text-[#FB542B]
+    @apply lg:text-xl sm:text-lg font-bold cursor-pointer sm:flex hidden drop-shadow-lg !text-[#FB542B];
   }
 
   .sidebarNavMenuWrapper {
-    @apply flex flex-col gap-5 justify-start items-center pt-16 !bg-none
+    @apply flex flex-col gap-5 justify-start items-center pt-16 !bg-none;
   }
 
   .sidebarNavProfileContainer {
-    @apply flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default text-white/70 sm:py-4 py-3 sm:px-6 px-4 shadow-xl
+    @apply flex justify-center items-center border-small border-default border-opacity-40 rounded-lg bg-default text-white/70 sm:py-4 py-3 sm:px-6 px-4 shadow-xl;
   }
 
   .sidebarNavProfileInfo {
-    @apply ms-2 md:max-w-[400px] sm:max-w-[300px] truncate userProfile fadeIn
+    @apply ms-2 md:max-w-[400px] sm:max-w-[300px] truncate userProfile fadeIn;
   }
 }
 
 /** USER NAVBAR STYLES **/
 @layer utilities {
   .profileModalOverlay {
-    @apply z-[48] w-full h-[100%] fixed backdrop-blur-sm
+    @apply z-[48] w-full h-[100%] fixed backdrop-blur-sm;
   }
 
   .navbarContainer {
-    @apply flex flex-wrap justify-center shadow-2xl !gap-0
+    @apply flex flex-wrap justify-center shadow-2xl !gap-0;
   }
 
   .navDropdownContainer {
-    @apply rounded-md drop-shadow-2xl shadow-default/20 bg-background/90 z-50
+    @apply rounded-md drop-shadow-2xl shadow-default/20 bg-background/90 z-50;
   }
 
   .navDropdownBase {
-    @apply p-0 border-small border-divider bg-background
+    @apply p-0 border-small border-divider bg-background;
   }
 
   .navDropdownTriggerContainer {
-    @apply flex flex-col gap-[6px] w-[24px] h-[24px] justify-center items-center cursor-pointer transition-all duration-300
+    @apply flex flex-col gap-[6px] w-[24px] h-[24px] justify-center items-center cursor-pointer transition-all duration-300;
   }
 
   .menuBar {
-    @apply w-full h-[2px] rounded-full bg-foreground/80 transition-all duration-300 mx-auto
+    @apply w-full h-[2px] rounded-full bg-foreground/80 transition-all duration-300 mx-auto;
   }
 
   .open .menuBar:nth-child(1) {
@@ -282,7 +280,7 @@ body {
   }
 
   .open .menuBar:nth-child(2) {
-    transform: scale(0, 0)
+    transform: scale(0, 0);
   }
 
   .open .menuBar:nth-child(3) {
@@ -290,145 +288,143 @@ body {
   }
 
   .navbarBrand {
-    @apply flex-1 w-full justify-start flex gap-2
+    @apply flex-1 w-full justify-start flex gap-2;
   }
 
   .isActiveStyle {
-    @apply !text-[#FB542B] !text-lg !font-bold
+    @apply !text-[#FB542B] !text-lg !font-bold;
   }
 
   .linkItems {
-    @apply text-base font-semibold textBaseColor w-full flex justify-start items-center !p-0
+    @apply text-base font-semibold textBaseColor w-full flex justify-start items-center !p-0;
   }
 
   .themeIndicator {
-    @apply z-10 outline-none w-16 rounded-md font-semibold group-data-[hover=false]:border-default-500 border-small border-default-300 dark:border-default-200 bg-transparent xSmallTextColor flex justify-center items-center p-1 px-1.5 capitalize
+    @apply z-10 outline-none w-16 rounded-md font-semibold group-data-[hover=false]:border-default-500 border-small border-default-300 dark:border-default-200 bg-transparent xSmallTextColor flex justify-center items-center p-1 px-1.5 capitalize;
   }
 
   .themeIndicatorContainer {
-    @apply textBaseColor hover:bg-transparent border-none cursor-default
+    @apply textBaseColor hover:bg-transparent border-none cursor-default;
   }
 }
 
 /** PROFILE MODAL STYLES **/
 @layer utilities {
   .profileModalContainer {
-    @apply absolute z-50 top-[5%] mobileM:right-[15%] mobileM:translate-x-0 right-[50%] translate-x-[50%] rounded-lg w-[280px] p-1 drop-shadow-2xl shadow-default/20 bg-default/60
+    @apply absolute z-50 top-[5%] mobileM:right-[15%] mobileM:translate-x-0 right-[50%] translate-x-[50%] rounded-lg w-[280px] p-1 drop-shadow-2xl shadow-default/20 bg-default/60;
   }
 
   .profileModalEmailContainer {
-    @apply mt-8 w-full flex flex-col justify-center gap-1 px-2 pt-6
+    @apply mt-8 w-full flex flex-col justify-center gap-1 px-2 pt-6;
   }
 
   .profileModalEmailContent {
-    @apply xSmallTextColor
+    @apply xSmallTextColor;
   }
 }
 
 /** PROFILE MODAL FORM STYLES **/
 @layer utilities {
   .profileModalFormArrowBack {
-    @apply font-bold absolute top-2 left-2 drop-shadow-xl transform hover:scale-105 hover:bg-foreground hover:border-foreground text-background/60 rounded-full flex justify-center items-center cursor-pointer transition-all duration-300 p-1
+    @apply font-bold absolute top-2 left-2 drop-shadow-xl transform hover:scale-105 hover:bg-foreground hover:border-foreground text-background/60 rounded-full flex justify-center items-center cursor-pointer transition-all duration-300 p-1;
   }
 
   .profileModalFormSaveIcon {
-    @apply w-6 h-6 text-success-300 hover:text-success-400 transform hover:scale-105 transition-all duration-300
+    @apply w-6 h-6 text-success-300 hover:text-success-400 transform hover:scale-105 transition-all duration-300;
   }
 
   .profileModalFormContainer {
-    @apply rounded-t-lg bg-foreground/60 shadow-md
+    @apply rounded-t-lg bg-foreground/60 shadow-md;
   }
 
   .profileModalFormWrapper {
-    @apply w-full h-[70px] rounded-t-lg justify-center flex mb-1
+    @apply w-full h-[70px] rounded-t-lg justify-center flex mb-1;
   }
 
   .profileModalFormCloseBtn {
-    @apply font-bold absolute top-2 right-2 drop-shadow-xl transform hover:scale-105 hover:bg-foreground hover:border-foreground text-background/70 rounded-full flex justify-center items-center cursor-pointer transition-all duration-300
+    @apply font-bold absolute top-2 right-2 drop-shadow-xl transform hover:scale-105 hover:bg-foreground hover:border-foreground text-background/70 rounded-full flex justify-center items-center cursor-pointer transition-all duration-300;
   }
 
   .profileModalFormUsername {
-    @apply text-default-900 text-2xl font-semibold drop-shadow-lg tracking-wider truncate
+    @apply text-default-900 text-2xl font-semibold drop-shadow-lg tracking-wider truncate;
   }
 
   .profileModalFormEditIcon {
-    @apply absolute top-8 right-2 cursor-pointer
+    @apply absolute top-8 right-2 cursor-pointer;
   }
 
   .profileModalFormEditIconStyle {
-    @apply w-5 h-5 text-background/50 drop-shadow-xl transform hover:scale-105 hover:text-white transition-all duration-300
+    @apply w-5 h-5 text-background/50 drop-shadow-xl transform hover:scale-105 hover:text-white transition-all duration-300;
   }
 
   .profileModalFormEditIconImg {
-    @apply absolute -bottom-3 right-[50%] translate-x-[50%] cursor-pointer z-50
+    @apply absolute -bottom-3 right-[50%] translate-x-[50%] cursor-pointer z-50;
   }
 
   .profileModalFormEditIconStyleImg {
-    @apply w-5 h-5 text-white/90 drop-shadow-2xl transform hover:scale-105 hover:text-white bg-default-600 dark:bg-default hover:bg-emerald-700 dark:hover:bg-emerald-700 transition-all duration-300 rounded-full p-[2px]
+    @apply w-5 h-5 text-white/90 drop-shadow-2xl transform hover:scale-105 hover:text-white bg-default-600 dark:bg-default hover:bg-emerald-700 dark:hover:bg-emerald-700 transition-all duration-300 rounded-full p-[2px];
   }
-
-
 }
 
 /** PAGES STYLES **/
 @layer utilities {
   .pageContainer {
-    @apply w-full min-h-screen flex flex-col md:p-14 sm:pt-14 pt-12 px-6 md:mt-0 mt-14
+    @apply w-full min-h-screen flex flex-col md:p-14 sm:pt-14 pt-12 px-6 md:mt-0 mt-14;
   }
 
   .cardContainer {
-    @apply border-none w-full dark:bg-default/30 md:px-3 md:py-4 sm:px-2 sm:py-3 px-1 py-2 rounded-2xl
+    @apply border-none w-full dark:bg-default/30 md:px-3 md:py-4 sm:px-2 sm:py-3 px-1 py-2 rounded-2xl;
   }
 
   .cardHeadingContainer {
-    @apply flex items-center justify-start gap-2 px-4
+    @apply flex items-center justify-start gap-2 px-4;
   }
 
   .cardIconStyle {
-    @apply text-foreground/90 md:w-[32px] md:h-[32px] w-[30px] h-[30px]
+    @apply text-foreground/90 md:w-[32px] md:h-[32px] w-[30px] h-[30px];
   }
 
   .cardContentWrapper {
-    @apply flex flex-col gap-5 optionList w-full
+    @apply flex flex-col gap-5 optionList w-full;
   }
 
   .profileUpdateImageContainer {
-    @apply flex justify-center items-center relative w-full
+    @apply flex justify-center items-center relative w-full;
   }
 
   .profileUpdateImagePlaceholder {
-    @apply lg:w-[150px] lg:h-[150px] md:w-[130px] md:h-[130px] w-[100px] h-[100px] text-foreground/30 border-2 border-foreground/30 rounded-full
+    @apply lg:w-[150px] lg:h-[150px] md:w-[130px] md:h-[130px] w-[100px] h-[100px] text-foreground/30 border-2 border-foreground/30 rounded-full;
   }
 
   .profileUpdateImageUploadBtn {
-    @apply absolute right-[50%] translate-x-[50%] -bottom-4 bg-default-600 dark:bg-default rounded-full p-1 transform hover:scale-105 hover:bg-emerald-700 dark:hover:bg-emerald-700 transition-all duration-300 cursor-pointer drop-shadow-xl
+    @apply absolute right-[50%] translate-x-[50%] -bottom-4 bg-default-600 dark:bg-default rounded-full p-1 transform hover:scale-105 hover:bg-emerald-700 dark:hover:bg-emerald-700 transition-all duration-300 cursor-pointer drop-shadow-xl;
   }
 
   .profileUpdateInfoBtn {
-    @apply bg-default-600 dark:bg-default rounded-full p-1 transform hover:scale-105 hover:bg-emerald-700 dark:hover:bg-emerald-700 transition-all duration-300 cursor-pointer w-[28px] h-[28px] flex justify-center items-center drop-shadow-xl
+    @apply bg-default-600 dark:bg-default rounded-full p-1 transform hover:scale-105 hover:bg-emerald-700 dark:hover:bg-emerald-700 transition-all duration-300 cursor-pointer w-[28px] h-[28px] flex justify-center items-center drop-shadow-xl;
   }
 
   .profileUpdateContentDesignContainer {
-    @apply flex flex-col justify-center items-center gap-4 px-3
+    @apply flex flex-col justify-center items-center gap-4 px-3;
   }
 
   .profileUpdateEditIcon {
-    @apply w-[24px] h-[24px] drop-shadow-md text-white/90
+    @apply w-[24px] h-[24px] drop-shadow-md text-white/90;
   }
 
   .profileUpdateInfoItems {
-    @apply px-2 py-4 mobileM:grid mobileM:grid-cols-2 flex flex-col
+    @apply px-2 py-4 mobileM:grid mobileM:grid-cols-2 flex flex-col;
   }
 }
 
 /** PROFILE PAGE STYLES **/
 @layer utilities {
   .profileUpdateInfoWrapper {
-    @apply lg:grid lg:grid-cols-2 flex flex-col gap-3
+    @apply lg:grid lg:grid-cols-2 flex flex-col gap-3;
   }
 
   .profileUpdateInfoContentWrapper {
-    @apply border border-foreground/30 rounded-lg px-3 py-8 flex flex-col justify-center items-center gap-6 relative
+    @apply border border-foreground/30 rounded-lg px-3 py-8 flex flex-col justify-center items-center gap-6 relative;
   }
 }
 
@@ -439,8 +435,11 @@ a:hover {
 /** MAIN PAGE BACKGROUNDS */
 .darkThemeBg {
   background-color: hsla(261, 76%, 10%, 1);
-  background-image:
-    radial-gradient(at 0% 1%, hsla(262, 70%, 35%, 0.25) 0px, transparent 50%),
+  background-image: radial-gradient(
+      at 0% 1%,
+      hsla(262, 70%, 35%, 0.25) 0px,
+      transparent 50%
+    ),
     radial-gradient(at 97% 100%, hsla(262, 70%, 35%, 0.25) 0px, transparent 50%),
     radial-gradient(at 14% 0%, hsla(262, 70%, 35%, 0.25) 0px, transparent 50%),
     radial-gradient(at 74% 100%, hsla(262, 70%, 35%, 0.25) 0px, transparent 50%);
@@ -448,13 +447,16 @@ a:hover {
   background-size: cover;
   background-repeat: no-repeat;
   color-scheme: dark;
-  color: hsla(210, 6%, 93%, 0.80) !important;
+  color: hsla(210, 6%, 93%, 0.8) !important;
 }
 
 .lightThemeBg {
   background-color: hsla(262, 76%, 95%, 0.35);
-  background-image:
-    radial-gradient(at 0% 1%, hsla(262, 70%, 35%, 0.75) 0px, transparent 50%),
+  background-image: radial-gradient(
+      at 0% 1%,
+      hsla(262, 70%, 35%, 0.75) 0px,
+      transparent 50%
+    ),
     radial-gradient(at 97% 100%, hsla(262, 70%, 35%, 0.75) 0px, transparent 50%),
     radial-gradient(at 14% 0%, hsla(262, 70%, 35%, 0.75) 0px, transparent 50%),
     radial-gradient(at 74% 100%, hsla(262, 70%, 35%, 0.75) 0px, transparent 50%);
@@ -462,7 +464,7 @@ a:hover {
   background-size: cover;
   background-repeat: no-repeat;
   color-scheme: light;
-  color: hsla(202, 24%, 9%, 0.80) !important;
+  color: hsla(202, 24%, 9%, 0.8) !important;
 }
 
 /** DASHBOARD PAGE BACKGROUNDS */
@@ -528,7 +530,11 @@ Formula for translateX(position):
   font-size: 42px;
   height: 42px;
   font-weight: bold;
-  background: linear-gradient(13deg, rgba(251, 84, 43, 1) 30%, rgba(71, 21, 157, 1) 69%);
+  background: linear-gradient(
+    13deg,
+    rgba(251, 84, 43, 1) 30%,
+    rgba(71, 21, 157, 1) 69%
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -550,7 +556,6 @@ Formula for translateX(position):
 }
 
 @media (max-width: 540px) {
-
   .brandGradient {
     font-size: 36px;
     height: 36px;
@@ -575,7 +580,6 @@ Formula for translateX(position):
   .userProfile {
     display: none;
     width: fit-content;
-
   }
 }
 
@@ -584,7 +588,6 @@ Formula for translateX(position):
     display: none;
   }
 }
-
 
 @media (max-width: 262px) {
   #signOptions {

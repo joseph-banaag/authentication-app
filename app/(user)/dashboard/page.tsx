@@ -1,18 +1,21 @@
-"use client"
-import React, { useState, useEffect } from 'react'
-import { motion } from "framer-motion"
+"use client";
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 export default function Dashboard(): React.JSX.Element | null {
-  const [ isClient, setIsClient ] = useState<boolean>(false)
+  const [isClient, setIsClient] = useState<boolean>(false);
   const storedUser = {
-    data: typeof window !== "undefined" ? sessionStorage.getItem("sessionName") : ""
-  }
+    data:
+      typeof window !== "undefined"
+        ? sessionStorage.getItem("sessionName")
+        : "",
+  };
 
   useEffect(() => {
-    setIsClient(true)
-  }, [])
+    setIsClient(true);
+  }, []);
 
-  const user = storedUser.data
+  const user = storedUser.data;
 
   return (
     <main>
@@ -23,11 +26,16 @@ export default function Dashboard(): React.JSX.Element | null {
         className="pageContainer"
       >
         <div className="p-5 gap-3 flex flex-1 flex-col justify-start items-center">
-          <h1 className="textHeadingResponsive text-center">Welcome {isClient ? user : ""}</h1>
-          <p className="textBaseColor">This page will contain everything about the dashboard. If the application is an e-commerce store, all items like cart items will be shown here.</p>
+          <h1 className="textHeadingResponsive text-center">
+            Welcome {isClient ? user : ""}
+          </h1>
+          <p className="textBaseColor">
+            This page will contain everything about the dashboard. If the
+            application is an e-commerce store, all items like cart items will
+            be shown here.
+          </p>
         </div>
-
       </motion.div>
     </main>
-  )
+  );
 }

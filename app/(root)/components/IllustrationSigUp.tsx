@@ -1,7 +1,6 @@
-import React from 'react'
+import React from "react";
 import { bgIllustration } from "@/components/constants";
-import { Image } from '@nextui-org/react';
-
+import { Image } from "@nextui-org/react";
 
 const IllustrationSigUp = (): React.JSX.Element | null => {
   return (
@@ -17,13 +16,13 @@ const IllustrationSigUp = (): React.JSX.Element | null => {
             width={600}
             height={600}
             style={{
-              objectFit: "cover"
+              objectFit: "cover",
             }}
           />
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default IllustrationSigUp
+export default IllustrationSigUp;

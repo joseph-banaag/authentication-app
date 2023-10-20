@@ -1,27 +1,24 @@
-"use client"
+"use client";
 import React from "react";
 import { Card, CardBody, Button, CardFooter } from "@nextui-org/react";
 import AlertSpinner from "@/components/lib/AlertSpinner";
 
-
 export default function WrongPassword(): React.JSX.Element | null {
-  const [ clicked, setClicked ] = React.useState(false)
+  const [clicked, setClicked] = React.useState(false);
 
   const handleClick = () => {
     const newClick = !clicked;
-    setClicked(newClick)
+    setClicked(newClick);
 
     setTimeout(() => {
-      location.reload()
+      location.reload();
     }, 1000);
-  }
+  };
 
   return (
     <>
       <div className="warningMessageContainer">
-        <Card
-          className="warningMessageWrapper"
-        >
+        <Card className="warningMessageWrapper">
           <CardBody>
             <p className="warningMessageCardBody">
               Username and password do not match. Please try again...
@@ -36,9 +33,7 @@ export default function WrongPassword(): React.JSX.Element | null {
               className="warningMessageSubmitBtn"
             >
               <div className="warningMessageSubmitContent">
-                {clicked
-                  ? <AlertSpinner />
-                  : "OK"}
+                {clicked ? <AlertSpinner /> : "OK"}
               </div>
             </Button>
           </CardFooter>
@@ -47,5 +42,3 @@ export default function WrongPassword(): React.JSX.Element | null {
     </>
   );
 }
-
-

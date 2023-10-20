@@ -1,5 +1,5 @@
-import { Image } from '@nextui-org/react'
-import React from 'react'
+import { Image } from "@nextui-org/react";
+import React from "react";
 import { Company } from "@/components/constants";
 
 const BrandLogoSignIn = (): React.JSX.Element | null => {
@@ -14,7 +14,7 @@ const BrandLogoSignIn = (): React.JSX.Element | null => {
           style={{
             objectFit: "cover",
             width: "100%",
-            height: "100%"
+            height: "100%",
           }}
           className="drop-shadow-md"
         />
@@ -25,8 +25,7 @@ const BrandLogoSignIn = (): React.JSX.Element | null => {
         <p className="formSignText">to access {Company.name} </p>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default BrandLogoSignIn
-
+export default BrandLogoSignIn;

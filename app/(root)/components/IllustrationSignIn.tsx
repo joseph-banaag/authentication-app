@@ -1,5 +1,5 @@
-import { Image } from '@nextui-org/react'
-import React from 'react'
+import { Image } from "@nextui-org/react";
+import React from "react";
 import { bgIllustration } from "@/components/constants";
 
 const IllustrationSignIn = (): React.JSX.Element | null => {
@@ -16,13 +16,13 @@ const IllustrationSignIn = (): React.JSX.Element | null => {
             width={600}
             height={600}
             style={{
-              objectFit: "cover"
+              objectFit: "cover",
             }}
           />
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default IllustrationSignIn
+export default IllustrationSignIn;

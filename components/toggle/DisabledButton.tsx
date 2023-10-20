@@ -1,5 +1,5 @@
-import { Button } from "@nextui-org/react"
-import React from 'react'
+import { Button } from "@nextui-org/react";
+import React from "react";
 
 const DisabledButton = (): React.JSX.Element | null => {
   return (
@@ -10,8 +10,8 @@ const DisabledButton = (): React.JSX.Element | null => {
       className="bg-green-800 hover:bg-green-900 drop-shadow-lg transition-all duration-300"
     >
       <p className="text-white font-semibold flex-1">Continue</p>
-    </Button >
-  )
-}
+    </Button>
+  );
+};
 
-export default DisabledButton
+export default DisabledButton;

@@ -1,42 +1,39 @@
-"use client"
-import '@/app/globals.css'
+"use client";
+import "@/app/globals.css";
 import * as React from "react";
-import type { Metadata } from 'next'
-import { Montserrat } from 'next/font/google'
+import type { Metadata } from "next";
+import { Montserrat } from "next/font/google";
 import Topbar from "@/app/userComponents/section/navbar/Navbar";
-import { ThemeProvider } from "@/app/(root)/providers"
+import { ThemeProvider } from "@/app/(root)/providers";
 import { useTheme } from "next-themes";
 import ModalContextProvider from "@/app/context/ModalContext";
 
 const monserrat = Montserrat({
   display: "swap",
   weight: "400",
-  subsets: [ "latin" ],
-  variable: "--font-sans"
+  subsets: ["latin"],
+  variable: "--font-sans",
 });
 
 const metadata: Metadata = {
-  title: 'Authentication®',
-  description: 'An authentication provider',
-}
-
+  title: "Authentication®",
+  description: "An authentication provider",
+};
 
 export default function DashboardLayout({
   children,
 }: {
-  children: React.ReactNode
-  }): React.JSX.Element | null {
-  const [ client, setClient ] = React.useState<boolean>(false)
+  children: React.ReactNode;
+}): React.JSX.Element | null {
+  const [client, setClient] = React.useState<boolean>(false);
   React.useEffect(() => {
-    setClient(true)
-  }, [])
+    setClient(true);
+  }, []);
 
   const storedTheme = {
-    data: typeof window !== "undefined"
-      ? localStorage.getItem("theme")
-      : ""
-  }
-  const currentTheme = storedTheme.data
+    data: typeof window !== "undefined" ? localStorage.getItem("theme") : "",
+  };
+  const currentTheme = storedTheme.data;
 
   return (
     <html
@@ -57,5 +54,5 @@ export default function DashboardLayout({
         </React.StrictMode>
       </body>
     </html>
-  )
+  );
 }

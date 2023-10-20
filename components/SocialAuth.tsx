@@ -1,5 +1,5 @@
-import React from 'react'
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
 import { iconsSrc } from "@/components/constants";
 import GithubLight from "@/components/lib/iconOptions/githubLight";
 import { Button } from "@nextui-org/react";
@@ -11,11 +11,7 @@ export default function SocialAuth(): React.JSX.Element | null {
     <>
       <div className="flex items-center justify-evenly gap-[3px]">
         <div>
-          <Button
-            variant="flat"
-            size="md"
-            className="formSocialButton"
-          >
+          <Button variant="flat" size="md" className="formSocialButton">
             <Image
               priority
               src={iconsSrc.facebook}
@@ -25,8 +21,7 @@ export default function SocialAuth(): React.JSX.Element | null {
               style={{
                 objectFit: "contain",
                 width: "24px",
-                height: "24px"
-
+                height: "24px",
               }}
               className="drop-shadow-md"
             />
@@ -34,21 +29,13 @@ export default function SocialAuth(): React.JSX.Element | null {
         </div>
 
         <div>
-          <Button
-            variant="flat"
-            size="md"
-            className="formSocialButton"
-          >
+          <Button variant="flat" size="md" className="formSocialButton">
             <GithubLight />
           </Button>
         </div>
 
         <div>
-          <Button
-            variant="flat"
-            size="md"
-            className="formSocialButton"
-          >
+          <Button variant="flat" size="md" className="formSocialButton">
             <Image
               priority
               src={iconsSrc.google}
@@ -58,7 +45,7 @@ export default function SocialAuth(): React.JSX.Element | null {
               style={{
                 objectFit: "contain",
                 width: "24px",
-                height: "24px"
+                height: "24px",
               }}
               className="drop-shadow-md"
             />
@@ -67,10 +54,10 @@ export default function SocialAuth(): React.JSX.Element | null {
       </div>
 
       <div className="formSocialDividerContainer">
-        <hr className='formSocialHorzLine'></hr>
+        <hr className="formSocialHorzLine"></hr>
         <p className="formSocialDivText">or</p>
-        <hr className='formSocialHorzLine'></hr>
+        <hr className="formSocialHorzLine"></hr>
       </div>
     </>
-  )
+  );
 }

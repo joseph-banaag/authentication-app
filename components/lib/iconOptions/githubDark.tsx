@@ -1,6 +1,6 @@
-"use client"
-import React from 'react'
-import Image from 'next/image';
+"use client";
+import React from "react";
+import Image from "next/image";
 import { iconsSrc } from "@/components/constants";
 
 export default function GithubDark() {
@@ -13,7 +13,7 @@ export default function GithubDark() {
       style={{
         objectFit: "contain",
         width: "24px",
-        height: "24px"
+        height: "24px",
       }}
       className="drop-shadow-md"
     />
