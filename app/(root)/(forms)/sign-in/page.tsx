@@ -64,21 +64,19 @@ export default function SignIn(): React.JSX.Element | null {
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   const OnSubmit: SubmitHandler<Inputs> = (data, e) => {
-    const password = data.password;
-    const user_name = data.username;
+    const userInputPassword = data.password;
+    const userInputUsername = data.username;
     e?.preventDefault();
 
-    const usernameLower = user_name.toLowerCase();
+    const usernameLower = userInputUsername.toLowerCase();
 
     sessionStorage.setItem("sessionName", usernameLower);
 
     const check_user_info = async () => {
       const data_from_DB = await getData();
-      const passwordInput = password;
-      const usernameInput = usernameLower;
 
       const userInfo_DB = data_from_DB.find(
-        ({ username }: { username: string }) => username === usernameInput,
+        ({ username }: { username: string }) => username === usernameLower,
       );
 
       if (userInfo_DB === undefined) {
@@ -92,11 +90,19 @@ export default function SignIn(): React.JSX.Element | null {
         const db_username = userInfo_DB.username;
         const db_password = userInfo_DB.password;
         const hashed = userInfo_DB.password;
+
+        const checkUsername = db_username === usernameLower;
+        const checkPassword = db_password === userInputPassword;
+        console.log(checkUsername);
+        console.log(checkPassword);
+
         console.log(hashed);
 
         document.cookie = `cookieName=${db_username}; SameSite=None; Secure`;
 
-        if (usernameInput === db_username && passwordInput === db_password) {
+        if (!checkUsername && !checkPassword) {
+          setWrongPass(!wrongPass);
+        } else {
           toast.success("Signed in successfully!", {
             className: "bg-[#47159d] text-white",
           });
@@ -105,8 +111,6 @@ export default function SignIn(): React.JSX.Element | null {
           setTimeout(() => {
             router.push("/dashboard");
           }, 1000);
-        } else {
-          setWrongPass(!wrongPass);
         }
       }
     };

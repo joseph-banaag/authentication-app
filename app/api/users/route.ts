@@ -43,9 +43,14 @@ export async function GET(request: Request) {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
 
-    const toFind = {};
+    // const usernameInput = "testUser777";
+    // const inputLowered = usernameInput.toLowerCase();
 
-    const createdUsers = await collection.find(toFind).toArray();
+    // const toFind = {
+    //   username: `${inputLowered}`,
+    // };
+
+    const createdUsers = await collection.find({}).toArray();
 
     console.log("List of the documents will be found through PostMan");
     return Response.json(createdUsers);
