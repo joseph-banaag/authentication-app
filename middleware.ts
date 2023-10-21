@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
-export const runtime = "experimental-edge";
-
 const unprotectedRoutes = ["/", "/sign-in", "/sign-up"];
 const protectedRoutes = ["/dashboard", "/settings", "/profile", "/security"];
 const pathPattern =

@@ -2,11 +2,8 @@
 import "@/app/globals.css";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-import Topbar from "@/components/sections/navbar/Navbar";
-import Footer from "@/components/sections/footer/page";
 import * as React from "react";
 import { ThemeProvider } from "@/app/(root)/providers";
-import ModalContextProvider from "@/app/context/ModalContext";
 
 const monserrat = Montserrat({
   display: "swap",
@@ -49,13 +46,7 @@ export default function RootLayout({
     >
       <body className={monserrat.className}>
         <React.StrictMode>
-          <ThemeProvider>
-            <ModalContextProvider>
-              <Topbar />
-              {children}
-              <Footer />
-            </ModalContextProvider>
-          </ThemeProvider>
+          <ThemeProvider>{children}</ThemeProvider>
         </React.StrictMode>
       </body>
     </html>
