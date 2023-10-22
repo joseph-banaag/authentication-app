@@ -1,10 +1,8 @@
 import { NextResponse } from "next/server";
-import { NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 
 const publicRoutes = ["/", "/sign-in", "/sign-up"];
 const protectedRoutes = ["/dashboard", "/settings", "/profile", "/security"];
-const pathPattern =
-  /^\/(?!$|dashboard$|profile$|settings$|security$|sign-in$|sign-up$)[a-zA-Z0-9_-]+\/?$/;
 
 export function middleware(request: NextRequest) {
   const usernameCookie = request.cookies.get("cookieName");
@@ -12,15 +10,26 @@ export function middleware(request: NextRequest) {
   const cookieValue = usernameCookie?.value;
   const cookieTrueValue = passwordCookie?.value;
 
-  if (pathPattern.test(request.nextUrl.pathname) === true) {
-    return NextResponse.rewrite(new URL("/notFound", request.url));
+  const response = NextResponse.next();
+
+  if (publicRoutes.includes(request.nextUrl.pathname)) {
+    response.cookies.set({
+      name: "cookieName",
+      value: "undefined",
+      path: "/",
+    });
+    response.cookies.set({
+      name: "cookieTrue",
+      value: "undefined",
+      path: "/",
+    });
   }
+
   if (
     cookieValue === "undefined" &&
     cookieTrueValue === "undefined" &&
     protectedRoutes.includes(request.nextUrl.pathname)
   ) {
-    console.log("no user");
     return NextResponse.redirect(new URL("/", request.url));
   } else if (
     cookieTrueValue === "true" &&
@@ -29,7 +38,7 @@ export function middleware(request: NextRequest) {
   ) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
-  return NextResponse.next();
+  return response;
 }
 
 export const config = {
