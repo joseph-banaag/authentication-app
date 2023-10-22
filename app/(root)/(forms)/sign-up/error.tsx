@@ -18,13 +18,13 @@ export default function Error({
   }, [error]);
   return (
     <>
-      <div className="bg-[#0a0316] text-[#ECEDEE] flex flex-1 w-full h-screen justify-center items-center gap-8 flex-col">
-        <h2 className="text-4xl text-[#ecedee] font-bold">
+      <div className="errorPageContainer">
+        <h2 className="errorPageHeader">
           {isClient ? "Something went wrong!" : ""}
         </h2>
         <Image
-          src={bgIllustration.errorNotFound.src}
-          alt={bgIllustration.errorNotFound.name}
+          src={bgIllustration.unexpectedError.src}
+          alt={bgIllustration.unexpectedError.name}
           width={600}
           height={600}
           style={{
@@ -32,10 +32,7 @@ export default function Error({
           }}
           className="fadeIn"
         />
-        <button
-          onClick={() => reset()}
-          className="bg-[#661fe0] px-5 py-2 rounded-2xl text-xl font-semibold"
-        >
+        <button onClick={() => reset()} className="errorPageBtn">
           Try again
         </button>
       </div>

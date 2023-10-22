@@ -3,29 +3,20 @@ import React, { useEffect, useState } from "react";
 import { bgIllustration } from "@/components/constants";
 import { Image } from "@nextui-org/react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 
-export default function NotFound({
-  error,
-}: {
-  error: Error & { digest?: string };
-}): React.JSX.Element | null {
-  const [isClient, setIsClient] = useState<boolean>(false);
+export default function NotFound(): React.JSX.Element | null {
+  const [mounted, setMounted] = useState<boolean | null>(false);
 
   useEffect(() => {
-    console.error(error);
-    setIsClient(true);
-  }, [error]);
+    setMounted(true);
+  }, []);
+  if (!mounted) return null;
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ ease: "backIn", duration: 0.5 }}
-      >
-        <div className="text-foreground/80 flex flex-1 w-full h-screen justify-center items-center gap-8 flex-col">
+      {mounted ? (
+        <div className="text-foreground/80 flex flex-1 w-full h-screen justify-center items-center gap-8 flex-col fadeIn">
           <h2 className="text-4xl text-foreground/80 drop-shadow-xl font-bold">
-            {isClient ? "Something went wrong!" : ""}
+            Something went wrong!
           </h2>
           <Image
             src={bgIllustration.errorNotFound.src}
@@ -44,7 +35,7 @@ export default function NotFound({
             Home
           </Link>
         </div>
-      </motion.div>
+      ) : null}
     </>
   );
 }

@@ -12,6 +12,7 @@ export default function Footer(): React.JSX.Element | null {
       <p className="footerMessage">
         For the illustration, I am using the online illustration by{" "}
         <Link
+          target="_blank"
           href="https://storyset.com/online"
           className="footerIllustrationProvider"
         >

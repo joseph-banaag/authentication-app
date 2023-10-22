@@ -30,6 +30,10 @@ export const bgIllustration = {
     src: "/assets/background/notFound.svg",
     name: "Error 404",
   },
+  unexpectedError: {
+    src: "/assets/background/unexpected.svg",
+    name: "unexpected error",
+  },
 };
 
 export const Company = {

@@ -428,6 +428,21 @@ body {
   }
 }
 
+/** ERROR STYLE **/
+@layer utilities {
+  .errorPageContainer {
+    @apply text-foreground/80 flex flex-1 w-full h-screen justify-center items-center gap-0 flex-col px-5 py-8;
+  }
+
+  .errorPageHeader {
+    @apply sm:text-4xl mobileL:text-3xl mobileM:text-2xl mobileS:text-xl text-lg tracking-wide font-bold;
+  }
+
+  .errorPageBtn {
+    @apply bg-[#661fe0] px-5 py-2 rounded-2xl mobileL:text-xl mobileM:text-lg mobileS:text-base text-sm font-semibold;
+  }
+}
+
 a:hover {
   text-decoration: none;
 }

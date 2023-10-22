@@ -94,8 +94,6 @@ export default function SignIn(): React.JSX.Element | null {
         const checkUsername = db_username === usernameLower;
         const checkPassword = db_password === userInputPassword;
 
-        console.log(hashed);
-
         if (checkPassword === false) {
           document.cookie = `cookieTrue=undefined; SameSite=None; Secure`;
         } else {
