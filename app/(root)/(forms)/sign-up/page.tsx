@@ -139,12 +139,12 @@ export default function SignUp(): React.JSX.Element | null {
         if (!password) {
           document.cookie = `cookieTrue=undefined; SameSite=None; Secure`;
         } else {
-          document.cookie = `cookieTrue=true; SameSite=None; Secure`;
+          document.cookie = `cookieTrue=true; SameSite=None; Secure; Priority=High`;
         }
         if (!usernameLower) {
           document.cookie = `cookieName=undefined; SameSite=None; Secure`;
         } else {
-          document.cookie = `cookieName=true; SameSite=None; Secure`;
+          document.cookie = `cookieName=true; SameSite=None; Secure; Priority=High`;
         }
 
         setTimeout(() => {
@@ -177,12 +177,12 @@ export default function SignUp(): React.JSX.Element | null {
           if (!password) {
             document.cookie = `cookieTrue=undefined; SameSite=None; Secure`;
           } else {
-            document.cookie = `cookieTrue=true; SameSite=None; Secure`;
+            document.cookie = `cookieTrue=true; SameSite=None; Secure; Priority=High`;
           }
           if (!usernameLower) {
             document.cookie = `cookieName=undefined; SameSite=None; Secure`;
           } else {
-            document.cookie = `cookieName=true; SameSite=None; Secure`;
+            document.cookie = `cookieName=true; SameSite=None; Secure; Priority=High`;
           }
 
           setTimeout(() => {

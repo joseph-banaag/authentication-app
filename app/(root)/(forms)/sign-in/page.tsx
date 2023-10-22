@@ -99,12 +99,12 @@ export default function SignIn(): React.JSX.Element | null {
         if (checkPassword === false) {
           document.cookie = `cookieTrue=undefined; SameSite=None; Secure`;
         } else {
-          document.cookie = `cookieTrue=${checkPassword}; SameSite=None; Secure`;
+          document.cookie = `cookieTrue=${checkPassword}; SameSite=None; Secure; Priority=High`;
         }
         if (checkUsername === false) {
           document.cookie = `cookieName=undefined; SameSite=None; Secure`;
         } else {
-          document.cookie = `cookieName=${checkUsername}; SameSite=None; Secure`;
+          document.cookie = `cookieName=${checkUsername}; SameSite=None; Secure; Priority=High`;
         }
 
         if (checkUsername && checkPassword) {
