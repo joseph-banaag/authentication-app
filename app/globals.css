@@ -431,7 +431,7 @@ body {
 /** ERROR STYLE **/
 @layer utilities {
   .errorPageContainer {
-    @apply text-foreground/80 flex flex-1 w-full h-screen justify-center items-center gap-0 flex-col px-5 py-8;
+    @apply text-foreground/80 flex flex-1 w-full h-screen justify-center items-center gap-0 flex-col px-5 py-8 fadeIn;
   }
 
   .errorPageHeader {
@@ -439,7 +439,7 @@ body {
   }
 
   .errorPageBtn {
-    @apply bg-[#661fe0] px-5 py-2 rounded-2xl mobileL:text-xl mobileM:text-lg mobileS:text-base text-sm font-semibold;
+    @apply bg-[#661fe0] px-5 py-2 rounded-2xl mobileL:text-xl mobileM:text-lg mobileS:text-base text-sm font-semibold hover:scale-105 hover:bg-[#3d1287] transition-all duration-300 shadow-lg shadow-background/70;
   }
 }
 

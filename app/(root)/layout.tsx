@@ -36,9 +36,7 @@ export default function RootLayout({
   const currentTheme = storedTheme.data;
 
   return (
-    <html
-      suppressHydrationWarning
-      lang="en"
+    <div
       className={`dark ${
         client
           ? currentTheme === "dark" || !currentTheme
@@ -47,7 +45,7 @@ export default function RootLayout({
           : "dark"
       }`}
     >
-      <body className={monserrat.className}>
+      <div className={monserrat.className}>
         <React.StrictMode>
           <ThemeProvider>
             <ModalContextProvider>
@@ -57,7 +55,7 @@ export default function RootLayout({
             </ModalContextProvider>
           </ThemeProvider>
         </React.StrictMode>
-      </body>
-    </html>
+      </div>
+    </div>
   );
 }

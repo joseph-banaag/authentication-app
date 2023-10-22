@@ -1,7 +1,8 @@
-import React from "react";
 import "@/app/globals.css";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import * as React from "react";
+import { ThemeProvider } from "@/app/(root)/providers";
 
 const monserrat = Montserrat({
   display: "swap",
@@ -21,8 +22,16 @@ const NotFoundLayout = ({
   children: React.ReactNode;
 }): React.JSX.Element => {
   return (
-    <html lang="en">
-      <body className={monserrat.className}>{children}</body>
+    <html
+      suppressHydrationWarning
+      lang="en"
+      className="dark text-foreground bg-background"
+    >
+      <body className={monserrat.className}>
+        <React.StrictMode>
+          <ThemeProvider>{children}</ThemeProvider>
+        </React.StrictMode>
+      </body>
     </html>
   );
 };
