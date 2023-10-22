@@ -12,13 +12,9 @@ export function middleware(request: NextRequest) {
   const cookieValue = usernameCookie?.value;
   const cookieTrueValue = passwordCookie?.value;
 
-  console.log("password", cookieTrueValue);
-  console.log("username", cookieValue);
-
   if (pathPattern.test(request.nextUrl.pathname) === true) {
     return NextResponse.rewrite(new URL("/notFound", request.url));
   }
-
   if (
     cookieValue === "undefined" &&
     cookieTrueValue === "undefined" &&
@@ -33,7 +29,6 @@ export function middleware(request: NextRequest) {
   ) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
-
   return NextResponse.next();
 }
 
