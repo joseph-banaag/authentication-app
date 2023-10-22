@@ -75,6 +75,7 @@ export default function Sidebar(): React.ReactNode {
   const handleClearStoredData = () => {
     sessionStorage.clear();
     document.cookie = "cookieName=";
+    document.cookie = "cookieTrue=";
   };
   return (
     <>

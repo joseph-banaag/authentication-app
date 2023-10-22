@@ -115,7 +115,7 @@ export default function SignUp(): React.JSX.Element | null {
     const usernameLower = user_name.toLowerCase();
     const emailLower = email_acc.toLowerCase();
 
-    document.cookie = `cookieName=${usernameLower}; SameSite=None; Secure`;
+    // document.cookie = `cookieName=${usernameLower}; SameSite=None; Secure`;
     sessionStorage.setItem("sessionName", usernameLower);
 
     const check_existing_acc = async () => {

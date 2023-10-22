@@ -93,24 +93,32 @@ export default function SignIn(): React.JSX.Element | null {
 
         const checkUsername = db_username === usernameLower;
         const checkPassword = db_password === userInputPassword;
+
         console.log(checkUsername);
         console.log(checkPassword);
 
         console.log(hashed);
 
-        document.cookie = `cookieName=${db_username}; SameSite=None; Secure`;
-
-        if (!checkUsername && !checkPassword) {
-          setWrongPass(!wrongPass);
+        if (checkPassword === false) {
+          document.cookie = `cookieTrue=undefined; SameSite=None; Secure`;
         } else {
+          document.cookie = `cookieTrue=${checkPassword}; SameSite=None; Secure`;
+        }
+        if (checkUsername === false) {
+          document.cookie = `cookieName=undefined; SameSite=None; Secure`;
+        } else {
+          document.cookie = `cookieName=${checkUsername}; SameSite=None; Secure`;
+        }
+
+        if (checkUsername && checkPassword) {
           toast.success("Signed in successfully!", {
             className: "bg-[#47159d] text-white",
           });
           setClicked(!clicked);
-
-          setTimeout(() => {
-            router.push("/dashboard");
-          }, 1000);
+          router.push("/dashboard");
+        } else {
+          setWrongPass(!wrongPass);
+          // todo: create a function to reload the page or redirect to sign-in again
         }
       }
     };
