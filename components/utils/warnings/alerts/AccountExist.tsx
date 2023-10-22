@@ -11,10 +11,9 @@ export default function AccountExist(): React.JSX.Element | null {
   const handleClick = () => {
     const newClick = !clicked;
     setClicked(newClick);
-
-    setTimeout(() => {
-      router.push("/sign-in", { scroll: false });
-    }, 1000);
+    document.cookie = `cookieName=undefined`;
+    document.cookie = `cookieTrue=undefined`;
+    router.push("/sign-in", { scroll: false });
   };
 
   return (

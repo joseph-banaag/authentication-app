@@ -115,7 +115,6 @@ export default function SignUp(): React.JSX.Element | null {
     const usernameLower = user_name.toLowerCase();
     const emailLower = email_acc.toLowerCase();
 
-    // document.cookie = `cookieName=${usernameLower}; SameSite=None; Secure`;
     sessionStorage.setItem("sessionName", usernameLower);
 
     const check_existing_acc = async () => {
@@ -123,7 +122,6 @@ export default function SignUp(): React.JSX.Element | null {
 
       if (data_from_DB.length === 0) {
         // this will handle a fresh new data with zero document
-
         const res = await fetch("api/users", {
           method: "POST",
           headers: {
@@ -137,8 +135,17 @@ export default function SignUp(): React.JSX.Element | null {
             created_on,
           }),
         });
-
         toast.success("Successfully created a new account!");
+        if (!password) {
+          document.cookie = `cookieTrue=undefined; SameSite=None; Secure`;
+        } else {
+          document.cookie = `cookieTrue=true; SameSite=None; Secure`;
+        }
+        if (!usernameLower) {
+          document.cookie = `cookieName=undefined; SameSite=None; Secure`;
+        } else {
+          document.cookie = `cookieName=true; SameSite=None; Secure`;
+        }
 
         setTimeout(() => {
           router.push("/dashboard");
@@ -165,8 +172,18 @@ export default function SignUp(): React.JSX.Element | null {
               created_on,
             }),
           });
-
           toast.success("Successfully created a new account!");
+
+          if (!password) {
+            document.cookie = `cookieTrue=undefined; SameSite=None; Secure`;
+          } else {
+            document.cookie = `cookieTrue=true; SameSite=None; Secure`;
+          }
+          if (!usernameLower) {
+            document.cookie = `cookieName=undefined; SameSite=None; Secure`;
+          } else {
+            document.cookie = `cookieName=true; SameSite=None; Secure`;
+          }
 
           setTimeout(() => {
             router.push("/dashboard");
