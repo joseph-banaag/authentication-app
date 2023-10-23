@@ -174,15 +174,24 @@ export default function SignUp(): React.JSX.Element | null {
           });
           toast.success("Successfully created a new account!");
 
-          if (!password) {
-            document.cookie = `cookieTrue=undefined; SameSite=None; Secure`;
-          } else {
-            document.cookie = `cookieTrue=true; SameSite=None; Secure; Priority=High`;
-          }
           if (!usernameLower) {
-            document.cookie = `cookieName=undefined; SameSite=None; Secure`;
+            document.cookie = `isAuth=undefined; SameSite=None; Secure`;
           } else {
-            document.cookie = `cookieName=true; SameSite=None; Secure; Priority=High`;
+            const generateRandom = (length: number) => {
+              const characters =
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+              let randomizer = "";
+
+              for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(
+                  Math.random() * characters.length,
+                );
+                randomizer += characters.charAt(randomIndex);
+              }
+              return randomizer;
+            };
+            const currentUser = generateRandom(30);
+            document.cookie = `isAuth=${currentUser}; SameSite=None; Secure; Priority=High`;
           }
 
           setTimeout(() => {

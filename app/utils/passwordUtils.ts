@@ -4,8 +4,12 @@ export async function hashPassword(password: string): Promise<string> {
   const bcrypt = require("bcrypt");
   const saltRounds = 10;
   const salt = bcrypt.genSaltSync(saltRounds);
-  const hashedPassword = await bcrypt.hashSync(password, salt);
-  return hashedPassword;
+  try {
+    const hashedPassword = await bcrypt.hashSync(password, salt);
+    return hashedPassword;
+  } catch (error) {
+    throw new Error(`There was an error hashing the password. Error: ${error}`);
+  }
 }
 
 export async function compareHashed(passwordInput: string, hashed: string) {

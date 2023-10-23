@@ -94,15 +94,22 @@ export default function SignIn(): React.JSX.Element | null {
         const checkUsername = db_username === usernameLower;
         const checkPassword = db_password === userInputPassword;
 
-        if (checkPassword === false) {
-          document.cookie = `cookieTrue=undefined; SameSite=None; Secure`;
+        if (db_username !== usernameLower) {
+          document.cookie = `isAuth=undefined; SameSite=None; Secure`;
         } else {
-          document.cookie = `cookieTrue=${checkPassword}; SameSite=None; Secure; Priority=High`;
-        }
-        if (checkUsername === false) {
-          document.cookie = `cookieName=undefined; SameSite=None; Secure`;
-        } else {
-          document.cookie = `cookieName=${checkUsername}; SameSite=None; Secure; Priority=High`;
+          const generateRandom = (length: number) => {
+            const characters =
+              "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            let randomizer = "";
+
+            for (let i = 0; i < length; i++) {
+              const randomIndex = Math.floor(Math.random() * characters.length);
+              randomizer += characters.charAt(randomIndex);
+            }
+            return randomizer;
+          };
+          const currentUser = generateRandom(30);
+          document.cookie = `isAuth=${currentUser}; SameSite=None; Secure; Priority=High`;
         }
 
         if (checkUsername && checkPassword) {

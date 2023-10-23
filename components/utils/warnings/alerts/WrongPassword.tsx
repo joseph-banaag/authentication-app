@@ -9,8 +9,7 @@ export default function WrongPassword(): React.JSX.Element | null {
   const handleClick = () => {
     const newClick = !clicked;
     setClicked(newClick);
-    document.cookie = `cookieName=undefined`;
-    document.cookie = `cookieTrue=undefined`;
+    document.cookie = `isAuth=`;
     location.reload();
   };
 

@@ -5,35 +5,30 @@ const publicRoutes = ["/", "/sign-in", "/sign-up"];
 const protectedRoutes = ["/dashboard", "/settings", "/profile", "/security"];
 
 export function middleware(request: NextRequest) {
-  const usernameCookie = request.cookies.get("cookieName");
-  const passwordCookie = request.cookies.get("cookieTrue");
-  const cookieValue = usernameCookie?.value;
-  const cookieTrueValue = passwordCookie?.value;
+  const isAuthValue = request.cookies.get("isAuth")?.value;
+  const cookieValueRegEx = /^[a-zA-Z0-9]{30}$/;
+  const cookieValueToString = `${isAuthValue}`;
+  const randomResult = cookieValueRegEx.test(cookieValueToString);
 
   const response = NextResponse.next();
 
   if (publicRoutes.includes(request.nextUrl.pathname)) {
     response.cookies.set({
-      name: "cookieName",
-      value: "undefined",
-      path: "/",
-    });
-    response.cookies.set({
-      name: "cookieTrue",
-      value: "undefined",
-      path: "/",
+      name: "",
+      value: "",
+      path: "",
     });
   }
 
   if (
-    cookieValue === "undefined" &&
-    cookieTrueValue === "undefined" &&
+    !isAuthValue &&
+    randomResult === false &&
     protectedRoutes.includes(request.nextUrl.pathname)
   ) {
     return NextResponse.redirect(new URL("/", request.url));
   } else if (
-    cookieTrueValue === "true" &&
-    cookieValue === "true" &&
+    isAuthValue &&
+    randomResult === true &&
     publicRoutes.includes(request.nextUrl.pathname)
   ) {
     return NextResponse.redirect(new URL("/dashboard", request.url));

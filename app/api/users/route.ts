@@ -1,5 +1,5 @@
 import connectToDB, { client } from "@/app/lib/mongodb";
-import { hashPassword } from "@/app/utils/passwordUtils";
+import { hashPassword, compareHashed } from "@/app/utils/passwordUtils";
 
 // INSERT OPERATION
 export async function POST(request: Request) {
@@ -7,6 +7,7 @@ export async function POST(request: Request) {
     await request.json();
 
   const hashed = await hashPassword(password);
+  console.log(hashed);
 
   await connectToDB();
 
