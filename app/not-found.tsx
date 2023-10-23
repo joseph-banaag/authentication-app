@@ -14,7 +14,12 @@ export default function NotFound(): React.JSX.Element | null {
   return (
     <>
       <div className="errorPageContainer !gap-8">
-        <h2 className="errorPageHeader">Something went wrong!</h2>
+        <div className="flex flex-1 justify-center items-center text-center flex-col gap-2 !px-3 !py-6">
+          <h2 className="errorPageHeader">Something went wrong!</h2>
+          <p className="sm:text-base text-xs text-foreground/70">
+            Requested page could not be found
+          </p>
+        </div>
         <Image
           src={bgIllustration.errorNotFound.src}
           alt={bgIllustration.errorNotFound.name}

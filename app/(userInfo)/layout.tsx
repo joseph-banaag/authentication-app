@@ -5,7 +5,6 @@ import { Montserrat } from "next/font/google";
 import * as React from "react";
 import { ThemeProvider } from "@/app/(root)/providers";
 import Sidebar from "@/app/userComponents/section/sidebar/Sidebar";
-import { useTheme } from "next-themes";
 import ModalContextProvider from "@/app/context/ModalContext";
 
 const monserrat = Montserrat({
@@ -25,23 +24,15 @@ export default function UserLayout({
 }: {
   children: React.ReactNode;
 }): React.JSX.Element | null {
-  const [client, setClient] = React.useState<boolean>(false);
+  const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
-    setClient(true);
+    setMounted(true);
   }, []);
-
-  const storedTheme = {
-    data: typeof window !== "undefined" ? localStorage.getItem("theme") : "",
-  };
-  const currentTheme = storedTheme.data;
+  if (!mounted) return null;
 
   return (
-    <html
-      suppressHydrationWarning
-      lang="en"
-      className="dark text-foreground bg-background"
-    >
-      <body className={monserrat.className}>
+    <div className="text-foreground bg-background">
+      <div className={monserrat.className}>
         <React.StrictMode>
           <ThemeProvider>
             <ModalContextProvider>
@@ -52,7 +43,7 @@ export default function UserLayout({
             </ModalContextProvider>
           </ThemeProvider>
         </React.StrictMode>
-      </body>
-    </html>
+      </div>
+    </div>
   );
 }

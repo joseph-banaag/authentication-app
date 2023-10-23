@@ -20,7 +20,7 @@ const metadata: Metadata = {
   description: "An authentication provider",
 };
 
-export default function RootLayout({
+export default function MainLayout({
   children,
 }: {
   children: React.ReactNode;

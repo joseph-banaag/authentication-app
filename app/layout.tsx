@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description: "An authentication provider",
 };
 
-const NotFoundLayout = ({
+const RootLayout = ({
   children,
 }: {
   children: React.ReactNode;
@@ -36,4 +36,4 @@ const NotFoundLayout = ({
   );
 };
 
-export default NotFoundLayout;
+export default RootLayout;
