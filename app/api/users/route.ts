@@ -1,41 +1,6 @@
 import connectToDB, { client } from "@/app/lib/mongodb";
-import { hashPassword, compareHashed } from "@/app/utils/passwordUtils";
 
-// INSERT OPERATION
-export async function POST(request: Request) {
-  const { password, usernameLower, emailLower, created_on } =
-    await request.json();
-
-  const hashed = await hashPassword(password);
-  console.log(hashed);
-
-  await connectToDB();
-
-  try {
-    const db = client.db("active_users");
-    const collection = db.collection("user_information");
-
-    const newDoc = {
-      email: `${emailLower}`,
-      username: `${usernameLower}`,
-      password: `${hashed}`,
-      created_on: `${created_on}`,
-    };
-
-    const AddAcc = await collection.insertOne(newDoc);
-
-    console.log("Successfully added a new user");
-
-    return Response.json(AddAcc);
-  } catch (error) {
-    throw new Error(
-      `There was a problem creating a new document. Error: ${error}`,
-    );
-  } finally {
-    await client.close();
-    console.log("The process is now completed. Database connection is closed.");
-  }
-}
+// INSERT OPERATIONS. See sign-up and sign-in handlers
 
 // GET OPERATION
 export async function GET(request: Request) {
@@ -43,13 +8,6 @@ export async function GET(request: Request) {
   try {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
-
-    // const usernameInput = "testUser777";
-    // const inputLowered = usernameInput.toLowerCase();
-
-    // const toFind = {
-    //   username: `${inputLowered}`,
-    // };
 
     const createdUsers = await collection.find({}).toArray();
 

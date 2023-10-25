@@ -15,6 +15,7 @@ import BrandLogoSignUp from "@/app/(root)/components/BrandLogoSignUp";
 import { usePathname } from "next/navigation";
 import SocialAuth from "@/components/SocialAuth";
 import DisabledButton from "@/components/toggle/DisabledButton";
+import CreateAccError from "@/components/utils/warnings/alerts/CreateAccError";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -24,22 +25,13 @@ interface Inputs {
   confirmPw: string;
 }
 
-const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/users", {
-    cache: "force-cache",
-  });
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-  return res.json();
-};
-
 // * main function here...
 export default function SignUp(): React.JSX.Element | null {
-  const [isVisible, setIsVisible] = React.useState(false);
-  const [isConfirmed, setIsConfirmed] = React.useState(false);
-  const [clicked, setClicked] = React.useState(false);
-  const [exist, setExist] = React.useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isConfirmed, setIsConfirmed] = useState(false);
+  const [clicked, setClicked] = useState(false);
+  const [exist, setExist] = useState(false);
+  const [createAccErr, setCreateAccErr] = useState(false);
   const pathname = usePathname();
   const {
     register,
@@ -117,12 +109,25 @@ export default function SignUp(): React.JSX.Element | null {
 
     sessionStorage.setItem("sessionName", usernameLower);
 
-    const check_existing_acc = async () => {
-      const data_from_DB = await getData();
+    const getData = async () => {
+      const res = await fetch("http://localhost:3000/api/users", {
+        cache: "force-cache",
+      });
+      if (!res.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const data = res.json();
+      return data;
+    };
 
-      if (data_from_DB.length === 0) {
+    const check_existing_acc = async () => {
+      const data = await getData();
+
+      console.log(data);
+
+      if (data.length === 0) {
         // this will handle a fresh new data with zero document
-        const res = await fetch("api/users", {
+        const res = await fetch("api/sign-up", {
           method: "POST",
           headers: {
             "Content-type": "application/json",
@@ -135,31 +140,47 @@ export default function SignUp(): React.JSX.Element | null {
             created_on,
           }),
         });
-        toast.success("Successfully created a new account!");
-        if (!password) {
-          document.cookie = `cookieTrue=undefined; SameSite=None; Secure`;
-        } else {
-          document.cookie = `cookieTrue=true; SameSite=None; Secure; Priority=High`;
-        }
-        if (!usernameLower) {
-          document.cookie = `cookieName=undefined; SameSite=None; Secure`;
-        } else {
-          document.cookie = `cookieName=true; SameSite=None; Secure; Priority=High`;
-        }
 
-        setTimeout(() => {
-          router.push("/dashboard");
-        }, 2000);
-      } else if (data_from_DB.length > 0) {
+        // TODO: update the logic below to use JWT
+
+        if (!res.ok) {
+          document.cookie = `isAuth=undefined; SameSite=None; Secure`;
+          setCreateAccErr(true);
+        } else {
+          toast.success("Successfully created a new account!");
+
+          console.log("first user");
+
+          const generateRandom = (length: number) => {
+            const characters =
+              "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            let randomizer = "";
+
+            for (let i = 0; i < length; i++) {
+              const randomIndex = Math.floor(Math.random() * characters.length);
+              randomizer += characters.charAt(randomIndex);
+            }
+            return randomizer;
+          };
+          const currentUser = generateRandom(30);
+          document.cookie = `isAuth=${currentUser}; SameSite=None; Secure; Priority=High`;
+
+          setTimeout(() => {
+            router.push("/dashboard");
+          }, 1000);
+        }
+      } else if (data.length > 0) {
         // this will handle a database that has existing documents and create a new account
         const user_input = `${usernameLower}`;
 
-        const userInfo_Document = data_from_DB.find(
+        const userInfo_Document = data.find(
           ({ username }: { username: string }) => username === user_input,
         );
 
+        console.log(userInfo_Document);
+
         if (userInfo_Document === undefined) {
-          const res = await fetch("api/users", {
+          const res = await fetch("api/sign-up", {
             method: "POST",
             headers: {
               "Content-type": "application/json",
@@ -172,11 +193,17 @@ export default function SignUp(): React.JSX.Element | null {
               created_on,
             }),
           });
-          toast.success("Successfully created a new account!");
 
-          if (!usernameLower) {
+          // TODO: update the logic below to use JWT
+
+          if (!res.ok) {
             document.cookie = `isAuth=undefined; SameSite=None; Secure`;
+            setCreateAccErr(true);
           } else {
+            console.log("new user");
+
+            toast.success("Successfully created a new account!");
+
             const generateRandom = (length: number) => {
               const characters =
                 "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -192,11 +219,34 @@ export default function SignUp(): React.JSX.Element | null {
             };
             const currentUser = generateRandom(30);
             document.cookie = `isAuth=${currentUser}; SameSite=None; Secure; Priority=High`;
+            setTimeout(() => {
+              router.push("/dashboard");
+            }, 1000);
           }
+        } else {
+          const usernameInput = watch("username");
+          const emailInput = watch("email");
 
-          setTimeout(() => {
-            router.push("/dashboard");
-          }, 2000);
+          const db_username = userInfo_Document.username;
+          const db_email = userInfo_Document.email;
+
+          console.log(db_username);
+          console.log(db_email);
+          console.log(userInfo_Document);
+
+          const usernameInputLower = usernameInput.toLowerCase();
+          const emailInputLower = emailInput.toLowerCase();
+
+          console.log(usernameInputLower);
+          console.log(emailInputLower);
+
+          if (
+            usernameInputLower === db_username ||
+            emailInputLower === db_email
+          ) {
+            // alert for an existing account
+            setExist(!exist);
+          }
         }
       }
     };
@@ -207,33 +257,6 @@ export default function SignUp(): React.JSX.Element | null {
         {check_existing_acc()}
       </>
     );
-  };
-
-  // this has logic to route the user to sign in if the given account is existing in the database
-  const handleButtonClick = async () => {
-    const usernameInput = watch("username");
-    const emailInput = watch("email");
-
-    const usernameInputLower = usernameInput.toLowerCase();
-    const emailInputLower = emailInput.toLowerCase();
-
-    const data_from_DB = await getData();
-
-    const DB_docs = data_from_DB.find(
-      ({ username }: { username: string }) => username === usernameInputLower,
-    );
-
-    if (DB_docs === undefined) {
-      setClicked(!clicked);
-    } else {
-      const db_username = DB_docs.username;
-      const db_email = DB_docs.email;
-
-      if (usernameInputLower === db_username || emailInputLower === db_email) {
-        // alert for an existing account
-        setExist(!exist);
-      }
-    }
   };
 
   // this function will handed disabling submit button
@@ -253,12 +276,7 @@ export default function SignUp(): React.JSX.Element | null {
           if (checkPattern === true) {
             return (
               <>
-                <Button
-                  type="submit"
-                  onClick={handleButtonClick}
-                  name="submit"
-                  className="submitBtn"
-                >
+                <Button type="submit" name="submit" className="submitBtn">
                   <div className="submitBtnContent">
                     {clicked ? <SubmitSpinner /> : <p>Continue</p>}
                   </div>
@@ -304,6 +322,10 @@ export default function SignUp(): React.JSX.Element | null {
 
       <div className={`warningMessage ${exist ? "block" : "hidden"}`}>
         <AccountExist />
+      </div>
+
+      <div className={`warningMessage ${createAccErr ? "block" : "hidden"}`}>
+        <CreateAccError />
       </div>
 
       <motion.div
