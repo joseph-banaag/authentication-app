@@ -23,16 +23,6 @@ interface Inputs {
   password: string;
 }
 
-const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/users", {
-    cache: "force-cache",
-  });
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-  return res.json();
-};
-
 //  main function here...
 export default function SignIn(): React.JSX.Element | null {
   const [isVisible, setIsVisible] = React.useState<boolean>(false);
@@ -72,10 +62,21 @@ export default function SignIn(): React.JSX.Element | null {
 
     sessionStorage.setItem("sessionName", usernameLower);
 
-    const check_user_info = async () => {
-      const data_from_DB = await getData();
+    const getData = async () => {
+      const res = await fetch("http://localhost:3000/api/users", {
+        cache: "force-cache",
+      });
+      if (!res.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const data = await res.json();
+      return data;
+    };
 
-      const userInfo_DB = data_from_DB.find(
+    const check_user_info = async () => {
+      const data = await getData();
+
+      const userInfo_DB = data.find(
         ({ username }: { username: string }) => username === usernameLower,
       );
 
@@ -84,8 +85,25 @@ export default function SignIn(): React.JSX.Element | null {
         setClicked(!clicked);
         setTimeout(() => {
           setNoAccount(!noAccount);
-        }, 3000);
+        }, 1000);
       } else {
+        const response = await fetch("http://localhost:3000/api/sign-in", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            userInputPassword,
+            usernameLower,
+          }),
+        });
+        if (!response.ok) {
+          throw new Error("Failed to fetch the data");
+        } else {
+          console.log("Sign in successfully");
+
+          // todo: update jwt here
+        }
         // with an existing account
         const db_username = userInfo_DB.username;
         const db_password = userInfo_DB.password;
