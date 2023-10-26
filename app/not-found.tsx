@@ -1,16 +1,12 @@
-"use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { bgIllustration } from "@/components/constants";
 import { Image } from "@nextui-org/react";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Not-Found | Authentication",
+};
 export default function NotFound(): React.JSX.Element | null {
-  const [mounted, setMounted] = useState<boolean | null>(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) return null;
   return (
     <>
       <div className="errorPageContainer !gap-8">

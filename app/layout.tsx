@@ -14,6 +14,7 @@ const monserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Authentication®",
   description: "An authentication provider",
+  keywords: "authentication, sign in, sign up, login, logout",
 };
 
 const RootLayout = ({

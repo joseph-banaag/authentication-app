@@ -1,8 +1,9 @@
 import connectToDB, { client } from "@/app/lib/mongodb";
 import bcrypt from "bcrypt";
+import { NextResponse, type NextRequest } from "next/server";
 
 // INSERT OPERATOR FOR SIGN UP
-export async function POST(request: Request) {
+export async function POST(request: NextRequest, response: NextResponse) {
   const { password, usernameLower, emailLower, created_on } =
     await request.json();
 
@@ -24,13 +25,13 @@ export async function POST(request: Request) {
         };
 
         const AddedAcc = await collection.insertOne(newDoc);
-        return Response.json(AddedAcc);
+        return NextResponse.json(AddedAcc);
       }
     });
 
-    return Response.json({
+    return NextResponse.json({
       message: "Successfully added a new user",
-      status: 200,
+      status: 201,
     });
   } catch (error) {
     throw new Error(

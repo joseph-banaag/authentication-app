@@ -1,6 +1,5 @@
 "use client";
 import "@/app/globals.css";
-import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import Topbar from "@/components/sections/navbar/Navbar";
 import Footer from "@/components/sections/footer/page";
@@ -15,11 +14,6 @@ const monserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-sans",
 });
-
-const metadata: Metadata = {
-  title: "Authentication®",
-  description: "An authentication provider",
-};
 
 export default function MainLayout({
   children,

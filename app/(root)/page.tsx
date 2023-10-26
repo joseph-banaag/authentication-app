@@ -7,11 +7,6 @@ import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
-const recursive = Recursive({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-});
-
 const dancing = Dancing_Script({
   weight: "400",
   subsets: ["latin"],
