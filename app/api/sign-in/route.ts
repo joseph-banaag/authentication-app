@@ -20,18 +20,21 @@ export const GET = async (request: Request) => {
 
     const result = await collection.find(toFind).next();
 
+    if (!result) {
+      console.log("no user");
+    }
+
     const username = result?.username;
     const password = result?.password;
 
-    bcrypt.compare(userInputPassword, password, async function (err, result) {
-      if (!err && result) {
-        console.log("matched!");
-      } else {
-        console.log("Oh no!");
-      }
-    });
+    const isMatched = await bcrypt.compare(userInputPassword, password);
 
-    return NextResponse.json(result);
+    const currentUser = {
+      username: username,
+      password: isMatched,
+    };
+
+    return NextResponse.json(currentUser);
   } catch (error) {
     throw new Error(`Failed to fetch data. Error: ${error}`);
   } finally {

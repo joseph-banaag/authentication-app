@@ -74,6 +74,14 @@ export default function SignIn(): React.JSX.Element | null {
       const response = await fetch(
         `http://localhost:3000/api/sign-in?username=${usernameLower}&password=${userInputPassword}`,
       );
+
+      const data = await response.json();
+
+      if (!data) {
+        console.log("no user");
+      }
+
+      router.push("/dashboard");
     };
     getUser();
 
