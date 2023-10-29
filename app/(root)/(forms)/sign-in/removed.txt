@@ -1,0 +1,85 @@
+    const getData = async () => {
+      const res = await fetch("http://localhost:3000/api/users", {
+        cache: "force-cache",
+      });
+      if (!res.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const data = await res.json();
+      return data;
+    };
+
+    const check_user_info = async () => {
+      const data = await getData();
+
+      const userInfo_DB = data.find(
+        ({ username }: { username: string }) => username === usernameLower,
+      );
+
+      if (userInfo_DB === undefined) {
+        // no existing account
+        setClicked(!clicked);
+        setTimeout(() => {
+          setNoAccount(!noAccount);
+        }, 1000);
+      } else {
+        const response = await fetch("http://localhost:3000/api/sign-in", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            userInputPassword,
+            usernameLower,
+          }),
+        });
+        if (!response.ok) {
+          throw new Error("Failed to fetch the data");
+        } else {
+          console.log("Sign in successfully");
+
+          // todo: update jwt here
+        }
+        // with an existing account
+        const db_username = userInfo_DB.username;
+        const db_password = userInfo_DB.password;
+        const hashed = userInfo_DB.password;
+
+        const checkUsername = db_username === usernameLower;
+        const checkPassword = db_password === userInputPassword;
+
+        if (db_username !== usernameLower) {
+          document.cookie = `isAuth=undefined; SameSite=None; Secure`;
+        } else {
+          const generateRandom = (length: number) => {
+            const characters =
+              "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            let randomizer = "";
+
+            for (let i = 0; i < length; i++) {
+              const randomIndex = Math.floor(Math.random() * characters.length);
+              randomizer += characters.charAt(randomIndex);
+            }
+            return randomizer;
+          };
+          const currentUser = generateRandom(30);
+          document.cookie = `isAuth=${currentUser}; SameSite=None; Secure; Priority=High`;
+        }
+
+        if (checkUsername && checkPassword) {
+          toast.success("Signed in successfully!", {
+            className: "bg-[#47159d] text-white",
+          });
+          setClicked(!clicked);
+          router.push("/dashboard");
+        } else {
+          setWrongPass(!wrongPass);
+          // todo: create a function to reload the page or redirect to sign-in again
+        }
+      }
+    };
+
+    if (pathname === "/sign-in") {
+      check_user_info();
+      if (!check_user_info) return null;
+    }

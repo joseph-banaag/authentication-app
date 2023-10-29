@@ -1,53 +1,40 @@
 import connectToDB, { client } from "@/app/lib/mongodb";
+import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
-import { NextResponse, type NextRequest } from "next/server";
-// INSERT OPERATOR FOR SIGN UP
-export async function POST(request: NextRequest, response: NextResponse) {
-  const { userInputPassword, usernameLower } = await request.json();
-  await connectToDB();
 
+export const GET = async (request: Request) => {
+  const { searchParams } = new URL(request.url);
+
+  await connectToDB();
   try {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
+    const queryUsername = searchParams.get("username");
+    const queryPassword = searchParams.get("password");
+
+    const userInputPassword = `${queryPassword}`;
+
     const toFind = {
-      username: `${usernameLower}`,
+      username: queryUsername,
     };
 
-    const currentUser = await collection.find(toFind).toArray();
-    const hashed = currentUser[0]?.password;
+    const result = await collection.find(toFind).next();
 
-    bcrypt.compare(userInputPassword, hashed, async function (err, result) {
-      if (!result) {
-        console.log(err);
-        // TODO: create a logic here to set the access to default to prevent user to access the protected routes
+    const username = result?.username;
+    const password = result?.password;
 
-        return NextResponse.json({
-          message: "Unauthorized accessed",
-          status: 401,
-        });
+    bcrypt.compare(userInputPassword, password, async function (err, result) {
+      if (!err && result) {
+        console.log("matched");
       } else {
-        console.log("compare result is:", result);
-
-        // TODO: create a function here that will send information to the middleware and allow the user to access protected routes
-
-        // add the token here and make a validation
-        // if(tokenName !== process.env.JWT_SECRET) return 401 else 200 message: Signed in successful!
-
-        // implement jwt here
+        console.log("Oh no!");
       }
     });
 
-    // this response will send the whatever inside the {} to the server
-    return NextResponse.json({
-      message: "Success",
-      status: 200,
-    });
+    return NextResponse.json(result);
   } catch (error) {
-    throw new Error(
-      `There was a problem creating a new document. Error: ${error}`,
-    );
+    throw new Error(`Failed to fetch data. Error: ${error}`);
   } finally {
     await client.close();
-    console.log("The process is now completed. Database connection is closed.");
   }
-}
+};
