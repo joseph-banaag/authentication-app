@@ -42,3 +42,36 @@ export async function POST(request: NextRequest, response: NextResponse) {
     console.log("The process is now completed. Database connection is closed.");
   }
 }
+
+export const GET = async (request: NextRequest) => {
+  const { searchParams } = new URL(request.url);
+  await connectToDB();
+
+  try {
+    const db = client.db("active_users");
+    const collection = db.collection("user_information");
+    const queryUsername = searchParams.get("username");
+
+    const toFined = {
+      username: queryUsername,
+    };
+
+    const result = await collection.find(toFined).next();
+
+    if (!result) {
+      return NextResponse.json({
+        message: "User not found",
+        status: 401,
+      });
+    }
+
+    console.log(result);
+
+    return NextResponse.json(result);
+  } catch (error) {
+    throw new Error(`Failed to fetch data. Error: ${error}`);
+  } finally {
+    await client.close();
+    console.log("Client connection is already closed");
+  }
+};

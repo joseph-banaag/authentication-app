@@ -109,154 +109,20 @@ export default function SignUp(): React.JSX.Element | null {
 
     sessionStorage.setItem("sessionName", usernameLower);
 
-    const getData = async () => {
-      const res = await fetch("http://localhost:3000/api/users", {
-        cache: "force-cache",
-      });
-      if (!res.ok) {
-        throw new Error("Failed to fetch data");
-      }
-      const data = res.json();
-      return data;
-    };
+    console.log(usernameLower);
 
-    const check_existing_acc = async () => {
-      const data = await getData();
+    const createUser = async () => {
+      const response = await fetch(
+        `http://localhost:3000/api/sign-up?username=${usernameLower}`,
+      );
+
+      const data = await response.json();
 
       console.log(data);
-
-      if (data.length === 0) {
-        // this will handle a fresh new data with zero document
-        const res = await fetch("api/sign-up", {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({
-            password,
-            confirmed,
-            usernameLower,
-            emailLower,
-            created_on,
-          }),
-        });
-
-        // TODO: update the logic below to use JWT
-
-        if (!res.ok) {
-          document.cookie = `isAuth=undefined; SameSite=None; Secure`;
-          setCreateAccErr(true);
-        } else {
-          toast.success("Successfully created a new account!");
-
-          console.log("first user");
-
-          const generateRandom = (length: number) => {
-            const characters =
-              "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            let randomizer = "";
-
-            for (let i = 0; i < length; i++) {
-              const randomIndex = Math.floor(Math.random() * characters.length);
-              randomizer += characters.charAt(randomIndex);
-            }
-            return randomizer;
-          };
-          const currentUser = generateRandom(30);
-          document.cookie = `isAuth=${currentUser}; SameSite=None; Secure; Priority=High`;
-
-          setTimeout(() => {
-            router.push("/dashboard");
-          }, 1000);
-        }
-      } else if (data.length > 0) {
-        // this will handle a database that has existing documents and create a new account
-        const user_input = `${usernameLower}`;
-
-        const userInfo_Document = data.find(
-          ({ username }: { username: string }) => username === user_input,
-        );
-
-        console.log(userInfo_Document);
-
-        if (userInfo_Document === undefined) {
-          const res = await fetch("api/sign-up", {
-            method: "POST",
-            headers: {
-              "Content-type": "application/json",
-            },
-            body: JSON.stringify({
-              password,
-              confirmed,
-              usernameLower,
-              emailLower,
-              created_on,
-            }),
-          });
-
-          // TODO: update the logic below to use JWT
-
-          if (!res.ok) {
-            document.cookie = `isAuth=undefined; SameSite=None; Secure`;
-            setCreateAccErr(true);
-          } else {
-            console.log("new user");
-
-            toast.success("Successfully created a new account!");
-
-            const generateRandom = (length: number) => {
-              const characters =
-                "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-              let randomizer = "";
-
-              for (let i = 0; i < length; i++) {
-                const randomIndex = Math.floor(
-                  Math.random() * characters.length,
-                );
-                randomizer += characters.charAt(randomIndex);
-              }
-              return randomizer;
-            };
-            const currentUser = generateRandom(30);
-            document.cookie = `isAuth=${currentUser}; SameSite=None; Secure; Priority=High`;
-            setTimeout(() => {
-              router.push("/dashboard");
-            }, 1000);
-          }
-        } else {
-          const usernameInput = watch("username");
-          const emailInput = watch("email");
-
-          const db_username = userInfo_Document.username;
-          const db_email = userInfo_Document.email;
-
-          console.log(db_username);
-          console.log(db_email);
-          console.log(userInfo_Document);
-
-          const usernameInputLower = usernameInput.toLowerCase();
-          const emailInputLower = emailInput.toLowerCase();
-
-          console.log(usernameInputLower);
-          console.log(emailInputLower);
-
-          if (
-            usernameInputLower === db_username ||
-            emailInputLower === db_email
-          ) {
-            // alert for an existing account
-            setExist(!exist);
-          }
-        }
-      }
     };
+    createUser();
 
-    return (
-      <>
-        {setClicked(!clicked)}
-        {check_existing_acc()}
-      </>
-    );
+    return <>{setClicked(!clicked)}</>;
   };
 
   // this function will handed disabling submit button

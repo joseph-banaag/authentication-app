@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Button, Input, Card } from "@nextui-org/react";
 import { EyeFilledIcon } from "@/components/utils/icons/EyeFilledIcon";
@@ -7,8 +7,6 @@ import { EyeSlashFilledIcon } from "@/components/utils/icons/EyeSlashFilledIcon"
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import SubmitSpinner from "@/components/lib/SubmitSpinner";
-import NoAccount from "@/components/utils/warnings/alerts/NoAccount";
-import WrongPassword from "@/components/utils/warnings/alerts/WrongPassword";
 import toast, { Toaster, ToastBar } from "react-hot-toast";
 import BrandLogoSignIn from "@/app/(root)/components/BrandLogoSignIn";
 import IllustrationSignIn from "@/app/(root)/components/IllustrationSignIn";
@@ -35,8 +33,6 @@ type UserType = {
 export default function SignIn(): React.JSX.Element | null {
   const [isVisible, setIsVisible] = React.useState<boolean>(false);
   const [clicked, setClicked] = React.useState<boolean>(false);
-  const [noAccount, setNoAccount] = React.useState<boolean>(false);
-  const [wrongPass, setWrongPass] = React.useState<boolean>(false);
   const router = useRouter();
   const pathname = usePathname();
   const { resetReq } = useModalContext();
@@ -81,19 +77,26 @@ export default function SignIn(): React.JSX.Element | null {
       const password = data?.password;
 
       if (!username && !password) {
-        console.log("no User, redirect to signup");
-        router.push("/sign-up");
+        console.log("no user");
+        toast.error("No current account. Please sign up");
+        setTimeout(() => {
+          router.push("/sign-up");
+        }, 3000);
       }
 
       if (username && password === false) {
-        console.log("wrong password");
-        location.reload();
+        toast.error("Failed. Username and password");
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
       }
 
       if (username && password) {
-        console.log("Welcome to dashboard");
-        // generate cookies here or set jwt to middleware to allow user to access the dashboard
-        router.push("/dashboard");
+        toast.success("Welcome!");
+        //* generate cookies here or set jwt to middleware to allow user to access the dashboard
+        setTimeout(() => {
+          router.push("/dashboard");
+        }, 2000);
       }
     };
     getUser();
@@ -103,34 +106,9 @@ export default function SignIn(): React.JSX.Element | null {
 
   return (
     <>
-      <Toaster position="top-center" reverseOrder={false}>
-        {(t) => (
-          <ToastBar
-            toast={t}
-            style={{
-              ...t.style,
-              animation: t.visible
-                ? "custom-enter 1s ease"
-                : "custom-exit 1s ease",
-            }}
-          />
-        )}
-      </Toaster>
-
-      <div
-        className={`warningMessage ${noAccount ? "block" : "hidden"} 
-        `}
-      >
-        <NoAccount />
+      <div>
+        <Toaster position="top-center" reverseOrder={false} />
       </div>
-
-      <div
-        className={`warningMessage ${wrongPass ? "block" : "hidden"} 
-        `}
-      >
-        <WrongPassword />
-      </div>
-
       <div
         className={`warningMessage ${resetReq ? "block" : "hidden"} 
         `}

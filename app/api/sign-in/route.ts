@@ -1,8 +1,8 @@
 import connectToDB, { client } from "@/app/lib/mongodb";
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import bcrypt from "bcrypt";
 
-export const GET = async (request: Request) => {
+export const GET = async (request: NextRequest) => {
   const { searchParams } = new URL(request.url);
 
   await connectToDB();
@@ -42,5 +42,6 @@ export const GET = async (request: Request) => {
     throw new Error(`Failed to fetch data. Error: ${error}`);
   } finally {
     await client.close();
+    console.log("Client connection is already closed");
   }
 };
