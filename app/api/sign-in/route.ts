@@ -25,7 +25,7 @@ export const GET = async (request: Request) => {
 
     bcrypt.compare(userInputPassword, password, async function (err, result) {
       if (!err && result) {
-        console.log("matched");
+        console.log("matched!");
       } else {
         console.log("Oh no!");
       }

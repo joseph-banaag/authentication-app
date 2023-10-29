@@ -74,23 +74,9 @@ export default function SignIn(): React.JSX.Element | null {
       const response = await fetch(
         `http://localhost:3000/api/sign-in?username=${usernameLower}&password=${userInputPassword}`,
       );
-
-      const result = await response.json();
-
-      const username = result?.username;
-      const password = result?.password;
-
-      if (!username && !password) {
-        console.log("not logged in");
-      } else {
-        console.log("success!");
-        router.push("/dashboard");
-      }
-
-      console.log(username);
-      console.log(password);
     };
     getUser();
+
     return <>{setClicked(!clicked)}</>;
   };
 
