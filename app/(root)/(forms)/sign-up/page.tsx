@@ -118,7 +118,23 @@ export default function SignUp(): React.JSX.Element | null {
 
       const data = await response.json();
 
-      console.log(data);
+      const username = data?.username;
+      const email = data?.email;
+
+      console.log(username);
+      console.log(email);
+
+      if (!username && !email) {
+        console.log("no user");
+      }
+
+      if (!username && email) {
+        console.log("existing user. route to sign in");
+      }
+
+      if (username && email) {
+        console.log("Welcome!");
+      }
     };
     createUser();
 
