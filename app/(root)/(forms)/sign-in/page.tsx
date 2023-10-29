@@ -77,11 +77,23 @@ export default function SignIn(): React.JSX.Element | null {
 
       const data = await response.json();
 
-      if (!data) {
-        console.log("no user");
+      const username = data?.username;
+      const password = data?.password;
+
+      if (!username && !password) {
+        console.log("no User redirect to signup");
+        router.push("/sign-up");
       }
 
-      router.push("/dashboard");
+      if (username && password === false) {
+        console.log("wrong password");
+        location.reload();
+      }
+
+      if (username && password) {
+        console.log("Welcome to dashboard");
+        router.push("/dashboard");
+      }
     };
     getUser();
 

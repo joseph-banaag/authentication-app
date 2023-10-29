@@ -21,7 +21,10 @@ export const GET = async (request: Request) => {
     const result = await collection.find(toFind).next();
 
     if (!result) {
-      console.log("no user");
+      return NextResponse.json({
+        message: "User not found",
+        status: 401,
+      });
     }
 
     const username = result?.username;
