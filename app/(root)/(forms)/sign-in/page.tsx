@@ -81,7 +81,7 @@ export default function SignIn(): React.JSX.Element | null {
       const password = data?.password;
 
       if (!username && !password) {
-        console.log("no User redirect to signup");
+        console.log("no User, redirect to signup");
         router.push("/sign-up");
       }
 
@@ -92,6 +92,7 @@ export default function SignIn(): React.JSX.Element | null {
 
       if (username && password) {
         console.log("Welcome to dashboard");
+        // generate cookies here or set jwt to middleware to allow user to access the dashboard
         router.push("/dashboard");
       }
     };
