@@ -8,14 +8,12 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { creationDate } from "@/components/lib/createdDate";
 import SubmitSpinner from "@/components/lib/SubmitSpinner";
-import toast, { Toaster, ToastBar } from "react-hot-toast";
-import AccountExist from "@/components/utils/warnings/alerts/AccountExist";
+import toast, { Toaster } from "react-hot-toast";
 import IllustrationSigUp from "@/app/(root)/components/IllustrationSigUp";
 import BrandLogoSignUp from "@/app/(root)/components/BrandLogoSignUp";
 import { usePathname } from "next/navigation";
 import SocialAuth from "@/components/SocialAuth";
 import DisabledButton from "@/components/toggle/DisabledButton";
-import CreateAccError from "@/components/utils/warnings/alerts/CreateAccError";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -30,9 +28,8 @@ export default function SignUp(): React.JSX.Element | null {
   const [isVisible, setIsVisible] = useState(false);
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [clicked, setClicked] = useState(false);
-  const [exist, setExist] = useState(false);
-  const [createAccErr, setCreateAccErr] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -54,8 +51,6 @@ export default function SignUp(): React.JSX.Element | null {
       sessionStorage.clear();
     }
   }, [pathname]);
-
-  const router = useRouter();
 
   const toggleVisibility = () => setIsVisible(!isVisible);
   const toggleIsConfirmed = () => setIsConfirmed(!isConfirmed);
@@ -109,8 +104,6 @@ export default function SignUp(): React.JSX.Element | null {
 
     sessionStorage.setItem("sessionName", usernameLower);
 
-    console.log(usernameLower);
-
     const createUser = async () => {
       const response = await fetch(
         `http://localhost:3000/api/sign-up?username=${usernameLower}`,
@@ -121,24 +114,50 @@ export default function SignUp(): React.JSX.Element | null {
       const username = data?.username;
       const email = data?.email;
 
-      console.log(username);
-      console.log(email);
-
       if (!username && !email) {
-        console.log("no user");
+        const response = await fetch("http://localhost:3000/api/sign-up", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            password,
+            confirmed,
+            usernameLower,
+            emailLower,
+            created_on,
+          }),
+        });
+        toast.success("Created an account successfully!");
+        setTimeout(() => {
+          router.push("/dashboard");
+        }, 2000);
+        //* generate cookies here or set jwt for middleware to allow user to access the dashboard
       }
 
       if (!username && email) {
-        console.log("existing user. route to sign in");
+        toast.error("You already have an account");
+        setTimeout(() => {
+          router.push("/sign-in");
+        }, 2000);
       }
 
-      if (username && email) {
-        console.log("Welcome!");
+      if (username === usernameLower && email === emailLower) {
+        toast.error("You already have an account");
+        setTimeout(() => {
+          router.push("/sign-in");
+        }, 2000);
+      } else if (username && email) {
+        toast.success("Welcome!");
+        setTimeout(() => {
+          router.push("/dashboard");
+        }, 2000);
+        // router.push("/dashboard")
+        //* generate cookies here or set jwt for middleware to allow user to access the dashboard
       }
     };
     createUser();
-
-    return <>{setClicked(!clicked)}</>;
+    setClicked(!clicked);
   };
 
   // this function will handed disabling submit button
@@ -182,34 +201,7 @@ export default function SignUp(): React.JSX.Element | null {
 
   return (
     <>
-      <Toaster
-        position="top-center"
-        reverseOrder={false}
-        toastOptions={{
-          className: "bg-[#47159d] p-5 border-1 text-white rounded-2xl",
-        }}
-      >
-        {(t) => (
-          <ToastBar
-            toast={t}
-            style={{
-              ...t.style,
-              animation: t.visible
-                ? "custom-enter 1s ease"
-                : "custom-exit 1s ease",
-            }}
-          />
-        )}
-      </Toaster>
-
-      <div className={`warningMessage ${exist ? "block" : "hidden"}`}>
-        <AccountExist />
-      </div>
-
-      <div className={`warningMessage ${createAccErr ? "block" : "hidden"}`}>
-        <CreateAccError />
-      </div>
-
+      <Toaster position="top-center" reverseOrder={false} />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

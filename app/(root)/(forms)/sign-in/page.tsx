@@ -7,7 +7,7 @@ import { EyeSlashFilledIcon } from "@/components/utils/icons/EyeSlashFilledIcon"
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import SubmitSpinner from "@/components/lib/SubmitSpinner";
-import toast, { Toaster, ToastBar } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import BrandLogoSignIn from "@/app/(root)/components/BrandLogoSignIn";
 import IllustrationSignIn from "@/app/(root)/components/IllustrationSignIn";
 import { usePathname } from "next/navigation";
@@ -20,14 +20,6 @@ interface Inputs {
   username: string;
   password: string;
 }
-
-type UserType = {
-  _id: string;
-  email: string;
-  username: string;
-  password: string;
-  created_on: string;
-};
 
 //  main function here...
 export default function SignIn(): React.JSX.Element | null {
@@ -77,7 +69,6 @@ export default function SignIn(): React.JSX.Element | null {
       const password = data?.password;
 
       if (!username && !password) {
-        console.log("no user");
         toast.error("No current account. Please sign up");
         setTimeout(() => {
           router.push("/sign-up");
@@ -93,22 +84,19 @@ export default function SignIn(): React.JSX.Element | null {
 
       if (username && password) {
         toast.success("Welcome!");
-        //* generate cookies here or set jwt to middleware to allow user to access the dashboard
+        //* generate cookies here or set jwt to middleware for allow user to access the dashboard
         setTimeout(() => {
           router.push("/dashboard");
         }, 2000);
       }
     };
     getUser();
-
-    return <>{setClicked(!clicked)}</>;
+    setClicked(!clicked);
   };
 
   return (
     <>
-      <div>
-        <Toaster position="top-center" reverseOrder={false} />
-      </div>
+      <Toaster position="top-center" reverseOrder={false} />
       <div
         className={`warningMessage ${resetReq ? "block" : "hidden"} 
         `}
