@@ -1,9 +1,16 @@
 import connectToDB, { client } from "@/app/lib/mongodb";
 import { NextResponse, type NextRequest } from "next/server";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import { createHash } from "crypto";
 
-export const GET = async (request: NextRequest) => {
+export const GET = async (request: NextRequest, response: Response) => {
   const { searchParams } = new URL(request.url);
+  const secretAccess = process.env.ACCESS_TOKEN_SECRET;
+  const hash = createHash("sha256");
+
+  hash.update("one");
+  // console.log(hash.copy().digest("hex"))
 
   await connectToDB();
   try {
@@ -31,6 +38,13 @@ export const GET = async (request: NextRequest) => {
     const password = result?.password;
 
     const isMatched = await bcrypt.compare(userInputPassword, password);
+
+    if (isMatched) {
+      const secret = `${secretAccess}`;
+      const token = jwt.sign({ username }, secret, { expiresIn: "1h" });
+
+      console.log("TOKEN: ", token);
+    }
 
     const currentUser = {
       username: username,

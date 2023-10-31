@@ -1,11 +1,13 @@
 import connectToDB, { client } from "@/app/lib/mongodb";
 import bcrypt from "bcrypt";
 import { NextResponse, type NextRequest } from "next/server";
+import jwt from "jsonwebtoken";
 
 // INSERT OPERATOR FOR SIGN UP
 export async function POST(request: NextRequest, response: NextResponse) {
   const { password, usernameLower, emailLower, created_on } =
     await request.json();
+  const secretAccess = process.env.ACCESS_TOKEN_SECRET;
 
   try {
     const db = client.db("active_users");
@@ -25,6 +27,14 @@ export async function POST(request: NextRequest, response: NextResponse) {
         };
 
         const AddedAcc = await collection.insertOne(newDoc);
+        if (AddedAcc) {
+          const secret = `${secretAccess}`;
+          const token = jwt.sign({ usernameLower }, secret, {
+            expiresIn: "1h",
+          });
+
+          console.log("TOKEN: ", token);
+        }
         return NextResponse.json(AddedAcc);
       }
     });
