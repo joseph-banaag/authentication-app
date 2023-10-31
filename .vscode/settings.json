@@ -23,7 +23,8 @@
     "switchtoggle",
     "tailwindcss",
     "tailwindvariants",
-    "Topbar"
+    "Topbar",
+    "uuidv"
   ],
   "typescript.tsdk": "node_modules/typescript/lib",
   "editor.fontLigatures": true,

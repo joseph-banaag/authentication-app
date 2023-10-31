@@ -84,8 +84,6 @@ export default function SignIn(): React.JSX.Element | null {
 
       if (username && password) {
         toast.success("Welcome!");
-        //* generate cookies here or set jwt for middleware to allow user to access the dashboard
-
         setTimeout(() => {
           router.push("/dashboard");
         }, 2000);

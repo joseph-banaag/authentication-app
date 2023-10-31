@@ -132,7 +132,6 @@ export default function SignUp(): React.JSX.Element | null {
         setTimeout(() => {
           router.push("/dashboard");
         }, 2000);
-        //* generate cookies here or set jwt for middleware to allow user to access the dashboard
       }
 
       if (username === usernameLower || email === emailLower) {
