@@ -106,7 +106,7 @@ export default function SignUp(): React.JSX.Element | null {
 
     const createUser = async () => {
       const response = await fetch(
-        `http://localhost:3000/api/sign-up?username=${usernameLower}`,
+        `http://localhost:3000/api/sign-up?username=${usernameLower}&email=${emailLower}`,
       );
 
       const data = await response.json();
@@ -135,25 +135,11 @@ export default function SignUp(): React.JSX.Element | null {
         //* generate cookies here or set jwt for middleware to allow user to access the dashboard
       }
 
-      if (!username && email) {
+      if (username === usernameLower || email === emailLower) {
         toast.error("You already have an account");
         setTimeout(() => {
           router.push("/sign-in");
         }, 2000);
-      }
-
-      if (username === usernameLower && email === emailLower) {
-        toast.error("You already have an account");
-        setTimeout(() => {
-          router.push("/sign-in");
-        }, 2000);
-      } else if (username && email) {
-        toast.success("Welcome!");
-        setTimeout(() => {
-          router.push("/dashboard");
-        }, 2000);
-        // router.push("/dashboard")
-        //* generate cookies here or set jwt for middleware to allow user to access the dashboard
       }
     };
     createUser();

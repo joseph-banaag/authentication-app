@@ -51,21 +51,32 @@ export const GET = async (request: NextRequest) => {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
     const queryUsername = searchParams.get("username");
+    const queryEmail = searchParams.get("email");
 
-    const toFined = {
+    const findUsername = {
       username: queryUsername,
     };
 
-    const result = await collection.find(toFined).next();
+    const result = await collection.find(findUsername).next();
 
     if (!result) {
-      return NextResponse.json({
-        message: "User not found",
-        status: 401,
-      });
-    }
+      // if result is undefined check for email
+      const toFind = {
+        email: queryEmail,
+      };
+      const findEmail = await collection.find(toFind).next();
 
-    return NextResponse.json(result);
+      if (!findEmail) {
+        return NextResponse.json({
+          message: "User not found",
+          status: 401,
+        });
+      } else {
+        return NextResponse.json(findEmail);
+      }
+    } else {
+      return NextResponse.json(result);
+    }
   } catch (error) {
     throw new Error(`Failed to fetch data. Error: ${error}`);
   } finally {
