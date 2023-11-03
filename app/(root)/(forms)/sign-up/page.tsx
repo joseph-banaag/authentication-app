@@ -131,10 +131,12 @@ export default function SignUp(): React.JSX.Element | null {
 
       if (!db_email && !db_username) {
         CreateAccount(credentials);
+        toast.success(`Welcome, ${usernameLower}!`);
         router.push("/dashboard");
       }
 
       if (usernameLower === db_username || emailLower === db_email) {
+        toast.error("Account exist. Please sign in.");
         router.push("/sign-in");
       }
     };
