@@ -14,6 +14,7 @@ import BrandLogoSignUp from "@/app/(root)/components/BrandLogoSignUp";
 import { usePathname } from "next/navigation";
 import SocialAuth from "@/components/SocialAuth";
 import DisabledButton from "@/components/toggle/DisabledButton";
+import { CreateAccount } from "@/app/actions/createAccount";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -104,44 +105,40 @@ export default function SignUp(): React.JSX.Element | null {
 
     sessionStorage.setItem("sessionName", usernameLower);
 
-    const createUser = async () => {
-      const response = await fetch(
-        `http://localhost:3000/api/sign-up?username=${usernameLower}&email=${emailLower}`,
-      );
+    const credentials = {
+      username: usernameLower,
+      email: emailLower,
+      password,
+      created_on,
+    };
+
+    const checkExistingUser = async () => {
+      const response = await fetch("http://localhost:3000/api/check-user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          usernameLower,
+          emailLower,
+        }),
+      });
 
       const data = await response.json();
 
-      const username = data?.username;
-      const email = data?.email;
+      const db_username = data?.username;
+      const db_email = data?.email;
 
-      if (!username && !email) {
-        const response = await fetch("http://localhost:3000/api/sign-up", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            password,
-            confirmed,
-            usernameLower,
-            emailLower,
-            created_on,
-          }),
-        });
-        toast.success("Created an account successfully!");
-        setTimeout(() => {
-          router.push("/dashboard");
-        }, 2000);
+      if (!db_email && !db_username) {
+        CreateAccount(credentials);
+        router.push("/dashboard");
       }
 
-      if (username === usernameLower || email === emailLower) {
-        toast.error("You already have an account");
-        setTimeout(() => {
-          router.push("/sign-in");
-        }, 2000);
+      if (usernameLower === db_username || emailLower === db_email) {
+        router.push("/sign-in");
       }
     };
-    createUser();
+    checkExistingUser();
     setClicked(!clicked);
   };
 
