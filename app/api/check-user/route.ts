@@ -4,6 +4,7 @@ import { type NextRequest, NextResponse } from "next/server";
 export const POST = async (request: NextRequest) => {
   const { usernameLower, emailLower } = await request.json();
   await connectToDB();
+
   try {
     const db = client.db("active_users");
     const collection = db.collection("user_information");

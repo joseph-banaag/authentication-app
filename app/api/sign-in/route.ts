@@ -4,21 +4,19 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 
-export const GET = async (request: NextRequest, response: Response) => {
-  const { searchParams } = new URL(request.url);
+export const POST = async (request: NextRequest, response: Response) => {
+  const { credentials } = await request.json();
+  const { usernameLower, userInputPassword } = credentials;
   const secretAccess = process.env.ACCESS_TOKEN_SECRET;
-
   await connectToDB();
+
   try {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
-    const queryUsername = searchParams.get("username");
-    const queryPassword = searchParams.get("password");
-
-    const userInputPassword = `${queryPassword}`;
+    const userPassword = `${userInputPassword}`;
 
     const toFind = {
-      username: queryUsername,
+      username: usernameLower,
     };
 
     const result = await collection.find(toFind).next();
@@ -33,7 +31,7 @@ export const GET = async (request: NextRequest, response: Response) => {
     const username = result?.username;
     const password = result?.password;
 
-    const isMatched = await bcrypt.compare(userInputPassword, password);
+    const isMatched = await bcrypt.compare(userPassword, password);
 
     if (isMatched) {
       const secret = `${secretAccess}`;

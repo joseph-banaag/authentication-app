@@ -1,18 +1,11 @@
 import connectToDB, { client } from "@/app/lib/mongodb";
 import bcrypt from "bcrypt";
 import { NextResponse, type NextRequest } from "next/server";
-import jwt from "jsonwebtoken";
 
 // INSERT OPERATOR FOR SIGN UP
 export async function POST(request: NextRequest, response: NextResponse) {
   const { credentials } = await request.json();
   const { password, email, username, created_on } = credentials;
-  const secretAccess = process.env.ACCESS_TOKEN_SECRET;
-
-  console.log(password);
-  console.log(email);
-  console.log(username);
-  console.log(created_on);
 
   try {
     const db = client.db("active_users");
@@ -22,7 +15,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
       await connectToDB();
 
       if (!hash) {
-        return err;
+        return NextResponse.json(err);
       } else {
         const newDoc = {
           email: `${email}`,
@@ -32,6 +25,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
         };
 
         const AddedAcc = await collection.insertOne(newDoc);
+        // if successfully created = AddedAcc.acknowledge = true
         return NextResponse.json(AddedAcc);
       }
     });
@@ -41,11 +35,9 @@ export async function POST(request: NextRequest, response: NextResponse) {
       status: 201,
     });
   } catch (error) {
-    throw new Error(
-      `There was a problem creating a new document. Error: ${error}`,
-    );
+    throw new Error("Failed to create a new user");
   } finally {
     await client.close();
-    console.log("The process is now completed. Database connection is closed.");
+    console.log("Client connection is closed.");
   }
 }

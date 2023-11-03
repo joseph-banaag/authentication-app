@@ -58,11 +58,21 @@ export default function SignIn(): React.JSX.Element | null {
 
     sessionStorage.setItem("sessionName", usernameLower);
 
-    const getUser = async () => {
-      const response = await fetch(
-        `http://localhost:3000/api/sign-in?username=${usernameLower}&password=${userInputPassword}`,
-      );
+    const credentials = {
+      usernameLower,
+      userInputPassword,
+    };
 
+    const getUser = async () => {
+      const response = await fetch("http://localhost:3000/api/sign-in", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          credentials,
+        }),
+      });
       const data = await response.json();
 
       const username = data?.username;
@@ -83,7 +93,7 @@ export default function SignIn(): React.JSX.Element | null {
       }
 
       if (username && password) {
-        toast.success("Welcome!");
+        toast.success(`Welcome, ${username}!`);
         setTimeout(() => {
           router.push("/dashboard");
         }, 2000);
