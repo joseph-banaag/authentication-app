@@ -19,28 +19,6 @@ const ProfileModal = (): React.ReactNode => {
     return res.json();
   };
 
-  const userDetail = async () => {
-    const dataFromDB = await getData();
-
-    const storedUsername = {
-      data:
-        typeof window !== "undefined"
-          ? sessionStorage.getItem("sessionName")
-          : "",
-    };
-    const currentUsername = `${storedUsername.data}`;
-
-    const userInfo = dataFromDB.find(
-      ({ username }: { username: string }) => username === currentUsername,
-    );
-
-    if (!userInfo) return null;
-
-    const email = userInfo.email;
-    setEmail(email);
-  };
-  userDetail();
-
   return (
     <>
       <div

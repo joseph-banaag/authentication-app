@@ -18,14 +18,7 @@ export default function Profile(): React.JSX.Element | null {
     setMounted(true);
   }, [setMounted]);
 
-  const storedUser = {
-    data:
-      typeof window !== "undefined"
-        ? sessionStorage.getItem("sessionName")
-        : "",
-  };
-
-  const username = `${storedUser.data}`;
+  const username = "joshua_23";
 
   const image =
     "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg";

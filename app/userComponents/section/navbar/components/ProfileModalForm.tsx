@@ -21,13 +21,7 @@ const ProfileModalForm = (): React.ReactNode => {
   const [editUser, setEditUser] = useState<boolean>(false);
   const router = useRouter();
 
-  const storedUsername = {
-    data:
-      typeof window !== "undefined"
-        ? sessionStorage.getItem("sessionName")
-        : "",
-  };
-  const username = `${storedUsername.data}`;
+  const username = "joshua_23";
 
   const {
     register,
@@ -78,7 +72,6 @@ const ProfileModalForm = (): React.ReactNode => {
       }
 
       setTimeout(() => {
-        sessionStorage.setItem("sessionName", newUsernameLower);
         location.reload();
       }, 2000);
     } catch (error) {

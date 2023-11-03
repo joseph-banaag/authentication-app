@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Link, Button, Card } from "@nextui-org/react";
 import Topbar from "@/app/userComponents/section/navbar/Navbar";
 import ProfileAvatar from "../navbar/components/ProfileAvatar";
+import { deleteToken } from "@/app/actions/deleteToken";
 
 export default function Sidebar(): React.ReactNode {
   const pathname = usePathname();
@@ -19,62 +20,13 @@ export default function Sidebar(): React.ReactNode {
 
   if (!mounted) return null;
 
-  const storedUser = {
-    data:
-      typeof window !== "undefined"
-        ? sessionStorage.getItem("sessionName")
-        : "",
-  };
-
-  const storedData = storedUser.data;
-  if (!storedData) {
-    router.push("/");
-  }
-
-  const currentUserInfo = async () => {
-    const getData = async () => {
-      const res = await fetch("http://localhost:3000/api/users", {
-        cache: "force-cache",
-      });
-      if (!res.ok) {
-        throw new Error("Failed to fetch data");
-      }
-      return res.json();
-    };
-
-    const data = await getData();
-    const user_name = storedUser.data;
-
-    const currentUser = data.find(
-      ({ username }: { username: string }) => username === user_name,
-    );
-
-    if (!currentUser) return null;
-
-    const userName = currentUser.username;
-    const eMail = currentUser.email;
-
-    setUsername(userName);
-    setEmail(eMail);
-  };
-
-  if (
-    pathname === "/profile" ||
-    pathname === "/security" ||
-    pathname === "/settings"
-  ) {
-    currentUserInfo();
-    if (!currentUserInfo) return null;
-  }
-
   const logo = {
     src: "/assets/logo/user_logo.svg",
     name: "Logo",
   };
 
   const handleClearStoredData = () => {
-    sessionStorage.clear();
-    document.cookie = `isAuth=`;
+    deleteToken();
   };
   return (
     <>
@@ -120,7 +72,7 @@ export default function Sidebar(): React.ReactNode {
           </div>
           <div className="mb-10">
             <Button
-              onClick={handleClearStoredData}
+              onClick={() => deleteToken()}
               as={Link}
               href={logOut.route}
               size="sm"

@@ -24,16 +24,7 @@ import BrandLogo from "@/app/userComponents/section/components/BrandLogo";
 import { useModalContext } from "@/app/context/ModalContext";
 import ProfileModal from "@/app/userComponents/section/navbar/components/ProfileModal";
 import ProfileAvatar from "@/app/userComponents/section/navbar/components/ProfileAvatar";
-
-const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/users", {
-    cache: "force-cache",
-  });
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-  return res.json();
-};
+import { deleteToken } from "@/app/actions/deleteToken";
 
 export default function Topbar(): React.ReactNode {
   const pathname = usePathname();
@@ -49,44 +40,6 @@ export default function Topbar(): React.ReactNode {
     setClient(true);
   }, []);
 
-  const storedUser = {
-    data:
-      typeof window !== "undefined"
-        ? sessionStorage.getItem("sessionName")
-        : "",
-  };
-
-  const storedData = storedUser.data;
-  if (!storedData) {
-    router.push("/");
-  }
-
-  const currentUserInfo = async () => {
-    const data = await getData();
-    const user_name = storedUser.data;
-
-    const currentUser = data.find(
-      ({ username }: { username: string }) => username === user_name,
-    );
-
-    if (!currentUser) return null;
-
-    const userName = currentUser.username;
-    const eMail = currentUser.email;
-
-    setUserName(userName);
-    setEMail(eMail);
-  };
-
-  if (
-    pathname === "/dashboard" ||
-    pathname === "/settings" ||
-    pathname === "/security" ||
-    pathname === "/profile"
-  ) {
-    currentUserInfo();
-    if (!currentUserInfo) return null;
-  }
   const changeThemeToLight = () => {
     setTheme("light");
     location.reload();
@@ -95,11 +48,6 @@ export default function Topbar(): React.ReactNode {
   const changeThemeToDark = () => {
     setTheme("dark");
     location.reload();
-  };
-
-  const handleClearStoredData = () => {
-    sessionStorage.clear();
-    document.cookie = `isAuth=`;
   };
 
   return (
@@ -266,7 +214,7 @@ export default function Topbar(): React.ReactNode {
                     variant="bordered"
                     className="hover:bg-transparent border-none cursor-default"
                   >
-                    <Link href="/" onClick={handleClearStoredData}>
+                    <Link href="/" onClick={() => deleteToken()}>
                       <Chip
                         variant="solid"
                         size="sm"

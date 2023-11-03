@@ -5,34 +5,15 @@ const publicRoutes = ["/", "/sign-in", "/sign-up"];
 const protectedRoutes = ["/dashboard", "/settings", "/profile", "/security"];
 
 export function middleware(request: NextRequest) {
-  const isAuthValue = request.cookies.get("isAuth")?.value;
-  const cookieValueRegEx = /^[a-zA-Z0-9]{30}$/;
-  const cookieValueToString = `${isAuthValue}`;
-  const randomResult = cookieValueRegEx.test(cookieValueToString);
-  const response = NextResponse.next();
+  const token = request.cookies.get("token")?.value;
 
-  if (publicRoutes.includes(request.nextUrl.pathname)) {
-    response.cookies.set({
-      name: "",
-      value: "",
-      path: "/",
-    });
-  }
-
-  if (
-    !isAuthValue &&
-    randomResult === false &&
-    protectedRoutes.includes(request.nextUrl.pathname)
-  ) {
+  // create a component that will check if the token is valid and then route the page to public if not
+  if (!token && protectedRoutes.includes(request.nextUrl.pathname)) {
     return NextResponse.redirect(new URL("/", request.url));
-  } else if (
-    isAuthValue &&
-    randomResult === true &&
-    publicRoutes.includes(request.nextUrl.pathname)
-  ) {
+  } else if (token && publicRoutes.includes(request.nextUrl.pathname)) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
-  return response;
+  return NextResponse.next();
 }
 
 export const config = {

@@ -42,38 +42,6 @@ const UserInfoCard = (): React.JSX.Element | null => {
 
   if (!mounted) return null;
 
-  const storedUser = {
-    data:
-      typeof window !== "undefined"
-        ? sessionStorage.getItem("sessionName")
-        : "",
-  };
-
-  const user_name = `${storedUser.data}`;
-
-  const completeUserDetail = async () => {
-    const data = await getData();
-
-    const userInformation = data.find(
-      ({ username }: { username: string }) => username === user_name,
-    );
-
-    if (!userInformation) return null;
-
-    const _id = userInformation._id;
-    const _username = userInformation.username;
-    const _email = userInformation.email;
-    const _password = userInformation.password;
-    const _createdOn = userInformation.created_on;
-
-    setUsername(_username);
-    setEmail(_email);
-    setPassword(_password);
-    setId(_id);
-    setCreatedOn(_createdOn);
-  };
-  completeUserDetail();
-
   const passwordLength = password.length;
   const maskedPassword = "*".repeat(passwordLength);
 

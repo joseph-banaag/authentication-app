@@ -15,6 +15,7 @@ import { usePathname } from "next/navigation";
 import SocialAuth from "@/components/SocialAuth";
 import DisabledButton from "@/components/toggle/DisabledButton";
 import { CreateAccount } from "@/app/actions/createAccount";
+import { checkUserRoute } from "@/app/api/apis";
 
 // this object is for type declaration of useForm() function specifically for register method.
 interface Inputs {
@@ -46,12 +47,6 @@ export default function SignUp(): React.JSX.Element | null {
     criteriaMode: "all",
     mode: "all",
   });
-
-  useEffect(() => {
-    if (pathname === "/sign-up") {
-      sessionStorage.clear();
-    }
-  }, [pathname]);
 
   const toggleVisibility = () => setIsVisible(!isVisible);
   const toggleIsConfirmed = () => setIsConfirmed(!isConfirmed);
@@ -103,8 +98,6 @@ export default function SignUp(): React.JSX.Element | null {
     const usernameLower = user_name.toLowerCase();
     const emailLower = email_acc.toLowerCase();
 
-    sessionStorage.setItem("sessionName", usernameLower);
-
     const credentials = {
       username: usernameLower,
       email: emailLower,
@@ -113,7 +106,7 @@ export default function SignUp(): React.JSX.Element | null {
     };
 
     const checkExistingUser = async () => {
-      const response = await fetch("http://localhost:3000/api/check-user", {
+      const response = await fetch(checkUserRoute, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

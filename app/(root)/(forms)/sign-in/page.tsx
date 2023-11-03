@@ -15,6 +15,7 @@ import SocialAuth from "@/components/SocialAuth";
 import PasswordReset from "@/components/utils/warnings/alerts/PasswordReset";
 import PasswordResetModal from "@/components/PasswordResetModal";
 import { useModalContext } from "@/app/context/ModalContext";
+import { signInRoute } from "@/app/api/apis";
 
 interface Inputs {
   username: string;
@@ -41,12 +42,6 @@ export default function SignIn(): React.JSX.Element | null {
     mode: "all",
   });
 
-  useEffect(() => {
-    if (pathname === "/sign-in") {
-      sessionStorage.clear();
-    }
-  }, [pathname]);
-
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   const OnSubmit: SubmitHandler<Inputs> = (data, e) => {
@@ -56,15 +51,13 @@ export default function SignIn(): React.JSX.Element | null {
 
     const usernameLower = userInputUsername.toLowerCase();
 
-    sessionStorage.setItem("sessionName", usernameLower);
-
     const credentials = {
       usernameLower,
       userInputPassword,
     };
 
     const getUser = async () => {
-      const response = await fetch("http://localhost:3000/api/sign-in", {
+      const response = await fetch(signInRoute, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

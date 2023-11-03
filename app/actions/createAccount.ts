@@ -1,6 +1,8 @@
 "use server";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
+import { secret } from "@/app/actions/secret";
+import { signUpRoute } from "@/app/api/apis";
 
 type CredentialType = {
   username: string;
@@ -9,10 +11,10 @@ type CredentialType = {
   created_on: string;
 };
 export const CreateAccount = async (credentials: CredentialType) => {
-  const secretAccess = process.env.ACCESS_TOKEN_SECRET;
+  const secretAccess = secret;
   const { username } = credentials;
 
-  const response = await fetch("http://localhost:3000/api/sign-up", {
+  const response = await fetch(signUpRoute, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
