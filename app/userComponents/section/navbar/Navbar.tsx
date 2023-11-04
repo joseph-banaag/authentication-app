@@ -40,16 +40,20 @@ export default function Topbar(): React.ReactNode {
     setClient(true);
   }, []);
 
-  const changeThemeToLight = () => {
-    setTheme("light");
-    location.reload();
-  };
-
-  const changeThemeToDark = () => {
+  const changeThemeDark = () => {
     setTheme("dark");
-    location.reload();
+    setIsOpen(false);
   };
 
+  const changeThemeLight = () => {
+    setTheme("light");
+    setIsOpen(false);
+  };
+
+  const handledLogout = () => {
+    deleteToken();
+    router.push("/");
+  };
   return (
     <>
       <div
@@ -177,7 +181,7 @@ export default function Topbar(): React.ReactNode {
                     className="hover:bg-transparent border-none cursor-default"
                   >
                     <Chip
-                      onClick={changeThemeToDark}
+                      onClick={() => changeThemeDark()}
                       endContent={<MoonIcon className="!text-white" />}
                       variant="solid"
                       size="sm"
@@ -195,7 +199,7 @@ export default function Topbar(): React.ReactNode {
                     className="hover:bg-transparent border-none cursor-default"
                   >
                     <Chip
-                      onClick={changeThemeToLight}
+                      onClick={() => changeThemeLight()}
                       endContent={<SunIcon className="!text-white" />}
                       variant="solid"
                       size="sm"
@@ -214,7 +218,7 @@ export default function Topbar(): React.ReactNode {
                     variant="bordered"
                     className="hover:bg-transparent border-none cursor-default"
                   >
-                    <Link href="/" onClick={() => deleteToken()}>
+                    <button onClick={() => handledLogout()}>
                       <Chip
                         variant="solid"
                         size="sm"
@@ -227,7 +231,7 @@ export default function Topbar(): React.ReactNode {
                           Logout
                         </p>
                       </Chip>
-                    </Link>
+                    </button>
                   </DropdownItem>
                 </DropdownSection>
               </DropdownMenu>

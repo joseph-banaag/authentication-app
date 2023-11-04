@@ -87,9 +87,7 @@ export default function SignIn(): React.JSX.Element | null {
 
       if (username && password) {
         toast.success(`Welcome, ${username}!`);
-        setTimeout(() => {
-          router.push("/dashboard");
-        }, 2000);
+        router.push("/dashboard");
       }
     };
     getUser();

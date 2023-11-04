@@ -1,8 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { NextApiHandler } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
-export default function Dashboard(): React.JSX.Element | null {
+export default (function Dashboard(): React.JSX.Element | null {
   const [isClient, setIsClient] = useState<boolean>(false);
 
   const user = "joshua_23";
@@ -27,4 +29,4 @@ export default function Dashboard(): React.JSX.Element | null {
       </motion.div>
     </main>
   );
-}
+});
