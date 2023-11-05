@@ -5,23 +5,29 @@ import { NextResponse, type NextRequest } from "next/server";
 // INSERT OPERATOR FOR SIGN UP
 export async function POST(request: NextRequest, response: NextResponse) {
   const { credentials } = await request.json();
-  const { password, email, username, created_on } = credentials;
+  const user_password = credentials?.password;
+  const user_email = credentials?.email;
+  const user_name = credentials?.username;
+  const user_created_on = credentials?.created_on;
 
   try {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
 
-    bcrypt.hash(password, 10, async function (err, hash) {
+    bcrypt.hash(user_password, 10, async function (err, hash) {
       await connectToDB();
 
       if (!hash) {
-        return NextResponse.json(err);
+        return NextResponse.json({
+          message: `${err}`,
+          status: 401,
+        });
       } else {
         const newDoc = {
-          email: `${email}`,
-          username: `${username}`,
+          email: `${user_email}`,
+          username: `${user_name}`,
           password: `${hash}`,
-          created_on: `${created_on}`,
+          created_on: `${user_created_on}`,
         };
 
         const AddedAcc = await collection.insertOne(newDoc);
@@ -31,8 +37,8 @@ export async function POST(request: NextRequest, response: NextResponse) {
     });
 
     return NextResponse.json({
-      message: "Successfully added a new user",
-      status: 201,
+      message: "No user was added. Try again",
+      status: 200,
     });
   } catch (error) {
     throw new Error("Failed to create a new user");

@@ -6,17 +6,18 @@ import { cookies } from "next/headers";
 
 export const POST = async (request: NextRequest, response: Response) => {
   const { credentials } = await request.json();
-  const { usernameLower, userInputPassword } = credentials;
+  const user_name = credentials?.usernameLower;
+  const password_input = credentials?.userInputPassword;
   const secretAccess = process.env.ACCESS_TOKEN_SECRET;
   await connectToDB();
 
   try {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
-    const userPassword = `${userInputPassword}`;
+    const userPassword = `${password_input}`;
 
     const toFind = {
-      username: usernameLower,
+      username: `${user_name}`,
     };
 
     const result = await collection.find(toFind).next();

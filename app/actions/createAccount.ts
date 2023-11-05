@@ -34,8 +34,10 @@ export const CreateAccount = async (credentials: CredentialType) => {
         name: "token",
         value: `${token}`,
         httpOnly: true,
+        path: "/",
         maxAge: 24 * 60 * 60 * 1000,
-        secure: true,
+        sameSite: "strict",
+        secure: process.env.NODE_ENV !== "development",
       });
     }
   } catch (error) {
