@@ -25,8 +25,9 @@ export default function Sidebar(): React.ReactNode {
     name: "Logo",
   };
 
-  const handleClearStoredData = () => {
+  const handledLogout = () => {
     deleteToken();
+    router.push("/");
   };
   return (
     <>
@@ -72,9 +73,7 @@ export default function Sidebar(): React.ReactNode {
           </div>
           <div className="mb-10">
             <Button
-              onClick={() => deleteToken()}
-              as={Link}
-              href={logOut.route}
+              onClick={() => handledLogout()}
               size="sm"
               variant="light"
               className="text-medium w-full flex justify-center items-center  px-3 py-6"

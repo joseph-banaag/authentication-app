@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import { NextResponse, type NextRequest } from "next/server";
 
 // INSERT OPERATOR FOR SIGN UP
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: NextRequest) {
   const { credentials } = await request.json();
   const user_password = credentials?.password;
   const user_email = credentials?.email;
