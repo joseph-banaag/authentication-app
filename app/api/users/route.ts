@@ -6,21 +6,6 @@ import { cookies } from "next/headers";
 
 // GET OPERATION
 export async function GET(request: NextRequest, response: NextResponse) {
-  const jar = cookies();
-  const get_all = jar.get("token");
-
-  // cookies().set({
-  //   name: "test_cookie",
-  //   value: "test_cookie_value",
-  //   path: "/",
-  //   httpOnly: true,
-  //   secure: true,
-  // });
-
-  console.log(get_all);
-
-  jar.delete("test_cookie");
-
   await connectToDB();
   try {
     const db = client.db("active_users");

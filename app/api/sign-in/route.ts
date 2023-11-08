@@ -24,7 +24,7 @@ export const POST = async (request: NextRequest, response: Response) => {
 
     if (!result) {
       return NextResponse.json({
-        message: "User not found",
+        message: "User not found!",
         status: 401,
       });
     }
