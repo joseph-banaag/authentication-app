@@ -5,10 +5,8 @@ import { Image } from "@nextui-org/react";
 
 export default function Error({
   error,
-  reset,
 }: {
   error: Error & { digest?: string };
-  reset: () => void;
 }): React.JSX.Element | null {
   const [isClient, setIsClient] = useState<boolean>(false);
 
@@ -32,7 +30,7 @@ export default function Error({
           }}
           className="fadeIn"
         />
-        <button onClick={() => reset()} className="errorPageBtn">
+        <button onClick={() => location.reload()} className="errorPageBtn">
           Try again
         </button>
       </div>

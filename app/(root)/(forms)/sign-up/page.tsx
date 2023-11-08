@@ -30,7 +30,6 @@ export default function SignUp(): React.JSX.Element | null {
   const [isVisible, setIsVisible] = useState(false);
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [clicked, setClicked] = useState(false);
-  const pathname = usePathname();
   const router = useRouter();
   const {
     register,

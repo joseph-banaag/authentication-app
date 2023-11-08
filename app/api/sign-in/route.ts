@@ -44,6 +44,7 @@ export const POST = async (request: NextRequest, response: Response) => {
         httpOnly: true,
         maxAge: 24 * 60 * 60 * 1000,
         secure: true,
+        path: "/",
       });
     }
 
