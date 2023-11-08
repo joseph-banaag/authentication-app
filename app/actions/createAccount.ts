@@ -11,8 +11,12 @@ type CredentialType = {
   created_on: string;
 };
 export const CreateAccount = async (credentials: CredentialType) => {
-  const secretAccess = secret;
-  const { username } = credentials;
+  const { username, email, password, created_on } = credentials;
+
+  console.log(username);
+  console.log(email);
+  console.log(password);
+  console.log(created_on);
 
   const response = await fetch(signUpRoute, {
     method: "POST",
@@ -20,15 +24,17 @@ export const CreateAccount = async (credentials: CredentialType) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      credentials,
+      username,
+      email,
+      password,
+      created_on,
     }),
   });
 
   //  if successfully created a new user response.ok = true
   try {
     if (response.ok) {
-      const secret = `${secretAccess}`;
-      const token = jwt.sign({ username }, secret, { expiresIn: "1h" });
+      const token = jwt.sign({ username }, `${secret}`, { expiresIn: "1h" });
 
       cookies().set({
         name: "token",

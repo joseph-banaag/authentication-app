@@ -4,19 +4,21 @@ import { NextResponse, type NextRequest } from "next/server";
 
 // INSERT OPERATOR FOR SIGN UP
 export async function POST(request: NextRequest) {
-  const { credentials } = await request.json();
-  const user_password = credentials?.password;
-  const user_email = credentials?.email;
-  const user_name = credentials?.username;
-  const user_created_on = credentials?.created_on;
+  const { username, email, password, created_on } = await request.json();
+
+  console.log(username);
+  console.log(email);
+  console.log(password);
+  console.log(created_on);
 
   try {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
 
-    bcrypt.hash(user_password, 10, async function (err, hash) {
+    bcrypt.hash(password, 10, async function (err, hash) {
       await connectToDB();
 
+      console.log(hash);
       if (!hash) {
         return NextResponse.json({
           message: `${err}`,
@@ -24,10 +26,10 @@ export async function POST(request: NextRequest) {
         });
       } else {
         const newDoc = {
-          email: `${user_email}`,
-          username: `${user_name}`,
+          email: `${email}`,
+          username: `${username}`,
           password: `${hash}`,
-          created_on: `${user_created_on}`,
+          created_on: `${created_on}`,
         };
 
         const AddedAcc = await collection.insertOne(newDoc);
