@@ -5,7 +5,7 @@
   "owner": "Joseph Banaag",
   "project-started": "August 28, 2023",
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
