@@ -6,11 +6,6 @@ import { NextResponse, type NextRequest } from "next/server";
 export async function POST(request: NextRequest) {
   const { username, email, password, created_on } = await request.json();
 
-  console.log(username);
-  console.log(email);
-  console.log(password);
-  console.log(created_on);
-
   try {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
@@ -18,7 +13,6 @@ export async function POST(request: NextRequest) {
     bcrypt.hash(password, 10, async function (err, hash) {
       await connectToDB();
 
-      console.log(hash);
       if (!hash) {
         return NextResponse.json({
           message: `${err}`,
@@ -34,12 +28,13 @@ export async function POST(request: NextRequest) {
 
         const AddedAcc = await collection.insertOne(newDoc);
         // if successfully created = AddedAcc.acknowledge = true
+
         return NextResponse.json(AddedAcc);
       }
     });
 
     return NextResponse.json({
-      message: "No user was added. Try again",
+      message: "Successfully added a new user",
       status: 200,
     });
   } catch (error) {

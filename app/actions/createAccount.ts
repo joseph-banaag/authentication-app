@@ -13,11 +13,6 @@ type CredentialType = {
 export const CreateAccount = async (credentials: CredentialType) => {
   const { username, email, password, created_on } = credentials;
 
-  console.log(username);
-  console.log(email);
-  console.log(password);
-  console.log(created_on);
-
   const response = await fetch(signUpRoute, {
     method: "POST",
     headers: {

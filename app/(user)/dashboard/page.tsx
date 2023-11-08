@@ -1,12 +1,8 @@
 "use client";
-import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { NextApiHandler } from "next";
-import { NextRequest, NextResponse } from "next/server";
+import React from "react";
 
-export default (function Dashboard(): React.JSX.Element | null {
-  const [isClient, setIsClient] = useState<boolean>(false);
-
+export default (function Dashboard() {
   const user = "joshua_23";
   return (
     <main>
@@ -17,9 +13,7 @@ export default (function Dashboard(): React.JSX.Element | null {
         className="pageContainer"
       >
         <div className="p-5 gap-3 flex flex-1 flex-col justify-start items-center">
-          <h1 className="textHeadingResponsive text-center">
-            Welcome {isClient ? user : ""}
-          </h1>
+          <h1 className="textHeadingResponsive text-center">Welcome, {user}</h1>
           <p className="textBaseColor">
             This page will contain everything about the dashboard. If the
             application is an e-commerce store, all items like cart items will
