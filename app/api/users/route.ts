@@ -1,6 +1,8 @@
 import connectToDB, { client } from "@/app/lib/mongodb";
 import { NextResponse, type NextRequest } from "next/server";
-import { cookies } from "next/headers";
+import { userAuth } from "@/app/actions/userAuth";
+import jwt from "jsonwebtoken";
+import { secret } from "@/app/actions/secret";
 
 // INSERT OPERATIONS. See sign-up and sign-in handlers
 
@@ -10,22 +12,23 @@ export async function GET(request: NextRequest, response: NextResponse) {
   try {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
-    // verify token here before getting user information
 
-    const createdUsers = await collection.find({}).toArray();
+    const token = userAuth();
 
-    console.log("List of the documents will be found through PostMan");
-    const test = "testValue";
-    return NextResponse.json(createdUsers, {
-      status: 200,
-      headers: {
-        getSetCookie: `testCookie=${test}`,
-      },
-    });
+    console.log(token);
+
+    const decoded = jwt.verify(`${token}`, `${secret}`);
+
+    if (decoded) {
+      const currentUser = await collection.find({}).next();
+
+      return NextResponse.json(currentUser);
+    }
   } catch (error) {
-    throw new Error(
-      `There was a problem getting the information from the database. Error: ${error}`,
-    );
+    return NextResponse.json({
+      message: "Forbidden: Unauthorized attempt!",
+      status: 403,
+    });
   } finally {
     await client.close();
     console.log("The process is now completed. Database connection is closed.");
