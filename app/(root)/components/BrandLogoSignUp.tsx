@@ -13,8 +13,6 @@ const BrandLogoSignUp = (): React.JSX.Element | null => {
           height={100}
           style={{
             objectFit: "cover",
-            width: "100%",
-            height: "100%",
           }}
           className="drop-shadow-md"
         />
