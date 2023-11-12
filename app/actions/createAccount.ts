@@ -30,15 +30,17 @@ export const CreateAccount = async (credentials: CredentialType) => {
   try {
     if (response.ok) {
       const token = jwt.sign({ username }, `${secret}`, { expiresIn: "1h" });
+      const oneDay = 24 * 60 * 60 * 1000;
 
       cookies().set({
         name: "token",
         value: `${token}`,
         httpOnly: true,
         path: "/",
-        maxAge: 24 * 60 * 60 * 1000,
+        maxAge: 86400,
+        expires: Date.now() + oneDay,
         sameSite: "strict",
-        secure: process.env.NODE_ENV !== "development",
+        secure: process.env.NODE_ENV === "production",
       });
     }
   } catch (error) {

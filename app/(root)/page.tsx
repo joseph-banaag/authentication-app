@@ -2,19 +2,16 @@
 import Image from "next/image";
 import { Link } from "@nextui-org/react";
 import { bgIllustration } from "@/components/constants";
-import { Recursive, Dancing_Script } from "next/font/google";
+import { Dancing_Script } from "next/font/google";
 import { motion } from "framer-motion";
-import { usePathname } from "next/navigation";
-import { useEffect } from "react";
 
 const dancing = Dancing_Script({
   weight: "400",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export default function Home(): JSX.Element | null {
-  const pathname = usePathname();
-
   return (
     <main>
       <motion.div

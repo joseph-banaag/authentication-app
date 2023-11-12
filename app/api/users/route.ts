@@ -1,9 +1,7 @@
 import connectToDB, { client } from "@/app/lib/mongodb";
 import { NextResponse, type NextRequest } from "next/server";
-import { userAuth } from "@/app/actions/userAuth";
 import jwt from "jsonwebtoken";
 import { secret } from "@/app/actions/secret";
-
 // INSERT OPERATIONS. See sign-up and sign-in handlers
 
 // GET OPERATION
@@ -13,7 +11,7 @@ export async function GET(request: NextRequest, response: NextResponse) {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
 
-    const token = userAuth();
+    const token = "";
 
     console.log(token);
 

@@ -37,14 +37,22 @@ export const POST = async (request: NextRequest, response: Response) => {
     if (isMatched) {
       const secret = `${secretAccess}`;
       const token = jwt.sign({ username }, secret, { expiresIn: "1h" });
+      const oneDay = 24 * 60 * 60 * 1000;
+
+      request.cookies.set({
+        name: "cookie_token",
+        value: `${token}`,
+      });
 
       cookies().set({
         name: "token",
         value: `${token}`,
         httpOnly: true,
-        maxAge: 24 * 60 * 60 * 1000,
-        secure: true,
         path: "/",
+        maxAge: 86400,
+        expires: Date.now() + oneDay,
+        sameSite: "strict",
+        secure: process.env.NODE_ENV === "production",
       });
     }
 
