@@ -227,7 +227,7 @@ export default function Topbar(): React.ReactNode {
                         }}
                         className="cursor-pointer flex flex-1 justify-center items-center"
                       >
-                        <p className="text-white/90 font-semibold text-xs drop-shadow-md">
+                        <p className="text-white/90 font-semibold text-xs drop-shadow-md flex justify-center items-center text-center">
                           Logout
                         </p>
                       </Chip>
