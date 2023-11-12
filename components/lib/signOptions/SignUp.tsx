@@ -11,7 +11,7 @@ export default function SignUp() {
         variant="flat"
         className="hidden sm:flex !text-white font-semibold bg-[#af2604]"
       >
-        Sign Up
+        <p className="px-1 text-sm">Sign Up</p>
       </Button>
     </>
   );

@@ -2,6 +2,8 @@ import connectToDB, { client } from "@/app/lib/mongodb";
 import { NextResponse, type NextRequest } from "next/server";
 import jwt from "jsonwebtoken";
 import { secret } from "@/app/actions/secret";
+import { headers } from "next/headers";
+import { cookies } from "next/headers";
 // INSERT OPERATIONS. See sign-up and sign-in handlers
 
 // GET OPERATION
@@ -10,10 +12,14 @@ export async function GET(request: NextRequest, response: NextResponse) {
   try {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
+    const headersList = headers();
+    const headers_token = headersList.get("authorization");
+
+    console.log(headers_token);
+
+    console.log(headersList);
 
     const token = "";
-
-    console.log(token);
 
     const decoded = jwt.verify(`${token}`, `${secret}`);
 

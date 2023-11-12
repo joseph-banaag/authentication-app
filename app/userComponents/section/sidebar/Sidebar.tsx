@@ -76,7 +76,7 @@ export default function Sidebar(): React.ReactNode {
               onClick={() => handledLogout()}
               size="sm"
               variant="light"
-              className="text-medium w-full flex justify-center items-center  px-3 py-6"
+              className="text-medium w-full flex justify-center items-center px-3 py-6"
             >
               <p className="text-foreground/60">{logOut.iconLight}</p>
               <p className="linkItems">{logOut.label}</p>

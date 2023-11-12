@@ -7,11 +7,11 @@ export default function SignIn() {
       <Button
         as={Link}
         size="sm"
-        href="/sign-in"
+        href="/sign-up"
         variant="flat"
         className="hidden sm:flex !text-white font-semibold bg-[#af2604]"
       >
-        Sign In
+        <p className="px-1 text-sm">Sign In</p>
       </Button>
     </>
   );

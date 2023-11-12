@@ -2,7 +2,7 @@
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { secret } from "@/app/actions/secret";
-import { signUpRoute } from "@/app/api/apis";
+import { signUpRoute, usersRoute } from "@/app/api/apis";
 
 type CredentialType = {
   username: string;
@@ -42,6 +42,21 @@ export const CreateAccount = async (credentials: CredentialType) => {
         sameSite: "strict",
         secure: process.env.NODE_ENV === "production",
       });
+
+      const response = await fetch(usersRoute, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Content_type: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        console.log("send authorization");
+        const data = await response.json();
+        console.log(data);
+      } else {
+        console.error("Error:", response.statusText);
+      }
     }
   } catch (error) {
     throw new Error("System failed. Refresh the browser and try again.");
