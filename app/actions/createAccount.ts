@@ -42,22 +42,6 @@ export const CreateAccount = async (credentials: CredentialType) => {
         sameSite: "strict",
         secure: process.env.NODE_ENV === "production",
       });
-
-      const response = await fetch(usersRoute, {
-        headers: {
-          Authorization: `${token}`,
-          "Set-Cookie": `jwt_token=${token}`,
-          Content_type: "application/json",
-        },
-      });
-
-      if (response.ok) {
-        console.log("send authorization");
-        const data = await response.json();
-        console.log(data);
-      } else {
-        console.error("Error:", response.statusText);
-      }
     }
   } catch (error) {
     throw new Error("System failed. Refresh the browser and try again.");

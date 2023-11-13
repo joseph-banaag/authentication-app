@@ -1,9 +1,15 @@
 "use client";
+import { userAuth } from "@/app/actions/userAuth";
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export default (function Dashboard() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const user = "joshua_23";
+  useEffect(() => {
+    const isAuth = userAuth();
+  }, []);
+
   return (
     <main>
       <motion.div

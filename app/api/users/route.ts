@@ -1,32 +1,23 @@
 import connectToDB, { client } from "@/app/lib/mongodb";
 import { NextResponse, type NextRequest } from "next/server";
-import jwt from "jsonwebtoken";
-import { secret } from "@/app/actions/secret";
-import { headers } from "next/headers";
-import { cookies } from "next/headers";
+import { userAuth } from "@/app/actions/userAuth";
 // INSERT OPERATIONS. See sign-up and sign-in handlers
 
 // GET OPERATION
 export async function GET(request: NextRequest, response: NextResponse) {
+  const isAuth = userAuth();
   await connectToDB();
   try {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
-    const headersList = headers();
-    const headers_token = headersList.get("authorization");
 
-    console.log(headers_token);
-
-    console.log(headersList);
-
-    const token = "";
-
-    const decoded = jwt.verify(`${token}`, `${secret}`);
-
-    if (decoded) {
+    if (isAuth) {
+      console.log("authenticated");
       const currentUser = await collection.find({}).next();
 
       return NextResponse.json(currentUser);
+    } else {
+      console.log("Forbidden. Unauthenticated attempt!");
     }
   } catch (error) {
     return NextResponse.json({

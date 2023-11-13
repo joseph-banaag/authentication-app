@@ -7,7 +7,7 @@ export default function SignIn() {
       <Button
         as={Link}
         size="sm"
-        href="/sign-up"
+        href="/sign-in"
         variant="flat"
         className="hidden sm:flex !text-white font-semibold bg-[#af2604]"
       >
