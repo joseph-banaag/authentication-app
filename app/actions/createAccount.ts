@@ -45,7 +45,8 @@ export const CreateAccount = async (credentials: CredentialType) => {
 
       const response = await fetch(usersRoute, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `${token}`,
+          "Set-Cookie": `jwt_token=${token}`,
           Content_type: "application/json",
         },
       });

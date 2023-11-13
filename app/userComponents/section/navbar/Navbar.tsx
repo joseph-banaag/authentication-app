@@ -190,7 +190,9 @@ export default function Topbar(): React.ReactNode {
                       }}
                       className="cursor-pointer flex flex-1 justify-center items-center w-full"
                     >
-                      <p className="text-white font-semibold text-xs">Dark</p>
+                      <p className="text-white font-semibold text-xs mb-[2px]">
+                        Dark
+                      </p>
                     </Chip>
                   </DropdownItem>
                   <DropdownItem
@@ -208,7 +210,9 @@ export default function Topbar(): React.ReactNode {
                       }}
                       className="cursor-pointer flex flex-1 justify-center items-center"
                     >
-                      <p className="text-white font-semibold text-xs">Light</p>
+                      <p className="text-white font-semibold text-xs mb-[2px]">
+                        Light
+                      </p>
                     </Chip>
                   </DropdownItem>
                 </DropdownSection>
@@ -227,7 +231,7 @@ export default function Topbar(): React.ReactNode {
                         }}
                         className="cursor-pointer flex flex-1 justify-center items-center"
                       >
-                        <p className="text-white/90 font-semibold text-xs drop-shadow-md flex justify-center items-center text-center">
+                        <p className="text-white/90 font-semibold text-xs drop-shadow-md flex justify-center items-center text-center mb-[2px]">
                           Logout
                         </p>
                       </Chip>
