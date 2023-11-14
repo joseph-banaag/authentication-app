@@ -1,13 +1,25 @@
 "use client";
 import { userAuth } from "@/app/actions/userAuth";
+import { usersRoute } from "@/app/api/apis";
 import { motion } from "framer-motion";
+import { get } from "http";
 import React, { useEffect, useState } from "react";
 
+const getUser = async () => {
+  const response = await fetch(usersRoute);
+  const data = await response.json();
+  console.log(data);
+  return data;
+};
+
 export default (function Dashboard() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const user = "joshua_23";
+  const [user, setUser] = useState<string | undefined>(undefined);
+  const user_data = getUser();
+  console.log(user_data);
+
   useEffect(() => {
     const isAuth = userAuth();
+    console.log(isAuth);
   }, []);
 
   return (

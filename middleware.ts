@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+// cannot add isAuth logic here. Will cause edge runtime error not supporting NodeJs "crypto" module
+
 const publicRoutes = ["/", "/sign-in", "/sign-up"];
 const protectedRoutes = ["/dashboard", "/settings", "/profile", "/security"];
 

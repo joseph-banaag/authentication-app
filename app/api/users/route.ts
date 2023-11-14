@@ -5,11 +5,15 @@ import { userAuth } from "@/app/actions/userAuth";
 
 // GET OPERATION
 export async function GET(request: NextRequest, response: NextResponse) {
+  const token = request.cookies.get("token")?.value;
   const isAuth = userAuth();
   await connectToDB();
   try {
     const db = client.db("active_users");
     const collection = db.collection("user_information");
+
+    console.log(token);
+    console.log(isAuth);
 
     if (isAuth) {
       console.log("authenticated");
