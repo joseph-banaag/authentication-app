@@ -29,7 +29,9 @@ export async function POST(request: NextRequest) {
         const AddedAcc = await collection.insertOne(newDoc);
         // if successfully created = AddedAcc.acknowledge = true
 
-        return NextResponse.json(AddedAcc);
+        return NextResponse.json(AddedAcc, {
+          status: 201,
+        });
       }
     });
 

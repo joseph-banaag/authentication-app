@@ -1,25 +1,40 @@
 "use client";
-import { userAuth } from "@/app/actions/userAuth";
 import { usersRoute } from "@/app/api/apis";
 import { motion } from "framer-motion";
-import { get } from "http";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 
 const getUser = async () => {
-  const response = await fetch(usersRoute);
+  const response = await fetch(usersRoute, {
+    cache: "force-cache",
+  });
   const data = await response.json();
   console.log(data);
   return data;
 };
 
+type UserType = {
+  _id: string | null;
+  username: string | null;
+  email: string | null;
+  password: string | null;
+  created_on: string | null;
+};
+
 export default (function Dashboard() {
-  const [user, setUser] = useState<string | undefined>(undefined);
-  const user_data = getUser();
-  console.log(user_data);
+  const [user, setUser] = useState<UserType | null>(null);
+
+  const username = user?.username;
+
+  console.log(user);
+  console.log(username);
 
   useEffect(() => {
-    const isAuth = userAuth();
-    console.log(isAuth);
+    const currentUser = async () => {
+      const data = await getUser();
+      console.log(data);
+      setUser(data);
+    };
+    currentUser();
   }, []);
 
   return (
@@ -31,7 +46,11 @@ export default (function Dashboard() {
         className="pageContainer"
       >
         <div className="p-5 gap-3 flex flex-1 flex-col justify-start items-center">
-          <h1 className="textHeadingResponsive text-center">Welcome, {user}</h1>
+          <Suspense fallback={<p>Loading current user</p>}>
+            <h1 className="textHeadingResponsive text-center">
+              Welcome, {username}
+            </h1>
+          </Suspense>
           <p className="textBaseColor">
             This page will contain everything about the dashboard. If the
             application is an e-commerce store, all items like cart items will
