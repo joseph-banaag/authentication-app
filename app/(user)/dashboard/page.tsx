@@ -1,16 +1,6 @@
 "use client";
-import { usersRoute } from "@/app/api/apis";
 import { motion } from "framer-motion";
 import React, { Suspense, useEffect, useState } from "react";
-
-const getUser = async () => {
-  const response = await fetch(usersRoute, {
-    cache: "force-cache",
-  });
-  const data = await response.json();
-  console.log(data);
-  return data;
-};
 
 type UserType = {
   _id: string | null;
@@ -20,22 +10,31 @@ type UserType = {
   created_on: string | null;
 };
 
-export default (function Dashboard() {
-  const [user, setUser] = useState<UserType | null>(null);
-
-  const username = user?.username;
-
-  console.log(user);
-  console.log(username);
-
+export default function Dashboard() {
+  const [currentUser, setCurrentUser] = useState<UserType | null>(null);
   useEffect(() => {
-    const currentUser = async () => {
-      const data = await getUser();
-      console.log(data);
-      setUser(data);
+    const StoredUsername = {
+      data:
+        typeof window !== "undefined"
+          ? sessionStorage.getItem("session_name")
+          : null,
     };
-    currentUser();
+
+    const username = StoredUsername.data;
+
+    const getUser = async () => {
+      const response = await fetch(
+        `http://localhost:3000/api/authed-user?q=${username}`,
+      );
+
+      const data = await response.json();
+
+      setCurrentUser(data);
+    };
+    getUser();
   }, []);
+
+  console.log(currentUser);
 
   return (
     <main>
@@ -47,9 +46,7 @@ export default (function Dashboard() {
       >
         <div className="p-5 gap-3 flex flex-1 flex-col justify-start items-center">
           <Suspense fallback={<p>Loading current user</p>}>
-            <h1 className="textHeadingResponsive text-center">
-              Welcome, {username}
-            </h1>
+            <h1 className="textHeadingResponsive text-center">Welcome, {}</h1>
           </Suspense>
           <p className="textBaseColor">
             This page will contain everything about the dashboard. If the
@@ -60,4 +57,4 @@ export default (function Dashboard() {
       </motion.div>
     </main>
   );
-});
+}

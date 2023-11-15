@@ -51,6 +51,8 @@ export default function SignIn(): React.JSX.Element | null {
 
     const usernameLower = userInputUsername.toLowerCase();
 
+    sessionStorage.setItem("session_name", `${usernameLower}`);
+
     const credentials = {
       usernameLower,
       userInputPassword,
