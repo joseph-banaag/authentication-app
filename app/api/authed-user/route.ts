@@ -18,17 +18,24 @@ export const GET = async (request: NextRequest) => {
 
     const decoded = jwt.verify(token, jwt_secret) as JwtPayload;
 
-    const current_user = JSON.stringify(decoded?.user);
-    console.log(current_user);
-
-    return Response.json({
-      message: "authenticated",
-      user: decoded,
-      params: username,
-      status: 200,
-    });
+    if (decoded) {
+      const result = await collection
+        .find({
+          username: username,
+        })
+        .toArray();
+      return Response.json({
+        message: "authenticated",
+        user: decoded,
+        current_user: result,
+        status: 200,
+      });
+    }
   } catch (error) {
-    throw new Error("Authentication failed");
+    return Response.json({
+      message: "Forbidden. Unauthorized access attempt",
+      status: 403,
+    });
   } finally {
     await client.close();
     console.log("Client connection is now closed!");

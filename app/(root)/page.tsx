@@ -4,6 +4,7 @@ import { Link } from "@nextui-org/react";
 import { bgIllustration } from "@/components/constants";
 import { Dancing_Script } from "next/font/google";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 const dancing = Dancing_Script({
   weight: "400",
@@ -12,6 +13,9 @@ const dancing = Dancing_Script({
 });
 
 export default function Home(): JSX.Element | null {
+  useEffect(() => {
+    sessionStorage.clear();
+  }, []);
   return (
     <main>
       <motion.div

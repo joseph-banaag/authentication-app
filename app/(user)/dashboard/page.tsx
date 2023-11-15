@@ -1,4 +1,5 @@
 "use client";
+import { deleteToken } from "@/app/actions/deleteToken";
 import { motion } from "framer-motion";
 import React, { Suspense, useEffect, useState } from "react";
 
@@ -28,6 +29,19 @@ export default function Dashboard() {
       );
 
       const data = await response.json();
+      const verified = data?.user;
+      const verified_user = verified?.username;
+      const currentUser = data?.current_user;
+
+      console.log(username);
+      console.log(verified_user);
+      console.log(currentUser);
+
+      if (username === verified_user) {
+        console.log("true");
+      }
+
+      // todo: create a logic that will check user value and params value if matched, continue. if not. delete the cookie by calling a server component to delete the cookie to route the use back to log in.
 
       setCurrentUser(data);
     };
