@@ -4,25 +4,20 @@ import { motion } from "framer-motion";
 import React, { Suspense, useEffect, useState } from "react";
 
 type UserType = {
-  _id: string | null;
-  username: string | null;
-  email: string | null;
-  password: string | null;
-  created_on: string | null;
+  username: string;
 };
 
 export default function Dashboard() {
-  const [currentUser, setCurrentUser] = useState<UserType | null>(null);
+  const StoredUsername = {
+    data:
+      typeof window !== "undefined"
+        ? sessionStorage.getItem("session_name")
+        : null,
+  };
+
+  const username = StoredUsername.data;
+
   useEffect(() => {
-    const StoredUsername = {
-      data:
-        typeof window !== "undefined"
-          ? sessionStorage.getItem("session_name")
-          : null,
-    };
-
-    const username = StoredUsername.data;
-
     const getUser = async () => {
       const response = await fetch(
         `http://localhost:3000/api/authed-user?q=${username}`,
@@ -30,27 +25,15 @@ export default function Dashboard() {
       const data = await response.json();
       const verified = data?.user;
       const verified_user = verified?.username;
-      const currentUser = data?.current_user;
 
-      console.log(username);
-      console.log(verified_user);
-      console.log(currentUser);
-
-      if (username === verified_user) {
-        console.log("true");
+      if (!response.ok) {
+        if (username !== verified_user) {
+          deleteToken();
+        }
       }
-
-      //* todo: create a logic that will check user value and params value if matched, continue. if not. delete the cookie by calling a server component to delete the cookie to route the use back to log in.
-
-      setCurrentUser(data);
     };
     getUser();
-  }, []);
-
-  const auth_username = currentUser?.username;
-
-  console.log(auth_username);
-  console.log(currentUser);
+  }, [username]);
 
   return (
     <main>
@@ -62,7 +45,9 @@ export default function Dashboard() {
       >
         <div className="p-5 gap-3 flex flex-1 flex-col justify-start items-center">
           <Suspense fallback={<p>Loading current user</p>}>
-            <h1 className="textHeadingResponsive text-center">Welcome, {}</h1>
+            <h1 className="textHeadingResponsive text-center">
+              Welcome, {username}
+            </h1>
           </Suspense>
           <p className="textBaseColor">
             This page will contain everything about the dashboard. If the

@@ -57,7 +57,7 @@ const ThemeSwitcher = (): React.JSX.Element | null => {
               onClick={handleThemeToLight}
               className="slider sm:w-9 sm:h-6 w-7 h-5 absolute sm:left-[-20px] left-[-15px] flex justify-center items-center rounded-sm truncate !text-white text-sm capitalize bg-violet-500 rounded-l-md p-[2px] shadow-lg"
             >
-              <p className="sm:text-[12px] text-[10px] sm:font-normal font-small drop-shadow-md mb-[2px]">
+              <p className="text-[10px] sm:font-normal font-small drop-shadow-md mb-[2px]">
                 {client ? theme : ""}
               </p>
             </button>
@@ -67,7 +67,7 @@ const ThemeSwitcher = (): React.JSX.Element | null => {
               onClick={handleThemeToDark}
               className="slider sm:w-9 sm:h-6 w-7 h-5 absolute sm:left-[-20px] left-[-15px] flex justify-center items-center rounded-sm truncate !text-white text-sm capitalize bg-violet-900 rounded-r-md p-[2px] shadow-lg"
             >
-              <p className="sm:text-[12px] text-[10px] sm:font-normal font-small drop-shadow-md mb-[2px]">
+              <p className="text-[10px] sm:font-normal font-small drop-shadow-md mb-[2px]">
                 {client ? theme : ""}
               </p>
             </button>

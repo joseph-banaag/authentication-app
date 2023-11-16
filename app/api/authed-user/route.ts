@@ -14,8 +14,6 @@ export const GET = async (request: NextRequest) => {
     const jwt_secret = `${secret}`;
     const username = searchParams.get("q");
 
-    console.log(token);
-
     const decoded = jwt.verify(token, jwt_secret) as JwtPayload;
 
     if (decoded) {
