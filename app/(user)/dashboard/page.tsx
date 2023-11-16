@@ -27,7 +27,6 @@ export default function Dashboard() {
       const response = await fetch(
         `http://localhost:3000/api/authed-user?q=${username}`,
       );
-
       const data = await response.json();
       const verified = data?.user;
       const verified_user = verified?.username;
@@ -41,13 +40,16 @@ export default function Dashboard() {
         console.log("true");
       }
 
-      // todo: create a logic that will check user value and params value if matched, continue. if not. delete the cookie by calling a server component to delete the cookie to route the use back to log in.
+      //* todo: create a logic that will check user value and params value if matched, continue. if not. delete the cookie by calling a server component to delete the cookie to route the use back to log in.
 
       setCurrentUser(data);
     };
     getUser();
   }, []);
 
+  const auth_username = currentUser?.username;
+
+  console.log(auth_username);
   console.log(currentUser);
 
   return (
