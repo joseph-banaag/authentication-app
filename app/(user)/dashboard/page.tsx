@@ -32,7 +32,9 @@ export default function Dashboard() {
       if (!response.ok) {
         if (username !== verified_user) {
           deleteToken();
-          location.reload();
+          setTimeout(() => {
+            location.reload();
+          }, 1000);
         }
       }
     };

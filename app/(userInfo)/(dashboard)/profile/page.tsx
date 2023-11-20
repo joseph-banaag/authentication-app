@@ -9,16 +9,48 @@ import Image from "next/image";
 import UserInfoCard from "@/app/(userInfo)/(dashboard)/profile/components/UserInfoCard";
 import UserInfoUpdateModal from "@/app/(userInfo)/(dashboard)/profile/components/UserInfoUpdateModal";
 import { useModalContext } from "@/app/context/ModalContext";
+import { deleteToken } from "@/app/actions/deleteToken";
 
 export default function Profile(): React.JSX.Element | null {
   const [mounted, setMounted] = useState(false);
   const { updateUserInfo, setUpdateUserInfo } = useModalContext();
+  const StoredUsername = {
+    data:
+      typeof window !== "undefined"
+        ? sessionStorage.getItem("session_name")
+        : null,
+  };
+
+  const username = StoredUsername.data;
 
   useEffect(() => {
     setMounted(true);
-  }, [setMounted]);
+    const getUser = async () => {
+      const response = await fetch(
+        `http://localhost:3000/api/authed-user?q=${username}`,
+        {
+          cache: "force-cache",
+        },
+      );
+      const data = await response.json();
+      const verified = data?.user;
+      const verified_user = verified?.username;
 
-  const username = "joshua_23";
+      if (!response.ok) {
+        if (username !== verified_user) {
+          deleteToken();
+          setTimeout(() => {
+            location.reload();
+          }, 1000);
+        }
+      }
+    };
+    getUser();
+  }, [username, setMounted]);
+
+  if (!mounted) {
+    return null;
+  }
 
   const image =
     "https://i.pinimg.com/280x280_RS/8e/dd/1e/8edd1e070a3382921de5829e58923704.jpg";

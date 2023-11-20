@@ -6,14 +6,44 @@ import { useTheme } from "next-themes";
 import { AppearanceIcon } from "@/components/utils/icons/SettingsIcon";
 import { MoonIcon } from "@/components/utils/icons/MoonIcon";
 import { SunIcon } from "@/components/utils/icons/SunIcon";
+import { deleteToken } from "@/app/actions/deleteToken";
 
 export default function Settings(): React.JSX.Element | null {
   const { theme, setTheme } = useTheme();
   const [client, setClient] = useState<boolean>(false);
+  const StoredUsername = {
+    data:
+      typeof window !== "undefined"
+        ? sessionStorage.getItem("session_name")
+        : null,
+  };
+
+  const username = StoredUsername.data;
 
   useEffect(() => {
     setClient(true);
-  }, []);
+    const getUser = async () => {
+      const response = await fetch(
+        `http://localhost:3000/api/authed-user?q=${username}`,
+        {
+          cache: "force-cache",
+        },
+      );
+      const data = await response.json();
+      const verified = data?.user;
+      const verified_user = verified?.username;
+
+      if (!response.ok) {
+        if (username !== verified_user) {
+          deleteToken();
+          setTimeout(() => {
+            location.reload();
+          }, 1000);
+        }
+      }
+    };
+    getUser();
+  }, [username]);
 
   const changeThemeToLight = () => {
     setTheme("light");
