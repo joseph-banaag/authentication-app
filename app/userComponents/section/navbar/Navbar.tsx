@@ -14,7 +14,7 @@ import {
   DropdownSection,
   Button,
 } from "@nextui-org/react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { userNavigation } from "@/app/userComponents/constants/index";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
@@ -32,7 +32,6 @@ export default function Topbar(): React.ReactNode {
   const [userName, setUserName] = useState<string>("");
   const [eMail, setEMail] = useState<string>("");
   const [client, setClient] = useState<boolean>(false);
-  const router = useRouter();
   const { displayOn, setDisplayOn } = useModalContext();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -52,7 +51,9 @@ export default function Topbar(): React.ReactNode {
 
   const handledLogout = () => {
     deleteToken();
-    router.push("/");
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
   };
   return (
     <>

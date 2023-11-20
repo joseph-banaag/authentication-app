@@ -21,6 +21,9 @@ export default function Dashboard() {
     const getUser = async () => {
       const response = await fetch(
         `http://localhost:3000/api/authed-user?q=${username}`,
+        {
+          cache: "force-cache",
+        },
       );
       const data = await response.json();
       const verified = data?.user;
@@ -29,6 +32,7 @@ export default function Dashboard() {
       if (!response.ok) {
         if (username !== verified_user) {
           deleteToken();
+          location.reload();
         }
       }
     };

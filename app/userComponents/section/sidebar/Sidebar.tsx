@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { userNavigation, logOut } from "@/app/userComponents/constants";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Link, Button, Card } from "@nextui-org/react";
 import Topbar from "@/app/userComponents/section/navbar/Navbar";
 import ProfileAvatar from "../navbar/components/ProfileAvatar";
@@ -9,7 +9,6 @@ import { deleteToken } from "@/app/actions/deleteToken";
 
 export default function Sidebar(): React.ReactNode {
   const pathname = usePathname();
-  const router = useRouter();
   const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [mounted, setMounted] = useState<boolean>(false);
@@ -27,7 +26,9 @@ export default function Sidebar(): React.ReactNode {
 
   const handledLogout = () => {
     deleteToken();
-    router.push("/");
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
   };
   return (
     <>

@@ -1,44 +1,42 @@
 import connectToDB, { client } from "@/app/lib/mongodb";
 import { NextResponse, type NextRequest } from "next/server";
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import { secret } from "@/app/actions/secret";
-// INSERT OPERATIONS. See sign-up and sign-in handlers
 
+// * NOTE: this component will provide the necessary user information to other components in the app aside from the dashboard which acts as a secondary security if the verification failed.
 // GET OPERATION
-export async function GET(request: NextRequest, response: NextResponse) {
-  const token = request.cookies.get("token")?.value;
-  await connectToDB();
 
+export const GET = async (request: NextRequest) => {
+  const { searchParams } = new URL(request.url);
   try {
+    await connectToDB();
     const db = client.db("active_users");
     const collection = db.collection("user_information");
+    const jwt_token = request.cookies.get("token")?.value;
+    const token = `${jwt_token}`;
+    const jwt_secret = `${secret}`;
+    const username = searchParams.get("q");
 
-    console.log(token);
-
-    const decoded = jwt.verify(`${token}`, `${secret}`);
-    console.log(decoded);
+    const decoded = jwt.verify(token, jwt_secret) as JwtPayload;
 
     if (decoded) {
-      const currentUser = await collection.find({}).next();
-
-      console.log("CURRENT_USER: ", currentUser);
-
-      return NextResponse.json(currentUser, {
-        status: 200,
-      });
+      const result = await collection
+        .find({
+          username: username,
+        })
+        .next();
+      return Response.json(result);
     }
   } catch (error) {
-    console.log(`Error: ${error}`);
-
-    return NextResponse.json({
-      message: "Forbidden: Unauthorized attempt!",
+    return Response.json({
+      message: "Forbidden. Unauthorized access attempt",
       status: 403,
     });
   } finally {
     await client.close();
-    console.log("The process is now completed. Database connection is closed.");
+    console.log("Client connection is now closed!");
   }
-}
+};
 
 // UPDATE OPERATION
 export async function PUT(request: Request) {
