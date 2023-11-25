@@ -25,6 +25,7 @@ import { useModalContext } from "@/app/context/ModalContext";
 import ProfileModal from "@/app/userComponents/section/navbar/components/ProfileModal";
 import ProfileAvatar from "@/app/userComponents/section/navbar/components/ProfileAvatar";
 import { deleteToken } from "@/app/actions/deleteToken";
+import { session_name } from "@/app/actions/verified";
 
 export default function Topbar(): React.ReactNode {
   const pathname = usePathname();
@@ -37,6 +38,24 @@ export default function Topbar(): React.ReactNode {
 
   useEffect(() => {
     setClient(true);
+    const getUser = async () => {
+      const response = await fetch(
+        `http://localhost:3000/api/users?q=${session_name}`,
+        {
+          cache: "force-cache",
+          method: "GET",
+        },
+      );
+
+      const data = await response.json();
+      const username = data?.username;
+      const email = data?.email;
+
+      setUserName(username);
+      setEMail(email);
+      return data;
+    };
+    getUser();
   }, []);
 
   const changeThemeDark = () => {

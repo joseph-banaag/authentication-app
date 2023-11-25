@@ -6,6 +6,7 @@ import { Link, Button, Card } from "@nextui-org/react";
 import Topbar from "@/app/userComponents/section/navbar/Navbar";
 import ProfileAvatar from "../navbar/components/ProfileAvatar";
 import { deleteToken } from "@/app/actions/deleteToken";
+import { session_name } from "@/app/actions/verified";
 
 export default function Sidebar(): React.ReactNode {
   const pathname = usePathname();
@@ -15,6 +16,25 @@ export default function Sidebar(): React.ReactNode {
 
   useEffect(() => {
     setMounted(true);
+
+    const getUser = async () => {
+      const response = await fetch(
+        `http://localhost:3000/api/users?q=${session_name}`,
+        {
+          cache: "force-cache",
+          method: "GET",
+        },
+      );
+
+      const data = await response.json();
+      const username = data?.username;
+      const email = data?.email;
+
+      setUsername(username);
+      setEmail(email);
+      return data;
+    };
+    getUser();
   }, []);
 
   if (!mounted) return null;
@@ -38,7 +58,7 @@ export default function Sidebar(): React.ReactNode {
           <div className="ms-2 max-w-[120px]">
             <p className="text-sm font-bold truncate">{username}</p>
             <div className="overflow-hidden">
-              <p className="text-xs font-thin dark: animate-scrolling-text">
+              <p className="text-xs font-thin animate-scrolling-text">
                 {email}
               </p>
             </div>

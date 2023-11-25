@@ -9,7 +9,7 @@ import Image from "next/image";
 import UserInfoCard from "@/app/(userInfo)/(dashboard)/profile/components/UserInfoCard";
 import UserInfoUpdateModal from "@/app/(userInfo)/(dashboard)/profile/components/UserInfoUpdateModal";
 import { useModalContext } from "@/app/context/ModalContext";
-import { deleteToken } from "@/app/actions/deleteToken";
+import { getUser } from "@/app/actions/verified";
 
 export default function Profile(): React.JSX.Element | null {
   const [mounted, setMounted] = useState(false);
@@ -25,26 +25,6 @@ export default function Profile(): React.JSX.Element | null {
 
   useEffect(() => {
     setMounted(true);
-    const getUser = async () => {
-      const response = await fetch(
-        `http://localhost:3000/api/authed-user?q=${username}`,
-        {
-          cache: "force-cache",
-        },
-      );
-      const data = await response.json();
-      const verified = data?.user;
-      const verified_user = verified?.username;
-
-      if (!response.ok) {
-        if (username !== verified_user) {
-          deleteToken();
-          setTimeout(() => {
-            location.reload();
-          }, 1000);
-        }
-      }
-    };
     getUser();
   }, [username, setMounted]);
 

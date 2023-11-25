@@ -8,6 +8,7 @@ import { EyeSlashFilledIcon } from "@/components/utils/icons/EyeSlashFilledIcon"
 import { useForm, SubmitHandler } from "react-hook-form";
 import { creationDate } from "@/components/lib/createdDate";
 import { useModalContext } from "@/app/context/ModalContext";
+import { session_name } from "@/app/actions/verified";
 
 const getData = async () => {
   const res = await fetch("http://localhost:3000/api/users", {
@@ -38,6 +39,28 @@ const UserInfoCard = (): React.JSX.Element | null => {
 
   useEffect(() => {
     setMounted(true);
+    const getUser = async () => {
+      const response = await fetch(
+        `http://localhost:3000/api/users?q=${session_name}`,
+        {
+          cache: "force-cache",
+          method: "GET",
+        },
+      );
+      const data = await response.json();
+      const username = data?.username;
+      const email = data?.email;
+      const password = data?.password;
+      const created_on = data?.created_on;
+
+      setUsername(username);
+      setEmail(email);
+      setPassword(password);
+      setCreatedOn(created_on);
+
+      return data;
+    };
+    getUser();
   }, [setMounted]);
 
   if (!mounted) return null;
@@ -69,7 +92,8 @@ const UserInfoCard = (): React.JSX.Element | null => {
   };
 
   const handleShowPassword = () => {
-    console.log("the password are matched!");
+    // * todo: create a function that will ask for users password before the current password revealed and use compare from bcrypt
+    setShowPass(!showPass);
 
     {
       /* 
@@ -113,21 +137,23 @@ const UserInfoCard = (): React.JSX.Element | null => {
                 Password:
               </div>
               <div
-                onClick={() => setShowPass(!showPass)}
-                className="flex justify-between items-center gap-1"
+                onClick={() => handleShowPassword()}
+                className="flex justify-between items-center gap-2"
               >
-                <p className="text-sm text-foreground/90 min-w-[100px] truncate flex items-center">
+                <p className="text-sm text-foreground/90 min-w-[100px] truncate flex items-center ">
                   {showPass ? password : maskedPassword}
                 </p>
 
-                {showPass ? (
-                  <EyeFilledIcon className="text-foreground/80 w-[24px] h-[24px]" />
-                ) : (
-                  <EyeSlashFilledIcon
-                    onClick={handleShowPassword}
-                    className="text-foreground/80 w-[24px] h-[24px]"
-                  />
-                )}
+                <div>
+                  {showPass ? (
+                    <EyeFilledIcon className="text-foreground/80 !w-[24px] !h-[24px]" />
+                  ) : (
+                    <EyeSlashFilledIcon
+                      onClick={handleShowPassword}
+                      className="text-foreground/80 !w-[24px] !h-[24px]"
+                    />
+                  )}
+                </div>
               </div>
             </li>
             <div className="w-full flex justify-end">

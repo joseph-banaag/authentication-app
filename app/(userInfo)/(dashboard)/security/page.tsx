@@ -5,7 +5,7 @@ import { Card, Button } from "@nextui-org/react";
 import { SecurityIconLight } from "@/components/utils/icons/SettingsIcon";
 import { DeleteIcon } from "@/components/utils/icons/DeleteIcon";
 import Link from "next/link";
-import { deleteToken } from "@/app/actions/deleteToken";
+import { getUser } from "@/app/actions/verified";
 
 export default function Security(): React.JSX.Element | null {
   const [isChanged, setIsChanged] = useState<boolean>(false);
@@ -18,26 +18,6 @@ export default function Security(): React.JSX.Element | null {
   const username = StoredUsername.data;
 
   useEffect(() => {
-    const getUser = async () => {
-      const response = await fetch(
-        `http://localhost:3000/api/authed-user?q=${username}`,
-        {
-          cache: "force-cache",
-        },
-      );
-      const data = await response.json();
-      const verified = data?.user;
-      const verified_user = verified?.username;
-
-      if (!response.ok) {
-        if (username !== verified_user) {
-          deleteToken();
-          setTimeout(() => {
-            location.reload();
-          }, 1000);
-        }
-      }
-    };
     getUser();
   }, [username]);
 

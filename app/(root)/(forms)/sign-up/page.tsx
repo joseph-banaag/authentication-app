@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Input, Card, Button } from "@nextui-org/react";
 import { EyeFilledIcon } from "@/components/utils/icons/EyeFilledIcon";
@@ -11,7 +11,6 @@ import SubmitSpinner from "@/components/lib/SubmitSpinner";
 import toast, { Toaster } from "react-hot-toast";
 import IllustrationSigUp from "@/app/(root)/components/IllustrationSigUp";
 import BrandLogoSignUp from "@/app/(root)/components/BrandLogoSignUp";
-import { usePathname } from "next/navigation";
 import SocialAuth from "@/components/SocialAuth";
 import DisabledButton from "@/components/toggle/DisabledButton";
 import { CreateAccount } from "@/app/actions/createAccount";
@@ -96,6 +95,8 @@ export default function SignUp(): React.JSX.Element | null {
 
     const usernameLower = user_name.toLowerCase();
     const emailLower = email_acc.toLowerCase();
+
+    sessionStorage.setItem("session_name", `${usernameLower}`);
 
     const credentials = {
       username: usernameLower,

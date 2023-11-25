@@ -1,45 +1,30 @@
 "use client";
-import { deleteToken } from "@/app/actions/deleteToken";
+import { getUser } from "@/app/actions/verified";
 import { motion } from "framer-motion";
 import React, { Suspense, useEffect, useState } from "react";
-
-type UserType = {
-  username: string;
-};
+import { session_name } from "@/app/actions/verified";
 
 export default function Dashboard() {
-  const StoredUsername = {
-    data:
-      typeof window !== "undefined"
-        ? sessionStorage.getItem("session_name")
-        : null,
-  };
-
-  const username = StoredUsername.data;
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
-    const getUser = async () => {
+    getUser();
+
+    const getCurrentUser = async () => {
       const response = await fetch(
-        `http://localhost:3000/api/authed-user?q=${username}`,
+        `http://localhost:3000/api/users?q=${session_name}`,
         {
           cache: "force-cache",
+          method: "GET",
         },
       );
       const data = await response.json();
-      const verified = data?.user;
-      const verified_user = verified?.username;
-
-      if (!response.ok) {
-        if (username !== verified_user) {
-          deleteToken();
-          setTimeout(() => {
-            location.reload();
-          }, 1000);
-        }
-      }
+      const username = data?.username;
+      setUsername(username);
+      return data;
     };
-    getUser();
-  }, [username]);
+    getCurrentUser();
+  }, []);
 
   return (
     <main>
