@@ -9,16 +9,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { creationDate } from "@/components/lib/createdDate";
 import { useModalContext } from "@/app/context/ModalContext";
 import { session_name } from "@/app/actions/verified";
-
-const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/users", {
-    cache: "force-cache",
-  });
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-  return res.json();
-};
+import { seePassword } from "@/app/actions/seePassword";
 
 interface Inputs {
   password: string;
@@ -55,8 +46,9 @@ const UserInfoCard = (): React.JSX.Element | null => {
 
       setUsername(username);
       setEmail(email);
-      setPassword(password);
       setCreatedOn(created_on);
+
+      // seePassword(password)
 
       return data;
     };
@@ -93,6 +85,10 @@ const UserInfoCard = (): React.JSX.Element | null => {
 
   const handleShowPassword = () => {
     // * todo: create a function that will ask for users password before the current password revealed and use compare from bcrypt
+    // * once bcrypt validated that the provided password is a match, the real password will be displayed and not the hashed password.
+    setPassword("actual password here...");
+
+    // function: if isMatched is true, display data?.password
     setShowPass(!showPass);
 
     {
@@ -141,7 +137,11 @@ const UserInfoCard = (): React.JSX.Element | null => {
                 className="flex justify-between items-center gap-2"
               >
                 <p className="text-sm text-foreground/90 min-w-[100px] truncate flex items-center ">
-                  {showPass ? password : maskedPassword}
+                  {showPass ? (
+                    <span className="animate-scrolling-text">{password}</span>
+                  ) : (
+                    maskedPassword
+                  )}
                 </p>
 
                 <div>

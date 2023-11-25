@@ -5,11 +5,10 @@ import React, { Suspense, useEffect, useState } from "react";
 import { session_name } from "@/app/actions/verified";
 
 export default function Dashboard() {
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     getUser();
-
     const getCurrentUser = async () => {
       const response = await fetch(
         `http://localhost:3000/api/users?q=${session_name}`,
@@ -20,7 +19,9 @@ export default function Dashboard() {
       );
       const data = await response.json();
       const username = data?.username;
+
       setUsername(username);
+
       return data;
     };
     getCurrentUser();
