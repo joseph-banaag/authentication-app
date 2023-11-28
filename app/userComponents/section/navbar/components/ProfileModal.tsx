@@ -3,21 +3,27 @@ import { useModalContext } from "@/app/context/ModalContext";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import ProfileModalForm from "@/app/userComponents/section/navbar/components/ProfileModalForm";
+import { session_name } from "@/app/actions/verified";
 
 const ProfileModal = (): React.ReactNode => {
   const { displayOn } = useModalContext();
   const [email, setEmail] = useState<string>("");
   const { theme } = useTheme();
-
-  const getData = async () => {
-    const res = await fetch("http://localhost:3000/api/users", {
-      cache: "force-cache",
-    });
-    if (!res.ok) {
-      throw new Error("Failed to fetch data");
-    }
-    return res.json();
-  };
+  useEffect(() => {
+    const getUser = async () => {
+      const response = await fetch(
+        `http://localhost:3000/api/users?q=${session_name}`,
+        {
+          cache: "force-cache",
+          method: "GET",
+        },
+      );
+      const data = await response.json();
+      setEmail(data?.email);
+      return data;
+    };
+    getUser();
+  });
 
   return (
     <>

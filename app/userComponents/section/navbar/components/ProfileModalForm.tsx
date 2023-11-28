@@ -11,6 +11,7 @@ import {
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Input } from "@nextui-org/react";
 import { usePathname, useRouter } from "next/navigation";
+import { session_name } from "@/app/actions/verified";
 
 interface Inputs {
   username: string;
@@ -19,9 +20,24 @@ const ProfileModalForm = (): React.ReactNode => {
   const { displayOn, setDisplayOn } = useModalContext();
   const [client, setClient] = useState<boolean>(false);
   const [editUser, setEditUser] = useState<boolean>(false);
+  const [username, setUsername] = useState<string>("");
   const router = useRouter();
+  useEffect(() => {
+    const getUser = async () => {
+      const response = await fetch(
+        `http://localhost:3000/api/users?q=${session_name}`,
+        {
+          cache: "force-cache",
+          method: "GET",
+        },
+      );
+      const data = await response.json();
 
-  const username = "joshua_23";
+      setUsername(data?.username);
+      return data;
+    };
+    getUser();
+  }, []);
 
   const {
     register,
@@ -56,7 +72,7 @@ const ProfileModalForm = (): React.ReactNode => {
     const newUsernameLower = newUsername.toLowerCase();
 
     try {
-      const res = await fetch("api/users", {
+      const res = await fetch("http://localhost:3000/api/users", {
         method: "PUT",
         headers: {
           "Content-type": "application/json",
@@ -68,7 +84,7 @@ const ProfileModalForm = (): React.ReactNode => {
       });
 
       if (!res.ok) {
-        throw new Error("Invalid response.");
+        throw new Error("Error when updating the username. Please try again.");
       }
 
       setTimeout(() => {
