@@ -51,6 +51,10 @@ export default function Topbar(): React.ReactNode {
       const username = data?.username;
       const email = data?.email;
 
+      if (username === undefined) {
+        location.reload();
+      }
+
       setUserName(username);
       setEMail(email);
       return data;

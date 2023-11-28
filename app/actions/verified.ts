@@ -10,7 +10,6 @@ const StoredUsername = {
 export const session_name = StoredUsername.data;
 
 export const getUser = async () => {
-  console.log(session_name);
   const response = await fetch(
     `http://localhost:3000/api/authed-user?q=${session_name}`,
     {

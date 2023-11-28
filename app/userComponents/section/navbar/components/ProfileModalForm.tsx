@@ -12,6 +12,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Input } from "@nextui-org/react";
 import { usePathname, useRouter } from "next/navigation";
 import { session_name } from "@/app/actions/verified";
+import AlertUserModal from "./AlertUserModal";
 
 interface Inputs {
   username: string;
@@ -21,6 +22,7 @@ const ProfileModalForm = (): React.ReactNode => {
   const [client, setClient] = useState<boolean>(false);
   const [editUser, setEditUser] = useState<boolean>(false);
   const [username, setUsername] = useState<string>("");
+  const [userAlert, setUserAlert] = useState(false);
   const router = useRouter();
   useEffect(() => {
     const getUser = async () => {
@@ -32,8 +34,12 @@ const ProfileModalForm = (): React.ReactNode => {
         },
       );
       const data = await response.json();
+      const username = data?.username;
+      if (username === undefined) {
+        location.reload();
+      }
 
-      setUsername(data?.username);
+      setUsername(username);
       return data;
     };
     getUser();
@@ -89,7 +95,7 @@ const ProfileModalForm = (): React.ReactNode => {
 
       setTimeout(() => {
         location.reload();
-      }, 2000);
+      }, 1000);
     } catch (error) {
       throw new Error(
         `There was a problem sending the requested data to be updated. Error: ${error}`,
@@ -139,8 +145,23 @@ const ProfileModalForm = (): React.ReactNode => {
       </>
     );
   };
+
+  const handleEditUsername = () => {
+    setEditUser(!editUser);
+    setUserAlert(!userAlert);
+
+    // todo: create a function here to enable the modal for alerting client to log in again with the new username after updating the username
+  };
   return (
     <>
+      <div
+        className={`
+      warningMessage
+      ${userAlert ? "block" : "hidden"}
+      `}
+      >
+        <AlertUserModal />
+      </div>
       <div className="profileModalFormContainer">
         <div
           className={`profileModalFormWrapper
@@ -197,7 +218,7 @@ const ProfileModalForm = (): React.ReactNode => {
           ) : (
             <button
               type="button"
-              onClick={() => setEditUser(!editUser)}
+              onClick={() => handleEditUsername()}
               className="profileModalFormEditIcon"
             >
               <EditIcon className="profileModalFormEditIconStyle" />
