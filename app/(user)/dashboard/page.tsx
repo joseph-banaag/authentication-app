@@ -19,9 +19,7 @@ export default function Dashboard() {
       );
       const data = await response.json();
       const username = data?.username;
-      if (username === undefined) {
-        location.reload();
-      }
+
       setUsername(username);
 
       return data;
